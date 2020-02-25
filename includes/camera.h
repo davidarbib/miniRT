@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/05 12:20:34 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/17 12:15:33 by darbib           ###   ########.fr       */
+/*   Created: 2020/02/25 15:57:55 by darbib            #+#    #+#             */
+/*   Updated: 2020/02/25 15:58:55 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#ifndef CAMERA_H
+# define CAMERA_H
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+/*
+** --- camera ---
+** pos : position vector
+** ort : orientation vector [-1;1]
+** fov : sight-field ([0;180] degrees)
+*/
+typedef struct		s_cam
 {
-	size_t i;
+	t_vect			*pos;
+	t_vect			*ort;
+	int				fov;
+}					t_cam;
 
-	i = 0;
-	while (i < n && s1[i] && s2[i]
-			&& (unsigned char)s1[i] == (unsigned char)s2[i])
-		i++;
-	if (i != n)
-	{
-		if ((unsigned char)s1[i] > (unsigned char)s2[i])
-			return (1);
-		if ((unsigned char)s1[i] < (unsigned char)s2[i])
-			return (-1);
-	}
-	return (0);
-}
+#endif

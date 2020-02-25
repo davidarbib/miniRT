@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_pass_spaces.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/05 12:20:34 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/17 12:15:33 by darbib           ###   ########.fr       */
+/*   Created: 2020/02/21 13:38:53 by darbib            #+#    #+#             */
+/*   Updated: 2020/02/24 17:54:45 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	*ft_pass_spaces(char *s)
 {
-	size_t i;
-
-	i = 0;
-	while (i < n && s1[i] && s2[i]
-			&& (unsigned char)s1[i] == (unsigned char)s2[i])
-		i++;
-	if (i != n)
-	{
-		if ((unsigned char)s1[i] > (unsigned char)s2[i])
-			return (1);
-		if ((unsigned char)s1[i] < (unsigned char)s2[i])
-			return (-1);
-	}
-	return (0);
+	while (*s && ft_isblank(*s))
+		s++;
+	if (!*s)
+		return (NULL);
+	return (s);
 }

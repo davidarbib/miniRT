@@ -6,7 +6,7 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/02/14 16:35:40 by darbib           ###   ########.fr        #
+#    Updated: 2020/02/24 14:49:22 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,13 +46,16 @@ OBJ = $(SRC:.c=.o)
 
 SRC = minirt.c \
 	  parsing.c \
+	  error.c \
+	  obj_utils.c \
+	  parse_utils.c \
 	  endian.c \
 	  graphic.c
 
 # ------------------------------------------------------------------------------
 
-vpath %.c srcs
-vpath %.o objs
+vpath %.c $(SRC_DIR)
+vpath %.o $(OBJ_DIR)
 
 .PHONY: all clean fclean re
 

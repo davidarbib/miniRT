@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   triangle.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/05 12:20:34 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/17 12:15:33 by darbib           ###   ########.fr       */
+/*   Created: 2020/02/25 15:54:04 by darbib            #+#    #+#             */
+/*   Updated: 2020/02/25 16:07:35 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#ifndef TRIANGLE_H
+# define TRIANGLE_H
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+/*
+** --- triangle ---
+** pt1 : 1st point
+** pt2 : 2nd point
+** pt3 : 3nd point
+** rgb : rgb color
+** (mb 2 vector only are needed)
+*/
+
+typedef struct		s_trig
 {
-	size_t i;
+	t_vect			*pt1;
+	t_vect			*pt2;
+	t_vect			*pt3;
+	unsigned char	rgb[3];
+}					t_trig;
 
-	i = 0;
-	while (i < n && s1[i] && s2[i]
-			&& (unsigned char)s1[i] == (unsigned char)s2[i])
-		i++;
-	if (i != n)
-	{
-		if ((unsigned char)s1[i] > (unsigned char)s2[i])
-			return (1);
-		if ((unsigned char)s1[i] < (unsigned char)s2[i])
-			return (-1);
-	}
-	return (0);
-}
+#endif

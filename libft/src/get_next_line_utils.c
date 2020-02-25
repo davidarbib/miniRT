@@ -6,39 +6,11 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 17:21:28 by darbib            #+#    #+#             */
-/*   Updated: 2019/11/22 18:30:35 by darbib           ###   ########.fr       */
+/*   Updated: 2020/02/24 16:19:07 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-void	*ft_calloc(size_t count, size_t size)
-{
-	void	*mem;
-	size_t	i;
-
-	if (!count || !size)
-	{
-		count = 1;
-		size = 1;
-	}
-	if (!(mem = malloc(count * size)))
-		return (NULL);
-	i = 0;
-	while (i < count * size)
-		((unsigned char *)mem)[i++] = 0;
-	return (mem);
-}
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {

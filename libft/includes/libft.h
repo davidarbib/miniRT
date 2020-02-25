@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 10:15:53 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/10 15:28:02 by darbib           ###   ########.fr       */
+/*   Updated: 2020/02/25 17:47:36 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 typedef struct	s_list
 {
+	char	label[2];
 	void	*content;
 	struct	s_list *next;
 }				t_list;
@@ -46,6 +47,7 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
+int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_atoi(const char *str);
 void	ft_putendl_fd(char *s, int fd);
@@ -66,5 +68,7 @@ void	ft_lstadd_back(t_list **alst, t_list *new);
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstlast(t_list *lst);
+char	*ft_pass_spaces(char *s);
+int		ft_isblank(int c);
 
 #endif

@@ -6,12 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 18:46:56 by darbib            #+#    #+#             */
-/*   Updated: 2019/11/22 13:28:44 by darbib           ###   ########.fr       */
+/*   Updated: 2020/02/24 16:19:46 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "get_next_line.h"
+#include "libft.h"
 
 static int		get_out(char *afterendl, char *buf, int excode)
 {
