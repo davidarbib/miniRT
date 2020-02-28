@@ -6,7 +6,7 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/02/24 14:49:22 by darbib           ###   ########.fr        #
+#    Updated: 2020/02/27 17:35:56 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ LIBS += $(LIBFT_DIR)$(LIBFT)
 
 CFLAGS += -I $(INC_DIR)
 
-OBJ = $(SRC:.c=.o)
+OBJ = $(SRC:%.c=%.o)
 
 SRC = minirt.c \
 	  parsing.c \

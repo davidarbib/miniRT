@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 19:07:27 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/24 18:08:03 by darbib           ###   ########.fr       */
+/*   Updated: 2020/02/28 15:11:27 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define E_FILERD	"file read exception"
 # define E_MEMALC	"memory allocation exception"
 
-void	parse_error(char *msg, t_list *objs);
-void	sys_error(t_list *objs);
+void	parse_error(char *msg, t_rt *cfg);
+void	sys_error(t_rt *cfg);
 
 #endif

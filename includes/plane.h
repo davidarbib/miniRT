@@ -6,13 +6,14 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:03:02 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/25 16:06:42 by darbib           ###   ########.fr       */
+/*   Updated: 2020/02/28 15:07:28 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PLANE_H
 # define PLANE_H
 
+# include "vector.h"
 /*
 ** --- plane ---
 ** pos : position vector

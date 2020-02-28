@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 21:47:19 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/24 18:08:04 by darbib           ###   ########.fr       */
+/*   Updated: 2020/02/28 15:42:30 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ void end(void)__attribute__((destructor));
 void end(void)
 {
 	printf("in end\n");
-	while (1);
+	system("leaks miniRT");
 }

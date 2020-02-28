@@ -6,13 +6,14 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:12:03 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/25 16:24:13 by darbib           ###   ########.fr       */
+/*   Updated: 2020/02/28 15:07:50 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SQUARE_H
 # define SQUARE_H
 
+# include "vector.h"
 /*
 ** --- square ---
 ** pos : position vector

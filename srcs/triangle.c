@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:38:44 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/25 18:49:21 by darbib           ###   ########.fr       */
+/*   Updated: 2020/02/27 18:33:05 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,8 @@ void	destroy_triangle(void *obj)
 	triangle->pt1 = NULL;
 	triangle->pt2 = NULL;
 	triangle->pt3 = NULL;
+}
+
+int		parse_triangle(t_rt *cfg, char *line)
+{
 }

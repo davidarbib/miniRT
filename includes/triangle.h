@@ -6,12 +6,14 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 15:54:04 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/25 16:07:35 by darbib           ###   ########.fr       */
+/*   Updated: 2020/02/28 15:08:18 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TRIANGLE_H
 # define TRIANGLE_H
+
+# include "vector.h"
 
 /*
 ** --- triangle ---

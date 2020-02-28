@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:32:42 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/25 18:46:26 by darbib           ###   ########.fr       */
+/*   Updated: 2020/02/27 18:37:04 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,8 @@ void	destroy_plane(void *obj)
 	free(plane->ort);
 	plane->pos = NULL;
 	plane->ort = NULL;
+}
+
+int		parse_plane(t_rt *cfg, char *line)
+{
 }

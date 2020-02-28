@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 14:09:20 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/25 17:45:27 by darbib           ###   ########.fr       */
+/*   Updated: 2020/02/28 15:09:29 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@
 /*
 ** ---------------
 */
-
 typedef struct		s_mlx
 {
 	void			*mlx_ptr;
@@ -80,14 +79,23 @@ typedef struct		s_mlx
 	int				endian;
 }					t_mlx;
 
+/*
+** ---------------
+*/
 typedef struct		s_rt
 {
-	char[BUFFSIZE]	buf;
+	char			buf[BUFFSIZE];
 	char			**labels_tab;
 	int				resx;
 	int				resy;
 	float			ambient_ratio;
-	t_list			*objs;
+	t_list			*cyls;
+	t_list			*cams;
+	t_list			*olights;
+	t_list			*planes;
+	t_list			*spheres;
+	t_list			*trigs;
+	t_list			*squares;
 	unsigned char	ambient_rgb[3];
 	int				linenb;
 	uint8_t			data;
@@ -95,15 +103,6 @@ typedef struct		s_rt
 	uint8_t			uniobj;
 }					t_rt;
 
-/*
-** vector type
-*/
-typedef struct		s_vect
-{
-	float			x;
-	float			y;
-	float			z;
-}					t_vect;
 
 
 int				init_graphics(t_mlx *mlx_cfg, t_rt *rt_cfg);

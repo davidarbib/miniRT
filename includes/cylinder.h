@@ -6,13 +6,14 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 15:59:58 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/25 16:02:12 by darbib           ###   ########.fr       */
+/*   Updated: 2020/02/28 15:07:15 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CYLINDER_H
 # define CYLINDER_H
 
+# include "vector.h"
 /*
 ** --- cylinder ---
 ** pos : position vector
@@ -28,5 +29,7 @@ typedef struct		s_cyld
 	float			height;
 	unsigned char	rgb[3];
 }					t_cyld;
+
+void	destroy_cylinder(void *obj);
 
 #endif

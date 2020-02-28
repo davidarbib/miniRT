@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 10:15:53 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/25 17:47:36 by darbib           ###   ########.fr       */
+/*   Updated: 2020/02/27 14:35:46 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 typedef struct	s_list
 {
-	char	label[2];
 	void	*content;
 	struct	s_list *next;
 }				t_list;

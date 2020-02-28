@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 23:25:41 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/25 18:30:14 by darbib           ###   ########.fr       */
+/*   Updated: 2020/02/28 15:31:50 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static void assign_fts(void)
 	g_parse_ft[1] = parse_amb;  
 	g_parse_ft[2] = parse_cam;  
 	g_parse_ft[3] = parse_light;  
-	g_parse_ft[4] = parse_sphere;  
-	g_parse_ft[5] = parse_plane;  
+	g_parse_ft[4] = parse_plane;  
+	g_parse_ft[5] = parse_sphere;  
 	g_parse_ft[6] = parse_square;  
 	g_parse_ft[7] = parse_cyld;  
 	g_parse_ft[8] = parse_trig;  
@@ -80,7 +80,7 @@ static void dispatch(t_rt *cfg, char *p_line)
 	int idx;
 
 	cpy_next_word(&p_line, cfg->buf);
-	if ((idx = label_chr(cfg->labels_tab, buf)) < 0)
+	if ((idx = label_chr(cfg->labels_tab, cfg->buf)) < 0)
 		parse_error(E_BADOBJ, cfg);	
 	cfg->data = 1;
 	printf("idx : %d\n", idx);

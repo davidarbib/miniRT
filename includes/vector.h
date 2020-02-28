@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.c                                           :+:      :+:    :+:   */
+/*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/25 18:43:21 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/28 15:40:17 by darbib           ###   ########.fr       */
+/*   Created: 2020/02/28 15:03:37 by darbib            #+#    #+#             */
+/*   Updated: 2020/02/28 15:05:26 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
-
-void	destroy_sphere(void *obj)
-{
-	t_sphere *sphere;
-	
-	sphere = (t_sphere *)obj;
-	free(sphere->pos);
-	sphere->pos = NULL;
-}
+#ifndef VECTOR_H
+# define VECTOR_H
 
 /*
-int		parse_sphere(t_rt *cfg, char *line)
-{
-
-}
+** ---------------
+** vector type
+** ---------------
 */
+
+typedef struct		s_vect
+{
+	float			x;
+	float			y;
+	float			z;
+}					t_vect;
+
+#endif

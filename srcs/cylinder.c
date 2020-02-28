@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:50:39 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/25 18:59:56 by darbib           ###   ########.fr       */
+/*   Updated: 2020/02/27 18:32:39 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,8 @@ void	destroy_cylinder(void *obj)
 	free(cylinder->ort);
 	cylinder->pos = NULL;
 	cylinder->ort = NULL;
+}
+
+int		parse_cylinder(t_rt *cfg, char *line)
+{
 }
