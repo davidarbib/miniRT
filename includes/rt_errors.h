@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 19:07:27 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/28 15:11:27 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/02 16:28:23 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # define E_BADATB	"attribute syntax error for this object"
 # define E_FILERD	"file read exception"
 # define E_MEMALC	"memory allocation exception"
+# define E_BADCHAR	"memory allocation exception"
+
 
 void	parse_error(char *msg, t_rt *cfg);
 void	sys_error(t_rt *cfg);

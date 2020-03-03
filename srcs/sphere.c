@@ -6,11 +6,12 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:43:21 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/28 15:40:17 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/02 16:38:57 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "rt_errors.h"
 
 void	destroy_sphere(void *obj)
 {
@@ -21,9 +22,15 @@ void	destroy_sphere(void *obj)
 	sphere->pos = NULL;
 }
 
-/*
 int		parse_sphere(t_rt *cfg, char *line)
 {
-
+	t_sphere *sphere;
+	
+	check_data(line, cfg);
+	if (!(sphere = (t_sphere *)malloc(sizeof(t_sphere))))
+		sys_error(cfg);
+	if (!(sphere->pos = get_vector(&line, cfg)))
+		parse_error(E_BADPOS, cfg);
+	
+	
 }
-*/

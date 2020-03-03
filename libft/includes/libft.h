@@ -6,12 +6,17 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 10:15:53 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/27 14:35:46 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/02 16:57:53 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+/*
+** max decimal number to preserve precision
+*/
+# define F_DIG 6
 
 # include <stdlib.h>
 # include "get_next_line.h"

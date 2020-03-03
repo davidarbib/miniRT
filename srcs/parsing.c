@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 23:25:41 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/28 15:31:50 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/02 14:47:21 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static void dispatch(t_rt *cfg, char *p_line)
 		parse_error(E_BADOBJ, cfg);	
 	cfg->data = 1;
 	printf("idx : %d\n", idx);
-	//g_parse_ft[idx](cfg, p_line, buf);
+	g_parse_ft[idx](cfg, p_line, buf);
 }
 
 void		parsing(int ac, char **av, t_rt *cfg)
