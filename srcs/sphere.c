@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:43:21 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/02 16:38:57 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/03 16:53:51 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,5 @@ int		parse_sphere(t_rt *cfg, char *line)
 	if (!(sphere = (t_sphere *)malloc(sizeof(t_sphere))))
 		sys_error(cfg);
 	if (!(sphere->pos = get_vector(&line, cfg)))
-		parse_error(E_BADPOS, cfg);
-	
-	
+		parse_error(E_BADVECT, cfg);
 }

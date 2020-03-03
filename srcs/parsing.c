@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 23:25:41 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/02 14:47:21 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/03 16:54:02 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,24 @@
 #include "rt_errors.h"
 #include <stdio.h>
 
-void	(*g_parse_ft[NB_OBJS])(t_rt *cfg, char *p_line, char *buf);
+void	(*g_parse_ft[NB_OBJS])(t_rt *cfg, char *p_line);
 
-/*
 static void assign_fts(void)
 {
+/*
 	g_parse_ft[0] = parse_res;  
 	g_parse_ft[1] = parse_amb;  
 	g_parse_ft[2] = parse_cam;  
 	g_parse_ft[3] = parse_light;  
 	g_parse_ft[4] = parse_plane;  
+*/
 	g_parse_ft[5] = parse_sphere;  
+/*
 	g_parse_ft[6] = parse_square;  
 	g_parse_ft[7] = parse_cyld;  
 	g_parse_ft[8] = parse_trig;  
-}
 */
+}
 
 static int	arg_control(int ac, char **av, t_rt *cfg)
 {
@@ -84,7 +86,7 @@ static void dispatch(t_rt *cfg, char *p_line)
 		parse_error(E_BADOBJ, cfg);	
 	cfg->data = 1;
 	printf("idx : %d\n", idx);
-	g_parse_ft[idx](cfg, p_line, buf);
+	g_parse_ft[idx](cfg, p_line);
 }
 
 void		parsing(int ac, char **av, t_rt *cfg)
