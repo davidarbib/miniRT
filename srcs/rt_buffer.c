@@ -1,35 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.h                                           :+:      :+:    :+:   */
+/*   rt_buffer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/25 15:55:19 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/04 17:23:44 by darbib           ###   ########.fr       */
+/*   Created: 2020/03/04 17:16:25 by darbib            #+#    #+#             */
+/*   Updated: 2020/03/04 17:44:48 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPHERE_H
-# define SPHERE_H
+#include "minirt.h"
 
-# include "vector.h"
-# include "minirt.h"
-
-/*
-** --- sphere ---
-** pos : position vector
-** diam : sphere diameter
-** rgb : rgb color
-*/
-typedef struct		s_sphere
+void	cpy_next_word(char **s, char *buf)
 {
-	t_vect			*pos;
-	double			diam;
-	unsigned char	rgb[3];
-}					t_sphere;
-
-void	parse_sphere(t_rt *cfg, char *line);
-void	destroy_sphere(void *obj);
-
-#endif
+	ft_bzero(buf, BUFFSIZE);
+	while (**s && **s != ' ')
+		*buf++ = *(*s)++;
+}

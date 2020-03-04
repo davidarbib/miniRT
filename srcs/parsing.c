@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 23:25:41 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/03 16:54:02 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/04 17:33:57 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,6 @@ static void	handle_empty(char *line, t_rt *cfg)
 	nb_empty++;
 }
 
-static void	cpy_next_word(char **s, char *buf)
-{
-	ft_bzero(buf, BUFFSIZE);
-	while (**s && **s != ' ')
-		*buf++ = *(*s)++;
-}
 
 static void dispatch(t_rt *cfg, char *p_line)
 {
@@ -99,6 +93,7 @@ void		parsing(int ac, char **av, t_rt *cfg)
 	fd = arg_control(ac, av, cfg);
 	if (!(cfg->labels_tab = ft_split(OBJS, SEP)))
 		sys_error(cfg);
+	assign_fts();
 	while ((gnl = get_next_line(open(av[1], O_RDONLY), &line)) > 0)
 	{
 		cfg->linenb++;

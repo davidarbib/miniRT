@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.h                                           :+:      :+:    :+:   */
+/*   ft_atoi_mv.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/25 15:55:19 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/04 17:23:44 by darbib           ###   ########.fr       */
+/*   Created: 2020/03/04 13:42:34 by darbib            #+#    #+#             */
+/*   Updated: 2020/03/04 17:57:05 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPHERE_H
-# define SPHERE_H
+#include "libft.h"
 
-# include "vector.h"
-# include "minirt.h"
-
-/*
-** --- sphere ---
-** pos : position vector
-** diam : sphere diameter
-** rgb : rgb color
-*/
-typedef struct		s_sphere
+int		ft_atoi_mv(const char **str)
 {
-	t_vect			*pos;
-	double			diam;
-	unsigned char	rgb[3];
-}					t_sphere;
+	long long	nb;
+	signed char	sign;
 
-void	parse_sphere(t_rt *cfg, char *line);
-void	destroy_sphere(void *obj);
-
-#endif
+	nb = 0;
+	sign = 1;
+	while (**str && ft_isblank(**str))
+		(*str)++;
+	if ((**str == '+' || **str == '-') && ft_isdigit(*(*str + 1)))
+	{
+		if (**str == '-')
+			sign = -1;
+		(*str)++;
+	}
+	while (**str && ft_isdigit(**str))
+		nb = nb * 10 + *(*str)++ - '0';
+	(*str)--;
+	return (sign * nb);
+}

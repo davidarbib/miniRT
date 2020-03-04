@@ -6,7 +6,7 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/02/24 16:18:52 by darbib           ###   ########.fr        #
+#    Updated: 2020/03/04 16:13:06 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,9 @@ endif
 OBJ = $(SRC:.c=.o)
 
 SRC = ft_atoi.c \
+	ft_atoi_mv.c \
+	ft_atof.c \
+	ft_atof_mv.c \
 	ft_bzero.c \
 	ft_calloc.c \
 	ft_isalnum.c \
@@ -62,6 +65,7 @@ SRC = ft_atoi.c \
 	ft_putnbr_fd.c \
 	ft_putstr_fd.c \
 	ft_split.c \
+	ft_split_blank.c \
 	ft_strchr.c \
 	ft_strdup.c \
 	ft_strjoin.c \

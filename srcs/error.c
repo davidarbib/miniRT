@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 13:50:26 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/28 15:20:40 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/04 17:36:30 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "ft_printf.h"
 
 void	parse_error(char *msg, t_rt *cfg)
+{
 	(void)cfg;
 	ft_printf("Error : %s\n", msg);
 	//destruct(cfg);

@@ -6,7 +6,7 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/02/27 17:35:56 by darbib           ###   ########.fr        #
+#    Updated: 2020/03/04 17:17:45 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,8 +49,10 @@ SRC = minirt.c \
 	  error.c \
 	  obj_utils.c \
 	  parse_utils.c \
+	  rt_buffer.c \
 	  endian.c \
-	  graphic.c
+	  graphic.c \
+	  sphere.c 
 
 # ------------------------------------------------------------------------------
 
