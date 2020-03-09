@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:26:46 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/28 15:07:21 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/09 14:01:06 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,8 @@ typedef struct		s_olight
 	float			ratio;
 	unsigned char	rgb[3];
 }					t_olight;
+
+void	destroy_olight(void *obj);
+int		parse_olight(t_rt *cfg, char *line);
 
 #endif

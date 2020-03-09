@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:38:44 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/27 18:33:05 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/09 17:34:15 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,38 @@ void	destroy_triangle(void *obj)
 
 int		parse_triangle(t_rt *cfg, char *line)
 {
+	t_trig	*triangle;
+	
+	check_data(line, cfg);
+	if (!(triangle = (t_trig *)malloc(sizeof(t_trig))))
+		sys_error(cfg);
+	line = ft_pass_spaces(line);
+	if (!(triangle->pt1 = get_vector(&line, cfg)))
+		parse_error(E_BADVECT, cfg);
+	line = ft_pass_spaces(line);
+	if (!(triangle->pt2 = get_vector(&line, cfg)))
+		parse_error(E_BADVECT, cfg);
+	line = ft_pass_spaces(line);
+	if (!(triangle->pt3 = get_vector(&line, cfg)))
+		parse_error(E_BADVECT, cfg);
+	line = ft_pass_spaces(line);
+	if (!(get_rgb(triangle->rgb, &line)))
+		parse_error(E_BADRGB, cfg); 
+	if (cfg->trigs)
+		ft_lstadd_back(&(cfg->trigs), ft_lstnew(triangle));
+	else
+		cfg->trigs = ft_lstnew(triangle);
+}
+
+void	print_triangle(t_trig *triangle)
+{
+	ft_printf("Pt1 : %f, %f, %f\n", triangle->pt1->x, triangle->pt1->y,
+			triangle->pt1->z);
+	ft_printf("Pt2 : %f, %f, %f\n", triangle->pt2->x, triangle->pt2->y,
+			triangle->pt2->z);
+	ft_printf("Pt1 : %f, %f, %f\n", triangle->pt3->x, triangle->pt3->y,
+			triangle->pt3->z);
+	ft_printf("RGB : %d,%d,%d\n", triangle->rgb[0], triangle->rgb[1],
+				triangle->rgb[2]);
+	ft_printf("\n");
 }

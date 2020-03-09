@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:16:25 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/04 17:57:07 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/08 18:51:26 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static int	check_rgb(const char *str)
 	{
 		if (*str == SEP)
 		{
-			if (!ft_isdigit(*(str - 1)) && !ft_isdigit(*(str + 1)))
+			if (!(ft_isdigit(*(str - 1)) && ft_isdigit(*(str + 1))))
 				return (0);
 			n_sep++;
 		}

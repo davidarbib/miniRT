@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 15:59:58 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/28 15:07:15 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/09 14:04:39 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ typedef struct		s_cyld
 }					t_cyld;
 
 void	destroy_cylinder(void *obj);
+int		parse_cylinder(t_rt *cfg, char *line);
 
 #endif

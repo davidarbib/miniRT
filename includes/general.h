@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 17:27:22 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/04 17:57:09 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/09 23:32:09 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,8 @@ void			cpy_next_word(char **s, char *buf);
 int				get_rgb(unsigned char *rgb, char **line);
 t_vect			*get_vector(char **line, t_rt *cfg);
 void			check_data(char *line, t_rt *cfg);
+
+void			parse_amb(t_rt *cfg, char *line);
+void			parse_res(t_rt *cfg, char *line);
 
 #endif

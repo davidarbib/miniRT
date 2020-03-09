@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 15:57:55 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/28 15:07:08 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/09 13:37:14 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ typedef struct		s_cam
 }					t_cam;
 
 void	destroy_camera(void *obj);
+int		parse_camera(t_rt *cfg, char *line);
 
 #endif
