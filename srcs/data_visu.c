@@ -6,17 +6,18 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 18:42:09 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/09 18:13:54 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/10 12:56:36 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "ft_printf.h"
 
 void	data_visu(t_rt *cfg)
 {
 	ft_printf("Resolution : %dx%d\n", cfg->resx, cfg->resy);
-	ft_printf("Ambiant ratio : %f\n", cfg->ambient_ratio);
-	ft_printf("Ambiant rgb : %d,%d,%d\n", cfg->ambient_rgb[0],
+	ft_printf("Ambient ratio : %f\n", cfg->ambient_ratio);
+	ft_printf("Ambient rgb : %d,%d,%d\n", cfg->ambient_rgb[0],
 				cfg->ambient_rgb[1],cfg->ambient_rgb[2]);
 	ft_printf("---------- Cameras ------------\n");
 	ft_lstiter(cfg->cams, print_cam);

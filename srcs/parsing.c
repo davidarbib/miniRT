@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 23:25:41 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/09 18:15:47 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/11 11:53:50 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ static void assign_fts(void)
 {
 	g_parse_ft[0] = parse_res;  
 	g_parse_ft[1] = parse_amb;  
-	g_parse_ft[2] = parse_cam;  
-	g_parse_ft[3] = parse_light;  
+	g_parse_ft[2] = parse_camera;  
+	g_parse_ft[3] = parse_olight;  
 	g_parse_ft[4] = parse_plane;  
 	g_parse_ft[5] = parse_sphere;  
 	g_parse_ft[6] = parse_square;  
-	g_parse_ft[7] = parse_cyld;  
-	g_parse_ft[8] = parse_trig;  
+	g_parse_ft[7] = parse_cylinder;  
+	g_parse_ft[8] = parse_triangle;  
 }
 
 static int	arg_control(int ac, char **av, t_rt *cfg)
@@ -93,7 +93,8 @@ void		parsing(int ac, char **av, t_rt *cfg)
 	while ((gnl = get_next_line(fd, &line)) > 0)
 	{
 		cfg->linenb++;
-		if (!(p_line = ft_pass_spaces(line)))
+		p_line = ft_pass_spaces(line);
+		if (!*p_line)
 		{
 			handle_empty(line, cfg);
 			continue;

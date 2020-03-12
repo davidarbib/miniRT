@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 15:59:58 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/09 14:04:39 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/11 11:49:56 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ typedef struct		s_cyld
 {
 	t_vect			*pos;
 	t_vect			*ort;
+	float			diam;
 	float			height;
 	unsigned char	rgb[3];
 }					t_cyld;
 
 void	destroy_cylinder(void *obj);
-int		parse_cylinder(t_rt *cfg, char *line);
+void	parse_cylinder(t_rt *cfg, char *line);
+void	print_cyl(void *obj);
 
 #endif

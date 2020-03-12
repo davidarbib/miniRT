@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:26:46 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/09 14:01:06 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/10 11:49:03 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct		s_olight
 }					t_olight;
 
 void	destroy_olight(void *obj);
-int		parse_olight(t_rt *cfg, char *line);
+void	parse_olight(t_rt *cfg, char *line);
+void	print_olight(void *obj);
 
 #endif

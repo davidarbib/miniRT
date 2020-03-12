@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 15:54:04 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/09 15:01:46 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/10 11:53:56 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct		s_trig
 }					t_trig;
 
 void	destroy_triangle(void *obj);
-int		parse_triangle(t_rt *cfg, char *line);
+void	parse_triangle(t_rt *cfg, char *line);
+void	print_triangle(void *obj);
 
 #endif

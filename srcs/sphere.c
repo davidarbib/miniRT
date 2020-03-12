@@ -6,13 +6,14 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:43:21 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/09 17:33:09 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/10 15:11:30 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_errors.h"
 #include "general.h"
 #include "sphere.h"
+#include "ft_printf.h"
 
 void	destroy_sphere(void *obj)
 {
@@ -44,8 +45,11 @@ void	parse_sphere(t_rt *cfg, char *line)
 		cfg->spheres = ft_lstnew(sphere);
 }
 
-void	print_sphere(t_sphere *sphere)
+void	print_sphere(void *obj)
 {
+	t_sphere *sphere;
+	
+	sphere = (t_sphere *)obj;
 	ft_printf("Pos : %f, %f, %f\n", sphere->pos->x, sphere->pos->y,
 			sphere->pos->z);
 	ft_printf("Diameter : %f\n", sphere->diam);

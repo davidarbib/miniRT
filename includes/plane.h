@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:03:02 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/09 14:01:51 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/10 11:51:53 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct		s_plane
 }					t_plane;
 
 void	destroy_plane(void *obj);
-int		parse_plane(t_rt *cfg, char *line);
+void	parse_plane(t_rt *cfg, char *line);
+void	print_plane(void *obj);
 
 #endif

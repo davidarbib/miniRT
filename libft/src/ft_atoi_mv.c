@@ -6,13 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 13:42:34 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/04 17:57:05 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/10 11:22:06 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi_mv(const char **str)
+int		ft_atoi_mv(char **str)
 {
 	long long	nb;
 	signed char	sign;
@@ -29,6 +29,5 @@ int		ft_atoi_mv(const char **str)
 	}
 	while (**str && ft_isdigit(**str))
 		nb = nb * 10 + *(*str)++ - '0';
-	(*str)--;
 	return (sign * nb);
 }

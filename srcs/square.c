@@ -6,11 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:36:28 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/09 17:44:15 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/10 15:18:40 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "rt_errors.h"
+#include "ft_printf.h"
 
 void	destroy_square(void *obj)
 {
@@ -24,7 +26,7 @@ void	destroy_square(void *obj)
 }
 
 
-int		parse_square(t_rt *cfg, char *line)
+void	parse_square(t_rt *cfg, char *line)
 {
 	t_square	*square;
 	
@@ -48,8 +50,11 @@ int		parse_square(t_rt *cfg, char *line)
 		cfg->squares = ft_lstnew(square);
 }
 
-void	print_square(t_square *square)
+void	print_square(void *obj)
 {
+	t_square *square;
+
+	square = (t_square *)obj;
 	ft_printf("Pos : %f, %f, %f\n", square->pos->x, square->pos->y,
 			square->pos->z);
 	ft_printf("Orientation : %f, %f, %f\n", square->ort->x, square->ort->y,

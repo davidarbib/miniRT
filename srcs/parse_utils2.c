@@ -6,11 +6,12 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:20:09 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/09 23:32:12 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/10 11:22:45 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "rt_errors.h"
 
 void	parse_amb(t_rt *cfg, char *line)
 {
@@ -20,7 +21,7 @@ void	parse_amb(t_rt *cfg, char *line)
 	if (cfg->ambient_ratio < 0.0 || cfg->ambient_ratio > 1.0)
 		parse_error(E_BADRATIO, cfg);
 	line = ft_pass_spaces(line);
-	if (!(get_rgb(cfg->rgb, &line)))
+	if (!(get_rgb(cfg->ambient_rgb, &line)))
 		parse_error(E_BADRGB, cfg);
 }
 
@@ -32,5 +33,5 @@ void	parse_res(t_rt *cfg, char *line)
 	line = ft_pass_spaces(line);
 	cfg->resy = ft_atoi_mv(&line);
 	if (cfg->resx < 0 || cfg->resy < 0)
-		parse_error(E_BADRES);
+		parse_error(E_BADRES, cfg);
 }

@@ -6,9 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 13:37:45 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/09 17:43:58 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/10 15:17:08 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "rt_errors.h"
+#include "minirt.h"
+#include "ft_printf.h"
 
 void	destroy_olight(void *obj)
 {
@@ -19,7 +23,7 @@ void	destroy_olight(void *obj)
 	olight->pos = NULL;
 }
 
-int		parse_olight(t_rt *cfg, char *line)
+void	parse_olight(t_rt *cfg, char *line)
 {
 	t_olight	*olight;
 	
@@ -40,8 +44,11 @@ int		parse_olight(t_rt *cfg, char *line)
 		cfg->olights = ft_lstnew(olight);
 }
 
-void	print_olight(t_olight *olight)
+void	print_olight(void *obj)
 {
+	t_olight *olight;
+
+	olight = (t_olight *)obj;
 	ft_printf("Pos : %f, %f, %f\n", olight->pos->x, olight->pos->y,
 			olight->pos->z);
 	ft_printf("Ratio : %f\n", olight->ratio);

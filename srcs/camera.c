@@ -6,15 +6,17 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 16:33:07 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/09 18:12:47 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/10 15:11:52 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "rt_errors.h"
+#include "ft_printf.h"
 
 void	destroy_camera(void *obj)
 {
-	t_cam *plane;
+	t_cam *camera;
 	
 	camera = (t_cam *)obj;
 	free(camera->pos);
@@ -23,7 +25,7 @@ void	destroy_camera(void *obj)
 	camera->ort = NULL;
 }
 
-int		parse_camera(t_rt *cfg, char *line)
+void	parse_camera(t_rt *cfg, char *line)
 {
 	t_cam	*cam;
 	
@@ -45,8 +47,11 @@ int		parse_camera(t_rt *cfg, char *line)
 		cfg->cams = ft_lstnew(cam);
 }
 
-void	print_cam(t_cam *cam)
+void	print_cam(void *obj)
 {
+	t_cam	*cam;
+
+	cam = (t_cam *)obj;
 	ft_printf("Pos : %f, %f, %f\n", cam->pos->x, cam->pos->y,
 			cam->pos->z);
 	ft_printf("Orientation : %f, %f, %f\n", cam->ort->x, cam->ort->y,

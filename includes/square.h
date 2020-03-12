@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:12:03 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/09 14:02:40 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/10 11:52:19 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct		s_square
 }					t_square;
 
 void	destroy_square(void *obj);
-int		parse_square(t_rt *cfg, char *line);
+void	parse_square(t_rt *cfg, char *line);
+void	print_square(void *obj);
 
 #endif

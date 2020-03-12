@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:16:25 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/08 18:51:26 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/11 14:23:24 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	check_data(char *line, t_rt *cfg)
 	while (*line)
 	{
 		if (!ft_isdigit(*line) && !ft_isblank(*line)
-			&& *line != SEP && *line != '.')
+			&& *line != SEP && *line != '.'
+			&& *line != '-' && *line != '+')
 			parse_error(E_BADCHAR, cfg);
 		line++;
 	}
@@ -27,27 +28,24 @@ void	check_data(char *line, t_rt *cfg)
 static int check_vector(const char *str)
 {
 	int n_sep;
-	int n_dot;
 
-	n_dot = 0;
 	n_sep = 0;
 	while (*str && !ft_isblank(*str))
 	{
 		if (*str == SEP)
 		{
-			if (n_dot != n_sep + 1)
-				return (0);
+			if (!ft_isdigit(*(str - 1)) && !ft_isdigit(*(str + 1))
+				&& *(str + 1) != '-' && *(str + 1) != '+')
+					return (0);
 			n_sep++;
 		}
-		if (*str == '.')
-			n_dot++;
-		if ((*str == '.' || *str == SEP)
+		if ((*str == '.')
 			&& !ft_isdigit(*(str - 1))
 			&& !ft_isdigit(*(str + 1)))
 			return (0);
 		str++;
 	}
-	if (n_dot != 3 || n_sep != 2)
+	if (n_sep != 2)
 		return (0);
 	return (1);
 }
@@ -104,7 +102,7 @@ int		get_rgb(unsigned char *rgb, char **line)
 	i = 0;
 	while (i < 3)
 	{
-		tmp = ft_atoi_mv((const char **)line);
+		tmp = ft_atoi_mv(line);
 		if (tmp < 0 || tmp > 255)
 			return (0);
 		rgb[i] = (unsigned char)tmp;

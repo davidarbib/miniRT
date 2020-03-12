@@ -6,11 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:38:44 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/09 17:34:15 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/10 15:19:05 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "rt_errors.h"
+#include "ft_printf.h"
 
 void	destroy_triangle(void *obj)
 {
@@ -25,7 +27,7 @@ void	destroy_triangle(void *obj)
 	triangle->pt3 = NULL;
 }
 
-int		parse_triangle(t_rt *cfg, char *line)
+void	parse_triangle(t_rt *cfg, char *line)
 {
 	t_trig	*triangle;
 	
@@ -50,8 +52,11 @@ int		parse_triangle(t_rt *cfg, char *line)
 		cfg->trigs = ft_lstnew(triangle);
 }
 
-void	print_triangle(t_trig *triangle)
+void	print_triangle(void *obj)
 {
+	t_trig *triangle;
+
+	triangle = (t_trig *)obj;
 	ft_printf("Pt1 : %f, %f, %f\n", triangle->pt1->x, triangle->pt1->y,
 			triangle->pt1->z);
 	ft_printf("Pt2 : %f, %f, %f\n", triangle->pt2->x, triangle->pt2->y,

@@ -6,11 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:32:42 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/09 23:32:14 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/10 15:18:01 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "rt_errors.h"
+#include "ft_printf.h"
 
 void	destroy_plane(void *obj)
 {
@@ -23,7 +25,7 @@ void	destroy_plane(void *obj)
 	plane->ort = NULL;
 }
 
-int		parse_plane(t_rt *cfg, char *line)
+void	parse_plane(t_rt *cfg, char *line)
 {
 	t_plane	*plane;
 	
@@ -45,8 +47,11 @@ int		parse_plane(t_rt *cfg, char *line)
 		cfg->planes = ft_lstnew(plane);
 }
 
-void	print_plane(t_plane *plane)
+void	print_plane(void *obj)
 {
+	t_plane *plane;
+	
+	plane = (t_plane *)obj;
 	ft_printf("Pos : %f, %f, %f\n", plane->pos->x, plane->pos->y,
 			plane->pos->z);
 	ft_printf("Orientation : %f, %f, %f\n", plane->ort->x, plane->ort->y,

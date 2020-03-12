@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 13:38:53 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/24 17:54:45 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/11 11:35:32 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,5 @@ char	*ft_pass_spaces(char *s)
 {
 	while (*s && ft_isblank(*s))
 		s++;
-	if (!*s)
-		return (NULL);
 	return (s);
 }

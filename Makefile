@@ -6,7 +6,7 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/03/09 18:19:06 by darbib           ###   ########.fr        #
+#    Updated: 2020/03/10 15:08:58 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ ifeq ($(DEBUG), 1)
 	CFLAGS += -g3
 endif
 
-ifeq ($(SANITY), 1)
+ifeq ($(SANITIZE), 1)
 	CFLAGS += -fsanitize=address 
 endif
 
@@ -44,17 +44,24 @@ CFLAGS += -I $(INC_DIR)
 
 OBJ = $(SRC:%.c=%.o)
 
-SRC = minirt.c \
-	  parsing.c \
-	  error.c \
-	  obj_utils.c \
-	  parse_utils.c \
-	  parse_utils2.c \
-	  rt_buffer.c \
-	  endian.c \
-	  graphic.c \
-	  data_visu.c \
-	  sphere.c 
+SRC = camera.c \
+	cylinder.c \
+	data_visu.c \
+	destroy.c \
+	endian.c \
+	error.c \
+	graphic.c \
+	minirt.c \
+	obj_utils.c \
+	omnilight.c \
+	parse_utils.c \
+	parse_utils2.c \
+	parsing.c \
+	plane.c \
+	rt_buffer.c \
+	sphere.c \
+	square.c \
+	triangle.c
 
 # ------------------------------------------------------------------------------
 

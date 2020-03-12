@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 15:55:19 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/04 17:23:44 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/10 11:56:38 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ typedef struct		s_sphere
 
 void	parse_sphere(t_rt *cfg, char *line);
 void	destroy_sphere(void *obj);
+void	print_sphere(void *obj);
 
 #endif
