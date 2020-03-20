@@ -6,7 +6,7 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/03/10 15:08:58 by darbib           ###   ########.fr        #
+#    Updated: 2020/03/20 16:44:54 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME = miniRT
 CC = gcc
 #CFLAGS = -Wall -Wextra -Werror -framework OpenGL -framework AppKit
 CFLAGS = -Wall -Wextra -Werror
+UNAME_S = $(shell uname -s)
 
 ifeq ($(DEBUG), 1)
 	CFLAGS += -g3
@@ -33,16 +34,23 @@ SRC_DIR = ./srcs/
 HEADERS = $(INC_DIR)libft.h 
 HEADERS += $(INC_DIR)minirt.h 
 
-MLX_DIR = ./minilibx_macos/
-MLX = libmlx.dylib
 LIBFT_DIR = ./libft/
 LIBFT = libft.a
 LIBS = $(MLX_DIR)$(MLX)
 LIBS += $(LIBFT_DIR)$(LIBFT)
 
-CFLAGS += -I $(INC_DIR)
-
+INC =$(addsuffix includes, -I)
 OBJ = $(SRC:%.c=%.o)
+
+ifeq ($(UNAME_S),Linux)
+	MLX_DIR = ./minilibx_linux/
+	MLX = libmlx.a
+	INPUT = $(CFLAGS) -lX11 -lXext $(MLX_DIR)$(MLX) $(LIBFT_DIR)$(LIBFT)
+else
+	MLX_DIR = ./minilibx_macos/
+	MLX = libmlx.dylib
+	INPUT = $(CFLAGS) -dylib $(MLX_DIR)$(MLX) $(LIBFT_DIR)$(LIBFT)
+endif
 
 SRC = camera.c \
 	cylinder.c \
@@ -66,7 +74,6 @@ SRC = camera.c \
 # ------------------------------------------------------------------------------
 
 vpath %.c $(SRC_DIR)
-vpath %.o $(OBJ_DIR)
 
 .PHONY: all clean fclean re
 
@@ -75,11 +82,10 @@ vpath %.o $(OBJ_DIR)
 all : $(NAME)
 
 $(NAME): $(OBJ) $(HEADERS) $(LIBS)
-	$(CC) $(CFLAGS) -dylib $(MLX_DIR)$(MLX) $(LIBFT_DIR)$(LIBFT) $(OBJ) -o $(NAME) 
+	$(CC) $(INPUT) $(OBJ) -o $(NAME) 
 
-$(OBJ_DIR)%.o : $(SRC_DIR)%.c
-	mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c -o $@ $< 
+#$(OBJ_DIR)%.o : $(SRC_DIR)%.c
+#	$(CC) -Iincludes $(CFLAGS) -c -o $@ $< 
 
 $(MLX_DIR)$(MLX) : 
 	make -C $(MLX_DIR)

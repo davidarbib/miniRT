@@ -6,13 +6,14 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/03/04 16:13:06 by darbib           ###   ########.fr        #
+#    Updated: 2020/03/19 15:52:14 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror 
+#CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra
 
 ifeq ($(DEBUG), 1)
 	CFLAGS += -g3

@@ -1,0 +1,17 @@
+stages:
+  - test
+
+leak check:
+  stage: test
+  allow_failure: false
+  image: fedora:latest
+  before_script:
+    - dnf install -y gcc make libXpm-devel libX11-devel libXext-devel valgrind findutils
+  script:
+    - make -j # We can't test X apps on Gitlab CI (I think), so just compile
+  after_script:
+    - sh update-linux-coverage.sh
+  artifacts:
+    paths:
+      - badge.json
+    when: always
