@@ -6,7 +6,7 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/03/20 16:44:54 by darbib           ###   ########.fr        #
+#    Updated: 2020/03/21 15:24:49 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,26 +31,34 @@ INC_DIR = ./includes/
 OBJ_DIR = ./objs/
 SRC_DIR = ./srcs/
 
-HEADERS = $(INC_DIR)libft.h 
-HEADERS += $(INC_DIR)minirt.h 
+# ------------------------------------------------------------------------------
+
+HEADERS = $(addprefix $(INC_DIR), libft.h)
+HEADERS += $(addprefix $(INC_DIR), minirt.h)
 
 LIBFT_DIR = ./libft/
 LIBFT = libft.a
-LIBS = $(MLX_DIR)$(MLX)
-LIBS += $(LIBFT_DIR)$(LIBFT)
+LIB_LIBFT += $(addprefix $(LIBFT_DIR), $(LIBFT))
 
-INC =$(addsuffix includes, -I)
-OBJ = $(SRC:%.c=%.o)
+LDFLAGS = $(addprefix -L, $(LIBFT_DIR)) 
+
+INC = $(addprefix -I, includes)
+OBJ = $(SRC:%.c=$(OBJ_DIR)%.o)
 
 ifeq ($(UNAME_S),Linux)
 	MLX_DIR = ./minilibx_linux/
 	MLX = libmlx.a
-	INPUT = $(CFLAGS) -lX11 -lXext $(MLX_DIR)$(MLX) $(LIBFT_DIR)$(LIBFT)
+	LIB_MLX = $(addprefix $(MLX_DIR), $(MLX))
+	LDFLAGS += $(addprefix -L, $(MLX_DIR)) 
+	LDFLAGS += -lX11 -lXext -lmlx -lft
 else
 	MLX_DIR = ./minilibx_macos/
 	MLX = libmlx.dylib
-	INPUT = $(CFLAGS) -dylib $(MLX_DIR)$(MLX) $(LIBFT_DIR)$(LIBFT)
+	LIB_MLX = $(addprefix $(MLX_DIR), $(MLX))
+	LDFLAGS += -lft -dylib $(LIB_MLX)
 endif
+
+LIBS = $(LIB_MLX) $(LIB_LIBFT)
 
 SRC = camera.c \
 	cylinder.c \
@@ -82,10 +90,12 @@ vpath %.c $(SRC_DIR)
 all : $(NAME)
 
 $(NAME): $(OBJ) $(HEADERS) $(LIBS)
-	$(CC) $(INPUT) $(OBJ) -o $(NAME) 
+	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJ) -o $@
 
-#$(OBJ_DIR)%.o : $(SRC_DIR)%.c
-#	$(CC) -Iincludes $(CFLAGS) -c -o $@ $< 
+$(OBJ_DIR)%.o : $(SRC_DIR)%.c
+	@echo "cc"
+	@mkdir -p objs
+	$(CC) $(INC) $(CFLAGS) -c $< -o $@ 
 
 $(MLX_DIR)$(MLX) : 
 	make -C $(MLX_DIR)
