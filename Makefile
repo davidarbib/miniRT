@@ -6,7 +6,7 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/03/21 15:24:49 by darbib           ###   ########.fr        #
+#    Updated: 2020/03/23 16:33:40 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ ifeq ($(UNAME_S),Linux)
 	MLX = libmlx.a
 	LIB_MLX = $(addprefix $(MLX_DIR), $(MLX))
 	LDFLAGS += $(addprefix -L, $(MLX_DIR)) 
-	LDFLAGS += -lX11 -lXext -lmlx -lft
+	LDFLAGS += -lmlx -lX11 -lXext -lft
 else
 	MLX_DIR = ./minilibx_macos/
 	MLX = libmlx.dylib
@@ -90,7 +90,7 @@ vpath %.c $(SRC_DIR)
 all : $(NAME)
 
 $(NAME): $(OBJ) $(HEADERS) $(LIBS)
-	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJ) -o $@
+	$(CC) $(CFLAGS) $(OBJ) -o $@ $(LDFLAGS)
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c
 	@echo "cc"
