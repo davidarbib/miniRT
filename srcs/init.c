@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/10 13:32:23 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/27 18:09:01 by darbib           ###   ########.fr       */
+/*   Created: 2020/03/27 17:14:28 by darbib            #+#    #+#             */
+/*   Updated: 2020/03/27 17:16:41 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "general.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+void	init_lst(t_rt *cfg)
 {
-	while (lst)
-	{
-		(*f)(lst->content);
-		lst = lst->next;
-	}
+	cfg->cyls = NULL;
+	cfg->cams = NULL;
+	cfg->olights = NULL;
+	cfg->planes = NULL;
+	cfg->spheres = NULL;
+	cfg->trigs = NULL;
+	cfg->squares = NULL;
 }

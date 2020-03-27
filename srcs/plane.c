@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:32:42 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/10 15:18:01 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/27 18:41:22 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ void	print_plane(void *obj)
 	t_plane *plane;
 	
 	plane = (t_plane *)obj;
-	ft_printf("Pos : %f, %f, %f\n", plane->pos->x, plane->pos->y,
-			plane->pos->z);
-	ft_printf("Orientation : %f, %f, %f\n", plane->ort->x, plane->ort->y,
-			plane->ort->z);
-	ft_printf("RGB : %d,%d,%d\n", plane->rgb[0], plane->rgb[1],
-				plane->rgb[2]);
-	ft_printf("\n");
+	printf("Pos : %f, %f, %f\n", plane->pos->x, plane->pos->y,
+	 	plane->pos->z);
+	printf("Orientation : %f, %f, %f\n", plane->ort->x, plane->ort->y,
+	 	plane->ort->z);
+	printf("RGB : %d,%d,%d\n", plane->rgb[0], plane->rgb[1],
+	 		plane->rgb[2]);
+	printf("\n");
 }

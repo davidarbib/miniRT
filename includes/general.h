@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 17:27:22 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/19 15:19:30 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/27 18:01:49 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct		s_rt
 }					t_rt;
 
 int				init_graphics(t_mlx *mlx_cfg, t_rt *rt_cfg);
+void			init_lst(t_rt *cfg);
 int				create_img(t_mlx *mlx_cfg, t_rt *rt_cfg);
 int 			refresh_img(t_mlx *mlx_cfg, t_rt *rt_cfg);
 
@@ -112,4 +113,5 @@ void			check_data(char *line, t_rt *cfg);
 void			parse_amb(t_rt *cfg, char *line);
 void			parse_res(t_rt *cfg, char *line);
 
+void			data_visu(t_rt *cfg);
 #endif

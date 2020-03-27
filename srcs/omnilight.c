@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 13:37:45 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/10 15:17:08 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/27 18:40:21 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ void	print_olight(void *obj)
 	t_olight *olight;
 
 	olight = (t_olight *)obj;
-	ft_printf("Pos : %f, %f, %f\n", olight->pos->x, olight->pos->y,
-			olight->pos->z);
-	ft_printf("Ratio : %f\n", olight->ratio);
-	ft_printf("RGB : %d,%d,%d\n", olight->rgb[0], olight->rgb[1],
-				olight->rgb[2]);
-	ft_printf("\n");
+	printf("Pos : %f, %f, %f\n", olight->pos->x, olight->pos->y,
+	 	olight->pos->z);
+	printf("Ratio : %f\n", olight->ratio);
+	printf("RGB : %d,%d,%d\n", olight->rgb[0], olight->rgb[1],
+	 		olight->rgb[2]);
+	printf("\n");
 }

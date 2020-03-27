@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 23:25:41 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/23 19:33:55 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/27 17:21:49 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 void	(*g_parse_ft[NB_OBJS])(t_rt *cfg, char *p_line);
 
-static void assign_fts(t_rt *cfg)
+static void assign_fts(void)
 {
 	g_parse_ft[0] = parse_res;  
 	g_parse_ft[1] = parse_amb;  
@@ -29,13 +29,6 @@ static void assign_fts(t_rt *cfg)
 	g_parse_ft[6] = parse_square;  
 	g_parse_ft[7] = parse_cylinder;  
 	g_parse_ft[8] = parse_triangle;  
-	cfg->cyls = NULL;
-	cfg->cams = NULL;
-	cfg->olights = NULL;
-	cfg->planes = NULL;
-	cfg->spheres = NULL;
-	cfg->trigs = NULL;
-	cfg->squares = NULL;
 }
 
 static int	arg_control(int ac, char **av, t_rt *cfg)
@@ -96,7 +89,7 @@ void		parsing(int ac, char **av, t_rt *cfg)
 	fd = arg_control(ac, av, cfg);
 	if (!(cfg->labels_tab = ft_split(OBJS, SEP)))
 		sys_error(cfg);
-	assign_fts(cfg);
+	assign_fts();
 	while ((gnl = get_next_line(fd, &line)) > 0)
 	{
 		cfg->linenb++;

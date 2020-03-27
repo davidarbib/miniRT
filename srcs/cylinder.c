@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:50:39 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/11 11:50:30 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/27 18:37:55 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,11 @@ void	print_cyl(void *obj)
 	t_cyld *cyl;
 
 	cyl = (t_cyld *)obj;
-	ft_printf("Pos : %f, %f, %f\n", cyl->pos->x, cyl->pos->y, cyl->pos->z);
-	ft_printf("Orientation : %f, %f, %f\n", cyl->ort->x, cyl->ort->y,
-			cyl->ort->z);
-	ft_printf("diameter : %f\n", cyl->diam);
-	ft_printf("Height : %f\n", cyl->height);
-	ft_printf("RGB : %d,%d,%d\n", cyl->rgb[0], cyl->rgb[1], cyl->rgb[2]);
-	ft_printf("\n");
+	printf("Pos : %f, %f, %f\n", cyl->pos->x, cyl->pos->y, cyl->pos->z);
+	printf("Orientation : %f, %f, %f\n", cyl->ort->x, cyl->ort->y,
+	 	cyl->ort->z);
+	printf("diameter : %f\n", cyl->diam);
+	printf("Height : %f\n", cyl->height);
+	printf("RGB : %d,%d,%d\n", cyl->rgb[0], cyl->rgb[1], cyl->rgb[2]);
+	printf("\n");
 }

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:36:28 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/10 15:18:40 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/27 18:43:10 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ void	print_square(void *obj)
 	t_square *square;
 
 	square = (t_square *)obj;
-	ft_printf("Pos : %f, %f, %f\n", square->pos->x, square->pos->y,
-			square->pos->z);
-	ft_printf("Orientation : %f, %f, %f\n", square->ort->x, square->ort->y,
-			square->ort->z);
-	ft_printf("Height : %f\n", square->height);
-	ft_printf("RGB : %d,%d,%d\n", square->rgb[0], square->rgb[1],
-				square->rgb[2]);
-	ft_printf("\n");
+	printf("Pos : %f, %f, %f\n", square->pos->x, square->pos->y,
+	 	square->pos->z);
+	printf("Orientation : %f, %f, %f\n", square->ort->x, square->ort->y,
+	 	square->ort->z);
+	printf("Height : %f\n", square->height);
+	printf("RGB : %d,%d,%d\n", square->rgb[0], square->rgb[1],
+	 		square->rgb[2]);
+	printf("\n");
 }

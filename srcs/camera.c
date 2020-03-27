@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 16:33:07 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/10 15:11:52 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/27 18:55:33 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	parse_camera(t_rt *cfg, char *line)
 	line = ft_pass_spaces(line);
 	if (!(cam->ort = get_vector(&line, cfg)))
 		parse_error(E_BADVECT, cfg);
+	printf("check Orientation : %f, %f, %f\n", cam->ort->x, cam->ort->y,
+			cam->ort->z);
 	line = ft_pass_spaces(line);
 	cam->fov = ft_atoi_mv(&line);	
 	line = ft_pass_spaces(line);
@@ -52,10 +54,11 @@ void	print_cam(void *obj)
 	t_cam	*cam;
 
 	cam = (t_cam *)obj;
-	ft_printf("Pos : %f, %f, %f\n", cam->pos->x, cam->pos->y,
+	printf("Pos : %f, %f, %f\n", cam->pos->x, cam->pos->y,
 			cam->pos->z);
-	ft_printf("Orientation : %f, %f, %f\n", cam->ort->x, cam->ort->y,
+	printf("yo\n");
+	printf("Orientation : %f, %f, %f\n", cam->ort->x, cam->ort->y,
 			cam->ort->z);
-	ft_printf("Fov : %d\n", cam->fov);
-	ft_printf("\n");
+	printf("Fov : %d\n", cam->fov);
+	printf("\n");
 }

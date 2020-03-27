@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:38:44 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/10 15:19:05 by darbib           ###   ########.fr       */
+/*   Updated: 2020/03/27 18:42:51 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ void	print_triangle(void *obj)
 	t_trig *triangle;
 
 	triangle = (t_trig *)obj;
-	ft_printf("Pt1 : %f, %f, %f\n", triangle->pt1->x, triangle->pt1->y,
-			triangle->pt1->z);
-	ft_printf("Pt2 : %f, %f, %f\n", triangle->pt2->x, triangle->pt2->y,
-			triangle->pt2->z);
-	ft_printf("Pt1 : %f, %f, %f\n", triangle->pt3->x, triangle->pt3->y,
-			triangle->pt3->z);
-	ft_printf("RGB : %d,%d,%d\n", triangle->rgb[0], triangle->rgb[1],
-				triangle->rgb[2]);
-	ft_printf("\n");
+	printf("Pt1 : %f, %f, %f\n", triangle->pt1->x, triangle->pt1->y,
+	 	triangle->pt1->z);
+	printf("Pt2 : %f, %f, %f\n", triangle->pt2->x, triangle->pt2->y,
+	 	triangle->pt2->z);
+	printf("Pt1 : %f, %f, %f\n", triangle->pt3->x, triangle->pt3->y,
+	 	triangle->pt3->z);
+	printf("RGB : %d,%d,%d\n", triangle->rgb[0], triangle->rgb[1],
+	 		triangle->rgb[2]);
+	printf("\n");
 }
