@@ -6,17 +6,17 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 13:50:26 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/09 19:13:34 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/03 20:55:32 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "rt_errors.h"
+#include "error.h"
 #include "ft_printf.h"
 
 void	parse_error(char *msg, t_rt *cfg)
 {
-	if (cfg->data)
+	if (cfg->flags & IN_PARSING)
 		ft_printf("Error line %d : %s\n", cfg->linenb, msg);
 	else
 		ft_printf("Error : %s\n", msg);

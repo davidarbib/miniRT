@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 21:47:19 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/27 18:58:02 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/03 22:01:12 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		main(int ac, char **av)
 	t_mlx	mlx_cfg;
 	t_rt	rt_cfg;
 	
-	init_lst(&rt_cfg);
+	init_cfg(&rt_cfg);
 	parsing(ac, av, &rt_cfg);
 	rt_cfg.resx = 1024;
 	rt_cfg.resy = 780;

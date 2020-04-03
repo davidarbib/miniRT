@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 17:27:22 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/27 18:01:49 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/03 21:35:06 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,11 @@
 ** ---------------
 */
 
-# define UNIRES		2
-# define UNIAMB		1
-
-/*
-** ---------------
-*/
-
-# define MAXNBLHEAD 100
+# define SAVE_REQUESTED 16
+# define IN_PARSING		8
+# define CAM			4
+# define RES			2
+# define AMB			1
 
 /*
 ** ---------------
@@ -85,13 +82,11 @@ typedef struct		s_rt
 	t_list			*squares;
 	unsigned char	ambient_rgb[3];
 	int				linenb;
-	uint8_t			data;
-	uint8_t			save;
-	uint8_t			uniobj;
+	uint8_t			flags;
 }					t_rt;
 
 int				init_graphics(t_mlx *mlx_cfg, t_rt *rt_cfg);
-void			init_lst(t_rt *cfg);
+void			init_cfg(t_rt *cfg);
 int				create_img(t_mlx *mlx_cfg, t_rt *rt_cfg);
 int 			refresh_img(t_mlx *mlx_cfg, t_rt *rt_cfg);
 

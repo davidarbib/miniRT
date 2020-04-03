@@ -6,11 +6,11 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 13:37:45 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/27 18:40:21 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/03 15:30:39 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt_errors.h"
+#include "error.h"
 #include "minirt.h"
 #include "ft_printf.h"
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_errors.h                                        :+:      :+:    :+:   */
+/*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 19:07:27 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/09 19:11:25 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/03 21:18:12 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@
 # define E_BADRGB	"rgb error"
 # define E_BADRATIO	"incorrect ratio"
 # define E_BADRES	"incorrect resolution"
+# define E_TOOAMB	"only one ambient light specification is allowed"
+# define E_TOORES	"only one resolution specification is allowed"
+# define E_NORES	"no resolution is specified"
+# define E_NOAMB	"no ambient light is specified"
+# define E_NOCAM	"one camera at least is needed"
 
 void	parse_error(char *msg, t_rt *cfg);
 void	sys_error(t_rt *cfg);

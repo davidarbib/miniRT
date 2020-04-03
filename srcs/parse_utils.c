@@ -6,12 +6,12 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:16:25 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/11 14:23:24 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/03 15:23:02 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "rt_errors.h"
+#include "error.h"
 
 void	check_data(char *line, t_rt *cfg)
 {

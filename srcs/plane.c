@@ -6,12 +6,12 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:32:42 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/27 18:41:22 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/03 15:30:39 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "rt_errors.h"
+#include "error.h"
 #include "ft_printf.h"
 
 void	destroy_plane(void *obj)

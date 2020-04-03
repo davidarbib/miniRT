@@ -6,11 +6,11 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:43:21 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/27 18:42:30 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/03 15:30:39 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt_errors.h"
+#include "error.h"
 #include "general.h"
 #include "sphere.h"
 #include "ft_printf.h"

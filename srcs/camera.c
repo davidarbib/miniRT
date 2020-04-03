@@ -6,12 +6,12 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 16:33:07 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/27 18:55:33 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/03 20:28:52 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "rt_errors.h"
+#include "error.h"
 #include "ft_printf.h"
 
 void	destroy_camera(void *obj)
@@ -32,6 +32,7 @@ void	parse_camera(t_rt *cfg, char *line)
 	check_data(line, cfg);
 	if (!(cam = (t_cam *)malloc(sizeof(t_cam))))
 		sys_error(cfg);
+	cfg->flags |= CAM;
 	line = ft_pass_spaces(line);
 	if (!(cam->pos = get_vector(&line, cfg)))
 		parse_error(E_BADVECT, cfg);

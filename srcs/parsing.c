@@ -6,14 +6,14 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 23:25:41 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/27 17:21:49 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/03 21:19:58 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 #include "minirt.h"
-#include "rt_errors.h"
+#include "error.h"
 #include <stdio.h>
 
 void	(*g_parse_ft[NB_OBJS])(t_rt *cfg, char *p_line);
@@ -43,7 +43,7 @@ static int	arg_control(int ac, char **av, t_rt *cfg)
 		if (ft_strcmp(av[2], SAVEARG))
 			parse_error(E_SCNDARG, cfg);
 		else
-			cfg->save = 1;
+			cfg->flags |= SAVE_REQUESTED;
 	}
 	p_av = av[1] + ft_strlen(av[1]) - ft_strlen(FILEEXT);
 	if (ft_strcmp(p_av, FILEEXT))
@@ -53,20 +53,6 @@ static int	arg_control(int ac, char **av, t_rt *cfg)
 	return (fd);
 }
 
-static void	handle_empty(char *line, t_rt *cfg)
-{
-	static int	nb_empty;
-
-	printf("empty line\n");
-	free(line);
-	if (cfg->data)
-		return ;
-	if (nb_empty++ > MAXNBLHEAD)
-		parse_error(E_INVFILE, cfg);
-	nb_empty++;
-}
-
-
 static void dispatch(t_rt *cfg, char *p_line)
 {
 	int idx;
@@ -74,9 +60,19 @@ static void dispatch(t_rt *cfg, char *p_line)
 	cpy_next_word(&p_line, cfg->buf);
 	if ((idx = label_chr(cfg->labels_tab, cfg->buf)) < 0)
 		parse_error(E_BADOBJ, cfg);	
-	cfg->data = 1;
+	cfg->flags |= IN_PARSING;
 	printf("idx : %d\n", idx);
 	g_parse_ft[idx](cfg, p_line);
+}
+
+static void	check_mandatory_params(t_rt *cfg)
+{
+	if (!(cfg->flags & RES))
+		parse_error(E_NORES, cfg);
+	if (!(cfg->flags & AMB))
+		parse_error(E_NOAMB, cfg);
+	if (!(cfg->flags & CAM))
+		parse_error(E_NOCAM, cfg);
 }
 
 void		parsing(int ac, char **av, t_rt *cfg)
@@ -95,10 +91,11 @@ void		parsing(int ac, char **av, t_rt *cfg)
 		cfg->linenb++;
 		p_line = ft_pass_spaces(line);
 		if (!*p_line)
-		{
-			handle_empty(line, cfg);
 			continue;
-		}
 		dispatch(cfg, p_line);
 	}
+	cfg->flags -= IN_PARSING;
+	if (gnl < 0)
+		parse_error(E_INVFILE, cfg);
+	check_mandatory_params(cfg);
 }
