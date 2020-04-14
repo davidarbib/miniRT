@@ -6,7 +6,7 @@
 /*   By: pqueiroz <pqueiroz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 01:18:34 ol                #+#    #+#             */
-/*   Updated: 2020/01/29 01:29:24 by pqueiroz         ###   ########.fr       */
+/*   Updated: 2020/04/13 16:18:29 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int		shm_att_pb(Display *d, XErrorEvent *ev)
 {
 	(void)d;
 	if (ev->request_code == 146 && ev->minor_code == X_SHM_ATTACH)
-		write(2, WARN_SHM_ATTACH, strlen(WARN_SHM_ATTACH));
+	if (write(2, WARN_SHM_ATTACH, strlen(WARN_SHM_ATTACH)))
+		(void)d;
 	g_mlx_x_error = 1;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 22:47:45 by darbib            #+#    #+#             */
-/*   Updated: 2020/01/16 22:00:18 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/13 00:36:46 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	print_digits(unsigned long n, int base, size_t *i, char *s_nb)
 	char	*s_base;
 
 	s_base = "0123456789abcdef";
-	while ((n >= 1 && n > 0) || (n <= -1 && n < 0))
+	while (n >= 1)
 	{
 		tmp = n % base;
 		if (tmp < 0)

@@ -6,7 +6,7 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/03/27 17:17:44 by darbib           ###   ########.fr        #
+#    Updated: 2020/04/13 16:19:59 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,7 @@ SRC = camera.c \
 	parse_utils.c \
 	parse_utils2.c \
 	parsing.c \
+	handle_line.c \
 	plane.c \
 	rt_buffer.c \
 	sphere.c \

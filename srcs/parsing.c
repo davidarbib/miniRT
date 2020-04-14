@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 23:25:41 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/03 21:19:58 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/13 16:14:46 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,6 @@ static int	arg_control(int ac, char **av, t_rt *cfg)
 	return (fd);
 }
 
-static void dispatch(t_rt *cfg, char *p_line)
-{
-	int idx;
-
-	cpy_next_word(&p_line, cfg->buf);
-	if ((idx = label_chr(cfg->labels_tab, cfg->buf)) < 0)
-		parse_error(E_BADOBJ, cfg);	
-	cfg->flags |= IN_PARSING;
-	printf("idx : %d\n", idx);
-	g_parse_ft[idx](cfg, p_line);
-}
-
 static void	check_mandatory_params(t_rt *cfg)
 {
 	if (!(cfg->flags & RES))
@@ -77,8 +65,6 @@ static void	check_mandatory_params(t_rt *cfg)
 
 void		parsing(int ac, char **av, t_rt *cfg)
 {
-	char	*line;
-	char	*p_line;
 	int		gnl;
 	int		fd;
 
@@ -86,14 +72,10 @@ void		parsing(int ac, char **av, t_rt *cfg)
 	if (!(cfg->labels_tab = ft_split(OBJS, SEP)))
 		sys_error(cfg);
 	assign_fts();
-	while ((gnl = get_next_line(fd, &line)) > 0)
-	{
-		cfg->linenb++;
-		p_line = ft_pass_spaces(line);
-		if (!*p_line)
-			continue;
-		dispatch(cfg, p_line);
-	}
+	cfg->flags |= IN_PARSING;
+	while ((gnl = get_next_line(fd, &cfg->line)) > 0)
+		handle_line(cfg);
+	free(cfg->line);
 	cfg->flags -= IN_PARSING;
 	if (gnl < 0)
 		parse_error(E_INVFILE, cfg);

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:36:28 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/03 15:30:39 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/14 23:53:06 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	destroy_square(void *obj)
 	free(square->ort);
 	square->pos = NULL;
 	square->ort = NULL;
+	free(square);
+	square = NULL;
 }
 
 
@@ -33,6 +35,9 @@ void	parse_square(t_rt *cfg, char *line)
 	check_data(line, cfg);
 	if (!(square = (t_square *)malloc(sizeof(t_square))))
 		sys_error(cfg);
+	cfg->current_obj_addr = (void *)square;
+	square->pos = NULL;
+	square->ort = NULL;
 	line = ft_pass_spaces(line);
 	if (!(square->pos = get_vector(&line, cfg)))
 		parse_error(E_BADVECT, cfg);
@@ -55,6 +60,7 @@ void	print_square(void *obj)
 	t_square *square;
 
 	square = (t_square *)obj;
+	printf("square ptr : %p\n", square);
 	printf("Pos : %f, %f, %f\n", square->pos->x, square->pos->y,
 	 	square->pos->z);
 	printf("Orientation : %f, %f, %f\n", square->ort->x, square->ort->y,

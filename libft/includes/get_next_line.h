@@ -6,14 +6,14 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 13:16:31 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/09 18:33:38 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/11 18:50:57 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# define BUFFER_SIZE 1024
+# define BUFFER_SIZE 1
 
 # include <stdlib.h>
 

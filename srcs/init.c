@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/27 17:14:28 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/03 21:44:36 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/11 19:09:50 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	init_cfg(t_rt *cfg)
 {
 	ft_bzero(cfg->buf, BUFFSIZE);
 	cfg->labels_tab = NULL;
+	cfg->line= NULL;
 	cfg->resx = 0;
 	cfg->resy = 0;
 	cfg->ambient_ratio = 0;

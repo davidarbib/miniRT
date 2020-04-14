@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:59:36 by darbib            #+#    #+#             */
-/*   Updated: 2020/01/21 17:00:15 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/13 00:33:00 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,13 @@
 ** dot presence => default precision 0
 */
 
-static char	init_nb(t_conv *conv, va_list args, unsigned int *nb)
+static void	init_nb(t_conv *conv, va_list args, unsigned int *nb)
 {
 	if ((conv->flags & ZERO) && (conv->flags & DOT) && (conv->prec >= 0))
 		conv->flags -= ZERO;
 	if (conv->prec < 0)
 		conv->prec = 1;
 	*nb = va_arg(args, unsigned int);
-	return (*nb < 0);
 }
 
 static void	prefield_one(t_buf *buf, t_conv *conv, size_t len)

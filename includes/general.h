@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 17:27:22 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/03 21:35:06 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/14 23:49:39 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@
 */
 typedef struct		s_mlx
 {
+	int				bits_per_pixel;
+	int				size_line;
+	int				endian;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	void			*img_ptr;
 	char			*img_data;
-	int				bits_per_pixel;
-	int				size_line;
-	int				endian;
 }					t_mlx;
 
 /*
@@ -68,11 +68,14 @@ typedef struct		s_mlx
 */
 typedef struct		s_rt
 {
-	char			buf[BUFFSIZE];
-	char			**labels_tab;
 	int				resx;
 	int				resy;
+	int				linenb;
+	int				current_obj_type;
+	void			*current_obj_addr;
 	float			ambient_ratio;
+	char			**labels_tab;
+	char			*line;
 	t_list			*cyls;
 	t_list			*cams;
 	t_list			*olights;
@@ -80,8 +83,8 @@ typedef struct		s_rt
 	t_list			*spheres;
 	t_list			*trigs;
 	t_list			*squares;
+	char			buf[BUFFSIZE];
 	unsigned char	ambient_rgb[3];
-	int				linenb;
 	uint8_t			flags;
 }					t_rt;
 
@@ -96,6 +99,7 @@ unsigned int	adapt_endian(unsigned int color);
 void			alter_pixel(t_mlx *cfg, int color, int x, int y);
 
 void			parsing(int ac, char **av, t_rt *cfg);
+void			handle_line(t_rt *cfg);
 
 int				label_chr(char **tab, char *label);
 
@@ -109,4 +113,7 @@ void			parse_amb(t_rt *cfg, char *line);
 void			parse_res(t_rt *cfg, char *line);
 
 void			data_visu(t_rt *cfg);
+
+void			destroy(t_rt *cfg);
+
 #endif

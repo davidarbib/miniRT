@@ -6,11 +6,26 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:35:17 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/10 15:14:13 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/15 00:01:41 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+void	(*g_destroy[NB_OBJS])(void *obj);
+
+static void assign_fts(void)
+{
+	g_destroy_ft[0] = NULL;  
+	g_destroy_ft[1] = NULL;  
+	g_destroy_ft[2] = destroy_camera;  
+	g_destroy_ft[3] = destroy_olight;  
+	g_destroy_ft[4] = destroy_plane;  
+	g_destroy_ft[5] = destroy_sphere;  
+	g_destroy_ft[6] = destroy_square;  
+	g_destroy_ft[7] = destroy_cylinder;  
+	g_destroy_ft[8] = destroy_triangle;  
+}
 
 static void	destroy_labels(char **labels)
 {
@@ -27,8 +42,15 @@ void		destroy(t_rt *cfg)
 	if (cfg->labels_tab)
 	{
 		destroy_labels(cfg->labels_tab);
+		free(cfg->labels_tab);
 		cfg->labels_tab = NULL;
 	}
+	if (cfg->flags & IN_PARSING
+		&& cfg->current_obj_type > 1
+		&& cfg->current_obj_addr)
+		g_destroy_ft[cfg->current_obj_type](cfg->current_obj_addr);
+	if (cfg->flags & IN_PARSING)
+		free(cfg->line);
 	ft_lstclear(&cfg->cyls, destroy_cylinder);
 	ft_lstclear(&cfg->cams, destroy_camera);
 	ft_lstclear(&cfg->olights, destroy_olight);

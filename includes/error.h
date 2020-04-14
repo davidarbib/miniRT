@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 19:07:27 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/03 21:18:12 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/13 17:14:03 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define E_NORES	"no resolution is specified"
 # define E_NOAMB	"no ambient light is specified"
 # define E_NOCAM	"one camera at least is needed"
+# define E_FOVRANGE	"camera FOV must be comprise in [0;180] range"
 
 void	parse_error(char *msg, t_rt *cfg);
 void	sys_error(t_rt *cfg);
