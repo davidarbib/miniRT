@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 13:37:45 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/14 23:50:56 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/15 16:07:29 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "minirt.h"
 #include "ft_printf.h"
 
-void	destroy_olight(void *obj)
+void			destroy_olight(void *obj)
 {
 	t_olight *olight;
 	
@@ -25,7 +25,13 @@ void	destroy_olight(void *obj)
 	olight = NULL;
 }
 
-void	parse_olight(t_rt *cfg, char *line)
+static void		check_olight(t_rt *cfg, t_olight *olight)
+{
+	if (!is_ratio(olight->ratio))
+		parse_error(E_BADRATIO, cfg); 
+}
+
+void			parse_olight(t_rt *cfg, char *line)
 {
 	t_olight	*olight;
 	
@@ -42,13 +48,14 @@ void	parse_olight(t_rt *cfg, char *line)
 	line = ft_pass_spaces(line);
 	if (!(get_rgb(olight->rgb, &line)))
 		parse_error(E_BADRGB, cfg); 
+	check_olight(cfg, olight);
 	if (cfg->olights)
 		ft_lstadd_back(&(cfg->olights), ft_lstnew(olight));
 	else
 		cfg->olights = ft_lstnew(olight);
 }
 
-void	print_olight(void *obj)
+void			print_olight(void *obj)
 {
 	t_olight *olight;
 
@@ -60,3 +67,4 @@ void	print_olight(void *obj)
 	 		olight->rgb[2]);
 	printf("\n");
 }
+

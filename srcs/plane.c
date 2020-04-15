@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:32:42 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/14 23:52:28 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/15 19:59:55 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ void	destroy_plane(void *obj)
 	plane->ort = NULL;
 	free(plane);
 	plane = NULL;
+}
+
+static void	check_plane(t_rt *cfg, t_plane *plane)
+{
+	if (!(is_orientation_vect(plane->ort)))
+		parse_error(E_ORIENT, cfg);
 }
 
 void	parse_plane(t_rt *cfg, char *line)
@@ -46,7 +52,7 @@ void	parse_plane(t_rt *cfg, char *line)
 	line = ft_pass_spaces(line);
 	if (!(get_rgb(plane->rgb, &line)))
 		parse_error(E_BADRGB, cfg); 
-	printf("plane address : %p\n", plane);
+	check_plane(cfg, plane);
 	if (cfg->planes)
 		ft_lstadd_back(&(cfg->planes), ft_lstnew(plane));
 	else
@@ -58,7 +64,6 @@ void	print_plane(void *obj)
 	t_plane *plane;
 	
 	plane = (t_plane *)obj;
-	printf("plane address : %p\n", plane);
 	printf("Pos : %f, %f, %f\n", plane->pos->x, plane->pos->y,
 	 	plane->pos->z);
 	printf("Orientation : %f, %f, %f\n", plane->ort->x, plane->ort->y,

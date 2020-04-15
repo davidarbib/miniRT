@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 16:33:07 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/14 23:51:42 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/15 19:58:23 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	destroy_camera(void *obj)
 	t_cam *camera;
 	
 	camera = (t_cam *)obj;
-	printf("cam address : %p\n", camera);
 	free(camera->pos);
 	free(camera->ort);
 	camera->pos = NULL;
@@ -30,6 +29,8 @@ void	destroy_camera(void *obj)
 
 static void	check_camera(t_rt *cfg, t_cam *cam)
 {
+	if (!is_orientation_vect(cam->ort))
+		parse_error(E_ORIENT, cfg);	
 	if (cam->fov < 0 || cam->fov > 180)	
 		parse_error(E_FOVRANGE, cfg);	
 }
@@ -51,7 +52,6 @@ void	parse_camera(t_rt *cfg, char *line)
 	line = ft_pass_spaces(line);
 	if (!(cam->ort = get_vector(&line, cfg)))
 		parse_error(E_BADVECT, cfg);
-	printf("cam address : %p\n", cam);
 	line = ft_pass_spaces(line);
 	cam->fov = ft_atoi_mv(&line);	
 	line = ft_pass_spaces(line);
@@ -67,7 +67,6 @@ void	print_cam(void *obj)
 	t_cam	*cam;
 
 	cam = (t_cam *)obj;
-	printf("cam address : %p\n", cam);
 	printf("Pos : %f, %f, %f\n", cam->pos->x, cam->pos->y,
 			cam->pos->z);
 	printf("Orientation : %f, %f, %f\n", cam->ort->x, cam->ort->y,

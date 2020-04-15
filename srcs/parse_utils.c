@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:16:25 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/03 15:23:02 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/15 16:22:40 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_vect	*get_vector(char **line, t_rt *cfg)
 	t_vect *vect;
 
 	if (!check_vector(*line))
-		return (NULL);
+		parse_error(E_BADVECT, cfg);
 	if (!(vect = ((t_vect *)malloc(sizeof(t_vect)))))
 		sys_error(cfg);
 	vect->x = ft_atof_mv(line);

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/27 17:14:28 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/11 19:09:50 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/15 14:41:11 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ void	init_cfg(t_rt *cfg)
 	cfg->ambient_rgb[2] = 0;
 	cfg->linenb = 0;
 	cfg->flags = 0;
+	cfg->current_obj_type = -1;
 }

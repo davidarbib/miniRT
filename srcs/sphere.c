@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:43:21 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/14 23:55:08 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/15 16:14:13 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	parse_sphere(t_rt *cfg, char *line)
 	check_data(line, cfg);
 	if (!(sphere = (t_sphere *)malloc(sizeof(t_sphere))))
 		sys_error(cfg);
-	cfg->current_obj_type = (void *)sphere;
+	cfg->current_obj_addr = (void *)sphere;
 	sphere->pos = NULL;
 	line = ft_pass_spaces(line);
 	if (!(sphere->pos = get_vector(&line, cfg)))

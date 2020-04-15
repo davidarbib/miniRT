@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:36:28 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/14 23:53:06 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/15 20:15:35 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ void	destroy_square(void *obj)
 	square = NULL;
 }
 
+
+static void	check_square(t_rt *cfg, t_square *square)
+{
+	if (!is_orientation_vect(square->ort))
+		parse_error(E_ORIENT, cfg);
+}
 
 void	parse_square(t_rt *cfg, char *line)
 {
@@ -49,6 +55,7 @@ void	parse_square(t_rt *cfg, char *line)
 	line = ft_pass_spaces(line);
 	if (!(get_rgb(square->rgb, &line)))
 		parse_error(E_BADRGB, cfg); 
+	check_square(cfg, square);
 	if (cfg->squares)
 		ft_lstadd_back(&(cfg->squares), ft_lstnew(square));
 	else

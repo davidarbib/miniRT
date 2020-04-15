@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 17:27:22 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/14 23:49:39 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/15 16:44:42 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,8 @@ void			parse_res(t_rt *cfg, char *line);
 void			data_visu(t_rt *cfg);
 
 void			destroy(t_rt *cfg);
+
+int				is_ratio(float ratio);
+int				is_orientation_vect(t_vect *vect);
 
 #endif

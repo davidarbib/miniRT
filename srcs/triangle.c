@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:38:44 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/14 23:54:33 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/15 20:00:15 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	parse_triangle(t_rt *cfg, char *line)
 	check_data(line, cfg);
 	if (!(triangle = (t_trig *)malloc(sizeof(t_trig))))
 		sys_error(cfg);
-	cfg->current_obj_type = (void *)triangle;
+	cfg->current_obj_addr = (void *)triangle;
 	triangle->pt1 = NULL;
 	triangle->pt2 = NULL;
 	triangle->pt3 = NULL;
@@ -63,7 +63,6 @@ void	print_triangle(void *obj)
 	t_trig *triangle;
 
 	triangle = (t_trig *)obj;
-	printf("triangle ptr : %p\n", triangle);
 	printf("Pt1 : %f, %f, %f\n", triangle->pt1->x, triangle->pt1->y,
 	 	triangle->pt1->z);
 	printf("Pt2 : %f, %f, %f\n", triangle->pt2->x, triangle->pt2->y,

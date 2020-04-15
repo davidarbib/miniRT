@@ -6,13 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:35:17 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/15 00:01:41 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/15 14:36:32 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	(*g_destroy[NB_OBJS])(void *obj);
+void	(*g_destroy_ft[NB_OBJS])(void *obj);
 
 static void assign_fts(void)
 {
@@ -39,6 +39,7 @@ static void	destroy_labels(char **labels)
 
 void		destroy(t_rt *cfg)
 {
+	assign_fts();
 	if (cfg->labels_tab)
 	{
 		destroy_labels(cfg->labels_tab);
