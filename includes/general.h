@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 17:27:22 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/15 16:44:42 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/25 15:48:23 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,10 @@ typedef struct		s_rt
 	uint8_t			flags;
 }					t_rt;
 
-int				init_graphics(t_mlx *mlx_cfg, t_rt *rt_cfg);
+int				init_graphics(t_mlx *mlx_cfg, int resx, int resy);
 void			init_cfg(t_rt *cfg);
-int				create_img(t_mlx *mlx_cfg, t_rt *rt_cfg);
-int 			refresh_img(t_mlx *mlx_cfg, t_rt *rt_cfg);
+int				create_img(t_mlx *mlx_cfg, int resx, int resy);
+int				refresh_img(t_mlx *mlx_cfg, int resx, int resy);
 
 int				client_endian(void);
 unsigned int	adapt_endian(unsigned int color);

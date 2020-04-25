@@ -6,7 +6,7 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/04/13 16:19:59 by darbib           ###   ########.fr        #
+#    Updated: 2020/04/26 01:10:38 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,6 @@ SRC = camera.c \
 	error.c \
 	init.c \
 	graphic.c \
-	minirt.c \
 	obj_utils.c \
 	omnilight.c \
 	parse_utils.c \
@@ -80,6 +79,12 @@ SRC = camera.c \
 	sphere.c \
 	square.c \
 	triangle.c
+
+ifeq ($(DRAFT), 1)
+	SRC += draft.c
+else
+	SRC += minirt.c
+endif
 
 # ------------------------------------------------------------------------------
 

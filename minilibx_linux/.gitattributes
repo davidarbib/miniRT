@@ -1,4 +1,0 @@
-*.c linguist-language=C
-*.h linguist-language=C
-
-src/mlx_new_window.h linguist-language=Objective-C

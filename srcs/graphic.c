@@ -6,29 +6,29 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 16:28:50 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/14 16:36:44 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/25 20:31:02 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "mlx.h"
 
-int			init_graphics(t_mlx *mlx_cfg, t_rt *rt_cfg)
+int			init_graphics(t_mlx *mlx_cfg, int resx, int resy)
 {
 	if (!(mlx_cfg->mlx_ptr = mlx_init()))
 		return (0);
-	if (!(mlx_cfg->win_ptr = mlx_new_window(mlx_cfg->mlx_ptr, rt_cfg->resx,
-		rt_cfg->resy, TITLE)))
+	if (!(mlx_cfg->win_ptr = mlx_new_window(mlx_cfg->mlx_ptr, resx,
+		resy, TITLE)))
 		return (0);
-	if (!(create_img(mlx_cfg, rt_cfg)))
+	if (!(create_img(mlx_cfg, resx, resy))) 
 		return (0);
 	return (1);
 }
 
-int			create_img(t_mlx *mlx_cfg, t_rt *rt_cfg)
+int			create_img(t_mlx *mlx_cfg, int resx, int resy)
 {
-	if (!(mlx_cfg->img_ptr = mlx_new_image(mlx_cfg->mlx_ptr, rt_cfg->resx,
-		rt_cfg->resy)))
+	if (!(mlx_cfg->img_ptr = mlx_new_image(mlx_cfg->mlx_ptr, resx,
+		resy)))
 		return (0);
 	if (!(mlx_cfg->img_data = mlx_get_data_addr(mlx_cfg->img_ptr,
 		&mlx_cfg->bits_per_pixel, &mlx_cfg->size_line, &mlx_cfg->endian)))
@@ -39,11 +39,11 @@ int			create_img(t_mlx *mlx_cfg, t_rt *rt_cfg)
 	return (1);
 }
 
-int			refresh_img(t_mlx *mlx_cfg, t_rt *rt_cfg)
+int			refresh_img(t_mlx *mlx_cfg, int resx, int resy)
 {
 	if (!(mlx_destroy_image(mlx_cfg->mlx_ptr, mlx_cfg->img_ptr)))
 		return (0);
-	if (!(create_img(mlx_cfg, rt_cfg)))
+	if (!(create_img(mlx_cfg, resx, resy))) 
 		return (0);
 	return (1);
 }
