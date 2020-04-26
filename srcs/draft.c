@@ -61,7 +61,7 @@ static int		intersect_aabb(t_aabb *aabb, t_ray *ray)
 	return (tmax > 0);
 }
 
-void	init_scene(t_scene *scene)
+void	init_scene(t_scene *scene, int posaabbx, int posaabby, int posaabbz)
 {
 	t_vect	pos_cam;
 
@@ -79,12 +79,12 @@ void	init_scene(t_scene *scene)
 
 	scene->aabb = malloc(sizeof(t_aabb));
 
-	scene->aabb->corner[0].x = scene->resx/-2;
-	scene->aabb->corner[0].y = scene->resy/-2;
-	scene->aabb->corner[0].z = 100; 
-	scene->aabb->corner[1].x = scene->resx/2;
-	scene->aabb->corner[1].y = scene->resy/2;
-	scene->aabb->corner[1].z = 200; 
+	scene->aabb->corner[0].x = posaabbx + 0;
+	scene->aabb->corner[0].y = posaabby + 0;
+	scene->aabb->corner[0].z = posaabbz + 0; 
+	scene->aabb->corner[1].x = posaabbx + 100;
+	scene->aabb->corner[1].y = posaabby + 100;
+	scene->aabb->corner[1].z = posaabbz + 100; 
 
 	scene->aabb->rgb[0] = 0; 
 	scene->aabb->rgb[1] = 0; 
@@ -113,7 +113,7 @@ void send_ray(t_scene *scene, t_mlx *mlx_cfg, int dx, int dy)
 	origin.z = scene->pos_cam->z;
 	direction.x = scene->resx/-2 + dx;
 	direction.y = scene->resy/-2 + dy;
-	direction.z = 1;	
+	direction.z = 100;	
 	inv_direction.x = 1 / direction.x;
 	inv_direction.y = 1 / direction.y;
 	inv_direction.z = 1 / direction.z;
@@ -125,10 +125,13 @@ void send_ray(t_scene *scene, t_mlx *mlx_cfg, int dx, int dy)
 	ray.sign[2] = (direction.z < 0);
 	if (intersect_aabb(scene->aabb, &ray))
 		//apply_color(scene->aabb->rgb, mlx_cfg, dx, dy);
-		alter_pixel(mlx_cfg, RED, dx, dy);
+		//alter_pixel(mlx_cfg, RED, dx, dy);
+		mlx_pixel_put(mlx_cfg->mlx_ptr, mlx_cfg->win_ptr, dx, dy, BLUE);
 	else
 		//apply_color(scene->background_rgb, mlx_cfg, dx, dy);
-		alter_pixel(mlx_cfg, BLUE, dx, dy);
+		//alter_pixel(mlx_cfg, BLUE, dx, dy);
+		mlx_pixel_put(mlx_cfg->mlx_ptr, mlx_cfg->win_ptr, dx, dy, WHITE);
+		
 }
 
 void	raytrace(t_scene *scene, t_mlx *mlx_cfg)
@@ -136,23 +139,20 @@ void	raytrace(t_scene *scene, t_mlx *mlx_cfg)
 	int dx;
 	int dy;
 
-	(void)scene;
-/*
 	dx = 0;
 	while (dx < scene->resx)
 	{
 		dy = 0;
 		while (dy < scene->resy)
 		{
-			//send_ray(scene, mlx_cfg, dx, dy);		
-			alter_pixel(mlx_cfg, BLUE, dx, dy);
+			send_ray(scene, mlx_cfg, dx, dy);		
 			dy++;
 		}
 		dx++;
 	}
-*/
+/*
 	dx = 0;
-	while (dx < 3)
+	while (dx < 800)
 	{
 		if (dx % 2)
 		{
@@ -169,20 +169,24 @@ void	raytrace(t_scene *scene, t_mlx *mlx_cfg)
 		}
 		dx++;
 	}
+*/
 }
 
-int main()
+int main(int ac, char **av)
 {
 	t_scene scene;
 	t_mlx	mlx_cfg;
 
-	init_scene(&scene);	
+	if (ac != 4)
+		return (0);
+	init_scene(&scene, atoi(av[1]), atoi(av[2]), atoi(av[3]));	
 	scene.resx = 800;
 	scene.resy = 600;
 	init_graphics(&mlx_cfg, scene.resx, scene.resy);
+	//mlx_clear_window(mlx_cfg.mlx_ptr, mlx_cfg.win_ptr);
 	raytrace(&scene, &mlx_cfg);
 /*
-	alter_pixel(&mlx_cfg, RED, 100, 302);
+	alter_pixel(&mlx_cfg, RED, 10, 10);
 	alter_pixel(&mlx_cfg, GREEN, 20, 20);
 	alter_pixel(&mlx_cfg, BLUE, 30, 30);
 */
