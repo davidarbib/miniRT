@@ -6,7 +6,7 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/04/26 01:10:38 by darbib           ###   ########.fr        #
+#    Updated: 2020/05/01 21:21:47 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ ifeq ($(UNAME_S),Linux)
 	MLX = libmlx.a
 	LIB_MLX = $(addprefix $(MLX_DIR), $(MLX))
 	LDFLAGS += $(addprefix -L, $(MLX_DIR)) 
-	LDFLAGS += -lmlx -lX11 -lXext -lft
+	LDFLAGS += -lm -lmlx -lX11 -lXext -lft
 else
 	MLX_DIR = ./minilibx_macos/
 	MLX = libmlx.dylib
@@ -72,8 +72,11 @@ SRC = camera.c \
 	omnilight.c \
 	parse_utils.c \
 	parse_utils2.c \
+	vect_product.c \
+	vect_projection.c \
 	parsing.c \
 	handle_line.c \
+	aabb.c \
 	plane.c \
 	rt_buffer.c \
 	sphere.c \

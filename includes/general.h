@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 17:27:22 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/25 15:48:23 by darbib           ###   ########.fr       */
+/*   Updated: 2020/04/30 20:46:35 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@
 */
 
 # define BUFFSIZE	1024
+
+/*
+** ---------------
+*/
 
 /*
 ** ---------------
@@ -97,6 +101,7 @@ int				client_endian(void);
 unsigned int	adapt_endian(unsigned int color);
 
 void			alter_pixel(t_mlx *cfg, int color, int x, int y);
+void			apply_color(unsigned char *rgb, t_mlx *mlx_cfg, int x, int y);
 
 void			parsing(int ac, char **av, t_rt *cfg);
 void			handle_line(t_rt *cfg);

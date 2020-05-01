@@ -1,82 +1,48 @@
 #include "minirt.h"
 #include "mlx.h"
 #include "colors.h"
-
-typedef struct	s_aabb
-{
-	t_vect			corner[2];
-	unsigned char	rgb[3];
-}				t_aabb;
+#include "aabb.h"
 
 typedef struct	s_scene
 {
 	t_vect			*pos_cam;
 	t_aabb			*aabb;
+	t_sphere		*sphere;
 	unsigned char	background_rgb[3]; 
 	int				resx;
 	int				resy;
 }				t_scene;
 
-typedef struct	s_ray
+/*
+void	set_quaternion(t_vect *cam_orient, t_vect *ref_orient, double *quater)
 {
-	t_vect			*origin;
-	t_vect			*direction;
-	t_vect			*inv_direction;
-	int				sign[3];
-}				t_ray;
-
-static int		intersect_aabb(t_aabb *aabb, t_ray *ray)
-{
-	double tmin;
-	double tmax;
-	double tymin;
-	double tymax;
-	double tzmin;
-	double tzmax;
+	//ramener veceur sur xz	
+		//projection sur xz
 	
-	tmin = (aabb->corner[ray->sign[0]].x - ray->origin->x)
-			* ray->inv_direction->x;
-	tmax = (aabb->corner[1 - ray->sign[0]].x - ray->origin->x)
-			* ray->inv_direction->x;
-	tymin = (aabb->corner[ray->sign[1]].y - ray->origin->y)
-			* ray->inv_direction->y;
-	tymax = (aabb->corner[1 - ray->sign[1]].y - ray->origin->y)
-			* ray->inv_direction->y;
-	if ((tmin > tymax) || (tymin > tymax))
-		return (0);
-	if (tymin > tmin)
-		tmin = tymin;
-	if (tymax < tmax)
-		tmax = tymax;
-	tzmin = (aabb->corner[ray->sign[2]].z - ray->origin->z)
-			* ray->inv_direction->z;
-	tzmax = (aabb->corner[1 - ray->sign[2]].z - ray->origin->z)
-			* ray->inv_direction->z;
-	if ((tmin > tzmax) || (tzmin > tmax))
-		return (0);
-	if (tzmin > tmin)
-		tmin = tzmin;
-	if (tzmax < tmax)
-		tmax = tzmax;
-	return (tmax > 0);
+		//calcul angle de la rotation z
+		//construction 1er quaternion
+	//ramener sur reference
+		//projection sur la reference
+		//calcul angle de la rotation y
+		//construction 2e quaternion
+	//multiplication de quaternions
 }
-
+*/
 void	init_scene(t_scene *scene, int posaabbx, int posaabby, int posaabbz)
 {
-	t_vect	pos_cam;
+	t_vect		pos_cam;
 
 	scene->resx = 800;
 	scene->resy = 600;
 
-	scene->background_rgb[0] = 255; 
-	scene->background_rgb[0] = 255; 
-	scene->background_rgb[0] = 255; 
+	scene->background_rgb[0] = 0xd6; 
+	scene->background_rgb[1] = 0xd9; 
+	scene->background_rgb[2] = 0xce; 
 	
 	pos_cam.x = 0;
 	pos_cam.y = 0;
 	pos_cam.z = 0;	
 	scene->pos_cam = &pos_cam;
-
 	scene->aabb = malloc(sizeof(t_aabb));
 
 	scene->aabb->corner[0].x = posaabbx + 0;
@@ -86,19 +52,20 @@ void	init_scene(t_scene *scene, int posaabbx, int posaabby, int posaabbz)
 	scene->aabb->corner[1].y = posaabby + 100;
 	scene->aabb->corner[1].z = posaabbz + 100; 
 
-	scene->aabb->rgb[0] = 0; 
-	scene->aabb->rgb[1] = 0; 
-	scene->aabb->rgb[2] = 255; 
-}
-
-void	apply_color(unsigned char *rgb, t_mlx *mlx_cfg, int x, int y)
-{
-	unsigned char tmp_rgb[3];
-	
-	tmp_rgb[0] = rgb[2];
-	tmp_rgb[1] = rgb[1];
-	tmp_rgb[2] = rgb[0];
-	alter_pixel(mlx_cfg, *((int *)&tmp_rgb), x, y);
+	scene->aabb->rgb[0] = 0x71; 
+	scene->aabb->rgb[1] = 0xa9; 
+	scene->aabb->rgb[2] = 0xf7; 
+/*
+	scene->sphere = &sphere;
+	sphere.pos = &pos; 
+	pos.x = posaabbx;
+	pos.y = posaabby;
+	pos.z = posaabbz;
+	sphere.diam = diam;
+	sphere.rgb[0] = 255;
+	sphere.rgb[1] = 255;
+	sphere.rgb[2] = 255;	
+*/
 }
 
 void send_ray(t_scene *scene, t_mlx *mlx_cfg, int dx, int dy)
@@ -113,7 +80,7 @@ void send_ray(t_scene *scene, t_mlx *mlx_cfg, int dx, int dy)
 	origin.z = scene->pos_cam->z;
 	direction.x = scene->resx/-2 + dx;
 	direction.y = scene->resy/-2 + dy;
-	direction.z = 100;	
+	direction.z = 150;	
 	inv_direction.x = 1 / direction.x;
 	inv_direction.y = 1 / direction.y;
 	inv_direction.z = 1 / direction.z;
@@ -124,14 +91,9 @@ void send_ray(t_scene *scene, t_mlx *mlx_cfg, int dx, int dy)
 	ray.sign[1] = (direction.y < 0);
 	ray.sign[2] = (direction.z < 0);
 	if (intersect_aabb(scene->aabb, &ray))
-		//apply_color(scene->aabb->rgb, mlx_cfg, dx, dy);
-		//alter_pixel(mlx_cfg, RED, dx, dy);
-		mlx_pixel_put(mlx_cfg->mlx_ptr, mlx_cfg->win_ptr, dx, dy, BLUE);
+		apply_color(scene->aabb->rgb, mlx_cfg, dx, dy);
 	else
-		//apply_color(scene->background_rgb, mlx_cfg, dx, dy);
-		//alter_pixel(mlx_cfg, BLUE, dx, dy);
-		mlx_pixel_put(mlx_cfg->mlx_ptr, mlx_cfg->win_ptr, dx, dy, WHITE);
-		
+		apply_color(scene->background_rgb, mlx_cfg, dx, dy);
 }
 
 void	raytrace(t_scene *scene, t_mlx *mlx_cfg)
@@ -145,35 +107,42 @@ void	raytrace(t_scene *scene, t_mlx *mlx_cfg)
 		dy = 0;
 		while (dy < scene->resy)
 		{
-			send_ray(scene, mlx_cfg, dx, dy);		
+			send_ray(scene, mlx_cfg, dx, dy);	
 			dy++;
 		}
 		dx++;
 	}
-/*
-	dx = 0;
-	while (dx < 800)
-	{
-		if (dx % 2)
-		{
-			dx++;
-			continue;
-		}
-		dy = 0;
-		while (dy < 600)
-		{
-			//send_ray(scene, mlx_cfg, dx, dy);		
-			alter_pixel(mlx_cfg, BLUE, dx, dy);
-			//mlx_pixel_put(mlx_cfg->mlx_ptr, mlx_cfg->win_ptr, dx, dy, BLUE);
-			dy++;
-		}
-		dx++;
-	}
-*/
 }
 
 int main(int ac, char **av)
 {
+	t_vect v1;
+	t_vect v2;
+	t_vect v_out;
+	//double scalar;
+
+	(void)ac;
+	(void)av;
+	v1.x = 2;
+	v1.y = 7;
+	v1.z = -1;
+	v2.x = -9;
+	v2.y = 1;
+	v2.z = 5;
+	//scale(scalar, &v1, &v_out);
+	cross(&v1, &v2, &v_out);
+	printf("v1 ^ v2= (%f, %f, %f)\n", v_out.x, v_out.y, v_out.z);
+	printf("v1 . v2= %f\n", dot(&v1, &v2));
+	printf("||v1|| = %f\n", vect_norm(&v1));
+	normalize(&v1, &v_out);
+	printf("normalize(v1)= (%f, %f, %f)\n", v_out.x, v_out.y, v_out.z);
+	add_vect(&v1, &v2, &v_out);
+	printf("v1 + v2 = (%f, %f, %f)\n", v_out.x, v_out.y, v_out.z);
+	sub_vect(&v1, &v2, &v_out);
+	printf("v1 - v2 = (%f, %f, %f)\n", v_out.x, v_out.y, v_out.z);
+	ortho_projection(&v1, &v2, &v_out);
+	printf("proj(v1,v2) = (%f, %f, %f)\n", v_out.x, v_out.y, v_out.z);
+/*
 	t_scene scene;
 	t_mlx	mlx_cfg;
 
@@ -183,12 +152,15 @@ int main(int ac, char **av)
 	scene.resx = 800;
 	scene.resy = 600;
 	init_graphics(&mlx_cfg, scene.resx, scene.resy);
-	//mlx_clear_window(mlx_cfg.mlx_ptr, mlx_cfg.win_ptr);
 	raytrace(&scene, &mlx_cfg);
+	if (!(mlx_put_image_to_window(mlx_cfg.mlx_ptr, mlx_cfg.win_ptr,
+		mlx_cfg.img_ptr, 0, 0)))
+		return (1);
+*/
 /*
 	alter_pixel(&mlx_cfg, RED, 10, 10);
 	alter_pixel(&mlx_cfg, GREEN, 20, 20);
 	alter_pixel(&mlx_cfg, BLUE, 30, 30);
-*/
 	mlx_loop(mlx_cfg.mlx_ptr);
+*/
 }
