@@ -6,7 +6,7 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/05/01 21:21:47 by darbib           ###   ########.fr        #
+#    Updated: 2020/05/02 00:45:14 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,7 @@ SRC = camera.c \
 	parse_utils2.c \
 	vect_product.c \
 	vect_projection.c \
+	quaternion.c \
 	parsing.c \
 	handle_line.c \
 	aabb.c \
