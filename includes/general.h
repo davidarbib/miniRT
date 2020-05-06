@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 17:27:22 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/30 20:46:35 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/07 00:08:33 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,5 +123,10 @@ void			destroy(t_rt *cfg);
 
 int				is_ratio(float ratio);
 int				is_orientation_vect(t_vect *vect);
+
+
+void			extract_scene_rotation(t_vect *cam_orient, t_vect *ref_orient,
+				double *phi, double *theta);
+void		rotate_point(double phi, double theta, t_vect *v_in, t_vect *v_out);
 
 #endif

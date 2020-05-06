@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/02 00:18:30 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/03 12:37:32 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/05 16:04:29 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,15 @@ void	mult_quater(double *q1, double *q2, double *q_out)
 
 void	conjugate_quater(double *q, double *q_conjugate)
 {
-	q_conjugate[B] = q[B] * -1;
-	q_conjugate[C] = q[C] * -1;
-	q_conjugate[D] = q[D] * -1;
+	q_conjugate[A] = q[A];
+	q_conjugate[B] = q[B] * -1.;
+	q_conjugate[C] = q[C] * -1.;
+	q_conjugate[D] = q[D] * -1.;
 }
 
 void	to_quater(t_vect *point, double *q_out)
 {
-	q_out[A] = 0;	
+	q_out[A] = 0.;	
 	q_out[B] = point->x;	
 	q_out[C] = point->y;	
 	q_out[D] = point->z;	

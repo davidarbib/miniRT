@@ -6,12 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/21 11:38:03 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/01 21:12:52 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/05 16:08:19 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
 #include <math.h>
+#include <stdio.h>
 
 double	vect_norm(t_vect *vect)
 {
@@ -29,9 +30,9 @@ void	normalize(t_vect *vect, t_vect *vect_out)
 	double	inv_norm;
 
 	norm = vect_norm(vect);
-	if (norm == 0)
+	if (norm == 0.)
 		return ;
-	inv_norm = 1 / norm;
+	inv_norm = 1. / norm;
 	vect_out->x = vect->x * inv_norm;
 	vect_out->y = vect->y * inv_norm;
 	vect_out->z = vect->z * inv_norm;
