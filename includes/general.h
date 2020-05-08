@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 17:27:22 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/07 00:08:33 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/08 23:26:28 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "libft.h"
 # include "vector.h"
+# include "spheric.h"
+# include "aabb.h"
 # include <stdint.h>
 
 /*
@@ -53,6 +55,7 @@
 ** ---------------
 */
 
+# define MAX_CODE	65364
 /*
 ** ---------------
 */
@@ -92,6 +95,37 @@ typedef struct		s_rt
 	uint8_t			flags;
 }					t_rt;
 
+/*
+** ------- for draft only ----------
+*/
+
+typedef struct	s_scene
+{
+	t_vect			*cam_pos;
+	t_vect			*cam_orient;
+	t_vect			*ref_orient;
+	t_aabb			*aabb1;
+	t_aabb			*aabb2;
+	t_aabb			*aabb3;
+	unsigned char	background_rgb[3]; 
+	int				resx;
+	int				resy;
+	int				hits;
+	double			rot_quater[4];
+	double			conjugate_rot_quater[4];
+	double			theta;
+	double			phi;
+}				t_scene;
+
+typedef struct	s_param
+{
+	t_mlx		*mlx_cfg;
+	t_scene		*scene;
+}				t_param;
+/*
+** -------------------------------------
+*/
+
 int				init_graphics(t_mlx *mlx_cfg, int resx, int resy);
 void			init_cfg(t_rt *cfg);
 int				create_img(t_mlx *mlx_cfg, int resx, int resy);
@@ -126,7 +160,13 @@ int				is_orientation_vect(t_vect *vect);
 
 
 void			extract_scene_rotation(t_vect *cam_orient, t_vect *ref_orient,
-				double *phi, double *theta);
-void		rotate_point(double phi, double theta, t_vect *v_in, t_vect *v_out);
+					double *phi, double *theta);
+void			rotate_point(double phi, double theta, t_vect *v_in,
+					t_vect *v_out);
+void			to_cartesian(t_spheric *spherical, t_vect *cartesian);
+void			adapt_scene(t_scene *scene);
+void			raytrace(t_scene *scene, t_mlx *mlx_cfg);
 
+int				loop_hook(void *param);
+int				key_pressed_hook(int keycode, void *param);
 #endif

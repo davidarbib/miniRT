@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 16:28:50 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/03 13:32:12 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/08 19:34:08 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,12 @@ int			create_img(t_mlx *mlx_cfg, int resx, int resy)
 	if (!(mlx_cfg->img_data = mlx_get_data_addr(mlx_cfg->img_ptr,
 		&mlx_cfg->bits_per_pixel, &mlx_cfg->size_line, &mlx_cfg->endian)))
 		return (0);
-	if (!(mlx_put_image_to_window(mlx_cfg->mlx_ptr, mlx_cfg->win_ptr,
-		mlx_cfg->img_ptr, 0, 0)))
-		return (0);
 	return (1);
 }
 
 int			refresh_img(t_mlx *mlx_cfg, int resx, int resy)
 {
-	if (!(mlx_destroy_image(mlx_cfg->mlx_ptr, mlx_cfg->img_ptr)))
-		return (0);
+	mlx_destroy_image(mlx_cfg->mlx_ptr, mlx_cfg->img_ptr);
 	if (!(create_img(mlx_cfg, resx, resy))) 
 		return (0);
 	return (1);

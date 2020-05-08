@@ -6,75 +6,54 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/05 18:21:04 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/07 01:32:30 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/08 20:10:48 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
+#include "spheric.h"
+#include "print.h"
 #include <math.h>
 #include <stdio.h>
 
- //pour mes axes
-static void	to_spherical(t_vect *cartesian, t_vect *spherical)
+
+static void	to_spherical(t_vect *cartesian, t_spheric *spherical)
 {
 	double rho;
 
 	rho = vect_norm(cartesian);
-	spherical->x = rho; 
-	spherical->y = acos(cartesian->y / rho);  
-	spherical->z = atan(cartesian->x / cartesian->z);
+	spherical->rho = rho; 
+	spherical->phi = acos(cartesian->z / rho);  
+	spherical->theta = atan2(cartesian->y, cartesian->x);
 }
 
-static void	to_cartesian(t_vect *spherical, t_vect *cartesian)
+void	to_cartesian(t_spheric *spherical, t_vect *cartesian)
 {
-	cartesian->x = spherical->x * sin(spherical->y) * sin(spherical->z); 	
-	cartesian->y = spherical->x * cos(spherical->y); 	
-	cartesian->z = spherical->x * sin(spherical->y) * cos(spherical->z); 	
+	cartesian->x = spherical->rho * sin(spherical->phi) * cos(spherical->theta); 	
+	cartesian->y = spherical->rho * sin(spherical->phi) * sin(spherical->theta); 	
+	cartesian->z = spherical->rho * cos(spherical->phi); 	
 }
 
-/* //comme conseille
-static void	to_spherical(t_vect *cartesian, t_vect *spherical)
-{
-	double rho;
-
-	rho = vect_norm(cartesian);
-	spherical->x = rho; 
-	spherical->y = acos(cartesian->z / rho);  
-	spherical->z = atan(cartesian->y / cartesian->x);
-}
-
-static void	to_cartesian(t_vect *spherical, t_vect *cartesian)
-{
-	cartesian->x = spherical->x * sin(spherical->y) * cos(spherical->z); 	
-	cartesian->y = spherical->x * sin(spherical->y) * sin(spherical->z); 	
-	cartesian->z = spherical->x * cos(spherical->y); 	
-}
-
-*/
 void		extract_scene_rotation(t_vect *cam_orient, t_vect *ref_orient,
 			double *phi, double *theta)
 {
-	t_vect spherical_cam;
-	t_vect spherical_ref;
+	t_spheric spherical_cam;
+	t_spheric spherical_ref;
 
 	to_spherical(cam_orient, &spherical_cam);
 	to_spherical(ref_orient, &spherical_ref);
-	*phi = spherical_ref.y - spherical_cam.y;
-	*theta = spherical_ref.z - spherical_cam.z;
-	//printf("phi = %lf, theta = %lf\n", *phi, *theta);
+	*phi = spherical_ref.phi - spherical_cam.phi;
+	*theta = spherical_ref.theta - spherical_cam.theta;
 }
 
 void		rotate_point(double phi, double theta, t_vect *v_in, t_vect *v_out)
 {
-	t_vect spherical_in;
+	t_spheric spherical_in;
 
+	print_vect(v_in);
 	to_spherical(v_in, &spherical_in);
-	printf("spherical = (%lf, %lf, %lf)\n", spherical_in.x, spherical_in.y, 
-			spherical_in.z);
-	//printf("phi = %lf, theta = %lf\n", phi, theta);
-	spherical_in.y += phi;
-	spherical_in.z += theta;
-	printf("spherical = (%lf, %lf, %lf)\n", spherical_in.x, spherical_in.y, 
-			spherical_in.z);
+	spherical_in.phi += phi;
+	spherical_in.theta += theta;
 	to_cartesian(&spherical_in, v_out);
+	print_vect(v_out);
 }
