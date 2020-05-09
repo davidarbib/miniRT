@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 17:27:22 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/08 23:52:29 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/09 18:11:58 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,4 +169,6 @@ void			raytrace(t_scene *scene, t_mlx *mlx_cfg);
 
 int				loop_hook(void *param);
 int				key_pressed_hook(int keycode, void *param);
+
+void			move_scene(t_scene *scene, t_vect *translation);
 #endif

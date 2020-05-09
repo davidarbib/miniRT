@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 19:56:13 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/30 20:48:20 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/09 16:21:12 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct	s_aabb
 }				t_aabb;
 
 int		intersect_aabb(t_aabb *aabb, t_ray *ray);
+void	move_aabb(t_aabb *aabb, t_vect *translation);
 
 #endif
 

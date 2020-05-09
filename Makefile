@@ -6,7 +6,7 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/05/08 23:28:55 by darbib           ###   ########.fr        #
+#    Updated: 2020/05/09 16:56:19 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,6 +87,8 @@ SRC = camera.c \
 	turn.c \
 	move.c \
 	hook.c \
+	raytrace.c \
+	keyboard_actions.c \
 	triangle.c
 
 ifeq ($(DRAFT), 1)

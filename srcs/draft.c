@@ -1,37 +1,12 @@
 #include "minirt.h"
 #include "mlx.h"
+#include "X11/X.h"
 #include "colors.h"
 #include "aabb.h"
 #include "math.h"
 #include "spheric.h"
 #include "print.h"
 #include "actions.h"
-#include "keys_linux.h"
-
-void	(*g_key_pressed_ft[MAX_CODE + 1])(void *param);
-
-static void	null_action(void *param)
-{
-	(void)param;
-	return ;
-}
-
-static void assign_fts(void)
-{
-	int		i;
-
-	i = -1;
-	while (++i < MAX_CODE)
-		g_key_pressed_ft[i] = null_action;
-	g_key_pressed_ft[KEY_W] = move_forward;  
-	g_key_pressed_ft[KEY_S] = move_backward; 
-	g_key_pressed_ft[KEY_A] = move_left; 
-	g_key_pressed_ft[KEY_D] = move_right; 
-	//g_key_pressed_ft[KEY_UP] = parse_plane;  
-	//g_key_pressed_ft[KEY_DOWN] = parse_sphere;  
-	g_key_pressed_ft[KEY_LEFT] = turn_left;  
-	g_key_pressed_ft[KEY_RIGHT] = turn_right;  
-}
 
 void	init_scene(t_scene *scene)
 {
@@ -45,7 +20,6 @@ void	init_scene(t_scene *scene)
 	double		posaabby3;
 	double		posaabbz3;
 	t_spheric	cam_orient_sph;
-
 
 	scene->resx = 800;
 	scene->resy = 600;
@@ -157,76 +131,13 @@ void	init_scene(t_scene *scene)
 */
 }
 
-static void send_ray(t_scene *scene, t_mlx *mlx_cfg, int dx, int dy)
-{
-	t_ray	ray;
-	t_vect	origin;
-	t_vect	direction;
-	t_vect	inv_direction;
-		
-	origin.x = scene->cam_pos->x;
-	origin.y = scene->cam_pos->y;
-	origin.z = scene->cam_pos->z;
-
-	direction.x = scene->resx/2. - dx;
-	direction.y = scene->resy/2. - dy;
-	direction.z = 550.;	
-	inv_direction.x = 1 / direction.x;
-	inv_direction.y = 1 / direction.y;
-	inv_direction.z = 1 / direction.z;
-	ray.origin = &origin;
-	ray.direction = &direction;
-	ray.inv_direction = &inv_direction;
-	ray.sign[0] = (direction.x < 0);
-	ray.sign[1] = (direction.y < 0);
-	ray.sign[2] = (direction.z < 0);
-	if (intersect_aabb(scene->aabb1, &ray))
-		apply_color(scene->aabb1->rgb, mlx_cfg, dx, dy);
-	/*
-	else if (intersect_aabb(scene->aabb2, &ray))
-		apply_color(scene->aabb2->rgb, mlx_cfg, dx, dy);
-	else if (intersect_aabb(scene->aabb3, &ray))
-		apply_color(scene->aabb3->rgb, mlx_cfg, dx, dy);
-	*/
-	else
-		apply_color(scene->background_rgb, mlx_cfg, dx, dy);
-}
-
-void	raytrace(t_scene *scene, t_mlx *mlx_cfg)
-{
-	int dx;
-	int dy;
-
-	dx = 0;
-	while (dx < scene->resx)
-	{
-		dy = 0;
-		while (dy < scene->resy)
-		{
-			send_ray(scene, mlx_cfg, dx, dy);	
-			dy++;
-		}
-		dx++;
-	}
-	printf("cc\n");
-}
-
-static void	adapt_aabb(t_aabb *aabb, t_vect *cam_pos, double phi, double theta)
-{
-	t_vect	translation;
-	
-	rotate_point(phi, theta, aabb->corner, aabb->corner); 
-	rotate_point(phi, theta, aabb->corner + 1, aabb->corner + 1); 
-	scale(-1, cam_pos, &translation);
-	add_vect(aabb->corner, &translation, aabb->corner);
-	add_vect(aabb->corner + 1, &translation, aabb->corner + 1);
-}
-
 void	adapt_scene(t_scene *scene)
 {
-	adapt_aabb(scene->aabb1, scene->cam_pos, scene->phi, scene->theta);
-//	adapt_aabb(scene->aabb2, scene->cam_pos, scene->phi, scene->theta);
-//	adapt_aabb(scene->aabb3, scene->cam_pos, scene->phi, scene->theta);
+	t_vect	translation;
+
+	scale(-1, scene->cam_pos, &translation);
+	//rotate_scene(t_scene *scene);
+	move_scene(scene, &translation);
 }
 
 int main(int ac, char **av)
@@ -240,7 +151,7 @@ int main(int ac, char **av)
 
 	param.scene = &scene;
 	param.mlx_cfg = &mlx_cfg;
-	assign_fts();
+	assign_key_fts();
 	init_scene(&scene);
 	scene.resx = 800;
 	scene.resy = 600;
@@ -251,6 +162,8 @@ int main(int ac, char **av)
 		mlx_cfg.img_ptr, 0, 0)))
 		return (1);
 	//mlx_loop_hook(mlx_cfg.mlx_ptr, loop_hook, &param);
-	mlx_key_hook(mlx_cfg.win_ptr, key_pressed_hook, &param);
+	//mlx_key_hook(mlx_cfg.win_ptr, key_pressed_hook, &param);
+	mlx_hook(mlx_cfg.win_ptr, KeyPress, KeyPressMask, key_pressed_hook,
+			&param);
 	mlx_loop(mlx_cfg.mlx_ptr);
 }

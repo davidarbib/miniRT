@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 20:19:28 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/05 17:36:27 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/09 16:57:35 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ static inline int overlap(double *t0, double *t1, double min_, double max_)
 	if (max_ < *t1)
 		*t1 = max_;
 	return (1);
+}
+
+void	move_aabb(t_aabb *aabb, t_vect *translation)
+{
+	add_vect(aabb->corner, translation, aabb->corner);
+	add_vect(aabb->corner + 1, translation, aabb->corner + 1);
 }
 
 int		intersect_aabb(t_aabb *aabb, t_ray *ray)
