@@ -3,6 +3,7 @@
 #include "X11/X.h"
 #include "colors.h"
 #include "aabb.h"
+#include "plane.h"
 #include "math.h"
 #include "spheric.h"
 #include "print.h"
@@ -10,6 +11,7 @@
 
 void	init_scene(t_scene *scene)
 {
+	/*
 	double		posaabbx1;
 	double		posaabby1;
 	double		posaabbz1;
@@ -19,6 +21,7 @@ void	init_scene(t_scene *scene)
 	double		posaabbx3;
 	double		posaabby3;
 	double		posaabbz3;
+	*/
 	t_spheric	cam_orient_sph;
 
 	scene->resx = 800;
@@ -33,10 +36,12 @@ void	init_scene(t_scene *scene)
 	scene->background_rgb[1] = 0xd9; 
 	scene->background_rgb[2] = 0xce; 
 	
-	scene->cam_pos = malloc(sizeof(t_vect));
-	scene->cam_orient = malloc(sizeof(t_vect));
+	scene->active_cam = malloc(sizeof(t_cam));
+	scene->active_cam->pos = malloc(sizeof(t_vect));
+	scene->active_cam->orient = malloc(sizeof(t_vect));
 	printf("position camera: ");
-	scanf("%lf%lf%lf", &scene->cam_pos->x, &scene->cam_pos->y, &scene->cam_pos->z);
+	scanf("%lf%lf%lf", &scene->active_cam->pos->x, &scene->active_cam->pos->y,
+			&scene->active_cam->pos->z);
 	printf("\n");
 	/*
 	printf("orientation camera: ");
@@ -54,11 +59,9 @@ void	init_scene(t_scene *scene)
 	cam_orient_sph.phi = scene->phi;
 	cam_orient_sph.theta = 0;
 	print_angle(scene->phi, scene->theta);
-	to_cartesian(&cam_orient_sph, scene->cam_orient); 
+	to_cartesian(&cam_orient_sph, scene->active_cam->orient); 
 	//normalize(scene->cam_orient, scene->cam_orient);
-	scene->aabb1 = malloc(sizeof(t_aabb));
-	scene->aabb2 = malloc(sizeof(t_aabb));
-	scene->aabb3 = malloc(sizeof(t_aabb));
+	scene->aabbs = malloc(sizeof(t_aabb) * 3);
 /*
 	printf("position cube bleu: ");
 	scanf("%lf%lf%lf", &posaabbx1, &posaabby1, &posaabbz1);
@@ -69,8 +72,24 @@ void	init_scene(t_scene *scene)
 	printf("position cube vert: ");
 	scanf("%lf%lf%lf", &posaabbx3, &posaabby3, &posaabbz3);
 	printf("\n");
-
 */
+	scene->planes = malloc(sizeof(t_plane));
+	scene->planes->pos = malloc(sizeof(t_plane));
+	scene->planes->orient = malloc(sizeof(t_plane));
+	scene->planes->pos->x = 0;
+	scene->planes->pos->y = 0;
+	scene->planes->pos->z = 2;
+	scene->planes->orient->x = 1;
+	scene->planes->orient->y = 0;
+	scene->planes->orient->z = 0;
+	scene->planes->rgb[0] = 0x2d;
+	scene->planes->rgb[1] = 0x1e;
+	scene->planes->rgb[2] = 0x2f;
+	printf("plane pos");
+	print_vect(scene->planes->pos);
+	printf("plane orient");
+	print_vect(scene->planes->pos);
+/*
 	posaabbx1 = 100;
 	posaabby1 = -50;
 	posaabbz1 = 560;
@@ -114,8 +133,9 @@ void	init_scene(t_scene *scene)
 	scene->aabb3->rgb[1] = 0x9f; 
 	scene->aabb3->rgb[2] = 0x70; 
 
+*/
 	//print_vect(scene->cam_orient);
-	extract_scene_rotation(scene->cam_orient, scene->ref_orient, &scene->phi,
+	extract_scene_rotation(scene->active_cam->orient, scene->ref_orient, &scene->phi,
 		&scene->theta);
 	//print_angle(, acos(scene->cam_orient->z));
 /*
@@ -129,15 +149,6 @@ void	init_scene(t_scene *scene)
 	sphere.rgb[1] = 255;
 	sphere.rgb[2] = 255;	
 */
-}
-
-void	adapt_scene(t_scene *scene)
-{
-	t_vect	translation;
-
-	scale(-1, scene->cam_pos, &translation);
-	//rotate_scene(t_scene *scene);
-	move_scene(scene, &translation);
 }
 
 int main(int ac, char **av)

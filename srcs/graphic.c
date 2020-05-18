@@ -6,11 +6,12 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 16:28:50 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/08 19:34:08 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/16 15:21:06 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "graphic.h"
 #include "mlx.h"
 
 int			init_graphics(t_mlx *mlx_cfg, int resx, int resy)
@@ -44,7 +45,7 @@ int			refresh_img(t_mlx *mlx_cfg, int resx, int resy)
 	return (1);
 }
 
-void	apply_color(unsigned char *rgb, t_mlx *mlx_cfg, int x, int y)
+void		apply_color(unsigned char *rgb, t_mlx *mlx_cfg, int x, int y)
 {
 	unsigned char tmp_rgb[3];
 	

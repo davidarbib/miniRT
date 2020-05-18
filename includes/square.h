@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:12:03 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/10 11:52:19 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/18 21:29:13 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,21 @@
 /*
 ** --- square ---
 ** pos : position vector
-** ort : orientation vector [-1;1]
+** orient : orientation vector [-1;1]
 ** height : ...
 ** rgb : rgb color
 */
 typedef struct		s_square
 {
 	t_vect			*pos;
-	t_vect			*ort;
+	t_vect			*orient;
+	t_vect			*current_pos;
+	t_vect			*current_orient;
 	float			height;
 	unsigned char	rgb[3];
 }					t_square;
 
 void	destroy_square(void *obj);
-void	parse_square(t_rt *cfg, char *line);
 void	print_square(void *obj);
 
 #endif

@@ -6,13 +6,14 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:32:42 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/15 19:59:55 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/18 18:09:17 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "error.h"
 #include "ft_printf.h"
+#include <assert.h>
 
 void	destroy_plane(void *obj)
 {
@@ -20,16 +21,16 @@ void	destroy_plane(void *obj)
 	
 	plane = (t_plane *)obj;
 	free(plane->pos);
-	free(plane->ort);
+	free(plane->orient);
 	plane->pos = NULL;
-	plane->ort = NULL;
+	plane->orient = NULL;
 	free(plane);
 	plane = NULL;
 }
 
 static void	check_plane(t_rt *cfg, t_plane *plane)
 {
-	if (!(is_orientation_vect(plane->ort)))
+	if (!(is_orientation_vect(plane->orient)))
 		parse_error(E_ORIENT, cfg);
 }
 
@@ -41,13 +42,13 @@ void	parse_plane(t_rt *cfg, char *line)
 	if (!(plane = (t_plane *)malloc(sizeof(t_plane))))
 		sys_error(cfg);
 	plane->pos = NULL;
-	plane->ort = NULL;
+	plane->orient = NULL;
 	cfg->current_obj_addr = (void *)plane;
 	line = ft_pass_spaces(line);
 	if (!(plane->pos = get_vector(&line, cfg)))
 		parse_error(E_BADVECT, cfg);
 	line = ft_pass_spaces(line);
-	if (!(plane->ort = get_vector(&line, cfg)))
+	if (!(plane->orient = get_vector(&line, cfg)))
 		parse_error(E_BADVECT, cfg);
 	line = ft_pass_spaces(line);
 	if (!(get_rgb(plane->rgb, &line)))
@@ -66,9 +67,15 @@ void	print_plane(void *obj)
 	plane = (t_plane *)obj;
 	printf("Pos : %f, %f, %f\n", plane->pos->x, plane->pos->y,
 	 	plane->pos->z);
-	printf("Orientation : %f, %f, %f\n", plane->ort->x, plane->ort->y,
-	 	plane->ort->z);
+	printf("Orientation : %f, %f, %f\n", plane->orient->x, plane->orient->y,
+	 	plane->orient->z);
 	printf("RGB : %d,%d,%d\n", plane->rgb[0], plane->rgb[1],
 	 		plane->rgb[2]);
 	printf("\n");
 }
+
+void	move_plane(t_plane *plane, t_vect *translation)
+{
+	add_vect(plane->pos, translation, plane->pos);
+}
+

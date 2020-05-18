@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:36:28 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/15 20:15:35 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/13 22:06:19 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	destroy_square(void *obj)
 	
 	square = (t_square *)obj;
 	free(square->pos);
-	free(square->ort);
+	free(square->orient);
 	square->pos = NULL;
-	square->ort = NULL;
+	square->orient = NULL;
 	free(square);
 	square = NULL;
 }
@@ -30,7 +30,7 @@ void	destroy_square(void *obj)
 
 static void	check_square(t_rt *cfg, t_square *square)
 {
-	if (!is_orientation_vect(square->ort))
+	if (!is_orientation_vect(square->orient))
 		parse_error(E_ORIENT, cfg);
 }
 
@@ -43,12 +43,12 @@ void	parse_square(t_rt *cfg, char *line)
 		sys_error(cfg);
 	cfg->current_obj_addr = (void *)square;
 	square->pos = NULL;
-	square->ort = NULL;
+	square->orient = NULL;
 	line = ft_pass_spaces(line);
 	if (!(square->pos = get_vector(&line, cfg)))
 		parse_error(E_BADVECT, cfg);
 	line = ft_pass_spaces(line);
-	if (!(square->ort = get_vector(&line, cfg)))
+	if (!(square->orient = get_vector(&line, cfg)))
 		parse_error(E_BADVECT, cfg);
 	line = ft_pass_spaces(line);
 	square->height = ft_atof_mv(&line);	
@@ -70,8 +70,8 @@ void	print_square(void *obj)
 	printf("square ptr : %p\n", square);
 	printf("Pos : %f, %f, %f\n", square->pos->x, square->pos->y,
 	 	square->pos->z);
-	printf("Orientation : %f, %f, %f\n", square->ort->x, square->ort->y,
-	 	square->ort->z);
+	printf("Orientation : %f, %f, %f\n", square->orient->x, square->orient->y,
+	 	square->orient->z);
 	printf("Height : %f\n", square->height);
 	printf("RGB : %d,%d,%d\n", square->rgb[0], square->rgb[1],
 	 		square->rgb[2]);

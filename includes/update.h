@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.h                                           :+:      :+:    :+:   */
+/*   update.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/25 15:55:19 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/18 21:30:04 by darbib           ###   ########.fr       */
+/*   Created: 2020/05/17 18:41:08 by darbib            #+#    #+#             */
+/*   Updated: 2020/05/17 18:46:46 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPHERE_H
-# define SPHERE_H
+#ifndef UPDATE_H
+# define UPDATE_H
 
-# include "vector.h"
-# include "minirt.h"
+# include "scene.h"
+# include "graphic.h"
+# include "raytrace.h"
+# include "mlx.h"
 
-/*
-** --- sphere ---
-** pos : position vector
-** diam : sphere diameter
-** rgb : rgb color
-*/
-typedef struct		s_sphere
-{
-	t_vect			*pos;
-	t_vect			*current_pos;
-	double			diam;
-	unsigned char	rgb[3];
-}					t_sphere;
-
-void	destroy_sphere(void *obj);
-void	print_sphere(void *obj);
+int				update_display(t_scene *scene, t_mlx *cfg);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 16:23:29 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/09 18:02:03 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/18 18:15:09 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 #include "general.h"
 #include "print.h"
 #include "mlx.h"
+#include "update.h"
+#include <stdio.h>
+
 
 void	(*g_key_pressed_ft[MAX_KEYCODE + 1])(void *param);
 
@@ -49,14 +52,16 @@ int		key_pressed_hook(int keycode, void *param)
 	g_key_pressed_ft[keycode](param);
 	scene = ((t_param *)param)->scene;
 	cfg = ((t_param *)param)->mlx_cfg;
-	//	scene->phi += M_PI/10000;
-	refresh_img(cfg, scene->resx, scene->resy);
+	printf("-----------------\n");
+	printf("plane pos\n");
+	print_vect(scene->planes->pos);
 	print_angle(scene->phi, scene->theta);
-	raytrace(scene, cfg);
-	print_vect(scene->cam_pos);
-	printf("mouvement applique\n");
-	if (!(mlx_put_image_to_window(cfg->mlx_ptr, cfg->win_ptr,
-		cfg->img_ptr, 0, 0)))
+	printf("pos camera :\n");
+	print_vect(scene->active_cam->pos);
+	printf("orient camera :\n");
+	print_vect(scene->active_cam->orient);
+	//scene->phi += M_PI/10000;
+	if (!(update_display(scene, cfg)))
 		return (0);
 	return (1);
 }

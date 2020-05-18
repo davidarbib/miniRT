@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:50:39 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/15 19:58:39 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/13 22:04:45 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ void	destroy_cylinder(void *obj)
 	
 	cylinder = (t_cyld *)obj;
 	free(cylinder->pos);
-	free(cylinder->ort);
+	free(cylinder->orient);
 	cylinder->pos = NULL;
-	cylinder->ort = NULL;
+	cylinder->orient = NULL;
 	free(cylinder);
 	cylinder = NULL;
 }
 
 static void	check_cylinder(t_rt *cfg, t_cyld *cyl)
 {
-	if (!is_orientation_vect(cyl->ort))
+	if (!is_orientation_vect(cyl->orient))
 		parse_error(E_ORIENT, cfg);
 }
 
@@ -42,11 +42,11 @@ void	parse_cylinder(t_rt *cfg, char *line)
 		sys_error(cfg);
 	cfg->current_obj_addr = (void *)cyl;
 	cyl->pos = NULL;
-	cyl->ort = NULL;
+	cyl->orient = NULL;
 	line = ft_pass_spaces(line);
 	cyl->pos = get_vector(&line, cfg);
 	line = ft_pass_spaces(line);
-	cyl->ort = get_vector(&line, cfg);
+	cyl->orient = get_vector(&line, cfg);
 	line = ft_pass_spaces(line);
 	cyl->diam = ft_atof_mv(&line);	
 	line = ft_pass_spaces(line);
@@ -67,8 +67,8 @@ void	print_cyl(void *obj)
 
 	cyl = (t_cyld *)obj;
 	printf("Pos : %f, %f, %f\n", cyl->pos->x, cyl->pos->y, cyl->pos->z);
-	printf("Orientation : %f, %f, %f\n", cyl->ort->x, cyl->ort->y,
-	 	cyl->ort->z);
+	printf("Orientation : %f, %f, %f\n", cyl->orient->x, cyl->orient->y,
+	 	cyl->orient->z);
 	printf("diameter : %f\n", cyl->diam);
 	printf("Height : %f\n", cyl->height);
 	printf("RGB : %d,%d,%d\n", cyl->rgb[0], cyl->rgb[1], cyl->rgb[2]);
