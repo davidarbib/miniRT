@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_lsttotab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/09 21:23:13 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/19 14:15:26 by darbib           ###   ########.fr       */
+/*   Created: 2020/05/18 22:04:16 by darbib            #+#    #+#             */
+/*   Updated: 2020/05/19 18:41:17 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **alst, t_list *new)
+void	*ft_lsttotab(t_list *lst, size_t type_size, int *array_size)
 {
-	t_list *node;
+	int				i;
+	unsigned char	*array;	
 
-	node = *alst;
-	while (node->next)
-		node = node->next;
-	node->next = new;
+	*array_size = ft_lstsize(lst);
+	if (!(array = ft_calloc((*array_size + 1), type_size)))
+		return (NULL);
+	i = 0;
+	while (lst)
+	{
+		ft_memmove(array + i, (const void *)lst->content, type_size);	
+		lst = lst->next;
+		i += type_size;
+	}
+	return ((void *)array);
 }

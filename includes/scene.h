@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:31:09 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/16 15:25:55 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/19 18:51:01 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,14 @@ typedef struct	s_scene
 	t_olight		*olights;
 	t_cam			*cams;
 	t_cam			*active_cam;
+	int				aabb_n;
+	int				planes_n;
+	int				squares_n;
+	int				triangles_n;
+	int				cylinders_n;
+	int				spheres_n;
+	int				olights_n;
+	int				cams_n;
 	unsigned char	background_rgb[3]; 
 	int				resx;
 	int				resy;
