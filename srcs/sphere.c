@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:43:21 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/15 16:14:13 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/21 13:05:13 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ void	destroy_sphere(void *obj)
 	
 	sphere = (t_sphere *)obj;
 	free(sphere->pos);
+	free(sphere->current_pos);
 	sphere->pos = NULL;
+	sphere->current_pos = NULL;
 	free(sphere);
 	sphere = NULL;
 }
@@ -35,6 +37,7 @@ void	parse_sphere(t_rt *cfg, char *line)
 		sys_error(cfg);
 	cfg->current_obj_addr = (void *)sphere;
 	sphere->pos = NULL;
+	sphere->current_pos = NULL;
 	line = ft_pass_spaces(line);
 	if (!(sphere->pos = get_vector(&line, cfg)))
 		parse_error(E_BADVECT, cfg);

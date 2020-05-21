@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 17:27:22 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/17 18:42:30 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/21 23:21:28 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,5 @@ void			cpy_next_word(char **s, char *buf);
 void			data_visu(t_rt *cfg);
 void			destroy(t_rt *cfg);
 
-void			extract_scene_rotation(t_vect *cam_orient, t_vect *ref_orient,
-					double *phi, double *theta);
-void			rotate_point(double phi, double theta, t_vect *v_in,
-					t_vect *v_out);
 void			to_cartesian(t_spheric *spherical, t_vect *cartesian);
 #endif

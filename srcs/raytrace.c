@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 12:45:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/17 19:56:28 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/22 00:22:11 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ static void send_ray(t_scene *scene, t_mlx *mlx_cfg, int dx, int dy)
 	t_vect	direction;
 	t_vect	inv_direction;
 		
-	origin.x = scene->active_cam->pos->x;
-	origin.y = scene->active_cam->pos->y;
-	origin.z = scene->active_cam->pos->z;
+	origin.x = 0;
+	origin.y = 0;
+	origin.z = 0;
 
 	direction.x = scene->resx/2. - dx;
 	direction.y = scene->resy/2. - dy;

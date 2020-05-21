@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aabb.h                                             :+:      :+:    :+:   */
+/*   vector.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/30 19:56:13 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/20 13:45:40 by darbib           ###   ########.fr       */
+/*   Created: 2020/05/20 13:49:53 by darbib            #+#    #+#             */
+/*   Updated: 2020/05/21 14:18:13 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AABB_H
-# define AABB_H
-
 #include "vector.h"
+#include "libft.h"
 
-typedef struct	s_aabb
+t_vect	*vect_dup(t_vect *v_in)
 {
-	t_vect			corner[2];
-	unsigned char	rgb[3];
-}				t_aabb;
+	t_vect *v_out;
 
-void	move_aabb(t_aabb *aabb, t_vect *translation);
-
-#endif
-
+	if (!(v_out = (t_vect *)ft_calloc(1, sizeof(t_vect))))
+		return (NULL);
+	v_out->x = v_in->x;
+	v_out->y = v_in->y;
+	v_out->z = v_in->z;
+	return (v_out);
+}

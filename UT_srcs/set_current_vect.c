@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aabb.h                                             :+:      :+:    :+:   */
+/*   set_current_vect.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/30 19:56:13 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/20 13:45:40 by darbib           ###   ########.fr       */
+/*   Created: 2020/05/21 14:25:07 by darbib            #+#    #+#             */
+/*   Updated: 2020/05/21 17:26:11 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AABB_H
-# define AABB_H
-
+#include "camera.h"
 #include "vector.h"
 
-typedef struct	s_aabb
+int	set_current_vect_cam(t_cam *cams, int n)
 {
-	t_vect			corner[2];
-	unsigned char	rgb[3];
-}				t_aabb;
+	t_cam	*cam;
 
-void	move_aabb(t_aabb *aabb, t_vect *translation);
-
-#endif
-
+	while (n)
+	{
+		cam = cams + n - 1;
+		if (!(cam->current_pos = vect_dup((cam->pos))))
+			return (0);
+		if (!(cam->current_orient = vect_dup((cam->orient))))
+			return (0);
+		n--;
+	}
+	return (1);
+}

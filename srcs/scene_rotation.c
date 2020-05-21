@@ -6,13 +6,12 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/05 18:21:04 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/09 16:57:15 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/21 21:27:03 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
-#include "spheric.h"
-#include "general.h"
+#include "rotation.h"
 #include "print.h"
 #include <math.h>
 #include <stdio.h>
@@ -50,16 +49,18 @@ void		rotate_point(double phi, double theta, t_vect *v_in, t_vect *v_out)
 {
 	t_spheric spherical_in;
 
-	to_spherical(v_in, &spherical_in);
-	spherical_in.phi += phi;
-	spherical_in.theta += theta;
-	to_cartesian(&spherical_in, v_out);
-	print_vect(v_out);
+	if (!vect_norm(v_in))
+	{
+		v_out->x = v_in->x; 
+		v_out->y = v_in->y; 
+		v_out->z = v_in->z; 
+	}
+	else
+	{
+		to_spherical(v_in, &spherical_in);
+		spherical_in.phi += phi;
+		spherical_in.theta += theta;
+		to_cartesian(&spherical_in, v_out);
+	}
 }
 
-/*
-void		rotate_scene(t_scene *scene)
-{	
-//rotate each object	
-}
-*/

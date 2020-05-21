@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:50:39 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/13 22:04:45 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/21 14:09:15 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@ void	destroy_cylinder(void *obj)
 	cylinder = (t_cyld *)obj;
 	free(cylinder->pos);
 	free(cylinder->orient);
+	free(cylinder->current_pos);
+	free(cylinder->current_orient);
 	cylinder->pos = NULL;
+	cylinder->current_pos = NULL;
 	cylinder->orient = NULL;
+	cylinder->current_orient = NULL;
 	free(cylinder);
 	cylinder = NULL;
 }
@@ -33,6 +37,14 @@ static void	check_cylinder(t_rt *cfg, t_cyld *cyl)
 		parse_error(E_ORIENT, cfg);
 }
 
+static void init_cylinder(t_cyld *cylinder)
+{
+	cylinder->pos = NULL;
+	cylinder->current_pos = NULL;
+	cylinder->orient = NULL;
+	cylinder->current_orient = NULL;
+}
+
 void	parse_cylinder(t_rt *cfg, char *line)
 {
 	t_cyld	*cyl;
@@ -41,8 +53,7 @@ void	parse_cylinder(t_rt *cfg, char *line)
 	if (!(cyl = (t_cyld *)malloc(sizeof(t_cyld))))
 		sys_error(cfg);
 	cfg->current_obj_addr = (void *)cyl;
-	cyl->pos = NULL;
-	cyl->orient = NULL;
+	init_cylinder(cyl);
 	line = ft_pass_spaces(line);
 	cyl->pos = get_vector(&line, cfg);
 	line = ft_pass_spaces(line);

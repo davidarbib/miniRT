@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:32:42 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/18 18:09:17 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/21 14:09:41 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,12 @@ void	destroy_plane(void *obj)
 	plane = (t_plane *)obj;
 	free(plane->pos);
 	free(plane->orient);
+	free(plane->current_pos);
+	free(plane->current_orient);
 	plane->pos = NULL;
 	plane->orient = NULL;
+	plane->current_pos = NULL;
+	plane->current_orient = NULL;
 	free(plane);
 	plane = NULL;
 }
@@ -34,6 +38,14 @@ static void	check_plane(t_rt *cfg, t_plane *plane)
 		parse_error(E_ORIENT, cfg);
 }
 
+static void	init_plane(t_plane *plane)
+{
+	plane->pos = NULL;
+	plane->orient = NULL;
+	plane->current_pos = NULL;
+	plane->current_orient = NULL;
+}
+
 void	parse_plane(t_rt *cfg, char *line)
 {
 	t_plane	*plane;
@@ -41,9 +53,8 @@ void	parse_plane(t_rt *cfg, char *line)
 	check_data(line, cfg);
 	if (!(plane = (t_plane *)malloc(sizeof(t_plane))))
 		sys_error(cfg);
-	plane->pos = NULL;
-	plane->orient = NULL;
 	cfg->current_obj_addr = (void *)plane;
+	init_plane(plane);
 	line = ft_pass_spaces(line);
 	if (!(plane->pos = get_vector(&line, cfg)))
 		parse_error(E_BADVECT, cfg);

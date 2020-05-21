@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 15:57:55 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/15 13:13:00 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/21 17:02:21 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef struct		s_cam
 {
 	t_vect			*pos;
 	t_vect			*orient;
+	t_vect			*current_pos;
+	t_vect			*current_orient;
 	int				fov;
 }					t_cam;
 

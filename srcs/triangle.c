@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:38:44 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/15 20:00:15 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/21 13:36:50 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,27 @@ void	destroy_triangle(void *obj)
 	free(triangle->pt1);
 	free(triangle->pt2);
 	free(triangle->pt3);
+	free(triangle->current_pt1);
+	free(triangle->current_pt2);
+	free(triangle->current_pt3);
 	triangle->pt1 = NULL;
 	triangle->pt2 = NULL;
 	triangle->pt3 = NULL;
+	triangle->current_pt1 = NULL;
+	triangle->current_pt2 = NULL;
+	triangle->current_pt3 = NULL;
 	free(triangle);
 	triangle = NULL;
+}
+
+static void	init_triangle(t_trig *triangle)
+{
+	triangle->pt1 = NULL;
+	triangle->pt2 = NULL;
+	triangle->pt3 = NULL;
+	triangle->current_pt1 = NULL;
+	triangle->current_pt2 = NULL;
+	triangle->current_pt3 = NULL;
 }
 
 void	parse_triangle(t_rt *cfg, char *line)
@@ -37,9 +53,7 @@ void	parse_triangle(t_rt *cfg, char *line)
 	if (!(triangle = (t_trig *)malloc(sizeof(t_trig))))
 		sys_error(cfg);
 	cfg->current_obj_addr = (void *)triangle;
-	triangle->pt1 = NULL;
-	triangle->pt2 = NULL;
-	triangle->pt3 = NULL;
+	init_triangle(triangle);
 	line = ft_pass_spaces(line);
 	if (!(triangle->pt1 = get_vector(&line, cfg)))
 		parse_error(E_BADVECT, cfg);

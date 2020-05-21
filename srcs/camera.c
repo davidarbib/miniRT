@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 16:33:07 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/13 22:01:54 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/21 23:15:31 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@ void	destroy_camera(void *obj)
 	camera = (t_cam *)obj;
 	free(camera->pos);
 	free(camera->orient);
+	free(camera->current_pos);
+	free(camera->current_orient);
 	camera->pos = NULL;
 	camera->orient = NULL;
+	camera->current_pos = NULL;
+	camera->current_orient = NULL;
 	free(camera);
 	camera = NULL;
 }
@@ -35,6 +39,14 @@ static void	check_camera(t_rt *cfg, t_cam *cam)
 		parse_error(E_FOVRANGE, cfg);	
 }
 
+static void	init_camera(t_cam *cam)
+{
+	cam->pos = NULL;
+	cam->orient = NULL;
+	cam->current_pos = NULL;
+	cam->current_orient = NULL;
+}
+
 void	parse_camera(t_rt *cfg, char *line)
 {
 	t_cam	*cam;
@@ -43,8 +55,7 @@ void	parse_camera(t_rt *cfg, char *line)
 	if (!(cam = (t_cam *)malloc(sizeof(t_cam))))
 		sys_error(cfg);
 	cfg->current_obj_addr = (void *)cam;
-	cam->pos = NULL;
-	cam->orient = NULL;
+	init_camera(cam);
 	cfg->flags |= CAM;
 	line = ft_pass_spaces(line);
 	if (!(cam->pos = get_vector(&line, cfg)))

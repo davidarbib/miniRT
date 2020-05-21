@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 13:37:45 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/15 16:07:29 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/21 13:53:33 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ void			destroy_olight(void *obj)
 	
 	olight = (t_olight *)obj;
 	free(olight->pos);
+	free(olight->current_pos);
 	olight->pos = NULL;
+	olight->current_pos = NULL;
 	free(olight);
 	olight = NULL;
 }
@@ -40,6 +42,7 @@ void			parse_olight(t_rt *cfg, char *line)
 		sys_error(cfg);
 	cfg->current_obj_addr = (void *)olight;
 	olight->pos = NULL;
+	olight->current_pos = NULL;
 	line = ft_pass_spaces(line);
 	if (!(olight->pos = get_vector(&line, cfg)))
 		parse_error(E_BADVECT, cfg);

@@ -20,7 +20,6 @@ int main(int ac, char **av)
 	scene.resx = 800;
 	scene.resy = 600;
 	init_graphics(&mlx_cfg, scene.resx, scene.resy);
-	adapt_scene(&scene);
 	raytrace(&scene, &mlx_cfg);
 	if (!(mlx_put_image_to_window(mlx_cfg.mlx_ptr, mlx_cfg.win_ptr,
 		mlx_cfg.img_ptr, 0, 0)))

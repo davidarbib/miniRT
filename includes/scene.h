@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:31:09 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/19 18:51:01 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/21 23:57:22 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ typedef struct	s_scene
 }				t_scene;
 
 void			adapt_scene(t_scene *scene);
-
-
+void			init_scene(t_scene *scene);
 void			move_scene(t_scene *scene, t_vect *translation);
+int				set_current_vect_cam(t_cam *cams, int n);
+int				set_current_vect_plane(t_plane *plane, int n);
 #endif

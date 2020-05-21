@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update.c                                           :+:      :+:    :+:   */
+/*   obj_rotation.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/17 18:13:48 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/22 00:29:58 by darbib           ###   ########.fr       */
+/*   Created: 2020/05/21 18:08:31 by darbib            #+#    #+#             */
+/*   Updated: 2020/05/21 21:26:54 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "update.h"
+#include "rotation.h"
 #include "print.h"
 
-void	adapt_scene(t_scene *scene)
+void	rotate_planes(t_plane *planes, int n, double phi, double theta)
 {
-	t_vect	translation;
+	t_plane *plane;
 
-	scale(-1, scene->active_cam->pos, &translation);
-	//rotate_scene(t_scene *scene);
-	move_scene(scene, &translation);
+	while (n)
+	{
+		plane = planes + n - 1;
+		rotate_point(phi, theta, plane->current_pos, plane->current_pos);
+		rotate_point(phi, theta, plane->current_orient, plane->current_orient);
+		n--;
+	}
 }
 
-int		update_display(t_scene *scene, t_mlx *cfg)
-{
-	refresh_img(cfg, scene->resx, scene->resy);
-	raytrace(scene, cfg);
-	if (!(mlx_put_image_to_window(cfg->mlx_ptr, cfg->win_ptr,
-		cfg->img_ptr, 0, 0)))
-		return (0);
-	return (1);
+void		rotate_scene(t_scene *scene, double phi, double theta)
+{	
+	rotate_planes(scene->planes, scene->planes_n, phi, theta);
 }

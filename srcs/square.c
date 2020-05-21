@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:36:28 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/13 22:06:19 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/21 13:12:01 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,28 @@ void	destroy_square(void *obj)
 	square = (t_square *)obj;
 	free(square->pos);
 	free(square->orient);
+	free(square->current_pos);
+	free(square->current_orient);
 	square->pos = NULL;
 	square->orient = NULL;
+	square->current_pos = NULL;
+	square->current_orient = NULL;
 	free(square);
 	square = NULL;
 }
-
 
 static void	check_square(t_rt *cfg, t_square *square)
 {
 	if (!is_orientation_vect(square->orient))
 		parse_error(E_ORIENT, cfg);
+}
+
+static void	init_square(t_square *square)
+{
+	square->pos = NULL;
+	square->orient = NULL;
+	square->current_pos = NULL;
+	square->current_orient = NULL;
 }
 
 void	parse_square(t_rt *cfg, char *line)
@@ -42,8 +53,7 @@ void	parse_square(t_rt *cfg, char *line)
 	if (!(square = (t_square *)malloc(sizeof(t_square))))
 		sys_error(cfg);
 	cfg->current_obj_addr = (void *)square;
-	square->pos = NULL;
-	square->orient = NULL;
+	init_square(square);
 	line = ft_pass_spaces(line);
 	if (!(square->pos = get_vector(&line, cfg)))
 		parse_error(E_BADVECT, cfg);
