@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 16:23:29 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/22 00:26:00 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/23 12:56:14 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,12 @@ int		key_pressed_hook(int keycode, void *param)
 	g_key_pressed_ft[keycode](param);
 	scene = ((t_param *)param)->scene;
 	cfg = ((t_param *)param)->mlx_cfg;
+	/*
 	printf("-----------------\n");
-	printf("plane pos\n");
 	print_vect(scene->planes->current_pos);
 	print_angle(scene->phi, scene->theta);
-	printf("current_pos camera :\n");
 	print_vect(scene->active_cam->current_pos);
-	printf("orient camera :\n");
-	print_vect(scene->active_cam->current_orient);
+	*/
 	//scene->phi += M_PI/10000;
 	if (!(update_display(scene, cfg)))
 		return (0);

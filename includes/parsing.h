@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 13:07:23 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/16 15:20:09 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/26 15:44:19 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct		s_rt
 }					t_rt;
 
 void	parsing(int ac, char **av, t_rt *cfg);
+void	init_cfg(t_rt *cfg);
 void	handle_line(t_rt *cfg);
 int		get_rgb(unsigned char *rgb, char **line);
 t_vect	*get_vector(char **line, t_rt *cfg);

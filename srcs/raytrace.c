@@ -6,31 +6,14 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 12:45:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/22 00:22:11 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/23 15:12:30 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "minirt.h"
 #include "raytrace.h"
-
-int		intersect_plane(t_plane *plane, t_ray *ray)
-{
-	double	denom;
-	double	t;
-	t_vect	tmp_v; 
-
-	normalize(plane->pos, plane->pos);
-	normalize(plane->orient, plane->orient);
-	normalize(ray->origin, ray->origin);
-	normalize(ray->direction, ray->direction);
-	denom = dot(ray->direction, plane->orient);	
-	if (denom <= EPSILON)
-		return (0);
-	sub_vect(plane->pos, ray->origin, &tmp_v);
-	t = dot(&tmp_v, plane->orient) / denom;
-	return (t >= 0);
-}
+#include <assert.h>
 
 static inline int overlap(double *t0, double *t1, double min_, double max_)
 {
@@ -95,14 +78,13 @@ static void send_ray(t_scene *scene, t_mlx *mlx_cfg, int dx, int dy)
 	ray.sign[0] = (direction.x < 0);
 	ray.sign[1] = (direction.y < 0);
 	ray.sign[2] = (direction.z < 0);
-	if (intersect_plane(scene->planes, &ray)) 
+	if (intersect_plane(*scene->planes->current_pos, *scene->planes->current_orient,
+				*ray.origin, *ray.direction)) 
 		apply_color(scene->planes->rgb, mlx_cfg, dx, dy);
-	/*
-	else if (intersect_aabb(scene->aabb2, &ray))
-		apply_color(scene->aabb2->rgb, mlx_cfg, dx, dy);
-	else if (intersect_aabb(scene->aabb3, &ray))
-		apply_color(scene->aabb3->rgb, mlx_cfg, dx, dy);
-	*/
+	//else if (intersect_aabb(scene->aabb2, &ray))
+	//	apply_color(scene->aabb2->rgb, mlx_cfg, dx, dy);
+	//else if (intersect_aabb(scene->aabb3, &ray))
+	//	apply_color(scene->aabb3->rgb, mlx_cfg, dx, dy);
 	else
 		apply_color(scene->background_rgb, mlx_cfg, dx, dy);
 }

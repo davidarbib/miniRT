@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 10:15:53 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/20 14:19:42 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/25 19:28:26 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct	s_list
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
+ssize_t	putstr_fd(char *s, int fd);
 size_t	ft_strlen(const char *s);
 void	ft_bzero(void *s, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
@@ -79,5 +80,7 @@ t_list	*ft_lstlast(t_list *lst);
 void	*ft_lsttotab(t_list *lst, size_t type_size, int *array_size);
 char	*ft_pass_spaces(char *s);
 int		ft_isblank(int c);
+int		ft_abs(int x);
+double	ft_double_abs(double x);
 
 #endif

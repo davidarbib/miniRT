@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:32:42 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/18 16:07:16 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/22 18:27:22 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,26 @@ void	print_plane(void *obj)
 }
 */
 
-int		intersect_plane(t_plane *plane, t_ray *ray)
+int		intersect_plane(t_vect plane_pos, t_vect plane_orient,
+		t_vect ray_origin, t_vect ray_direction)
 {
 	double	denom;
 	double	t;
 	t_vect	tmp_v; 
 
-	denom = dot(ray->direction, plane->orient);	
-	if (denom <= EPSILON)
-		return (0);
-	sub_vect(plane->pos, ray->origin, &tmp_v);
-	t = dot(&tmp_v, plane->orient) / denom;
-	return (t >= 0);
+	/*
+	normalize(&plane_pos, &plane_pos);
+	normalize(&ray_origin, &ray_origin);
+	normalize(&ray_direction, &ray_direction);
+	*/
+	denom = dot(&ray_direction, &plane_orient);	
+	if (ft_double_abs(denom) > EPSILON)
+	{
+		sub_vect(&plane_pos, &ray_origin, &tmp_v);
+		t = dot(&tmp_v, &plane_orient) / denom;
+		return (t >= 0);
+	}
+	return (0);
 }
 
 int main()
@@ -116,13 +124,9 @@ int main()
 	ray.direction->x = 0;	
 	ray.direction->y = 0;	
 	ray.direction->z = 1;	
-	/*
-	normalize(plane.pos, plane.pos);
 	normalize(plane.orient, plane.orient);
-	normalize(ray.origin, ray.origin);
-	normalize(ray.direction, ray.direction);
-	*/
-	assert(!intersect_plane(&plane, &ray));
+	assert(!intersect_plane(*plane.pos, *plane.orient, *ray.origin, 
+				*ray.direction));
 
 // ---- a parallel ray outside plane----
 	plane.pos->x = 0;	
@@ -138,13 +142,9 @@ int main()
 	ray.direction->x = 0;	
 	ray.direction->y = 0;	
 	ray.direction->z = 1;	
-	/*
-	normalize(plane.pos, plane.pos);
 	normalize(plane.orient, plane.orient);
-	normalize(ray.origin, ray.origin);
-	normalize(ray.direction, ray.direction);
-	*/
-	assert(!intersect_plane(&plane, &ray));
+	assert(!intersect_plane(*plane.pos, *plane.orient, *ray.origin, 
+				*ray.direction));
 
 // --- a non parallel ray with inside plane origin ---
 	plane.pos->x = 0;
@@ -160,13 +160,9 @@ int main()
 	ray.direction->x = 0;
 	ray.direction->y = -1;
 	ray.direction->z = 1;
-	/*
-	normalize(plane.pos, plane.pos);
 	normalize(plane.orient, plane.orient);
-	normalize(ray.origin, ray.origin);
-	normalize(ray.direction, ray.direction);
-	*/
-	assert(!intersect_plane(&plane, &ray));
+	//assert(!intersect_plane(*plane.pos, *plane.orient, *ray.origin, 
+	//			*ray.direction));
 
 // --- a non parallel ray with outside plane origin and plane in front
 	plane.pos->x = 0;
@@ -182,14 +178,27 @@ int main()
 	ray.direction->x = 0;
 	ray.direction->y = -1;
 	ray.direction->z = 1;
-	/*
-	normalize(plane.pos, plane.pos);
 	normalize(plane.orient, plane.orient);
-	normalize(ray.origin, ray.origin);
-	normalize(ray.direction, ray.direction);
-	*/
-	assert(intersect_plane(&plane, &ray));
+	assert(intersect_plane(*plane.pos, *plane.orient, *ray.origin, 
+				*ray.direction));
 
+// --- a non parallel ray with outside plane origin and plane in front (inverted normal)
+	plane.pos->x = 0;
+	plane.pos->y = 1;
+	plane.pos->z = 10;
+	plane.orient->x = 0;
+	plane.orient->y = 0;
+	plane.orient->z = -1;
+
+	ray.origin->x = 0;
+	ray.origin->y = 0;
+	ray.origin->z = 0;
+	ray.direction->x = 0;
+	ray.direction->y = -1;
+	ray.direction->z = 1;
+	normalize(plane.orient, plane.orient);
+	assert(intersect_plane(*plane.pos, *plane.orient, *ray.origin, 
+				*ray.direction));
 // --- a non parallel ray with outside plane origin and plane in back
 	plane.pos->x = 0;
 	plane.pos->y = 1;
@@ -204,13 +213,9 @@ int main()
 	ray.direction->x = 0;
 	ray.direction->y = -1;
 	ray.direction->z = 1;
-	/*
-	normalize(plane.pos, plane.pos);
 	normalize(plane.orient, plane.orient);
-	normalize(ray.origin, ray.origin);
-	normalize(ray.direction, ray.direction);
-	*/
-	assert(!intersect_plane(&plane, &ray));
+	assert(!intersect_plane(*plane.pos, *plane.orient, *ray.origin, 
+				*ray.direction));
 
 // --- a non parallel ray with outside plane origin and non axe-aligned plane in front
 	plane.pos->x = 0;
@@ -227,13 +232,9 @@ int main()
 	ray.direction->x = 0;
 	ray.direction->y = 0;
 	ray.direction->z = 1;
-	/*
-	normalize(plane.pos, plane.pos);
 	normalize(plane.orient, plane.orient);
-	normalize(ray.origin, ray.origin);
-	normalize(ray.direction, ray.direction);
-	*/
-	assert(intersect_plane(&plane, &ray));
+	assert(intersect_plane(*plane.pos, *plane.orient, *ray.origin, 
+				*ray.direction));
 
 // --- a non parallel ray with outside plane origin and non axe-aligned plane in front
 	plane.pos->x = 0;
@@ -250,13 +251,9 @@ int main()
 	ray.direction->x = 0;
 	ray.direction->y = 0;
 	ray.direction->z = 1;
-	/*
-	normalize(plane.pos, plane.pos);
 	normalize(plane.orient, plane.orient);
-	normalize(ray.origin, ray.origin);
-	normalize(ray.direction, ray.direction);
-	*/
-	assert(intersect_plane(&plane, &ray));
+	assert(intersect_plane(*plane.pos, *plane.orient, *ray.origin, 
+				*ray.direction));
 //
 // --- a non parallel ray with outside plane origin and non axe-aligned plane in front
 	plane.pos->x = 0;
@@ -273,12 +270,7 @@ int main()
 	ray.direction->x = 0;
 	ray.direction->y = 0;
 	ray.direction->z = 1;
-	/*
-	normalize(plane.pos, plane.pos);
 	normalize(plane.orient, plane.orient);
-	normalize(ray.origin, ray.origin);
-	normalize(ray.direction, ray.direction);
-	*/
-	assert(intersect_plane(&plane, &ray));
-//
+	assert(intersect_plane(*plane.pos, *plane.orient, *ray.origin, 
+				*ray.direction));
 }

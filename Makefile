@@ -6,7 +6,7 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/05/21 23:26:05 by darbib           ###   ########.fr        #
+#    Updated: 2020/05/27 17:53:15 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,10 +90,13 @@ SRC = camera.c \
 	move.c \
 	hook.c \
 	raytrace.c \
+	rayplane.c \
 	keyboard_actions.c \
 	scene_setup.c \
-	set_current_vect.c \
+	scene_move.c \
+	set_objs.c \
 	update.c \
+	bitmap.c \
 	triangle.c
 
 ifeq ($(DRAFT), 1)

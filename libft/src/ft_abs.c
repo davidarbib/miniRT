@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/04 10:36:20 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/25 19:27:33 by darbib           ###   ########.fr       */
+/*   Created: 2020/05/22 17:56:37 by darbib            #+#    #+#             */
+/*   Updated: 2020/05/22 18:07:05 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "libft.h"
-
-void	ft_putstr_fd(char *s, int fd)
+int		ft_abs(int x)
 {
-	write(fd, s, ft_strlen(s));
+	if (x >= 0)
+		return (x);
+	else 
+		return (x * -1);
 }
 
-ssize_t	putstr_fd(char *s, int fd)
+double	ft_double_abs(double x)
 {
-	return (write(fd, s, ft_strlen(s)));
+	if (x >= 0.0)
+		return (x);
+	else 
+		return (x * -1);
 }

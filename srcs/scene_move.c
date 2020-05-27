@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   scene_move.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/04 10:36:20 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/25 19:27:33 by darbib           ###   ########.fr       */
+/*   Created: 2020/05/22 13:20:11 by darbib            #+#    #+#             */
+/*   Updated: 2020/05/22 13:20:41 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "libft.h"
+#include "scene.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	move_plane(t_plane *plane, t_vect *translation)
 {
-	write(fd, s, ft_strlen(s));
-}
-
-ssize_t	putstr_fd(char *s, int fd)
-{
-	return (write(fd, s, ft_strlen(s)));
+	add_vect(plane->current_pos, translation, plane->current_pos);
 }

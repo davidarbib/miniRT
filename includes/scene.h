@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:31:09 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/21 23:57:22 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/22 13:40:17 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct	s_scene
 void			adapt_scene(t_scene *scene);
 void			init_scene(t_scene *scene);
 void			move_scene(t_scene *scene, t_vect *translation);
-int				set_current_vect_cam(t_cam *cams, int n);
-int				set_current_vect_plane(t_plane *plane, int n);
+void			move_plane(t_plane *plane, t_vect *translation);
+int				set_cams(t_cam *cams, int n);
+int				set_planes(t_plane *plane, int n);
 #endif

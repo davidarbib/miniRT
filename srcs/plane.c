@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:32:42 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/21 14:09:41 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/22 13:21:59 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,3 @@ void	print_plane(void *obj)
 	 		plane->rgb[2]);
 	printf("\n");
 }
-
-void	move_plane(t_plane *plane, t_vect *translation)
-{
-	add_vect(plane->pos, translation, plane->pos);
-}
-

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 22:23:52 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/22 00:23:44 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/23 12:55:24 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,9 @@ void	move_right(void *param)
 
 void	move_scene(t_scene *scene, t_vect *translation)
 {
-	move_aabb(scene->aabbs, translation);
 	move_plane(scene->planes, translation);
-	//move_aabb(scene->aabb2, &translation);
-	//move_aabb(scene->aabb3, &translation);
+	printf("plane_pos");
+	print_vect(scene->planes->pos);
+	printf("plane current pos");
+	print_vect(scene->planes->current_pos);
 }
