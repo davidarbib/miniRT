@@ -6,12 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 21:47:19 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/09 19:19:58 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/29 13:55:48 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "mlx.h"
+#include "graphic.h"
 #include "colors.h"
 
 int		main(int ac, char **av)
@@ -23,8 +24,9 @@ int		main(int ac, char **av)
 	parsing(ac, av, &rt_cfg);
 	rt_cfg.resx = 1024;
 	rt_cfg.resy = 780;
-	//data_visu(&rt_cfg);
+	data_visu(&rt_cfg);
 	(void)mlx_cfg;
+	/*
 	init_graphics(&mlx_cfg, rt_cfg.resx, rt_cfg.resy);
 	raytrace(&scene, &mlx_cfg);
 	if (!(mlx_put_image_to_window(mlx_cfg.mlx_ptr, mlx_cfg.win_ptr,
@@ -38,6 +40,7 @@ int		main(int ac, char **av)
 	//alter_pixel(&mlx_cfg, GREEN, 20, 20);
 	//alter_pixel(&mlx_cfg, BLUE, 30, 30);
 	mlx_loop(mlx_cfg.mlx_ptr);
+	*/
 }
 
 void end(void)__attribute__((destructor));

@@ -6,23 +6,19 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 13:37:45 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/21 13:53:33 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/29 13:28:25 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "error.h"
 #include "minirt.h"
-#include "ft_printf.h"
+#include "print.h"
 
 void			destroy_olight(void *obj)
 {
 	t_olight *olight;
 	
 	olight = (t_olight *)obj;
-	free(olight->pos);
-	free(olight->current_pos);
-	olight->pos = NULL;
-	olight->current_pos = NULL;
 	free(olight);
 	olight = NULL;
 }
@@ -41,11 +37,8 @@ void			parse_olight(t_rt *cfg, char *line)
 	if (!(olight = (t_olight *)malloc(sizeof(t_olight))))
 		sys_error(cfg);
 	cfg->current_obj_addr = (void *)olight;
-	olight->pos = NULL;
-	olight->current_pos = NULL;
 	line = ft_pass_spaces(line);
-	if (!(olight->pos = get_vector(&line, cfg)))
-		parse_error(E_BADVECT, cfg);
+	get_vector(&line, cfg, &olight->pos);
 	line = ft_pass_spaces(line);
 	olight->ratio = ft_atof_mv(&line);	
 	line = ft_pass_spaces(line);
@@ -63,11 +56,10 @@ void			print_olight(void *obj)
 	t_olight *olight;
 
 	olight = (t_olight *)obj;
-	printf("Pos : %f, %f, %f\n", olight->pos->x, olight->pos->y,
-	 	olight->pos->z);
+	printf("Pos : ");
+	print_vect(&olight->pos);
 	printf("Ratio : %f\n", olight->ratio);
 	printf("RGB : %d,%d,%d\n", olight->rgb[0], olight->rgb[1],
 	 		olight->rgb[2]);
 	printf("\n");
 }
-

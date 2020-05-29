@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 15:59:58 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/18 21:31:34 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/27 18:08:54 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@
 */
 typedef struct		s_cyld
 {
-	t_vect			*pos;
-	t_vect			*orient;
-	t_vect			*current_pos;
-	t_vect			*current_orient;
+	t_vect			pos;
+	t_vect			orient;
+	t_vect			current_pos;
+	t_vect			current_orient;
 	float			diam;
 	float			height;
 	unsigned char	rgb[3];

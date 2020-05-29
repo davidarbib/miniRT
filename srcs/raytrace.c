@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 12:45:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/23 15:12:30 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/29 13:34:37 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void send_ray(t_scene *scene, t_mlx *mlx_cfg, int dx, int dy)
 	ray.sign[0] = (direction.x < 0);
 	ray.sign[1] = (direction.y < 0);
 	ray.sign[2] = (direction.z < 0);
-	if (intersect_plane(*scene->planes->current_pos, *scene->planes->current_orient,
+	if (intersect_plane(scene->planes->current_pos, scene->planes->current_orient,
 				*ray.origin, *ray.direction)) 
 		apply_color(scene->planes->rgb, mlx_cfg, dx, dy);
 	//else if (intersect_aabb(scene->aabb2, &ray))

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:16:25 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/15 16:22:40 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/29 13:28:45 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,25 +50,15 @@ static int check_vector(const char *str)
 	return (1);
 }
 
-/*
-** return allocated 3d vector
-** from data in file
-*/
-
-t_vect	*get_vector(char **line, t_rt *cfg)
+void	get_vector(char **line, t_rt *cfg, t_vect *vect)
 {
-	t_vect *vect;
-
 	if (!check_vector(*line))
 		parse_error(E_BADVECT, cfg);
-	if (!(vect = ((t_vect *)malloc(sizeof(t_vect)))))
-		sys_error(cfg);
 	vect->x = ft_atof_mv(line);
 	(*line)++;
 	vect->y = ft_atof_mv(line);
 	(*line)++;
 	vect->z = ft_atof_mv(line);
-	return (vect);
 }
 
 static int	check_rgb(const char *str)

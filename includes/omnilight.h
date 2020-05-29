@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:26:46 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/18 21:34:35 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/27 18:03:47 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 */
 typedef struct		s_olight
 {
-	t_vect			*pos;
-	t_vect			*current_pos;
+	t_vect			pos;
+	t_vect			current_pos;
 	float			ratio;
 	unsigned char	rgb[3];
 }					t_olight;

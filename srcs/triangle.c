@@ -6,43 +6,21 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:38:44 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/21 13:36:50 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/29 13:43:57 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "error.h"
-#include "ft_printf.h"
+#include "print.h"
 
 void	destroy_triangle(void *obj)
 {
 	t_trig *triangle;
 	
 	triangle = (t_trig *)obj;
-	free(triangle->pt1);
-	free(triangle->pt2);
-	free(triangle->pt3);
-	free(triangle->current_pt1);
-	free(triangle->current_pt2);
-	free(triangle->current_pt3);
-	triangle->pt1 = NULL;
-	triangle->pt2 = NULL;
-	triangle->pt3 = NULL;
-	triangle->current_pt1 = NULL;
-	triangle->current_pt2 = NULL;
-	triangle->current_pt3 = NULL;
 	free(triangle);
 	triangle = NULL;
-}
-
-static void	init_triangle(t_trig *triangle)
-{
-	triangle->pt1 = NULL;
-	triangle->pt2 = NULL;
-	triangle->pt3 = NULL;
-	triangle->current_pt1 = NULL;
-	triangle->current_pt2 = NULL;
-	triangle->current_pt3 = NULL;
 }
 
 void	parse_triangle(t_rt *cfg, char *line)
@@ -53,16 +31,12 @@ void	parse_triangle(t_rt *cfg, char *line)
 	if (!(triangle = (t_trig *)malloc(sizeof(t_trig))))
 		sys_error(cfg);
 	cfg->current_obj_addr = (void *)triangle;
-	init_triangle(triangle);
 	line = ft_pass_spaces(line);
-	if (!(triangle->pt1 = get_vector(&line, cfg)))
-		parse_error(E_BADVECT, cfg);
+	get_vector(&line, cfg, &triangle->pt1);
 	line = ft_pass_spaces(line);
-	if (!(triangle->pt2 = get_vector(&line, cfg)))
-		parse_error(E_BADVECT, cfg);
+	get_vector(&line, cfg, &triangle->pt2);
 	line = ft_pass_spaces(line);
-	if (!(triangle->pt3 = get_vector(&line, cfg)))
-		parse_error(E_BADVECT, cfg);
+	get_vector(&line, cfg, &triangle->pt3);
 	line = ft_pass_spaces(line);
 	if (!(get_rgb(triangle->rgb, &line)))
 		parse_error(E_BADRGB, cfg); 
@@ -77,12 +51,13 @@ void	print_triangle(void *obj)
 	t_trig *triangle;
 
 	triangle = (t_trig *)obj;
-	printf("Pt1 : %f, %f, %f\n", triangle->pt1->x, triangle->pt1->y,
-	 	triangle->pt1->z);
-	printf("Pt2 : %f, %f, %f\n", triangle->pt2->x, triangle->pt2->y,
-	 	triangle->pt2->z);
-	printf("Pt1 : %f, %f, %f\n", triangle->pt3->x, triangle->pt3->y,
-	 	triangle->pt3->z);
+
+	printf("Pt1 : ");
+	print_vect(&triangle->pt1);
+	printf("Pt2 : ");
+	print_vect(&triangle->pt2);
+	printf("Pt3 : ");
+	print_vect(&triangle->pt3);
 	printf("RGB : %d,%d,%d\n", triangle->rgb[0], triangle->rgb[1],
 	 		triangle->rgb[2]);
 	printf("\n");

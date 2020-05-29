@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:03:02 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/18 21:28:31 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/27 18:07:58 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 
 typedef struct		s_plane
 {
-	t_vect			*pos;
-	t_vect			*orient;
-	t_vect			*current_pos;
-	t_vect			*current_orient;
+	t_vect			pos;
+	t_vect			orient;
+	t_vect			current_pos;
+	t_vect			current_orient;
 	unsigned char	rgb[3];
 }					t_plane;
 

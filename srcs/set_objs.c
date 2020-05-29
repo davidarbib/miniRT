@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 14:25:07 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/22 13:45:15 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/29 13:43:23 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,9 @@ int	set_cams(t_cam *cams, int n)
 	while (n)
 	{
 		cam = cams + n - 1;
-		normalize(cam->orient, cam->orient);
-		if (!(cam->current_pos = vect_dup((cam->pos))))
-			return (0);
-		if (!(cam->current_orient = vect_dup((cam->orient))))
-			return (0);
+		normalize(&cam->orient, &cam->orient);
+		vect_cpy(&cam->pos, &cam->current_pos);
+		vect_cpy(&cam->orient, &cam->current_orient);
 		n--;
 	}
 	return (1);
@@ -37,11 +35,9 @@ int	set_planes(t_plane *planes, int n)
 	while (n)
 	{
 		plane = planes + n - 1;
-		normalize(plane->orient, plane->orient);
-		if (!(plane->current_pos = vect_dup((plane->pos))))
-			return (0);
-		if (!(plane->current_orient = vect_dup((plane->orient))))
-			return (0);
+		normalize(&plane->orient, &plane->orient);
+		vect_cpy(&plane->pos, &plane->current_pos);
+		vect_cpy(&plane->orient, &plane->current_orient);
 		n--;
 	}
 	return (1);

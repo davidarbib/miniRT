@@ -6,12 +6,12 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:50:39 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/21 14:09:15 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/29 13:27:57 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "ft_printf.h"
+#include "print.h"
 #include "error.h"
 
 void	destroy_cylinder(void *obj)
@@ -19,30 +19,14 @@ void	destroy_cylinder(void *obj)
 	t_cyld *cylinder;
 	
 	cylinder = (t_cyld *)obj;
-	free(cylinder->pos);
-	free(cylinder->orient);
-	free(cylinder->current_pos);
-	free(cylinder->current_orient);
-	cylinder->pos = NULL;
-	cylinder->current_pos = NULL;
-	cylinder->orient = NULL;
-	cylinder->current_orient = NULL;
 	free(cylinder);
 	cylinder = NULL;
 }
 
 static void	check_cylinder(t_rt *cfg, t_cyld *cyl)
 {
-	if (!is_orientation_vect(cyl->orient))
+	if (!is_orientation_vect(&cyl->orient))
 		parse_error(E_ORIENT, cfg);
-}
-
-static void init_cylinder(t_cyld *cylinder)
-{
-	cylinder->pos = NULL;
-	cylinder->current_pos = NULL;
-	cylinder->orient = NULL;
-	cylinder->current_orient = NULL;
 }
 
 void	parse_cylinder(t_rt *cfg, char *line)
@@ -53,11 +37,10 @@ void	parse_cylinder(t_rt *cfg, char *line)
 	if (!(cyl = (t_cyld *)malloc(sizeof(t_cyld))))
 		sys_error(cfg);
 	cfg->current_obj_addr = (void *)cyl;
-	init_cylinder(cyl);
 	line = ft_pass_spaces(line);
-	cyl->pos = get_vector(&line, cfg);
+	get_vector(&line, cfg, &cyl->pos);
 	line = ft_pass_spaces(line);
-	cyl->orient = get_vector(&line, cfg);
+	get_vector(&line, cfg, &cyl->orient);
 	line = ft_pass_spaces(line);
 	cyl->diam = ft_atof_mv(&line);	
 	line = ft_pass_spaces(line);
@@ -77,9 +60,10 @@ void	print_cyl(void *obj)
 	t_cyld *cyl;
 
 	cyl = (t_cyld *)obj;
-	printf("Pos : %f, %f, %f\n", cyl->pos->x, cyl->pos->y, cyl->pos->z);
-	printf("Orientation : %f, %f, %f\n", cyl->orient->x, cyl->orient->y,
-	 	cyl->orient->z);
+	printf("Pos : ");
+	print_vect(&cyl->pos);
+	printf("Orientation : ");
+	print_vect(&cyl->orient);
 	printf("diameter : %f\n", cyl->diam);
 	printf("Height : %f\n", cyl->height);
 	printf("RGB : %d,%d,%d\n", cyl->rgb[0], cyl->rgb[1], cyl->rgb[2]);

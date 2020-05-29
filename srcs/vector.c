@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 13:49:53 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/21 14:18:13 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/29 13:42:15 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,11 @@ t_vect	*vect_dup(t_vect *v_in)
 	v_out->y = v_in->y;
 	v_out->z = v_in->z;
 	return (v_out);
+}
+
+void	vect_cpy(t_vect *v_in, t_vect *v_out)
+{
+	v_out->x = v_in->x;
+	v_out->y = v_in->y;
+	v_out->z = v_in->z;
 }

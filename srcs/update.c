@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/17 18:13:48 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/22 00:29:58 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/29 13:43:34 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	adapt_scene(t_scene *scene)
 {
 	t_vect	translation;
 
-	scale(-1, scene->active_cam->pos, &translation);
+	scale(-1, &scene->active_cam->pos, &translation);
 	//rotate_scene(t_scene *scene);
 	move_scene(scene, &translation);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   obj_rotation.c                                     :+:      :+:    :+:   */
+/*   scene_rotation2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 18:08:31 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/21 21:26:54 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/29 13:29:18 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	rotate_planes(t_plane *planes, int n, double phi, double theta)
 	while (n)
 	{
 		plane = planes + n - 1;
-		rotate_point(phi, theta, plane->current_pos, plane->current_pos);
-		rotate_point(phi, theta, plane->current_orient, plane->current_orient);
+		rotate_point(phi, theta, &plane->current_pos, &plane->current_pos);
+		rotate_point(phi, theta, &plane->current_orient, &plane->current_orient);
 		n--;
 	}
 }
