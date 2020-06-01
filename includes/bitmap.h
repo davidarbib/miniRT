@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 18:51:25 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/27 15:34:42 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/31 15:33:12 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include "scene.h"
 
 # define BMPNAME 	"RT.bmp"
 # define HEADERSIZE 0x36
@@ -37,5 +38,7 @@ typedef struct		s_bmp
 	int				infosize;
 }					t_bmp;
 
-void		bitmap_output(t_bmp *bmp, char *img);
+int		bitmap_output(t_bmp *bmp, char *img);
+void	bmp_sys_error(t_scene *scene);
+
 #endif

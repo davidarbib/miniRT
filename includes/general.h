@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 17:27:22 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/21 23:21:28 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/30 20:53:58 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int				label_chr(char **tab, char *label);
 void			cpy_next_word(char **s, char *buf);
 
 void			data_visu(t_rt *cfg);
-void			destroy(t_rt *cfg);
+void			destroy_cfg(t_rt *cfg);
 
 void			to_cartesian(t_spheric *spherical, t_vect *cartesian);
 #endif

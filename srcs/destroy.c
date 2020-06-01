@@ -6,11 +6,12 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:35:17 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/15 14:36:32 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/30 20:52:47 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "scene.h"
 
 void	(*g_destroy_ft[NB_OBJS])(void *obj);
 
@@ -37,7 +38,7 @@ static void	destroy_labels(char **labels)
 	}
 }
 
-void		destroy(t_rt *cfg)
+void		destroy_cfg(t_rt *cfg)
 {
 	assign_fts();
 	if (cfg->labels_tab)
@@ -59,4 +60,17 @@ void		destroy(t_rt *cfg)
 	ft_lstclear(&cfg->spheres, destroy_sphere);
 	ft_lstclear(&cfg->trigs, destroy_triangle);
 	ft_lstclear(&cfg->squares, destroy_square);
+}
+
+void		destroy_scene(t_scene *scene)
+{
+	free(scene->aabbs);
+	free(scene->planes);
+	free(scene->squares);
+	free(scene->triangles);
+	free(scene->cylinders);
+	free(scene->spheres);
+	free(scene->olights);
+	free(scene->cams);
+	free(scene->active_cam);
 }

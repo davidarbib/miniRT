@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 14:25:07 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/29 13:43:23 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/01 22:06:51 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,21 @@ int	set_planes(t_plane *planes, int n)
 		normalize(&plane->orient, &plane->orient);
 		vect_cpy(&plane->pos, &plane->current_pos);
 		vect_cpy(&plane->orient, &plane->current_orient);
+		n--;
+	}
+	return (1);
+}
+
+int	set_triangles(t_trig *triangles, int n)
+{
+	t_trig	*triangle;
+
+	while (n)
+	{
+		triangle = triangles + n - 1;
+		vect_cpy(&triangle->pt1, &triangle->current_pt1);
+		vect_cpy(&triangle->pt2, &triangle->current_pt2);
+		vect_cpy(&triangle->pt3, &triangle->current_pt3);
 		n--;
 	}
 	return (1);

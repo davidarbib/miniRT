@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:31:09 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/22 13:40:17 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/01 22:39:26 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 typedef struct	s_scene
 {
-	t_vect			*ref_orient;
+	t_vect			ref_orient;
 	t_aabb			*aabbs;
 	t_plane			*planes;
 	t_square		*squares;
@@ -51,10 +51,14 @@ typedef struct	s_scene
 	double			phi;
 }				t_scene;
 
+void			destroy_scene(t_scene *scene);
 void			adapt_scene(t_scene *scene);
 void			init_scene(t_scene *scene);
 void			move_scene(t_scene *scene, t_vect *translation);
-void			move_plane(t_plane *plane, t_vect *translation);
+void			move_planes(t_plane *planes, int n, t_vect *translation);
+void			move_triangles(t_trig *triangles, int n, t_vect *translation);
 int				set_cams(t_cam *cams, int n);
 int				set_planes(t_plane *plane, int n);
+int				set_triangles(t_trig *triangles, int n);
+void			compute_triangles_edges(t_trig *triangles, int n);
 #endif

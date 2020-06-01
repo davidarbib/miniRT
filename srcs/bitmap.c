@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 18:18:06 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/27 17:49:09 by darbib           ###   ########.fr       */
+/*   Updated: 2020/05/30 17:29:29 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 #include "mlx.h"
 #include "graphic.h"
 
-void	put_img(t_bmp *bmp, char *img, int fd)
+static int		put_img(t_bmp *bmp, char *img, int fd)
 {
 	int		j;
 	int		i;
 	char	*buf;
 	char	*p_buf;
 	
-	//a proteger qd les gestions derreurs seront faites
-	buf = (char *)ft_calloc(bmp->sizeimg, sizeof(char));
+	if (!(buf = (char *)ft_calloc(bmp->sizeimg, sizeof(char))))
+		return (0);
 	p_buf = buf;
 	j = bmp->height - 1;
 	while (j >= 0)
@@ -37,11 +37,13 @@ void	put_img(t_bmp *bmp, char *img, int fd)
 		}
 		j--;
 	}
-	write(fd, buf, bmp->sizeimg);
+	if ((write(fd, buf, bmp->sizeimg) != (ssize_t)bmp->sizeimg))
+		return (0);
 	free(buf);
+	return (1);
 }
 
-void	put_header(t_bmp *bmp, int fd)
+static int		put_header(t_bmp *bmp, int fd)
 {
 	unsigned char	buf[HEADERSIZE];
 	int 			i;
@@ -63,29 +65,27 @@ void	put_header(t_bmp *bmp, int fd)
 	ft_memmove(buf + i, (unsigned char *)&bmp->planes, 2); 
 	i += 2;
 	ft_memmove(buf + i, (unsigned char *)&bmp->bitcount, 2); 
-	i += 2;
-	ft_memmove(buf + i, (unsigned char *)&bmp->compression, 4); 
-	i += 4;
-	ft_memmove(buf + i, (unsigned char *)&bmp->sizeimg, 4); 
-	write(fd, buf, HEADERSIZE);
+	ft_memmove(buf + i + 2, (unsigned char *)&bmp->compression, 4); 
+	ft_memmove(buf + i + 6, (unsigned char *)&bmp->sizeimg, 4); 
+	if ((write(fd, buf, HEADERSIZE) != HEADERSIZE))
+		return (0);
+	return (1);
 }
 
-void		bitmap_output(t_bmp *bmp, char *img)
+int				bitmap_output(t_bmp *bmp, char *img)
 {
 	int fd;
-	//int ret_write;
+	int	ret;
 
-	(void)img;
 	bmp->headersize = HEADERSIZE;
 	bmp->infosize = INFOSIZE;
 	bmp->sizeimg = bmp->width * bmp->height * BYTES_N;
 	bmp->size = bmp->sizeimg + HEADERSIZE + INFOSIZE;
-	//if ((fd = open(BMPNAME, O_WRONLY | O_CREAT, S_IRWXU)) < 0)
-		//output_sys_error(scene);
-	fd = open(BMPNAME, O_WRONLY | O_CREAT, S_IRWXU);
-	// if ((ret_write = putstr_fd(file_header, fd)) < 0)
-		//output_error(scene);
-	put_header(bmp, fd);
-	put_img(bmp, img, fd);
+	if ((fd = open(BMPNAME, O_WRONLY | O_CREAT, S_IRWXU)) < 0)
+		return (0);
+	ret = 1;
+	ret &= put_header(bmp, fd);
+	ret &= put_img(bmp, img, fd);
 	close(fd);
+	return (ret);
 }

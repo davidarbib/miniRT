@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 15:54:04 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/27 18:07:11 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/01 18:54:36 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct		s_trig
 	t_vect			current_pt1;
 	t_vect			current_pt2;
 	t_vect			current_pt3;
+	t_vect			current_edge1;
+	t_vect			current_edge2;
 	unsigned char	rgb[3];
 }					t_trig;
 

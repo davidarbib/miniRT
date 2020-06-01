@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 22:23:52 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/29 13:33:38 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/01 22:51:01 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,12 @@ void	move_right(void *param)
 
 void	move_scene(t_scene *scene, t_vect *translation)
 {
-	move_plane(scene->planes, translation);
-	printf("plane_pos");
-	print_vect(&scene->planes->pos);
-	printf("plane current pos");
-	print_vect(&scene->planes->current_pos);
+	move_planes(scene->planes, scene->planes_n, translation);
+	move_triangles(scene->triangles, scene->triangles_n, translation);
+	compute_triangles_edges(scene->triangles, scene->triangles_n);
+	printf("------------------\n");
+	print_vect(&scene->triangles->current_pt1);
+	print_vect(&scene->triangles->current_pt2);
+	print_vect(&scene->triangles->current_pt3);
+
 }
