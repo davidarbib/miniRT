@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 12:45:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/01 22:04:38 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/04 19:15:31 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "minirt.h"
 #include "raytrace.h"
 #include <assert.h>
+#include "print.h"
+#include <math.h>
 
 static inline int overlap(double *t0, double *t1, double min_, double max_)
 {
@@ -55,33 +57,31 @@ int		intersect_aabb(t_aabb *aabb, t_ray *ray)
 	return (t1 > 0.);	
 }
 
-static void send_ray(t_scene *scene, t_mlx *mlx_cfg, int dx, int dy)
+static void send_ray(t_scene *scene, t_mlx *mlx_cfg, int dx, int dy, t_ray *ray)
 {
-	t_ray	ray;
-
-	ray.direction.x = scene->resx/2. - dx;
-	ray.direction.y = scene->resy/2. - dy;
-	ray.direction.z = 550.;	
-	ray.inv_direction.x = 1 / ray.direction.x;
-	ray.inv_direction.y = 1 / ray.direction.y;
-	ray.inv_direction.z = 1 / ray.direction.z;
-	ray.origin.x = 0;
-	ray.origin.y = 0;
-	ray.origin.z = 0;
-	ray.sign[0] = (ray.direction.x < 0);
-	ray.sign[1] = (ray.direction.y < 0);
-	ray.sign[2] = (ray.direction.z < 0);
 	/*
-	if (intersect_plane(scene->planes->current_pos, scene->planes->current_orient,
-				*ray.origin, *ray.direction)) 
-		apply_color(scene->planes->rgb, mlx_cfg, dx, dy);
+	printf("----pts triangles-----\n");
+	print_vect(&scene->triangles[0].current_pt1);
+	print_vect(&scene->triangles[0].current_pt2);
+	print_vect(&scene->triangles[0].current_pt3);
+	print_vect(&scene->triangles[1].current_pt1);
+	print_vect(&scene->triangles[1].current_pt2);
+	print_vect(&scene->triangles[1].current_pt3);
+	printf("-----------------------\n");
 	*/
-	if (intersect_triangle(&ray, scene->triangles[0]))
+
+	/*
+	if (intersect_triangle(ray, scene->triangles[0]))
+	{
 		apply_color(scene->triangles[0].rgb, mlx_cfg, dx, dy);
-	//else if (intersect_aabb(scene->aabb2, &ray))
-	//	apply_color(scene->aabb2->rgb, mlx_cfg, dx, dy);
-	//else if (intersect_aabb(scene->aabb3, &ray))
-	//	apply_color(scene->aabb3->rgb, mlx_cfg, dx, dy);
+		printf("A\n");
+	}
+	*/
+	if (intersect_triangle(ray, scene->triangles[1]))
+	{
+		apply_color(scene->triangles[1].rgb, mlx_cfg, dx, dy);
+		printf("B\n");
+	}
 	else
 		apply_color(scene->background_rgb, mlx_cfg, dx, dy);
 }
@@ -90,16 +90,58 @@ void	raytrace(t_scene *scene, t_mlx *mlx_cfg)
 {
 	int dx;
 	int dy;
+	double	half_screen;
+	double	aspect_ratio;
+	t_ray	ray;
 
+	ray.origin.x = 0;
+	ray.origin.y = 0;
+	ray.origin.z = 0;
+	half_screen = tan(to_radian(scene->active_cam->fov * 0.5));
+	aspect_ratio = WIDTH / (double)HEIGHT;
 	dx = 0;
-	while (dx < scene->resx)
+	while (dx < WIDTH)
 	{
 		dy = 0;
-		while (dy < scene->resy)
+		while (dy < HEIGHT)
 		{
-			send_ray(scene, mlx_cfg, dx, dy);	
+			ray.direction.x = WIDTH/2. - dx;
+			ray.direction.y = HEIGHT/2. - dy;
+			ray.direction.z = -550.;	
+
+			ray.direction.x = (2 * (dx + 0.5) / WIDTH - 1) * half_screen * aspect_ratio;
+			ray.direction.y = (1 - 2 * (dy + 0.5) / HEIGHT) * half_screen;
+			ray.direction.z = -1.0;	
+
+			ray.direction.x = 0.6; 
+			ray.direction.y = 0.52; 
+			ray.direction.z = -1.0;	
+
+			ray.inv_direction.x = 1 / ray.direction.x;
+			ray.inv_direction.y = 1 / ray.direction.y;
+			ray.inv_direction.z = 1 / ray.direction.z;
+
+			normalize(&ray.direction, &ray.direction);
+
+			ray.sign[0] = (ray.direction.x < 0);
+			ray.sign[1] = (ray.direction.y < 0);
+			ray.sign[2] = (ray.direction.z < 0);
+			send_ray(scene, mlx_cfg, dx, dy, &ray);	
+
+			if (dx == 0 && dy == 0)
+				print_vect(&ray.direction);
+			if (dx == WIDTH - 1 && dy == 0)
+				print_vect(&ray.direction);
+			if (dx == 0 && dy == HEIGHT - 1)
+				print_vect(&ray.direction);
+			if (dx == WIDTH - 1 && dy == HEIGHT - 1)
+				print_vect(&ray.direction);
+			//if (dx == WIDTH / 2 && dy == HEIGHT / 2)
+			//	print_vect(&ray.direction);
 			dy++;
+			//break;
 		}
+		//break;
 		dx++;
 	}
 }

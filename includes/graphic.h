@@ -6,12 +6,17 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 16:37:26 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/26 15:43:59 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/04 13:56:30 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GRAPHIC_H
 # define GRAPHIC_H
+
+# define WIDTH		800
+# define INV_WIDTH	0.00125
+# define HEIGHT		600
+# define INV_HEIGHT	0.00167
 
 typedef struct		s_mlx
 {
@@ -24,9 +29,9 @@ typedef struct		s_mlx
 	char			*img_data;
 }					t_mlx;
 
-int				init_graphics(t_mlx *mlx_cfg, int resx, int resy);
-int				create_img(t_mlx *mlx_cfg, int resx, int resy);
-int				refresh_img(t_mlx *mlx_cfg, int resx, int resy);
+int				init_graphics(t_mlx *mlx_cfg);
+int				create_img(t_mlx *mlx_cfg);
+int				refresh_img(t_mlx *mlx_cfg);
 void			alter_pixel(t_mlx *cfg, int color, int x, int y);
 void			apply_color(unsigned char *rgb, t_mlx *mlx_cfg, int x, int y);
 

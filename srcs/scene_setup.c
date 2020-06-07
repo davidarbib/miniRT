@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/01 22:47:04 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/04 17:56:11 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ void	place_objs(t_scene *scene)
 
 void	init_scene(t_scene *scene)
 {
-	double phi_degree;
-
 	scene->aabbs = NULL;
 	scene->planes = NULL;
 	scene->squares = NULL;
@@ -73,7 +71,7 @@ void	init_scene(t_scene *scene)
 
 	scene->ref_orient.x = 0.;
 	scene->ref_orient.y = 0.;
-	scene->ref_orient.z = 1.;
+	scene->ref_orient.z = -1.;
 
 	scene->background_rgb[0] = 0xd6; 
 	scene->background_rgb[1] = 0xd9; 
@@ -85,9 +83,13 @@ void	init_scene(t_scene *scene)
 			&scene->active_cam->current_pos.y,
 			&scene->active_cam->current_pos.z);
 
+	printf("fov camera: ");
+	scanf("%d", &scene->active_cam->fov);
+	
 	printf("phi : ");
-	scanf("%lf", &phi_degree);
-	scene->phi = to_radian(phi_degree);
+	scanf("%lf", &scene->phi);
+	scene->phi = to_radian(scene->phi);
+	scene->theta = 0;
 
 	/*
 	scene->planes = malloc(sizeof(t_plane));
@@ -103,26 +105,37 @@ void	init_scene(t_scene *scene)
 	scene->planes->rgb[2] = 0x2f;
 	*/
 	scene->cams_n = 1;
-	scene->triangles = malloc(sizeof(t_trig));
-	scene->triangles->pt1.x = 100; 
-	scene->triangles->pt1.y = 0; 
-	scene->triangles->pt1.z = 560; 
-	scene->triangles->pt2.x = 6; 
-	scene->triangles->pt2.y = 50; 
-	scene->triangles->pt2.z = 560; 
-	scene->triangles->pt3.x = -50; 
-	scene->triangles->pt3.y = -30; 
-	scene->triangles->pt3.z = 560; 
-	scene->triangles->rgb[0] = 0x2d;
-	scene->triangles->rgb[1] = 0x1e;
-	scene->triangles->rgb[2] = 0x2f;
-	scene->triangles_n = 1;
+	scene->triangles = malloc(2 * sizeof(t_trig));
+	scene->triangles[0].pt1.x = -0.75; 
+	scene->triangles[0].pt1.y = 0.5; 
+	scene->triangles[0].pt1.z = -1.; 
+	scene->triangles[0].pt2.x = -0.75; 
+	scene->triangles[0].pt2.y = 0.75; 
+	scene->triangles[0].pt2.z = -1.; 
+	scene->triangles[0].pt3.x = -0.5; 
+	scene->triangles[0].pt3.y = -0.5; 
+	scene->triangles[0].pt3.z = -1.; 
+	scene->triangles[0].rgb[0] = 0x2d;
+	scene->triangles[0].rgb[1] = 0x1e;
+	scene->triangles[0].rgb[2] = 0x2f;
+
+	scene->triangles[1].pt1.x = 0.5; 
+	scene->triangles[1].pt1.y = 0.5; 
+	scene->triangles[1].pt1.z = -1.; 
+	scene->triangles[1].pt2.x = 0.75; 
+	scene->triangles[1].pt2.y = 0.5; 
+	scene->triangles[1].pt2.z = -1.; 
+	scene->triangles[1].pt3.x = 0.75; 
+	scene->triangles[1].pt3.y = 0.75; 
+	scene->triangles[1].pt3.z = -1.; 
+	scene->triangles[1].rgb[0] = 0xa7;
+	scene->triangles[1].rgb[1] = 0xd4;
+	scene->triangles[1].rgb[2] = 0x9b;
+	scene->triangles_n = 2;
+
 	set_triangles(scene->triangles, scene->triangles_n);
+
 	scene->planes_n = 0;
-	scene->theta = 0;
-	//set_planes(scene->planes, scene->planes_n);
-	//print_vect(&scene->planes->current_pos);
-	//print_vect(&scene->planes->current_orient);
 	place_objs(scene);
 	compute_triangles_edges(scene->triangles, scene->triangles_n);
 }

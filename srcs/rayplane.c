@@ -6,11 +6,12 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/23 14:47:38 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/01 21:52:59 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/07 19:05:53 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytrace.h"
+#include "print.h"
 
 int		intersect_plane(t_vect plane_pos, t_vect plane_orient,
 		t_vect ray_origin, t_vect ray_direction)
@@ -42,25 +43,44 @@ int		intersect_triangle(t_ray *ray, t_trig triangle)
 {	
 	double	det;
 	double	inv_det;
-	double	u;
-	double	v;
-	double	t;
+	double 	barycoord[3];
+	t_vect	tmp[3];
 
-	cross(&ray->direction, &triangle.current_edge2, &triangle.pt1);
-	det = dot(&triangle.current_edge1, &triangle.pt1);
-	if (ft_abs(det) < EPSILON)
+	printf("----pts triangles -----\n");
+	print_vect(&triangle.current_pt1);
+	print_vect(&triangle.current_pt2);
+	print_vect(&triangle.current_pt3);
+	print_vect(&triangle.current_edge1);
+	print_vect(&triangle.current_edge2);
+	print_vect(&ray->direction);
+	printf("-----------------------\n");
+	cross(&ray->direction, &triangle.current_edge2, &tmp[PVEC]);
+	det = dot(&triangle.current_edge1, &tmp[PVEC]);
+	//if (ft_abs(det) < EPSILON)
+	if (det > EPSILON * -1 && det < EPSILON)
 		return (0);
 	inv_det = 1.0 / det;
-	sub_vect(&ray->origin, &triangle.current_pt1, &triangle.pt2);
-	u = inv_det * dot(&triangle.pt2, &triangle.pt1);
-	if (u < 0.0 || u > 1.0)
+	sub_vect(&ray->origin, &triangle.current_pt1, &tmp[TVEC]);
+	barycoord[U] = inv_det * dot(&tmp[TVEC], &tmp[PVEC]);
+	//barycoord[U] = dot(&tmp[TVEC], &tmp[PVEC]);
+	if (barycoord[U] < 0.0 || barycoord[U] > 1.0)
 		return (0);
-	cross(&triangle.pt2, &triangle.current_edge1, &triangle.pt3);
-	v = inv_det * dot(&ray->direction, &triangle.pt3);
-	if (v < 0.0 || u + v > 1.0)
+	cross(&tmp[TVEC], &triangle.current_edge1, &tmp[QVEC]);
+	barycoord[V] = inv_det * dot(&ray->direction, &tmp[QVEC]);
+	//barycoord[V] = dot(&ray->direction, &tmp[QVEC]);
+	if (barycoord[V] < 0.0 || barycoord[U] + barycoord[V] > 1.0)
+	//if (barycoord[V] < 0.0 || barycoord[U] + barycoord[V] > det)
 		return (0);
-	t = inv_det * dot(&triangle.current_edge2, &triangle.pt3);
-	if (t > EPSILON)
-		return (t);
+	barycoord[T] = inv_det * dot(&triangle.current_edge2, &tmp[QVEC]);
+	printf("----pts triangles bis -----\n");
+	print_vect(&triangle.current_pt1);
+	print_vect(&triangle.current_pt2);
+	print_vect(&triangle.current_pt3);
+	print_vect(&triangle.current_edge1);
+	print_vect(&triangle.current_edge2);
+	print_vect(&ray->direction);
+	printf("-----------------------\n");
+	if (barycoord[T] > EPSILON)
+		return (barycoord[T]);
 	return (0);
 }

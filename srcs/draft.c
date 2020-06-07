@@ -7,7 +7,6 @@
 
 int main(int ac, char **av)
 {
-
 	(void)ac;
 	(void)av;
 	t_scene scene;
@@ -21,7 +20,7 @@ int main(int ac, char **av)
 	scene.resx = 800;
 	scene.resy = 600;
 	init_scene(&scene);
-	init_graphics(&mlx_cfg, scene.resx, scene.resy);
+	init_graphics(&mlx_cfg);
 	raytrace(&scene, &mlx_cfg);
 	bmp.type[0] = 'B';
 	bmp.type[1] = 'M';

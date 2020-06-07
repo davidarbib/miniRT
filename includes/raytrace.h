@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:08:02 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/01 21:56:12 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/04 20:04:04 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 # include <math.h>
 
 # define EPSILON	0.000001
+# define PVEC		0
+# define TVEC		1
+# define QVEC		2
+# define U			0
+# define V			1
+# define T			2
 
 typedef struct	s_ray
 {
