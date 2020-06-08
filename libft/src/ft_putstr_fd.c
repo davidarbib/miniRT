@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 10:36:20 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/25 19:27:33 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/08 13:26:06 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_putstr_fd(char *s, int fd)
 	write(fd, s, ft_strlen(s));
 }
 
-ssize_t	putstr_fd(char *s, int fd)
+int	putstr_fd(char *s, int fd)
 {
-	return (write(fd, s, ft_strlen(s)));
+	return ((int)write(fd, s, ft_strlen(s)));
 }
