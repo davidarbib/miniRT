@@ -6,12 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/17 18:13:48 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/09 15:37:19 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/10 16:12:10 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "update.h"
 #include "print.h"
+#include "parsing.h"
 
 void	adapt_scene(t_scene *scene)
 {
