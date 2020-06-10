@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/04 17:56:11 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/10 15:47:01 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	compute_triangles_edges(t_trig *triangles, int n)
 {
 	while (--n >= 0)
 	{
-		sub_vect(&triangles[n].current_pt1, &triangles[n].current_pt2,
+		sub_vect(&triangles[n].current_pt2, &triangles[n].current_pt1,
 				&triangles[n].current_edge1);
-		sub_vect(&triangles[n].current_pt1, &triangles[n].current_pt3,
+		sub_vect(&triangles[n].current_pt3, &triangles[n].current_pt1,
 				&triangles[n].current_edge2);
 	}
 }
@@ -106,14 +106,14 @@ void	init_scene(t_scene *scene)
 	*/
 	scene->cams_n = 1;
 	scene->triangles = malloc(2 * sizeof(t_trig));
-	scene->triangles[0].pt1.x = -0.75; 
-	scene->triangles[0].pt1.y = 0.5; 
+	scene->triangles[0].pt1.x = -1.; 
+	scene->triangles[0].pt1.y = -1.; 
 	scene->triangles[0].pt1.z = -1.; 
-	scene->triangles[0].pt2.x = -0.75; 
-	scene->triangles[0].pt2.y = 0.75; 
+	scene->triangles[0].pt2.x = 1.; 
+	scene->triangles[0].pt2.y = -1.; 
 	scene->triangles[0].pt2.z = -1.; 
-	scene->triangles[0].pt3.x = -0.5; 
-	scene->triangles[0].pt3.y = -0.5; 
+	scene->triangles[0].pt3.x = 0.; 
+	scene->triangles[0].pt3.y = 1.; 
 	scene->triangles[0].pt3.z = -1.; 
 	scene->triangles[0].rgb[0] = 0x2d;
 	scene->triangles[0].rgb[1] = 0x1e;

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 16:37:26 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/04 13:56:30 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/10 16:00:54 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define WIDTH		800
 # define INV_WIDTH	0.00125
-# define HEIGHT		600
+# define HEIGHT		800
 # define INV_HEIGHT	0.00167
 
 typedef struct		s_mlx
