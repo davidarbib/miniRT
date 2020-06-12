@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/10 15:47:01 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/10 17:48:45 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "rotation.h"
 #include "parsing.h"
 #include "print.h"
+#include "spheric.h"
 
 void	compute_triangles_edges(t_trig *triangles, int n)
 {
@@ -72,6 +73,14 @@ void	init_scene(t_scene *scene)
 	scene->ref_orient.x = 0.;
 	scene->ref_orient.y = 0.;
 	scene->ref_orient.z = -1.;
+	
+	printf("/*---------------*/\n");
+	t_spheric sph;
+	to_spherical(&scene->ref_orient, &sph);
+	printf("initial orientation\n");
+	print_vect_sph(&sph);
+	print_angle(sph.phi, sph.theta);
+
 
 	scene->background_rgb[0] = 0xd6; 
 	scene->background_rgb[1] = 0xd9; 

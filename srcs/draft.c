@@ -1,6 +1,6 @@
 #include "minirt.h"
 #include "mlx.h"
-//#include "X11/X.h"
+#include "X11/X.h"
 #include "colors.h"
 #include "actions.h"
 #include "bitmap.h"
@@ -34,7 +34,7 @@ int main(int ac, char **av)
 	if (!(mlx_put_image_to_window(mlx_cfg.mlx_ptr, mlx_cfg.win_ptr,
 		mlx_cfg.img_ptr, 0, 0)))
 		return (1);
-//	mlx_hook(mlx_cfg.win_ptr, KeyPress, KeyPressMask, key_pressed_hook,
-//			&param);
+	mlx_hook(mlx_cfg.win_ptr, KeyPress, KeyPressMask, key_pressed_hook,
+			&param);
 	mlx_loop(mlx_cfg.mlx_ptr);
 }

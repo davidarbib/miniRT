@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/05 18:21:04 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/02 13:58:38 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/10 17:42:19 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <math.h>
 #include <stdio.h>
 
-static void	to_spherical(t_vect *cartesian, t_spheric *spherical)
+void	to_spherical(t_vect *cartesian, t_spheric *spherical)
 {
 	double rho;
 
