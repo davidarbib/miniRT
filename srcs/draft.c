@@ -29,8 +29,10 @@ int main(int ac, char **av)
 	bmp.planes = 1;
 	bmp.bitcount = 24;
 	bmp.compression = 0;
+	/*
 	if (!(bitmap_output(&bmp, mlx_cfg.img_data)))
 		bmp_sys_error(&scene);
+	*/
 	if (!(mlx_put_image_to_window(mlx_cfg.mlx_ptr, mlx_cfg.win_ptr,
 		mlx_cfg.img_ptr, 0, 0)))
 		return (1);
