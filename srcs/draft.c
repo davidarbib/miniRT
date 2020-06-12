@@ -12,7 +12,7 @@ int main(int ac, char **av)
 	t_scene scene;
 	t_mlx	mlx_cfg;
 	t_param param;
-	t_bmp	bmp;
+	//t_bmp	bmp;
 
 	param.scene = &scene;
 	param.mlx_cfg = &mlx_cfg;
@@ -22,6 +22,7 @@ int main(int ac, char **av)
 	init_scene(&scene);
 	init_graphics(&mlx_cfg);
 	raytrace(&scene, &mlx_cfg);
+	/*
 	bmp.type[0] = 'B';
 	bmp.type[1] = 'M';
 	bmp.width = scene.resx;
@@ -29,6 +30,7 @@ int main(int ac, char **av)
 	bmp.planes = 1;
 	bmp.bitcount = 24;
 	bmp.compression = 0;
+	*/
 	/*
 	if (!(bitmap_output(&bmp, mlx_cfg.img_data)))
 		bmp_sys_error(&scene);

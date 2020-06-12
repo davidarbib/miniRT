@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 16:28:50 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/08 14:13:06 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/12 17:31:49 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,13 @@ int			refresh_img(t_mlx *mlx_cfg)
 
 void		apply_color(unsigned char *rgb, t_mlx *mlx_cfg, int x, int y)
 {
-	unsigned char tmp_rgb[3];
+	int color;
 	
-	tmp_rgb[0] = rgb[2];
-	tmp_rgb[1] = rgb[1];
-	tmp_rgb[2] = rgb[0];
-	alter_pixel(mlx_cfg, *((int *)&tmp_rgb), x, y);
+	color = 0;
+	color += (int)rgb[2];
+	color += (int)rgb[1] * 256;
+	color += (int)rgb[0] * 256 * 256;
+	alter_pixel(mlx_cfg, color, x, y);
 }
 
 void		alter_pixel(t_mlx *cfg, int color, int x, int y)
