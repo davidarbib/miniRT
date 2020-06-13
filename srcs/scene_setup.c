@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/10 17:48:45 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/13 16:02:29 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void	init_scene(t_scene *scene)
 	printf("initial orientation\n");
 	print_vect_sph(&sph);
 	print_angle(sph.phi, sph.theta);
-
 
 	scene->background_rgb[0] = 0xd6; 
 	scene->background_rgb[1] = 0xd9; 

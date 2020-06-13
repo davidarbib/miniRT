@@ -6,12 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 16:23:29 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/02 12:41:09 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/13 14:26:39 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "actions.h"
-#include "keys_linux.h"
+//#include "keys_linux.h"
+#include "macos_codes.h"
 #include "general.h"
 #include "print.h"
 #include "mlx.h"
@@ -45,13 +46,6 @@ void assign_key_fts(void)
 
 int		key_pressed_hook(int keycode, void *param)
 {
-	t_scene *scene;
-	t_mlx	*cfg;
-
 	g_key_pressed_ft[keycode](param);
-	scene = ((t_param *)param)->scene;
-	cfg = ((t_param *)param)->mlx_cfg;
-	if (!(update_display(scene, cfg)))
-		return (0);
 	return (1);
 }

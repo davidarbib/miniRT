@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:31:09 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/01 22:39:26 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/13 20:44:44 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ typedef struct	s_scene
 	double			conjugate_rot_quater[4];
 	double			theta;
 	double			phi;
+	double			left_matrix[9];
+	double			right_matrix[9];
+	double			up_matrix[9];
+	double			down_matrix[9];
 }				t_scene;
 
 void			destroy_scene(t_scene *scene);

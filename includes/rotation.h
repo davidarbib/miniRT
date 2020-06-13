@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 18:44:26 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/10 17:45:06 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/13 20:46:23 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include "vector.h"
 # include "spheric.h"
 
+void	assign_turn_matrices(double *left, double *right);
+void	assign_turn_matrices2(double *up, double *down);
 void	to_spherical(t_vect *cartesian, t_spheric *spherical);
 void	rotate_scene(t_scene *scene, double phi, double theta);
 void	rotate_planes(t_plane *planes, int n, double phi, double theta);

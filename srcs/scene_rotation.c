@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/05 18:21:04 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/10 17:42:19 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/13 20:23:40 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "print.h"
 #include <math.h>
 #include <stdio.h>
+
 
 void	to_spherical(t_vect *cartesian, t_spheric *spherical)
 {
@@ -33,8 +34,8 @@ void	to_cartesian(t_spheric *spherical, t_vect *cartesian)
 	cartesian->z = spherical->rho * cos(spherical->phi); 	
 }
 
-void		extract_scene_rotation(t_vect *cam_orient, t_vect *ref_orient,
-			double *phi, double *theta)
+void	extract_scene_rotation(t_vect *cam_orient, t_vect *ref_orient,
+		double *phi, double *theta)
 {
 	t_spheric spherical_cam;
 	t_spheric spherical_ref;
@@ -45,7 +46,7 @@ void		extract_scene_rotation(t_vect *cam_orient, t_vect *ref_orient,
 	*theta = spherical_ref.theta - spherical_cam.theta;
 }
 
-void		rotate_point(double phi, double theta, t_vect *v_in, t_vect *v_out)
+void	rotate_point(double phi, double theta, t_vect *v_in, t_vect *v_out)
 {
 	t_spheric spherical_in;
 
