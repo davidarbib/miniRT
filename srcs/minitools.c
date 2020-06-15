@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix.h                                           :+:      :+:    :+:   */
+/*   minitools.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/27 17:04:10 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/15 15:56:12 by darbib           ###   ########.fr       */
+/*   Created: 2020/06/15 16:50:10 by darbib            #+#    #+#             */
+/*   Updated: 2020/06/15 16:58:27 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATRIX_H
-# define MATRIX_H
+#include <math.h>
 
-#include "vector.h"
+double	to_radian(double degree)
+{
+	return (degree * M_PI / 180.);
+}
 
-# define DN 3
-
-void			matrix_by_vect(double *m, t_vect *v_in, t_vect *v_out);
-void			matrix_product(double *m1, double *m2, double *m_out);
-
-#endif
+double	to_degree(double radian)
+{
+	return (radian * 180. / M_PI);
+}

@@ -6,7 +6,7 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/05/27 17:53:15 by darbib           ###   ########.fr        #
+#    Updated: 2020/06/15 16:53:36 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,6 +86,7 @@ SRC = camera.c \
 	sphere.c \
 	square.c \
 	print_tools.c \
+	minitools.c \
 	turn.c \
 	move.c \
 	hook.c \
@@ -97,6 +98,7 @@ SRC = camera.c \
 	set_objs.c \
 	update.c \
 	bitmap.c \
+	matrix.c \
 	triangle.c
 
 ifeq ($(DRAFT), 1)

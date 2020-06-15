@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/23 14:47:38 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/10 15:31:10 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/15 17:43:14 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		intersect_plane(t_vect plane_pos, t_vect plane_orient,
 ** Moller-Trumbore algorithm implementation
 ** u, v are barycentric coordinates
 */
-int		intersect_triangle(t_ray *ray, t_trig triangle)
+double	intersect_triangle(t_ray *ray, t_trig triangle)
 {	
 	double	det;
 	double	inv_det;
@@ -60,6 +60,7 @@ int		intersect_triangle(t_ray *ray, t_trig triangle)
 		return (0);
 	t = inv_det * dot(&triangle.current_edge2, &tmp[QVEC]);
 	if (t > EPSILON)
+	//if (t > 0)
 		return (t);
 	return (0);
 }

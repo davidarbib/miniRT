@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:08:02 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/04 20:04:04 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/15 17:45:05 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ typedef struct	s_ray
 void	raytrace(t_scene *scene, t_mlx *mlx_cfg);
 int		intersect_plane(t_vect plane_pos, t_vect plane_orient,
 		t_vect ray_origin, t_vect ray_direction);
-int		intersect_triangle(t_ray *ray, t_trig triangle);
+double	intersect_triangle(t_ray *ray, t_trig triangle);
 int		intersect_aabb(t_aabb *aabb, t_ray *ray);
 #endif

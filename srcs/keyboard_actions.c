@@ -6,13 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 16:23:29 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/13 14:26:39 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/15 16:29:03 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "actions.h"
-//#include "keys_linux.h"
-#include "macos_codes.h"
+#include "keys_linux.h"
+//#include "macos_codes.h"
 #include "general.h"
 #include "print.h"
 #include "mlx.h"
@@ -38,8 +38,8 @@ void assign_key_fts(void)
 	g_key_pressed_ft[KEY_S] = move_backward;
 	g_key_pressed_ft[KEY_A] = move_left;
 	g_key_pressed_ft[KEY_D] = move_right;
-	//g_key_pressed_ft[KEY_UP] = parse_plane;  
-	//g_key_pressed_ft[KEY_DOWN] = parse_sphere;  
+	g_key_pressed_ft[KEY_UP] = turn_up;  
+	g_key_pressed_ft[KEY_DOWN] = turn_down;  
 	g_key_pressed_ft[KEY_LEFT] = turn_left;  
 	g_key_pressed_ft[KEY_RIGHT] = turn_right;  
 }

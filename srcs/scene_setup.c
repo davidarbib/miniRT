@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/13 16:02:29 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/15 15:54:44 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	place_objs(t_scene *scene)
 	move_scene(scene, &translation);
 	//extract_scene_rotation(&scene->active_cam->current_orient,
 	//		&scene->ref_orient, &scene->phi, &scene->theta);
-	rotate_scene(scene, scene->phi, scene->theta);
+	//rotate_scene(scene, matrix->theta);
 }
 
 void	init_scene(t_scene *scene)
@@ -144,6 +144,8 @@ void	init_scene(t_scene *scene)
 	set_triangles(scene->triangles, scene->triangles_n);
 
 	scene->planes_n = 0;
+	assign_turn_matrices(scene->left_matrix, scene->right_matrix);
+	assign_turn_matrices2(scene->up_matrix, scene->down_matrix);
 	place_objs(scene);
 	compute_triangles_edges(scene->triangles, scene->triangles_n);
 }

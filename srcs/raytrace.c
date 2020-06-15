@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 12:45:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/10 15:40:48 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/15 17:58:35 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "raytrace.h"
 #include <assert.h>
 #include "print.h"
+#include "rotation.h"
 #include <math.h>
 
 static inline int overlap(double *t0, double *t1, double min_, double max_)
@@ -69,7 +70,7 @@ static void send_ray(t_scene *scene, t_mlx *mlx_cfg, int dx, int dy, t_ray *ray)
 	print_vect(&scene->triangles[1].current_pt3);
 	printf("-----------------------\n");
 	*/
-	if (intersect_triangle(ray, scene->triangles[0]))
+	if (intersect_triangle(ray, scene->triangles[0]) > 0)
 		apply_color(scene->triangles[0].rgb, mlx_cfg, dx, dy);
 /*
 	if (intersect_triangle(ray, scene->triangles[1]))

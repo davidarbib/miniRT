@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 22:23:52 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/13 16:01:21 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/15 17:21:52 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	move_left(void *param)
 	translation.x = STEP_SIZE;
 	translation.y = 0;
 	translation.z = 0;
-	printf("a gauche\n");
 	pm = (t_param *)param;
 	pm->scene->active_cam->current_pos.x -= STEP_SIZE; 
 	move_scene(pm->scene, &translation);
@@ -70,7 +69,6 @@ void	move_right(void *param)
 	translation.x = -STEP_SIZE;
 	translation.y = 0;
 	translation.z = 0;
-	printf("a droite\n");
 	pm = (t_param *)param;
 	pm->scene->active_cam->current_pos.x += STEP_SIZE; 
 	move_scene(pm->scene, &translation);

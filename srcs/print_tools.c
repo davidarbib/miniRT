@@ -1,14 +1,5 @@
 #include "print.h"
-
-double	to_radian(double degree)
-{
-	return (degree * M_PI / 180.);
-}
-
-double	to_degree(double radian)
-{
-	return (radian * 180. / M_PI);
-}
+#include "rotation.h"
 
 void print_vect(t_vect *v)
 {

@@ -6,16 +6,14 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/05 18:21:04 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/13 20:23:40 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/15 16:41:26 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
 #include "rotation.h"
-#include "print.h"
 #include <math.h>
-#include <stdio.h>
-
+#include "matrix.h"
 
 void	to_spherical(t_vect *cartesian, t_spheric *spherical)
 {
@@ -46,10 +44,8 @@ void	extract_scene_rotation(t_vect *cam_orient, t_vect *ref_orient,
 	*theta = spherical_ref.theta - spherical_cam.theta;
 }
 
-void	rotate_point(double phi, double theta, t_vect *v_in, t_vect *v_out)
+void	rotate_point(double *matrix, t_vect *v_in, t_vect *v_out)
 {
-	t_spheric spherical_in;
-
 	if (!vect_norm(v_in))
 	{
 		v_out->x = v_in->x; 
@@ -57,10 +53,5 @@ void	rotate_point(double phi, double theta, t_vect *v_in, t_vect *v_out)
 		v_out->z = v_in->z; 
 	}
 	else
-	{
-		to_spherical(v_in, &spherical_in);
-		spherical_in.phi += phi;
-		spherical_in.theta += theta;
-		to_cartesian(&spherical_in, v_out);
-	}
+		matrix_by_vect(matrix, v_in, v_out);
 }
