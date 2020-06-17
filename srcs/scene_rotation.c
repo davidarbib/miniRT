@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/05 18:21:04 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/17 15:02:24 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/17 20:44:22 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,50 @@ void	to_cartesian(t_spheric *spherical, t_vect *cartesian)
 	cartesian->z = spherical->rho * cos(spherical->phi); 	
 }
 
+static void	get_inv_f_matrix(double dot_ab, t_vect *a, t_vect *b, double *inv_f)
+{
+	t_vect baba;
+	t_vect aba;
+	t_vect cross_ba;
+
+	scale(dot_ab, a, &aba);
+	sub_vect(b, &aba, &baba);
+	normalize(&baba, &baba);
+	cross(b, a, &cross_ba);
+	inv_f[0] = a->x;
+	inv_f[1] = baba.x;
+	inv_f[2] = cross_ba.x;
+	inv_f[3] = a->y;
+	inv_f[4] = baba.y;
+	inv_f[5] = cross_ba.y;
+	inv_f[6] = a->z;
+	inv_f[7] = baba.z;
+	inv_f[8] = cross_ba.z;
+}
+
 void	extract_scene_rotation(t_vect *cam_orient, t_vect *ref_orient,
-		double *matrix)
+		double *rot_matrix)
 {
 	t_vect normal;
-	double dot_result;
+	double g_matrix[9];
+	double f_matrix[9];
+	double inv_f_matrix[9];
+	double tmp_matrix[9];
 
-	cross(cam_orient, ref_orient, &normal);
-	normalize(&normal, &normal);
-	dot_result = dot(cam_orient, ref_orient);
+	cross(ref_orient, cam_orient, &normal);
+	g_matrix[0] = dot(cam_orient, ref_orient); 
+	g_matrix[1] = -norm(&normal); 
+	g_matrix[2] = 0; 
+	g_matrix[3] = -g_matrix[1]; 
+	g_matrix[4] = g_matrix[0]; 
+	g_matrix[5] = 0; 
+	g_matrix[6] = 0; 
+	g_matrix[7] = 0; 
+	g_matrix[8] = 1;
+	get_inv_f_matrix(g_matrix[0], cam_orient, ref_orient, inv_f_matrix);
+	inverse(&inv_f_matrix, &f_matrix);
+	matrix_product(inv_f_matrix, g_matrix, tmp_matrix);
+	matrix_product(tmp_matrix, f_matrix, rot_matrix);
 }
 
 void	rotate_point(double *matrix, t_vect *v_in, t_vect *v_out)
