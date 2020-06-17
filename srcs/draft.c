@@ -1,10 +1,10 @@
 #include "minirt.h"
 #include "mlx.h"
-#include "X11/X.h"
+//#include "X11/X.h"
 #include "colors.h"
 #include "actions.h"
 #include "bitmap.h"
-//#include "macos_codes.h"
+#include "macos_codes.h"
 
 int main(int ac, char **av)
 {

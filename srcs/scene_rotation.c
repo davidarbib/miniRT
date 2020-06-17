@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/05 18:21:04 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/15 16:41:26 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/17 15:02:24 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,14 @@ void	to_cartesian(t_spheric *spherical, t_vect *cartesian)
 }
 
 void	extract_scene_rotation(t_vect *cam_orient, t_vect *ref_orient,
-		double *phi, double *theta)
+		double *matrix)
 {
-	t_spheric spherical_cam;
-	t_spheric spherical_ref;
+	t_vect normal;
+	double dot_result;
 
-	to_spherical(cam_orient, &spherical_cam);
-	to_spherical(ref_orient, &spherical_ref);
-	*phi = spherical_ref.phi - spherical_cam.phi;
-	*theta = spherical_ref.theta - spherical_cam.theta;
+	cross(cam_orient, ref_orient, &normal);
+	normalize(&normal, &normal);
+	dot_result = dot(cam_orient, ref_orient);
 }
 
 void	rotate_point(double *matrix, t_vect *v_in, t_vect *v_out)
