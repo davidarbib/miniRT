@@ -6,13 +6,12 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/02 14:25:44 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/02 17:46:36 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/19 01:50:43 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "print.h"
-#include "vector.h"
-#include <math.h>
+#include "matrix.h"
 #include <stdio.h>
 
 static void	to_spherical(t_vect *cartesian, t_spheric *spherical)
@@ -32,16 +31,64 @@ void		to_cartesian(t_spheric *spherical, t_vect *cartesian)
 	cartesian->z = spherical->rho * cos(spherical->phi); 	
 }
 
-void		extract_scene_rotation(t_vect *cam_orient, t_vect *ref_orient,
-			double *phi, double *theta)
+static void	get_inv_f_matrix(double dot_ab, t_vect *a, t_vect *b, double *inv_f)
 {
-	t_spheric spherical_cam;
-	t_spheric spherical_ref;
+	t_vect baba;
+	t_vect aba;
+	t_vect cross_ba;
 
-	to_spherical(cam_orient, &spherical_cam);
-	to_spherical(ref_orient, &spherical_ref);
-	*phi = spherical_ref.phi - spherical_cam.phi;
-	*theta = spherical_ref.theta - spherical_cam.theta;
+	scale(dot_ab, a, &aba);
+	sub_vect(b, &aba, &baba);
+	normalize(&baba, &baba);
+	cross(b, a, &cross_ba);
+	inv_f[0] = a->x;
+	inv_f[1] = baba.x;
+	inv_f[2] = cross_ba.x;
+	inv_f[3] = a->y;
+	inv_f[4] = baba.y;
+	inv_f[5] = cross_ba.y;
+	inv_f[6] = a->z;
+	inv_f[7] = baba.z;
+	inv_f[8] = cross_ba.z;
+}
+
+void	extract_scene_rotation(t_vect *cam_orient, t_vect *ref_orient,
+		double *rot_matrix)
+{
+	t_vect normal;
+	double g_matrix[9];
+	double f_matrix[9];
+	double inv_f_matrix[9];
+	double tmp_matrix[9];
+
+	cross(cam_orient, ref_orient, &normal);
+	g_matrix[0] = dot(cam_orient, ref_orient); 
+	g_matrix[1] = -vect_norm(&normal); 
+	g_matrix[2] = 0; 
+	g_matrix[3] = -g_matrix[1]; 
+	g_matrix[4] = g_matrix[0]; 
+	g_matrix[5] = 0; 
+	g_matrix[6] = 0; 
+	g_matrix[7] = 0; 
+	g_matrix[8] = 1;
+
+	printf("----------g_matrix------------\n");
+	print_matrix(g_matrix);
+	printf("-----------------------------\n");
+	get_inv_f_matrix(g_matrix[0], cam_orient, ref_orient, inv_f_matrix);
+	inverse(inv_f_matrix, f_matrix);
+	printf("----------f_matrix------------\n");
+	print_matrix(f_matrix);
+	printf("-----------------------------\n");
+	printf("----------inv_f_matrix------------\n");
+	print_matrix(inv_f_matrix);
+	printf("-----------------------------\n");
+	//matrix_product(inv_f_matrix, g_matrix, tmp_matrix);
+	//matrix_product(tmp_matrix, f_matrix, rot_matrix);
+//	matrix_product(g_matrix, f_matrix, tmp_matrix);
+//	matrix_product(inv_f_matrix, tmp_matrix, rot_matrix);
+	matrix_product(f_matrix, g_matrix, tmp_matrix);
+	matrix_product(tmp_matrix, inv_f_matrix, rot_matrix);
 }
 
 void		rotate_point(double phi, double theta, t_vect *v_in, t_vect *v_out)
@@ -67,17 +114,25 @@ int main()
 {
 	t_vect v;
 	t_vect ref;
-	double phi = 0;
-	double theta = 0;
+	t_vect pt;
+	t_vect res;
+	double matrix[9];
 
 	v.x = 1;
 	v.y = 0;
 	v.z = 0;
 	ref.x = 0;
 	ref.y = 0;
-	ref.z = 1;
-	extract_scene_rotation(&v, &ref, &phi, &theta);
-	print_angle(phi, theta);
+	ref.z = -1;
+	extract_scene_rotation(&v, &ref, matrix);
+	printf("---------\n");
+	print_matrix(matrix);
+	pt.x = 1;
+	pt.y = 0;
+	pt.z = 1;
+	matrix_by_vect(matrix, &pt, &res);
+	printf("---------\n");
+	print_vect(&res);
 	/*
 	print_vect(&v);
 	rotate_point(to_radian(90), 0, &v, &v);

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 19:14:53 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/19 01:52:57 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/19 01:48:05 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,39 @@ void	inverse(double *m_in, double *m_out)
 		m_out[i] = adj[i] * inv_det;
 		i++;
 	}
+}
+
+void			print_matrix(double *m)
+{
+	int i;
+	int j;
+	
+	j = 0;
+	while (j < DN)
+	{
+		i = 0;
+		while (i < DN)
+		{
+			printf("%lf ", m[i + DN * j]);
+			i++;
+		}
+		j++;
+		printf("\n");
+	}
+}
+
+int main()
+{
+	double m[9] = {-1, 0, 0, 1, -1, 0, 1, 1, 0};
+	double inv_m[9];
+
+	printf("----------------------\n");
+	print_matrix(m);
+	printf("----------------------\n");
+	inverse(m, inv_m);
+	print_matrix(inv_m);
+	printf("----------------------\n");
+	inverse(inv_m, m);
+	print_matrix(m);
+	printf("----------------------\n");
 }
