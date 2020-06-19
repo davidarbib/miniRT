@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 15:03:37 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/29 13:42:25 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/19 15:15:03 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ typedef struct		s_vect
 
 t_vect	*vect_dup(t_vect *v_in);
 void	vect_cpy(t_vect *v_in, t_vect *v_out);
+int		same_vect(t_vect *v1, t_vect *v2);
+int		opposite_vect(t_vect *v1, t_vect *v2);
 void	ortho_projection(t_vect *v_initial, t_vect *v_support, t_vect *v_out);
 void	sub_vect(t_vect *vect1, t_vect *vect2, t_vect *vect_out);
 void	add_vect(t_vect *vect1, t_vect *vect2, t_vect *vect_out);

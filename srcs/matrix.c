@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/27 16:45:28 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/19 14:27:41 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/19 15:38:35 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,11 @@ void			matrix_by_vect(double *m, t_vect *v_in, t_vect *v_out)
 
 void			rot_from_anti_ref_orient(double *m)
 {
-	m[0] = 1;
+	m[0] = -1;
 	m[1] = 0;
 	m[2] = 0;
 	m[3] = 0;
-	m[4] = -1;
+	m[4] = 1;
 	m[5] = 0;
 	m[6] = 0;
 	m[7] = 0;
