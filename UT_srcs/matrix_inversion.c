@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 19:14:53 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/19 01:48:05 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/19 13:39:19 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static double	det2d(double *m)
 {
-	return (m[0] * m[3] + m[1] * m[2]);
+	return (m[0] * m[3] - m[1] * m[2]);
 }
 
 static double	det3d(double *m)
@@ -87,6 +87,7 @@ void	inverse(double *m_in, double *m_out)
 	int i;
 	
 	inv_det = 1 / det3d(m_in);
+	printf("det = %lf\n", det3d(m_in));
 	cofactors(m_in, adj, 1);
 	i = 0;
 	while (i < DN * DN)
@@ -117,7 +118,7 @@ void			print_matrix(double *m)
 
 int main()
 {
-	double m[9] = {-1, 0, 0, 1, -1, 0, 1, 1, 0};
+	double m[9] = {1, 0, 0, 0, 0, 1, 0, 1, 0};
 	double inv_m[9];
 
 	printf("----------------------\n");

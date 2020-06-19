@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/15 15:54:44 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/19 14:32:38 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,20 @@ int		make_array(t_rt *rt, t_scene *scene)
 void	place_objs(t_scene *scene)
 {
 	t_vect	translation;
+	t_vect	*cam_orient;
+	double 	rot_matrix[9];
 
+	cam_orient = &scene->active_cam->current_orient;
 	scale(-1, &scene->active_cam->current_pos, &translation);
 	move_scene(scene, &translation);
-	//extract_scene_rotation(&scene->active_cam->current_orient,
-	//		&scene->ref_orient, &scene->phi, &scene->theta);
-	//rotate_scene(scene, matrix->theta);
+	if (!(same_vect(cam_orient, &scene->ref_orient)))
+	{
+		if (opposite_vect(cam_orient, &scene->ref_orient))
+			rot_from_anti_ref_orient(rot_matrix);
+		else 
+			extract_scene_rotation(cam_orient, &scene->ref_orient, rot_matrix);
+		rotate_scene(scene, rot_matrix);
+	}
 }
 
 void	init_scene(t_scene *scene)
@@ -90,6 +98,10 @@ void	init_scene(t_scene *scene)
 	scanf("%lf%lf%lf", &scene->active_cam->current_pos.x, 
 			&scene->active_cam->current_pos.y,
 			&scene->active_cam->current_pos.z);
+	printf("orientation camera: ");
+	scanf("%lf%lf%lf", &scene->active_cam->current_orient.x, 
+			&scene->active_cam->current_orient.y,
+			&scene->active_cam->current_orient.z);
 
 	printf("fov camera: ");
 	scanf("%d", &scene->active_cam->fov);
@@ -147,5 +159,4 @@ void	init_scene(t_scene *scene)
 	assign_turn_matrices(scene->left_matrix, scene->right_matrix);
 	assign_turn_matrices2(scene->up_matrix, scene->down_matrix);
 	place_objs(scene);
-	compute_triangles_edges(scene->triangles, scene->triangles_n);
 }

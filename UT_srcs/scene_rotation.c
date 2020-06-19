@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/02 14:25:44 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/19 01:50:43 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/19 13:45:11 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,9 +127,9 @@ int main()
 	extract_scene_rotation(&v, &ref, matrix);
 	printf("---------\n");
 	print_matrix(matrix);
-	pt.x = 1;
-	pt.y = 0;
-	pt.z = 1;
+	pt.x = 0;
+	pt.y = -1;
+	pt.z = 0;
 	matrix_by_vect(matrix, &pt, &res);
 	printf("---------\n");
 	print_vect(&res);
