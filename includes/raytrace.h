@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:08:02 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/19 20:14:45 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/20 16:33:11 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "scene.h"
 # include "graphic.h"
 # include "aabb.h"
-# include "plane.h"
 # include <math.h>
 
 # define EPSILON	0.000001
@@ -40,25 +39,21 @@ typedef struct	s_ray
 	enum e_type		current_type;
 }				t_ray;
 
-typedef struct	s_near
+typedef struct		s_near
 {
-	double		t;
-	void		*obj;
-	enum e_type	type;
-}				t_near;
+	double			t;
+	void			*obj;
+	enum e_type		type;
+	unsigned char 	rgb[3];
+}					t_near;
 
-union			u_obj;
-{
-	t_trig		tr;
-	t_plane 	pl;
-	t_square	sq;
-	t_sphere	sp;
-	t_cyld		c;
-}
-
+void	get_obj_rgb(void *obj, enum e_type type, unsigned char *rgb);
 void	raytrace(t_scene *scene, t_mlx *mlx_cfg);
-int		intersect_plane(t_vect plane_pos, t_vect plane_orient,
-		t_vect ray_origin, t_vect ray_direction);
-double	intersect_triangle(t_ray *ray, t_trig triangle);
+double	intersect_plane(t_plane plane, t_ray ray);
+double	intersect_triangle(t_trig triangle, t_ray ray);
 int		intersect_aabb(t_aabb *aabb, t_ray *ray);
+void	loop_intersect_planes(t_plane *planes, int n, t_ray *ray,
+		t_near *near);
+void	loop_intersect_triangles(t_trig *triangles, int n, t_ray *ray,
+		t_near *near);
 #endif

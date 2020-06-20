@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/19 14:32:38 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/20 17:33:25 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,18 +139,19 @@ void	init_scene(t_scene *scene)
 	scene->triangles[0].rgb[1] = 0x1e;
 	scene->triangles[0].rgb[2] = 0x2f;
 
-	scene->triangles[1].pt1.x = 0.5; 
-	scene->triangles[1].pt1.y = 0.5; 
+	scene->triangles[1].pt1.x = -.5; 
+	scene->triangles[1].pt1.y = -1.; 
 	scene->triangles[1].pt1.z = -1.; 
-	scene->triangles[1].pt2.x = 0.75; 
-	scene->triangles[1].pt2.y = 0.5; 
+	scene->triangles[1].pt2.x = 1.5; 
+	scene->triangles[1].pt2.y = -1.; 
 	scene->triangles[1].pt2.z = -1.; 
-	scene->triangles[1].pt3.x = 0.75; 
-	scene->triangles[1].pt3.y = 0.75; 
+	scene->triangles[1].pt3.x = 0.5; 
+	scene->triangles[1].pt3.y = 1.; 
 	scene->triangles[1].pt3.z = -1.; 
 	scene->triangles[1].rgb[0] = 0xa7;
 	scene->triangles[1].rgb[1] = 0xd4;
 	scene->triangles[1].rgb[2] = 0x9b;
+
 	scene->triangles_n = 2;
 
 	set_triangles(scene->triangles, scene->triangles_n);

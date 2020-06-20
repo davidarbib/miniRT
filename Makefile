@@ -6,7 +6,7 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/06/19 15:18:22 by darbib           ###   ########.fr        #
+#    Updated: 2020/06/20 16:30:08 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,6 +100,7 @@ SRC = camera.c \
 	bitmap.c \
 	matrix.c \
 	matrix_inversion.c \
+	loop_intersect.c \
 	triangle.c
 
 ifeq ($(DRAFT), 1)
