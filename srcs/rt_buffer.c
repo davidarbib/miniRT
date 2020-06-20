@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 17:16:25 by darbib            #+#    #+#             */
-/*   Updated: 2020/03/04 17:44:48 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/20 20:21:46 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 void	cpy_next_word(char **s, char *buf)
 {
 	ft_bzero(buf, BUFFSIZE);
-	while (**s && **s != ' ')
+	while (**s && !ft_isblank(**s) && ft_isprint(**s))
 		*buf++ = *(*s)++;
 }

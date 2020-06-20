@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/20 17:33:25 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/20 20:11:58 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	place_objs(t_scene *scene)
 	t_vect	*cam_orient;
 	double 	rot_matrix[9];
 
+	set_triangles(scene->triangles, scene->triangles_n);
 	cam_orient = &scene->active_cam->current_orient;
 	scale(-1, &scene->active_cam->current_pos, &translation);
 	move_scene(scene, &translation);
@@ -66,7 +67,7 @@ void	place_objs(t_scene *scene)
 	}
 }
 
-void	init_scene(t_scene *scene)
+void	init_scene(t_scene *scene, t_rt *rt)
 {
 	scene->aabbs = NULL;
 	scene->planes = NULL;
@@ -82,7 +83,8 @@ void	init_scene(t_scene *scene)
 	scene->ref_orient.y = 0.;
 	scene->ref_orient.z = -1.;
 	
-	printf("/*---------------*/\n");
+	ft_memmove(scene->background_rgb, rt->ambient_rgb, 3);
+	/*
 	t_spheric sph;
 	to_spherical(&scene->ref_orient, &sph);
 	printf("initial orientation\n");
@@ -109,22 +111,11 @@ void	init_scene(t_scene *scene)
 	printf("phi : ");
 	scanf("%lf", &scene->phi);
 	scene->phi = to_radian(scene->phi);
-	scene->theta = 0;
 
-	/*
-	scene->planes = malloc(sizeof(t_plane));
 
-	scene->planes->pos.x = 0;
-	scene->planes->pos.y = 0;
-	scene->planes->pos.z = 2;
-	scene->planes->orient.x = 1;
-	scene->planes->orient.y = 0;
-	scene->planes->orient.z = 0;
-	scene->planes->rgb[0] = 0x2d;
-	scene->planes->rgb[1] = 0x1e;
-	scene->planes->rgb[2] = 0x2f;
-	*/
 	scene->cams_n = 1;
+	scene->triangles_n = 2;
+	scene->planes_n = 0;
 	scene->triangles = malloc(2 * sizeof(t_trig));
 	scene->triangles[0].pt1.x = -1.; 
 	scene->triangles[0].pt1.y = -1.; 
@@ -151,12 +142,9 @@ void	init_scene(t_scene *scene)
 	scene->triangles[1].rgb[0] = 0xa7;
 	scene->triangles[1].rgb[1] = 0xd4;
 	scene->triangles[1].rgb[2] = 0x9b;
+	*/
 
-	scene->triangles_n = 2;
-
-	set_triangles(scene->triangles, scene->triangles_n);
-
-	scene->planes_n = 0;
+	make_array(rt, scene);
 	assign_turn_matrices(scene->left_matrix, scene->right_matrix);
 	assign_turn_matrices2(scene->up_matrix, scene->down_matrix);
 	place_objs(scene);

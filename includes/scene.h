@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:31:09 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/13 20:44:44 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/20 18:41:00 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,6 @@ typedef struct	s_scene
 	unsigned char	background_rgb[3]; 
 	int				resx;
 	int				resy;
-	double			rot_quater[4];
-	double			conjugate_rot_quater[4];
-	double			theta;
-	double			phi;
 	double			left_matrix[9];
 	double			right_matrix[9];
 	double			up_matrix[9];
@@ -57,7 +53,8 @@ typedef struct	s_scene
 
 void			destroy_scene(t_scene *scene);
 void			adapt_scene(t_scene *scene);
-void			init_scene(t_scene *scene);
+void			init_scene(t_scene *scene, t_rt *rt);
+int				make_array(t_rt *rt, t_scene *scene);
 void			move_scene(t_scene *scene, t_vect *translation);
 void			move_planes(t_plane *planes, int n, t_vect *translation);
 void			move_triangles(t_trig *triangles, int n, t_vect *translation);
