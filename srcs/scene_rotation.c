@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/05 18:21:04 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/19 15:41:45 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/21 23:44:52 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void	extract_scene_rotation(t_vect *cam_orient, t_vect *ref_orient,
 	g_matrix[6] = 0; 
 	g_matrix[7] = 0; 
 	g_matrix[8] = 1;
-
 	get_inv_f_matrix(g_matrix[0], cam_orient, ref_orient, inv_f_matrix);
 	inverse(inv_f_matrix, f_matrix);
 	matrix_product(f_matrix, g_matrix, tmp_matrix);

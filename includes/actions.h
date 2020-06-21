@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 22:33:19 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/15 16:29:58 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/21 22:41:46 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@
 
 # include "scene.h"
 # include "graphic.h"
-# include "raytrace.h"
 
 # define STEP_SIZE 1
-# define ANGLE_SIZE 1
+# define ANGLE_SIZE 90
 # define MAX_KEYCODE 65536
 
 typedef struct	s_param
@@ -39,4 +38,5 @@ void			turn_left(void *param);
 void			turn_right(void *param);
 void			turn_up(void *param);
 void			turn_down(void *param);
+void			cam_switch(void *param);
 #endif

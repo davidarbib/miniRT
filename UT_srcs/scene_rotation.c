@@ -6,13 +6,32 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/02 14:25:44 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/19 13:45:11 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/21 22:00:02 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "print.h"
 #include "matrix.h"
 #include <stdio.h>
+
+void			print_matrix(double *m)
+{
+	int i;
+	int j;
+	
+	j = 0;
+	while (j < DN)
+	{
+		i = 0;
+		while (i < DN)
+		{
+			printf("%lf ", m[i + DN * j]);
+			i++;
+		}
+		j++;
+		printf("\n");
+	}
+}
 
 static void	to_spherical(t_vect *cartesian, t_spheric *spherical)
 {
@@ -79,7 +98,6 @@ void	extract_scene_rotation(t_vect *cam_orient, t_vect *ref_orient,
 	inverse(inv_f_matrix, f_matrix);
 	printf("----------f_matrix------------\n");
 	print_matrix(f_matrix);
-	printf("-----------------------------\n");
 	printf("----------inv_f_matrix------------\n");
 	print_matrix(inv_f_matrix);
 	printf("-----------------------------\n");
@@ -125,13 +143,11 @@ int main()
 	ref.y = 0;
 	ref.z = -1;
 	extract_scene_rotation(&v, &ref, matrix);
-	printf("---------\n");
-	print_matrix(matrix);
-	pt.x = 0;
+	//print_matrix(matrix);
+	pt.x = -1;
 	pt.y = -1;
-	pt.z = 0;
+	pt.z = -1;
 	matrix_by_vect(matrix, &pt, &res);
-	printf("---------\n");
 	print_vect(&res);
 	/*
 	print_vect(&v);

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:54:56 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/20 20:08:10 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/21 16:44:37 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,8 @@ int		label_chr(char **tab, char *label)
 	int i;
 
 	i = 0;
-	printf("len : --%ld--\n", strlen(label));
 	while (tab[i] && ft_strcmp(tab[i], label))
-	{
-		printf("tab[%d] : --%s--\n", i, tab[i]);
-		printf("label : --%s--\n", label);
-		printf("cmp res : %d\n", strcmp(tab[i], label));
-		printf("ft_cmp res : %d\n", ft_strcmp(tab[i], label));
 		i++;
-	}
 	if (!tab[i])
 		return (-1);
 	return (i);
