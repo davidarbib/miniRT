@@ -6,13 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 16:23:29 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/21 23:30:25 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/22 16:58:28 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "actions.h"
-#include "keys_linux.h"
-//#include "macos_codes.h"
+//#include "keys_linux.h"
+#include "macos_codes.h"
 #include "general.h"
 #include "print.h"
 #include "mlx.h"
@@ -47,9 +47,6 @@ void assign_key_fts(void)
 
 int		key_pressed_hook(int keycode, void *param)
 {
-	printf("orientation camera in hook :\n");
-	print_vect(&((t_param *)param)->scene->active_cam->current_orient);
-	printf("------\n");
 	g_key_pressed_ft[keycode](param);
 	return (1);
 }

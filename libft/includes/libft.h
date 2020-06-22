@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 10:15:53 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/08 13:26:33 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/22 16:06:52 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int		ft_atoi_mv(char **str);
 void	ft_putendl_fd(char *s, int fd);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
+char 	*ft_strdelchar(char *s, char c);
 char	**ft_split(char const *s, char c);
 char	**ft_split_blank(char const *s);
 void	ft_putnbr_fd(int n, int fd);

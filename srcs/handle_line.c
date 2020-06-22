@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:54:56 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/21 16:44:37 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/22 16:08:50 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,31 @@ static void dispatch(t_rt *cfg, char *p_line)
 	g_parse_ft[idx](cfg, p_line);
 }
 
+void		clean_line(char *line)
+{
+	while (*line)
+	{
+		if (!(ft_isprint(*line)) && !(ft_isblank(*line)))
+			*line = ' ';
+		line++;
+	}
+}
+
 void		handle_line(t_rt *cfg)
 {
 	char *p_line;
-
+	char *clean_line;
+	
+	if (!(clean_line = ft_strdelchar(cfg->line, (char)0x01)))
+		sys_error(cfg);
+	free(cfg->line);
 	cfg->linenb++;
-	p_line = ft_pass_spaces(cfg->line);
+	p_line = ft_pass_spaces(clean_line);
 	if (!*p_line)
 	{
-		free(cfg->line);
+		free(clean_line);
 		return ;
 	}
 	dispatch(cfg, p_line);
-	free(cfg->line);
+	free(clean_line);
 }

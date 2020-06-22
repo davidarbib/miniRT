@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 13:49:53 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/19 14:33:29 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/22 20:42:35 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,14 @@ void	vect_cpy(t_vect *v_in, t_vect *v_out)
 
 int		same_vect(t_vect *v1, t_vect *v2) 
 {
-	if (v1->x == v2->x
-		&& v1->y == v2->y
-		&& v1->z == v2->z)
+	t_vect tmp_v1;
+	t_vect tmp_v2;
+
+	scale(10000, v1, &tmp_v1);
+	scale(10000, v2, &tmp_v2);
+	if ((int)tmp_v1.x == (int)tmp_v2.x
+		&& (int)tmp_v1.y == (int)tmp_v2.y
+		&& (int)tmp_v1.z == (int)tmp_v2.z)
 		return (1);
 	return (0);
 }

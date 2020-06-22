@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 22:23:52 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/15 17:21:52 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/22 17:19:26 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,4 @@ void	move_scene(t_scene *scene, t_vect *translation)
 {
 	move_planes(scene->planes, scene->planes_n, translation);
 	move_triangles(scene->triangles, scene->triangles_n, translation);
-	compute_triangles_edges(scene->triangles, scene->triangles_n);
 }

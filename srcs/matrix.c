@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/27 16:45:28 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/19 15:38:35 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/22 16:49:18 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,12 @@ void			matrix_product(double *m1, double *m2, double *m_out)
 
 void			matrix_by_vect(double *m, t_vect *v_in, t_vect *v_out)
 {
-	v_out->x = v_in->x * m[0] + v_in->y * m[1] + v_in->z * m[2];
-	v_out->y = v_in->x * m[3] + v_in->y * m[4] + v_in->z * m[5];
-	v_out->z = v_in->x * m[6] + v_in->y * m[7] + v_in->z * m[8];
+	t_vect v_tmp;
+
+	v_tmp.x = v_in->x * m[0] + v_in->y * m[1] + v_in->z * m[2];
+	v_tmp.y = v_in->x * m[3] + v_in->y * m[4] + v_in->z * m[5];
+	v_tmp.z = v_in->x * m[6] + v_in->y * m[7] + v_in->z * m[8];
+	*v_out = v_tmp;
 }
 
 void			rot_from_anti_ref_orient(double *m)

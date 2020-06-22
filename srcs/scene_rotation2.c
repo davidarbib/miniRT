@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 18:08:31 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/15 16:42:38 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/22 17:22:04 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,4 @@ void		rotate_scene(t_scene *scene, double *matrix)
 {
 	rotate_planes(scene->planes, scene->planes_n, matrix);
 	rotate_triangles(scene->triangles, scene->triangles_n, matrix);
-	compute_triangles_edges(scene->triangles, scene->triangles_n);
 }

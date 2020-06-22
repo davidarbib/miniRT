@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 23:25:41 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/20 20:36:39 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/22 15:16:11 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void		parsing(int ac, char **av, t_rt *cfg)
 		sys_error(cfg);
 	assign_fts();
 	cfg->flags |= IN_PARSING;
+	cfg->line = NULL;
 	while ((gnl = get_next_line(fd, &cfg->line)) > 0)
 		handle_line(cfg);
 	free(cfg->line);

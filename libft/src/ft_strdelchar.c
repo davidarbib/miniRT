@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   observer.c                                         :+:      :+:    :+:   */
+/*   ft_strdelchar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/21 18:03:41 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/22 19:30:57 by darbib           ###   ########.fr       */
+/*   Created: 2020/06/22 15:39:41 by darbib            #+#    #+#             */
+/*   Updated: 2020/06/22 15:58:45 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "update.h"
-#include "actions.h"
+#include "libft.h"
+#include <stdlib.h>
 
-void	cam_switch(void *param)
+char *ft_strdelchar(char *s, char c)
 {
-	t_scene				*scene;
-	t_mlx				*cfg;
-	static unsigned int current_idx = 0;
+	char 	*s_out;
+	int		i;
 
-	scene = ((t_param *)param)->scene;
-	cfg = ((t_param *)param)->mlx_cfg;
-	current_idx++;
-	current_idx %= scene->cams_n;
-	scene->active_cam = scene->cams + current_idx;
-	place_objs(scene);
-	if (!(update_display(scene, cfg)))
-		return ;
+	if (!(s_out = ft_calloc(ft_strlen(s), sizeof(char))))
+		return (NULL);
+	i = 0;
+	while (*s)
+	{
+		if (*s != c)
+			s_out[i++] = *s;
+		s++;
+	}
+	return (s_out);
 }

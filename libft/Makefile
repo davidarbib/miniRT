@@ -6,7 +6,7 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/05/22 18:03:00 by darbib           ###   ########.fr        #
+#    Updated: 2020/06/22 15:59:16 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,6 +79,7 @@ SRC = ft_atoi.c \
 	ft_strnstr.c \
 	ft_strrchr.c \
 	ft_strtrim.c \
+	ft_strdelchar.c \
 	ft_substr.c \
 	ft_tolower.c \
 	ft_toupper.c \

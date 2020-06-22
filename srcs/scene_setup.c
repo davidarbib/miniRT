@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/21 23:14:42 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/22 20:13:45 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,26 @@ void	place_objs(t_scene *scene)
 	double 	rot_matrix[9];
 
 	set_triangles(scene->triangles, scene->triangles_n);
+	printf("------------new placement-------------\n");
+	printf("triangle aubergine before placement\n");
+	print_vect(&scene->triangles->current_pt1);
+	print_vect(&scene->triangles->current_pt2);
+	print_vect(&scene->triangles->current_pt3);
+	printf("         ----------------\n");
 	cam_orient = &scene->active_cam->current_orient;
+	printf("%p cam_pos : \n", scene->active_cam);
+	print_vect(&scene->active_cam->current_pos);
+	printf("%p cam_orient : \n", scene->active_cam);
+	print_vect(cam_orient);
+	printf("ref_orient : \n");
+	print_vect(&scene->ref_orient);
 	normalize(cam_orient, cam_orient);
 	scale(-1, &scene->active_cam->current_pos, &translation);
 	move_scene(scene, &translation);
+	printf("         -----------------\n");
+	t_vect v = (t_vect){0., 0., -1.};
+	printf("test vector before transformation:\n");
+	print_vect(&v);
 	if (!(same_vect(cam_orient, &scene->ref_orient)))
 	{
 		if (opposite_vect(cam_orient, &scene->ref_orient))
@@ -66,14 +82,17 @@ void	place_objs(t_scene *scene)
 		else 
 			extract_scene_rotation(cam_orient, &scene->ref_orient, rot_matrix);
 		rotate_scene(scene, rot_matrix);
+		rotate_point(rot_matrix, &v, &v);
 	}
-	//------------------
-	t_vect v_test = (t_vect){-1., -1., -1.};
-	t_vect res;
-	print_vect(&v_test);
-	rotate_point(rot_matrix, &v_test, &res);
-	print_vect(&res);
-	//------------------
+	printf("triangle aubergine after placement\n");
+	print_vect(&scene->triangles->current_pt1);
+	print_vect(&scene->triangles->current_pt2);
+	print_vect(&scene->triangles->current_pt3);
+	printf("         ----------------\n");
+	printf("test vector after transformation:\n");
+	print_vect(&v);
+	printf("        ------------------\n");
+	printf("---------------------------------------\n");
 }
 
 void	init_scene(t_scene *scene, t_rt *rt)
@@ -161,4 +180,5 @@ void	init_scene(t_scene *scene, t_rt *rt)
 	assign_turn_matrices(scene->left_matrix, scene->right_matrix);
 	assign_turn_matrices2(scene->up_matrix, scene->down_matrix);
 	place_objs(scene);
+	compute_triangles_edges(scene->triangles, scene->triangles_n);
 }

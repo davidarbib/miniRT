@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 12:45:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/20 18:19:03 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/22 19:42:49 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,13 @@ static void	define_ray(t_ray *ray, double half_screen, int dx, int dy)
 		* aspect_ratio;
 	ray->direction.y = (1 - 2 * (dy + 0.5) / HEIGHT) * half_screen;
 	ray->direction.z = -1.0;	
+	//-----------------
+	if (dx == WIDTH/2 && dy == HEIGHT/2)
+	{
+		printf("ray_direction at (0, 0)\n");
+		print_vect(&ray->direction);
+	}
+	//-----------------
 	ray->inv_direction.x = 1 / ray->direction.x;
 	ray->inv_direction.y = 1 / ray->direction.y;
 	ray->inv_direction.z = 1 / ray->direction.z;
