@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:08:02 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/20 16:33:11 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/23 20:35:57 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 
 # define TYPE_NB	5
 
+enum			e_var {t_ca, t_hc, d, t0, t1};
 enum			e_type {plane, square, triangle, sphere, cylinder};
 
 typedef struct	s_ray
@@ -51,6 +52,7 @@ void	get_obj_rgb(void *obj, enum e_type type, unsigned char *rgb);
 void	raytrace(t_scene *scene, t_mlx *mlx_cfg);
 double	intersect_plane(t_plane plane, t_ray ray);
 double	intersect_triangle(t_trig triangle, t_ray ray);
+double	intersect_sphere(t_sphere sphere, t_ray ray);
 int		intersect_aabb(t_aabb *aabb, t_ray *ray);
 void	loop_intersect_planes(t_plane *planes, int n, t_ray *ray,
 		t_near *near);
