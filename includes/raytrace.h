@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:08:02 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/23 20:35:57 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/24 16:10:52 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,7 @@ int		intersect_aabb(t_aabb *aabb, t_ray *ray);
 void	loop_intersect_planes(t_plane *planes, int n, t_ray *ray,
 		t_near *near);
 void	loop_intersect_triangles(t_trig *triangles, int n, t_ray *ray,
+		t_near *near);
+void	loop_intersect_spheres(t_sphere *spheres, int n, t_ray *ray,
 		t_near *near);
 #endif

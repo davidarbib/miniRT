@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 16:12:37 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/23 20:48:24 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/24 15:56:27 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,26 @@ void	loop_intersect_triangles(t_trig *triangles, int n, t_ray *ray,
 		{
 			near->t = t;
 			near->obj = (void *)triangle;
+			near->type = ray->current_type;
+			get_obj_rgb(near->obj, near->type, near->rgb); 
+		}
+	}
+}
+
+void	loop_intersect_spheres(t_sphere *spheres, int n, t_ray *ray,
+		t_near *near)
+{
+	double		t;
+	t_sphere	*sphere;
+	
+	while (--n >= 0)
+	{
+		sphere = spheres + n;
+		if ((t = intersect_sphere(*sphere, *ray)) > 0 &&
+				(t + EPSILON) < near->t)
+		{
+			near->t = t;
+			near->obj = (void *)sphere;
 			near->type = ray->current_type;
 			get_obj_rgb(near->obj, near->type, near->rgb); 
 		}

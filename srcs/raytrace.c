@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 12:45:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/22 19:42:49 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/24 16:44:43 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ static void browse_scene(t_scene *scene, t_ray *ray, t_near *near)
 	loop_intersect_planes(scene->planes, scene->planes_n, ray, near); 
 	ray->current_type = triangle;
 	loop_intersect_triangles(scene->triangles, scene->triangles_n, 
+					ray, near); 
+	ray->current_type = sphere;
+	loop_intersect_spheres(scene->spheres, scene->spheres_n, 
 					ray, near); 
 }
 

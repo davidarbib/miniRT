@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 14:25:07 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/20 16:36:28 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/24 16:24:16 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,19 @@ int	set_triangles(t_trig *triangles, int n)
 		vect_cpy(&triangle->pt1, &triangle->current_pt1);
 		vect_cpy(&triangle->pt2, &triangle->current_pt2);
 		vect_cpy(&triangle->pt3, &triangle->current_pt3);
+		n--;
+	}
+	return (1);
+}
+
+int	set_spheres(t_sphere *spheres, int n)
+{
+	t_sphere	*sphere;
+
+	while (n)
+	{
+		sphere = spheres + n - 1;
+		vect_cpy(&sphere->pos, &sphere->current_pos);
 		n--;
 	}
 	return (1);

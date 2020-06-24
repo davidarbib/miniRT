@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.h                                           :+:      :+:    :+:   */
+/*   scene_rotation3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/25 15:55:19 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/24 16:24:06 by darbib           ###   ########.fr       */
+/*   Created: 2020/06/24 16:50:22 by darbib            #+#    #+#             */
+/*   Updated: 2020/06/24 16:53:07 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPHERE_H
-# define SPHERE_H
+#include "rotation.h"
+#include "actions.h"
 
-# include "vector.h"
-# include "minirt.h"
-
-/*
-** --- sphere ---
-** pos : position vector
-** diam : sphere diameter
-** rgb : rgb color
-*/
-typedef struct		s_sphere
+void	rotate_spheres(t_sphere *spheres, int n, double *matrix)
 {
-	t_vect			pos;
-	t_vect			current_pos;
-	double			diam;
-	unsigned char	rgb[3];
-}					t_sphere;
+	t_sphere	*sphere;
 
-void	destroy_sphere(void *obj);
-void	print_sphere(void *obj);
-
-#endif
+	while (n)
+	{
+		sphere = spheres + n - 1;
+		rotate_point(matrix, &sphere->current_pos, &sphere->current_pos);
+		n--;
+	}
+}

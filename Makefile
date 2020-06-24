@@ -6,7 +6,7 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/06/21 18:40:01 by darbib           ###   ########.fr        #
+#    Updated: 2020/06/24 16:53:49 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,6 +79,7 @@ SRC = camera.c \
 	handle_line.c \
 	scene_rotation.c \
 	scene_rotation2.c \
+	scene_rotation3.c \
 	aabb.c \
 	plane.c \
 	rt_buffer.c \
@@ -91,6 +92,7 @@ SRC = camera.c \
 	hook.c \
 	raytrace.c \
 	rayplane.c \
+	rayvolume.c \
 	keyboard_actions.c \
 	scene_setup.c \
 	scene_move.c \

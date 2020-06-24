@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 22:33:19 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/21 22:41:46 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/24 17:29:15 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "graphic.h"
 
 # define STEP_SIZE 1
-# define ANGLE_SIZE 90
+# define ANGLE_SIZE 10
 # define MAX_KEYCODE 65536
 
 typedef struct	s_param
