@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/23 14:47:38 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/20 17:00:42 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/25 01:01:53 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,18 @@ double	intersect_plane(t_plane plane, t_ray ray)
 		if (t >= EPSILON)
 			return (t);
 	}
-	return (INFINITY);
+	return (0);
+}
+
+double	intersect_square(t_square square, t_ray ray)
+{
+	t_plane	plane;
+	double	t;
+	
+	plane.current_pos = square.current_pos;
+	plane.current_orient = square.current_orient;	
+	if (!(t = intersect_plane(plane, ray)))
+		return (0);
 }
 
 /*
