@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/27 16:45:28 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/22 16:49:18 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/26 20:41:51 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,19 @@ void			matrix_by_vect(double *m, t_vect *v_in, t_vect *v_out)
 	v_tmp.y = v_in->x * m[3] + v_in->y * m[4] + v_in->z * m[5];
 	v_tmp.z = v_in->x * m[6] + v_in->y * m[7] + v_in->z * m[8];
 	*v_out = v_tmp;
+}
+
+void			set_matrix_for_square_normal(double *m)
+{
+	m[0] = ;
+	m[1] = ;
+	m[2] = ;
+	m[3] = ;
+	m[4] = ;
+	m[5] = ;
+	m[6] = ;
+	m[7] = ;
+	m[8] = ;
 }
 
 void			rot_from_anti_ref_orient(double *m)

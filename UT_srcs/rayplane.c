@@ -6,13 +6,21 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/23 14:47:38 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/10 15:20:34 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/26 16:19:51 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytrace.h"
 #include "print.h"
 
+void	get_ray_point(double t, t_ray ray, t_vect *v_out)
+{
+	t_vect tmp;
+	scale(t, &ray.direction, &tmp);
+	add_vect(&tmp, &ray.origin, v_out);
+}
+
+/*
 int		intersect_plane(t_vect plane_pos, t_vect plane_orient,
 		t_vect ray_origin, t_vect ray_direction)
 {
@@ -32,13 +40,14 @@ int		intersect_plane(t_vect plane_pos, t_vect plane_orient,
 	}
 	return (0);
 }
-
+*/
 /*
 ** Moller-Trumbore algorithm implementation
 ** original triangle vertices used to store the three tmp vectors
 ** (its why we need a triangle copy)
 ** t, u, v are barycentric coordinates
 */
+/*
 int		intersect_triangle(t_ray *ray, t_trig triangle)
 {	
 	double	det;
@@ -46,7 +55,6 @@ int		intersect_triangle(t_ray *ray, t_trig triangle)
 	double 	barycoord[2];
 	double	t;
 	t_vect	tmp[3];
-/*
 	printf("----pts triangles -----\n");
 	print_vect(&triangle.current_pt1);
 	print_vect(&triangle.current_pt2);
@@ -55,7 +63,6 @@ int		intersect_triangle(t_ray *ray, t_trig triangle)
 	print_vect(&triangle.current_edge2);
 	print_vect(&ray->direction);
 	printf("-----------------------\n");
-	*/
 	cross(&ray->direction, &triangle.current_edge2, &tmp[PVEC]);
 	det = dot(&triangle.current_edge1, &tmp[PVEC]);
 	//if (det < EPSILON)
@@ -71,9 +78,8 @@ int		intersect_triangle(t_ray *ray, t_trig triangle)
 	cross(&tmp[TVEC], &triangle.current_edge1, &tmp[QVEC]);
 	barycoord[V] = inv_det * dot(&ray->direction, &tmp[QVEC]);
 	//barycoord[V] = dot(&ray->direction, &tmp[QVEC]);
-	printf("/*------------------------*/\n");
+	printf("------------------------\n");
 	printf("(u, v) = (%lf, %lf)\n", barycoord[U], barycoord[V]);
-	/*
 	printf("det = %lf\n", det);
 	printf("pvec = \n");
 	print_vect(&tmp[PVEC]);
@@ -81,7 +87,6 @@ int		intersect_triangle(t_ray *ray, t_trig triangle)
 	print_vect(&tmp[TVEC]);
 	printf("qvec = \n");
 	print_vect(&tmp[QVEC]);
-	*/
 	if (barycoord[V] < 0.0 || barycoord[U] + barycoord[V] > 1.0)
 	//if (barycoord[V] < 0.0 || barycoord[U] + barycoord[V] > det)
 		return (0);
@@ -90,9 +95,20 @@ int		intersect_triangle(t_ray *ray, t_trig triangle)
 		return (t);
 	return (0);
 }
+*/
 
 int main()
 {
+	t_ray ray;
+	t_vect v1;
+	double t = 2;
+
+	ray.origin = (t_vect) {1, 0, 0};
+	ray.direction = (t_vect) {0, 0, -1};
+	get_ray_point(t, ray, &v1);
+	printf("v_out : \n");
+	print_vect(&v1);
+/*
 	t_ray ray;
 	t_trig triangle;
 
@@ -268,4 +284,5 @@ int main()
 	ray.origin.y = 0.;
 	ray.origin.z = 0.;
 	printf("intersection 26: %d\n", intersect_triangle(&ray, triangle));
+*/
 }

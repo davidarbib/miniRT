@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 15:03:37 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/19 15:15:03 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/27 18:55:28 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ double	vect_norm(t_vect *vect);
 double	dot(t_vect *vect1, t_vect *vect2);
 void	cross(t_vect *vect1, t_vect *vect2, t_vect *vect_out);
 void	scale(double scalar, t_vect *vect, t_vect *vect_out);
+int		is_zero(double coord);
 
 #endif
