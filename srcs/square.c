@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:36:28 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/27 19:47:24 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/27 23:25:33 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,32 +53,32 @@ void	parse_square(t_rt *cfg, char *line)
 		cfg->squares = ft_lstnew(square);
 }
 
-static void	case_one_zero_in_normal(t_square *square)
-{
-}
-
-static void	compute_edge1(t_square *square)
+void	compute_square_edges(t_square *square)
 {
 	t_vect n;
 	t_vect p;
 	
-	n = *square->current_orient;
-	p = *square->current_pos;
+	n = *square->orient;
+	p = *square->pos;
 	if (is_zero(n.x) && is_zero(n.y))
 		square->edge1 = (t_vect) {1, 1, 0};
 	else if (is_zero(n.x) && is_zero(n.z))
 		square->edge1 = (t_vect) {1, 0, 1};
 	else if (is_zero(n.y) && is_zero(n.z))
 		square->edge1 = (t_vect) {0, 1, 1};
+	else if (is_zero(n.z))
+	{
+		square->edge1.x = 1;
+		square->edge1.y = (dot(&n, &p) - n.x - n.z) / n.y;
+		square->edge1.z = 1;
+	}
 	else
 	{
-		if (is_zero(n.x))
-			
+		square->edge1.x = 1;
+		square->edge1.y = 1;
+		square->edge1.z = (dot(&n, &p) - n.x - n.y) / n.z;
 	}
-}
-
-void	compute_square_edges(t_square *square)
-{
+	cross(&n, square->edge1, square->edge2);
 }
 
 void	print_square(void *obj)
