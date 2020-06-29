@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/23 14:47:38 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/26 16:23:43 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/29 16:33:01 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ double	intersect_plane(t_plane plane, t_ray ray)
 	double	t;
 	t_vect	tmp_v; 
 
-	normalize(&plane.current_pos, &plane.current_pos);
-	normalize(&ray.origin, &ray.origin);
-	normalize(&ray.direction, &ray.direction);
 	denom = dot(&ray.direction, &plane.current_orient);	
 	if (ft_double_abs(denom) > EPSILON)
 	{
@@ -44,12 +41,25 @@ double	intersect_square(t_square square, t_ray ray)
 {
 	t_plane	plane;
 	double	t;
+	double	proj1;
+	double	proj2;
+	t_vect	v;
 	
 	plane.current_pos = square.current_pos;
 	plane.current_orient = square.current_orient;	
 	if (!(t = intersect_plane(plane, ray)))
 		return (0);
-		
+	get_ray_point(t, ray, &v);
+	print_vect(&v);
+	sub_vect(&v, &square.current_pos, &v);
+	normalize(&square.edge1, &square.edge1);
+	normalize(&square.edge2, &square.edge2);
+	proj1 = dot(&v, &square.edge1);
+	proj2 = dot(&v, &square.edge2);
+	if ((proj1 < square.height && proj1 > 0) 
+		&& (proj2 < square.height && proj2 > 0))
+		return (t);
+	return (0);
 }
 
 /*

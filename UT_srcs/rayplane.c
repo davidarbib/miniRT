@@ -6,12 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/23 14:47:38 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/26 16:19:51 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/29 16:30:46 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytrace.h"
 #include "print.h"
+#include "assert.h"
 
 void	get_ray_point(double t, t_ray ray, t_vect *v_out)
 {
@@ -20,6 +21,50 @@ void	get_ray_point(double t, t_ray ray, t_vect *v_out)
 	add_vect(&tmp, &ray.origin, v_out);
 }
 
+double	intersect_plane(t_plane plane, t_ray ray)
+{
+	double	denom;
+	double	t;
+	t_vect	tmp_v; 
+
+	denom = dot(&ray.direction, &plane.current_orient);	
+	if (ft_double_abs(denom) > EPSILON)
+	{
+		sub_vect(&plane.current_pos, &ray.origin, &tmp_v);
+		t = dot(&tmp_v, &plane.current_orient) / denom;
+		if (t >= EPSILON)
+			return (t);
+	}
+	return (0);
+}
+
+double	intersect_square(t_square square, t_ray ray)
+{
+	t_plane	plane;
+	double	t;
+	double	proj1;
+	double	proj2;
+	t_vect	v;
+	
+	plane.current_pos = square.current_pos;
+	plane.current_orient = square.current_orient;	
+	if (!(t = intersect_plane(plane, ray)))
+		return (0);
+	get_ray_point(t, ray, &v);
+	//printf("v : \n");
+	print_vect(&v);
+	sub_vect(&v, &square.current_pos, &v);
+	normalize(&square.edge1, &square.edge1);
+	normalize(&square.edge2, &square.edge2);
+	//proj1 = vect_norm(&v) * dot(&v, &square.edge1);
+	//proj2 = vect_norm(&v) * dot(&v, &square.edge2);
+	proj1 = dot(&v, &square.edge1);
+	proj2 = dot(&v, &square.edge2);
+	if ((proj1 < square.height && proj1 > 0) 
+		&& (proj2 < square.height && proj2 > 0))
+		return (t);
+	return (0);
+}
 /*
 int		intersect_plane(t_vect plane_pos, t_vect plane_orient,
 		t_vect ray_origin, t_vect ray_direction)
@@ -100,14 +145,40 @@ int		intersect_triangle(t_ray *ray, t_trig triangle)
 int main()
 {
 	t_ray ray;
+	t_square square;
+	//double t = 0.;
+
+	ray.origin = (t_vect) {0, 0, 0};
+	ray.direction = (t_vect) {0, 0, -1};
+	square.current_pos = (t_vect) {-1, -1, -1};
+	square.current_orient = (t_vect) {0, 0, -1};
+	square.edge1 = (t_vect){1, 0, 0};
+	square.edge2 = (t_vect){0, 1, 0};
+	square.height = 3;
+	printf("t = %lf\n", intersect_square(square, ray));
+
+	ray.origin = (t_vect) {6, 0, 0};
+	printf("t = %lf\n", intersect_square(square, ray));
+
+	ray.origin = (t_vect) {2., 0, 0};
+	printf("t = %lf\n", intersect_square(square, ray));
+
+	ray.origin = (t_vect) {0, 1., 0};
+	printf("t = %lf\n", intersect_square(square, ray));
+
+	ray.origin = (t_vect) {0, 2., 0};
+	printf("t = %lf\n", intersect_square(square, ray));
+
+	ray.origin = (t_vect) {0, 1, 5};
+	printf("t = %lf\n", intersect_square(square, ray));
+
+/*
 	t_vect v1;
 	double t = 2;
-
-	ray.origin = (t_vect) {1, 0, 0};
-	ray.direction = (t_vect) {0, 0, -1};
 	get_ray_point(t, ray, &v1);
 	printf("v_out : \n");
 	print_vect(&v1);
+*/
 /*
 	t_ray ray;
 	t_trig triangle;

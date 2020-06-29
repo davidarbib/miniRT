@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/24 16:43:03 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/29 16:48:09 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	place_objs(t_scene *scene)
 
 	set_triangles(scene->triangles, scene->triangles_n);
 	set_spheres(scene->spheres, scene->spheres_n);
+	set_squares(scene->squares, scene->squares_n)
 	cam_orient = &scene->active_cam->current_orient;
 	normalize(cam_orient, cam_orient);
 	scale(-1, &scene->active_cam->current_pos, &translation);
@@ -86,77 +87,14 @@ void	init_scene(t_scene *scene, t_rt *rt)
 	scene->olights = NULL;
 	scene->cams = NULL;
 	scene->active_cam = NULL;
-
 	scene->ref_orient.x = 0.;
 	scene->ref_orient.y = 0.;
 	scene->ref_orient.z = -1.;
-	
 	ft_memmove(scene->background_rgb, rt->ambient_rgb, 3);
-	/*
-	t_spheric sph;
-	to_spherical(&scene->ref_orient, &sph);
-	printf("initial orientation\n");
-	print_vect_sph(&sph);
-	print_angle(sph.phi, sph.theta);
-
-	scene->background_rgb[0] = 0xd6; 
-	scene->background_rgb[1] = 0xd9; 
-	scene->background_rgb[2] = 0xce; 
-	
-	scene->active_cam = malloc(sizeof(t_cam));
-	printf("position camera: ");
-	scanf("%lf%lf%lf", &scene->active_cam->current_pos.x, 
-			&scene->active_cam->current_pos.y,
-			&scene->active_cam->current_pos.z);
-	printf("orientation camera: ");
-	scanf("%lf%lf%lf", &scene->active_cam->current_orient.x, 
-			&scene->active_cam->current_orient.y,
-			&scene->active_cam->current_orient.z);
-
-	printf("fov camera: ");
-	scanf("%d", &scene->active_cam->fov);
-	
-	printf("phi : ");
-	scanf("%lf", &scene->phi);
-	scene->phi = to_radian(scene->phi);
-
-
-	scene->cams_n = 1;
-	scene->triangles_n = 2;
-	scene->planes_n = 0;
-	scene->triangles = malloc(2 * sizeof(t_trig));
-	scene->triangles[0].pt1.x = -1.; 
-	scene->triangles[0].pt1.y = -1.; 
-	scene->triangles[0].pt1.z = -1.; 
-	scene->triangles[0].pt2.x = 1.; 
-	scene->triangles[0].pt2.y = -1.; 
-	scene->triangles[0].pt2.z = -1.; 
-	scene->triangles[0].pt3.x = 0.; 
-	scene->triangles[0].pt3.y = 1.; 
-	scene->triangles[0].pt3.z = -1.; 
-	scene->triangles[0].rgb[0] = 0x2d;
-	scene->triangles[0].rgb[1] = 0x1e;
-	scene->triangles[0].rgb[2] = 0x2f;
-
-	scene->triangles[1].pt1.x = -.5; 
-	scene->triangles[1].pt1.y = -1.; 
-	scene->triangles[1].pt1.z = -1.; 
-	scene->triangles[1].pt2.x = 1.5; 
-	scene->triangles[1].pt2.y = -1.; 
-	scene->triangles[1].pt2.z = -1.; 
-	scene->triangles[1].pt3.x = 0.5; 
-	scene->triangles[1].pt3.y = 1.; 
-	scene->triangles[1].pt3.z = -1.; 
-	scene->triangles[1].rgb[0] = 0xa7;
-	scene->triangles[1].rgb[1] = 0xd4;
-	scene->triangles[1].rgb[2] = 0x9b;
-	*/
 	make_array(rt, scene);
+	set_squares_edges(scene->squares, scene->squares_n);
 	set_cams(scene->cams, scene->cams_n);
 	scene->active_cam = scene->cams;
-	printf("orientation camera at setup :\n");
-	print_vect(&scene->active_cam->current_orient);
-	printf("------\n");
 	assign_turn_matrices(scene->left_matrix, scene->right_matrix);
 	assign_turn_matrices2(scene->up_matrix, scene->down_matrix);
 	place_objs(scene);
