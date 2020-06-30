@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:31:09 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/29 16:37:25 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/30 14:22:41 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,12 @@ void			move_scene(t_scene *scene, t_vect *translation);
 void			move_planes(t_plane *planes, int n, t_vect *translation);
 void			move_triangles(t_trig *triangles, int n, t_vect *translation);
 void			move_spheres(t_sphere *spheres, int n, t_vect *translation);
+void			move_squares(t_square *squares, int n, t_vect *translation);
 int				set_cams(t_cam *cams, int n);
 int				set_planes(t_plane *plane, int n);
 int				set_triangles(t_trig *triangles, int n);
 int				set_spheres(t_sphere *spheres, int n);
+void			set_squares(t_square *squares, int n);
 void			compute_triangles_edges(t_trig *triangles, int n);
-void			set_squares_edges(t_square *squares, int squares_n);
+void			set_squares_edges(t_square *squares, int n);
 #endif

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:50:22 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/29 16:54:05 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/30 14:07:54 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@ void	rotate_spheres(t_sphere *spheres, int n, double *matrix)
 {
 	t_sphere	*sphere;
 
-	while (n)
+	while (n--)
 	{
-		sphere = spheres + n - 1;
+		sphere = spheres + n;
 		rotate_point(matrix, &sphere->current_pos, &sphere->current_pos);
-		n--;
 	}
 }
 
@@ -29,11 +28,13 @@ void	rotate_squares(t_square *squares, int n, double *matrix)
 {
 	t_square	*square;
 
-	while (n)
+	while (n--)
 	{
-		square = squares + n - 1;
+		square = squares + n;
 		rotate_point(matrix, &square->current_pos, &square->current_pos);
-		n--;
+		rotate_point(matrix, &square->current_orient, &square->current_orient);
+		rotate_point(matrix, &square->current_edge1, &square->current_edge1);
+		rotate_point(matrix, &square->current_edge2, &square->current_edge2);
 	}
 }
 
@@ -41,10 +42,9 @@ void	rotate_cylinders(t_cyld *cylinders, int n, double *matrix)
 {
 	t_cyld	*cylinder;
 
-	while (n)
+	while (n--)
 	{
-		cylinder = cylinders + n - 1;
+		cylinder = cylinders + n;
 		rotate_point(matrix, &cylinder->current_pos, &cylinder->current_pos);
-		n--;
 	}
 }

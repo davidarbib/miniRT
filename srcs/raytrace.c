@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 12:45:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/24 23:47:19 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/30 15:12:53 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ static void browse_scene(t_scene *scene, t_ray *ray, t_near *near)
 					ray, near); 
 	ray->current_type = sphere;
 	loop_intersect_spheres(scene->spheres, scene->spheres_n, 
+					ray, near); 
+	ray->current_type = square;
+	loop_intersect_squares(scene->squares, scene->squares_n, 
 					ray, near); 
 }
 

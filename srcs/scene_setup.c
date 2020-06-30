@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/29 16:48:09 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/30 14:50:12 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,11 @@ void	place_objs(t_scene *scene)
 
 	set_triangles(scene->triangles, scene->triangles_n);
 	set_spheres(scene->spheres, scene->spheres_n);
-	set_squares(scene->squares, scene->squares_n)
+	set_squares(scene->squares, scene->squares_n);
 	cam_orient = &scene->active_cam->current_orient;
 	normalize(cam_orient, cam_orient);
 	scale(-1, &scene->active_cam->current_pos, &translation);
 	move_scene(scene, &translation);
-	printf("         -----------------\n");
-	t_vect v = (t_vect){0., 0., -1.};
-	printf("test vector before transformation:\n");
-	print_vect(&v);
 	if (!(same_vect(cam_orient, &scene->ref_orient)))
 	{
 		if (opposite_vect(cam_orient, &scene->ref_orient))
@@ -72,7 +68,6 @@ void	place_objs(t_scene *scene)
 		else 
 			extract_scene_rotation(cam_orient, &scene->ref_orient, rot_matrix);
 		rotate_scene(scene, rot_matrix);
-		rotate_point(rot_matrix, &v, &v);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:08:02 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/29 15:10:01 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/30 15:09:58 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,14 @@ void	raytrace(t_scene *scene, t_mlx *mlx_cfg);
 double	intersect_plane(t_plane plane, t_ray ray);
 double	intersect_triangle(t_trig triangle, t_ray ray);
 double	intersect_sphere(t_sphere sphere, t_ray ray);
+double	intersect_square(t_square square, t_ray ray);
 int		intersect_aabb(t_aabb *aabb, t_ray *ray);
 void	loop_intersect_planes(t_plane *planes, int n, t_ray *ray,
 		t_near *near);
 void	loop_intersect_triangles(t_trig *triangles, int n, t_ray *ray,
 		t_near *near);
 void	loop_intersect_spheres(t_sphere *spheres, int n, t_ray *ray,
+		t_near *near);
+void	loop_intersect_squares(t_square *squares, int n, t_ray *ray,
 		t_near *near);
 #endif

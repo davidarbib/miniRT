@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/23 14:47:38 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/29 16:33:01 by darbib           ###   ########.fr       */
+/*   Updated: 2020/06/30 15:12:06 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ double	intersect_square(t_square square, t_ray ray)
 	if (!(t = intersect_plane(plane, ray)))
 		return (0);
 	get_ray_point(t, ray, &v);
-	print_vect(&v);
 	sub_vect(&v, &square.current_pos, &v);
 	normalize(&square.edge1, &square.edge1);
 	normalize(&square.edge2, &square.edge2);
