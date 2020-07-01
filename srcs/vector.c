@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 13:49:53 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/22 20:42:35 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/01 18:48:01 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,13 @@ int		opposite_vect(t_vect *v1, t_vect *v2)
 	
 	scale(-1., v1, &v1_opposite);
 	if (same_vect(&v1_opposite, v2))
+		return (1);
+	return (0);
+}
+
+int		is_null_vect(t_vect v)
+{	
+	if (is_zero(v.x) && is_zero(v.y) && is_zero(v.z))
 		return (1);
 	return (0);
 }

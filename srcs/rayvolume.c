@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 19:19:23 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/24 18:50:57 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/01 18:50:36 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,18 @@ double intersect_sphere(t_sphere sphere, t_ray ray)
 	if (var[t0] < EPSILON)
 		return (var[t1]);
 	return (var[t0]);
+}
+
+/*
+**
+*/
+double intersect_cylinder(t_cyld cylinder, t_ray ray)
+{
+	double	var[6];
+	t_vect	br_min_bc;
+	t_vect	r_x_a;
+	t_vect	d_x_a;
+	
+	cross(&ray.direction, &cylinder.current_orient, &r_x_a);
+	if (is_null_vect(
 }

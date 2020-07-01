@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:08:02 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/30 15:09:58 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/01 18:34:05 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define TYPE_NB	5
 
 enum			e_var {t_ca, t_hc, d, t0, t1};
+enum			e_var_cylinder {d, len_rxa, s, t, t1, t2};
 enum			e_type {plane, square, triangle, sphere, cylinder};
 
 typedef struct	s_ray
