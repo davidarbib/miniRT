@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 13:56:20 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/13 14:15:31 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/02 22:40:22 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 # define MACOS_CODES_H
 
 /* ------X11/X.h extract--------*/
-# define KeyPress	2
-# define KeyRelease	3
-# define ButtonPress	4
-# define ButtonRelease	5
-# define MotionNotify	6
-# define DestroyNotify	17
+# define KEYPRESS	2
+# define KEYRELEASE	3
+# define BUTTONPRESS	4
+# define BUTTONRELEASE	5
+# define MOTIONNOTIFY	6
+# define DESTROYNOTIFY	17
 
-# define KeyPressMask		1
-# define KeyReleaseMask		2
-# define ButtonPressMask	4
-# define ButtonReleaseMask	8
+# define KEYPRESSMASK		1
+# define KEYRELEASEMASK		2
+# define BUTTONPRESSMASK	4
+# define BUTTONRELEASEMASK	8
 /*------------------------------*/
 
 # define KEY_ESCAPE         53

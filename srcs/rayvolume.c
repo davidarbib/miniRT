@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 19:19:23 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/01 18:50:36 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/02 20:51:56 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,25 @@ double intersect_cylinder(t_cyld cylinder, t_ray ray)
 	t_vect	br_min_bc;
 	t_vect	r_x_a;
 	t_vect	d_x_a;
+	t_vect	tmp_v;
 	
 	cross(&ray.direction, &cylinder.current_orient, &r_x_a);
-	if (is_null_vect(
+	if (is_null_vect(r_x_a))
+		return (0);
+	sub_vect(&ray.origin, &cylinder.pos, &br_min_bc);
+	var[len_rxa] = vect_norm(&r_x_a);
+	normalize(&r_x_a, &r_x_a);
+	var[d] = ft_double_abs(dot(&br_min_bc, &r_x_a));
+	if (var[d] > cylinder.diam)
+		return (0);
+	cross(&br_min_bc, &ray.direction, &tmp_v);
+	var[t] = dot(&tmp_v, &r_x_a) / var[len_rxa];
+	cross(&r_x_a, &cylinder.current_orient, &tmp_v);
+	var[s] = ft_double_abs(sqrt((diam / 2) * (diam / 2) - var[d] * var[d])
+								/ dot(&ray.current_orient, &tmp_v));
+	var[t1] = var[t] - var[s];
+	var[t2] = var[t] + var[s];
+	if (var[t1] > EPSILON)
+		return (var[t1]);
+	return (var[t2]);
 }
