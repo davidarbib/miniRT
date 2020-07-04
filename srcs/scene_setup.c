@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/30 14:50:12 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/04 22:40:44 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		make_array(t_rt *rt, t_scene *scene)
 			&scene->triangles_n))
 		&& (scene->squares = ft_lsttotab(rt->squares, sizeof(t_square), 
 			&scene->squares_n))
-		&& (scene->cylinders = ft_lsttotab(rt->cyls, sizeof(t_cyld), 
+		&& (scene->cylinders = ft_lsttotab(rt->cyls, sizeof(t_cylinder), 
 			&scene->cylinders_n))
 		&& (scene->cams = ft_lsttotab(rt->cams, sizeof(t_cam), 
 			&scene->cams_n))
@@ -54,9 +54,11 @@ void	place_objs(t_scene *scene)
 	t_vect	*cam_orient;
 	double 	rot_matrix[9];
 
+	set_planes(scene->planes, scene->planes_n);
 	set_triangles(scene->triangles, scene->triangles_n);
 	set_spheres(scene->spheres, scene->spheres_n);
 	set_squares(scene->squares, scene->squares_n);
+	set_cylinders(scene->cylinders, scene->cylinders_n);
 	cam_orient = &scene->active_cam->current_orient;
 	normalize(cam_orient, cam_orient);
 	scale(-1, &scene->active_cam->current_pos, &translation);
@@ -82,12 +84,12 @@ void	init_scene(t_scene *scene, t_rt *rt)
 	scene->olights = NULL;
 	scene->cams = NULL;
 	scene->active_cam = NULL;
-	scene->ref_orient.x = 0.;
-	scene->ref_orient.y = 0.;
-	scene->ref_orient.z = -1.;
+	scene->ref_orient = (t_vect) {0., 0., -1.};
 	ft_memmove(scene->background_rgb, rt->ambient_rgb, 3);
 	make_array(rt, scene);
 	set_squares_edges(scene->squares, scene->squares_n);
+	set_quadrics_radius(scene->cylinders, scene->cylinders_n,
+						scene->spheres, scene->spheres_n);
 	set_cams(scene->cams, scene->cams_n);
 	scene->active_cam = scene->cams;
 	assign_turn_matrices(scene->left_matrix, scene->right_matrix);

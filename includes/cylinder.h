@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 15:59:58 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/27 18:08:54 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/04 22:07:17 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,17 @@
 ** height : ...
 ** rgb : rgb color
 */
-typedef struct		s_cyld
+typedef struct		s_cylinder
 {
 	t_vect			pos;
 	t_vect			orient;
 	t_vect			current_pos;
 	t_vect			current_orient;
-	float			diam;
-	float			height;
+	double			diam;
+	double			radius;
+	double			height;
 	unsigned char	rgb[3];
-}					t_cyld;
+}					t_cylinder;
 
 void	destroy_cylinder(void *obj);
 void	print_cyl(void *obj);

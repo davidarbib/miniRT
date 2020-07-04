@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 12:45:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/30 15:12:53 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/04 22:08:46 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	get_obj_rgb(void *obj, enum e_type type, unsigned char *rgb)
 	else if (type == sphere)
 		ft_memmove(rgb, ((t_sphere *)obj)->rgb, 3);
 	else if (type == cylinder)
-		ft_memmove(rgb, ((t_cyld *)obj)->rgb, 3);
+		ft_memmove(rgb, ((t_cylinder *)obj)->rgb, 3);
 }
 
 static void browse_scene(t_scene *scene, t_ray *ray, t_near *near)
@@ -37,14 +37,13 @@ static void browse_scene(t_scene *scene, t_ray *ray, t_near *near)
 	ray->current_type = plane;
 	loop_intersect_planes(scene->planes, scene->planes_n, ray, near); 
 	ray->current_type = triangle;
-	loop_intersect_triangles(scene->triangles, scene->triangles_n, 
-					ray, near); 
+	loop_intersect_triangles(scene->triangles, scene->triangles_n, ray, near); 
 	ray->current_type = sphere;
-	loop_intersect_spheres(scene->spheres, scene->spheres_n, 
-					ray, near); 
+	loop_intersect_spheres(scene->spheres, scene->spheres_n, ray, near); 
 	ray->current_type = square;
-	loop_intersect_squares(scene->squares, scene->squares_n, 
-					ray, near); 
+	loop_intersect_squares(scene->squares, scene->squares_n, ray, near); 
+	ray->current_type = cylinder;
+	loop_intersect_cylinders(scene->cylinders, scene->cylinders_n, ray, near); 
 }
 
 static void send_ray(t_scene *scene, t_mlx *mlx_cfg, int dx, int dy, t_ray *ray)

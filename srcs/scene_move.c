@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 13:20:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/30 14:50:54 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/04 21:59:54 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,16 @@ void	move_squares(t_square *squares, int n, t_vect *translation)
 	{
 		square = squares + n;
 		add_vect(&square->current_pos, translation, &square->current_pos);
+	}
+}
+
+void	move_cylinders(t_cylinder *cylinders, int n, t_vect *translation)
+{
+	t_cylinder *cylinder;
+
+	while (n--)
+	{
+		cylinder = cylinders + n;
+		add_vect(&cylinder->current_pos, translation, &cylinder->current_pos);
 	}
 }

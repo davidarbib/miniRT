@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 19:19:23 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/02 20:51:56 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/04 22:35:48 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ double intersect_sphere(t_sphere sphere, t_ray ray)
 	double	len_co;
 	double	r;
 
-	r = (sphere.diam / 2);
+	r = sphere.radius;
 	sub_vect(&sphere.current_pos, &ray.origin, &v_co);
 	var[t_ca] = dot(&v_co, &ray.direction);
 	if (var[t_ca] < 0)
@@ -42,31 +42,30 @@ double intersect_sphere(t_sphere sphere, t_ray ray)
 /*
 **
 */
-double intersect_cylinder(t_cyld cylinder, t_ray ray)
+double intersect_cylinder(t_cylinder cylinder, t_ray ray)
 {
 	double	var[6];
-	t_vect	br_min_bc;
+	t_vect	bc_min_br;
 	t_vect	r_x_a;
-	t_vect	d_x_a;
 	t_vect	tmp_v;
 	
 	cross(&ray.direction, &cylinder.current_orient, &r_x_a);
 	if (is_null_vect(r_x_a))
 		return (0);
-	sub_vect(&ray.origin, &cylinder.pos, &br_min_bc);
+	sub_vect(&cylinder.current_pos, &ray.origin, &bc_min_br);
 	var[len_rxa] = vect_norm(&r_x_a);
 	normalize(&r_x_a, &r_x_a);
-	var[d] = ft_double_abs(dot(&br_min_bc, &r_x_a));
-	if (var[d] > cylinder.diam)
+	var[dc] = ft_double_abs(dot(&bc_min_br, &r_x_a));
+	if (var[dc] > cylinder.diam / 2)
 		return (0);
-	cross(&br_min_bc, &ray.direction, &tmp_v);
-	var[t] = dot(&tmp_v, &r_x_a) / var[len_rxa];
+	cross(&bc_min_br, &cylinder.current_orient, &tmp_v);
+	var[tc] = dot(&tmp_v, &r_x_a) / var[len_rxa];
 	cross(&r_x_a, &cylinder.current_orient, &tmp_v);
-	var[s] = ft_double_abs(sqrt((diam / 2) * (diam / 2) - var[d] * var[d])
-								/ dot(&ray.current_orient, &tmp_v));
-	var[t1] = var[t] - var[s];
-	var[t2] = var[t] + var[s];
-	if (var[t1] > EPSILON)
-		return (var[t1]);
-	return (var[t2]);
+	var[s] = ft_double_abs(sqrt((cylinder.radius) * (cylinder.radius) 
+			- var[dc] * var[dc]) / dot(&ray.direction, &tmp_v));
+	var[t1c] = var[tc] - var[s];
+	var[t2c] = var[tc] + var[s];
+	if (var[t1c] > EPSILON)
+		return (var[t1c]);
+	return (var[t2c]);
 }

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 15:55:19 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/24 16:24:06 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/04 22:25:39 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct		s_sphere
 	t_vect			pos;
 	t_vect			current_pos;
 	double			diam;
+	double			radius;
 	unsigned char	rgb[3];
 }					t_sphere;
 

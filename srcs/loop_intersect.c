@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 16:12:37 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/30 15:09:28 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/04 22:09:11 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,26 @@ void	loop_intersect_squares(t_square *squares, int n, t_ray *ray,
 		{
 			near->t = t;
 			near->obj = (void *)square;
+			near->type = ray->current_type;
+			get_obj_rgb(near->obj, near->type, near->rgb); 
+		}
+	}
+}
+
+void	loop_intersect_cylinders(t_cylinder *cylinders, int n, t_ray *ray,
+		t_near *near)
+{
+	double	t;
+	t_cylinder	*cylinder;
+	
+	while (--n >= 0)
+	{
+		cylinder = cylinders + n;
+		if ((t = intersect_cylinder(*cylinder, *ray)) > 0 &&
+				(t + EPSILON) < near->t)
+		{
+			near->t = t;
+			near->obj = (void *)cylinder;
 			near->type = ray->current_type;
 			get_obj_rgb(near->obj, near->type, near->rgb); 
 		}

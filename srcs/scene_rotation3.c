@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:50:22 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/30 14:07:54 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/04 22:08:22 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,15 @@ void	rotate_squares(t_square *squares, int n, double *matrix)
 	}
 }
 
-void	rotate_cylinders(t_cyld *cylinders, int n, double *matrix)
+void	rotate_cylinders(t_cylinder *cylinders, int n, double *matrix)
 {
-	t_cyld	*cylinder;
+	t_cylinder	*cylinder;
 
 	while (n--)
 	{
 		cylinder = cylinders + n;
 		rotate_point(matrix, &cylinder->current_pos, &cylinder->current_pos);
+		rotate_point(matrix, &cylinder->current_orient, 
+				&cylinder->current_orient);
 	}
 }
