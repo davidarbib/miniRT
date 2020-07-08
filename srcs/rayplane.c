@@ -6,19 +6,12 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/23 14:47:38 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/30 15:12:06 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/08 15:01:57 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytrace.h"
 #include "print.h"
-
-void	get_ray_point(double t, t_ray ray, t_vect *v_out)
-{
-	t_vect tmp;
-	scale(t, &ray.direction, &tmp);
-	add_vect(&tmp, &ray.origin, v_out);
-}
 
 double	intersect_plane(t_plane plane, t_ray ray)
 {
@@ -49,7 +42,7 @@ double	intersect_square(t_square square, t_ray ray)
 	plane.current_orient = square.current_orient;	
 	if (!(t = intersect_plane(plane, ray)))
 		return (0);
-	get_ray_point(t, ray, &v);
+	get_hit_point(t, ray.direction, ray.origin, &v);
 	sub_vect(&v, &square.current_pos, &v);
 	normalize(&square.edge1, &square.edge1);
 	normalize(&square.edge2, &square.edge2);

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:08:02 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/04 22:08:35 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/08 16:45:18 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@
 
 # define TYPE_NB	5
 
-enum			e_var {t_ca, t_hc, d, t0, t1};
+enum			e_var_sphere {t_ca, t_hc, d, t0, t1};
 enum			e_var_cylinder {dc, len_rxa, s, tc, t1c, t2c};
 enum			e_type {plane, square, triangle, sphere, cylinder};
+enum			e_colorchan {r, g, b};
 
 typedef struct	s_ray
 {
@@ -44,14 +45,24 @@ typedef struct	s_ray
 typedef struct		s_near
 {
 	double			t;
+	double			rgb_ratio[3];
+	t_vect			hit;
+	t_vect			normal;
 	void			*obj;
 	enum e_type		type;
 	unsigned char 	rgb[3];
+	
 }					t_near;
 
 void	get_obj_rgb(void *obj, enum e_type type, unsigned char *rgb);
-void	get_ray_point(double t, t_ray ray, t_vect *v_out);
+void	get_hit_point(double t, t_vect direction, t_vect origin, t_vect *v_out);
+void	get_hit_plane(t_near *near, t_ray ray);
+void	get_hit_triangle(t_near *near, t_ray ray);
+void	get_hit_square(t_near *near, t_ray ray);
+void	get_hit_sphere(t_near *near, t_ray ray);
+void	get_hit_cylinder(t_near *near, t_ray ray);
 void	raytrace(t_scene *scene, t_mlx *mlx_cfg);
+void	browse_scene(t_scene *scene, t_ray *ray, t_near *near);
 double	intersect_plane(t_plane plane, t_ray ray);
 double	intersect_triangle(t_trig triangle, t_ray ray);
 double	intersect_sphere(t_sphere sphere, t_ray ray);
