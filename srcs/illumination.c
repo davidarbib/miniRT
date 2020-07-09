@@ -6,7 +6,12 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 14:21:50 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/08 14:48:30 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/09 16:56:34 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+void	compute_illumination(t_ray *ray, t_ray *shadow_ray, t_near *near,
+		t_near *shadow_near)
+{
+	
+}

@@ -6,11 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 16:50:10 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/08 15:01:41 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/09 14:32:29 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
+#include <vector.h>
+#include <raytrace.h>
 
 double	to_radian(double degree)
 {

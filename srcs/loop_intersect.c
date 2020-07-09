@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 16:12:37 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/08 14:53:54 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/09 15:21:31 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ void	loop_intersect_triangles(t_trig *triangles, int n, t_ray *ray,
 			near->t = t;
 			near->obj = (void *)triangle;
 			near->type = ray->current_type;
-			near->orient = triangle->current_orient;
-			get_obj_rgb(near->obj, near->type, near->rgb); 
 		}
 	}
 }
@@ -65,9 +63,6 @@ void	loop_intersect_spheres(t_sphere *spheres, int n, t_ray *ray,
 			near->t = t;
 			near->obj = (void *)sphere;
 			near->type = ray->current_type;
-// Normal at P
-			sub_vect( sphere->current_
-			get_obj_rgb(near->obj, near->type, near->rgb); 
 		}
 	}
 }
@@ -87,8 +82,6 @@ void	loop_intersect_squares(t_square *squares, int n, t_ray *ray,
 			near->t = t;
 			near->obj = (void *)square;
 			near->type = ray->current_type;
-			near->orient = square->current_orient;
-			get_obj_rgb(near->obj, near->type, near->rgb); 
 		}
 	}
 }
@@ -108,8 +101,6 @@ void	loop_intersect_cylinders(t_cylinder *cylinders, int n, t_ray *ray,
 			near->t = t;
 			near->obj = (void *)cylinder;
 			near->type = ray->current_type;
-// Normal at P
-			get_obj_rgb(near->obj, near->type, near->rgb); 
 		}
 	}
 }
