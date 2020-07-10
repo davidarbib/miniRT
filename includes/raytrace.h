@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:08:02 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/10 16:52:32 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/10 18:01:55 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct		s_near
 }					t_near;
 
 void	get_obj_rgb(void *obj, enum e_type type, unsigned char *rgb);
+void	to_rgb_ratio(unsigned char *rgb_in, t_vect *rgb_out);
 void	get_hit_point(double t, t_vect direction, t_vect origin, t_vect *v_out);
 void	get_hit_plane(t_near *near, t_ray ray);
 void	get_hit_triangle(t_near *near, t_ray ray);

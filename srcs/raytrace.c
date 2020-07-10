@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 12:45:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/10 14:42:49 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/10 19:25:29 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static void send_ray(t_scene *scene, t_mlx *mlx_cfg, int dx, int dy, t_ray *ray)
 	browse_scene(scene, ray, &near);
 	g_get_properties[near.type](&near, *ray);
 	n = scene->olights_n;
+	near.rgb_ratio = (t_vect) {0, 0, 0};
 	while (n--)
 	{
 		shadow_ray.origin = near.hit;
@@ -68,7 +69,8 @@ static void send_ray(t_scene *scene, t_mlx *mlx_cfg, int dx, int dy, t_ray *ray)
 				&shadow_ray.direction);
 		shadow_near.obj = NULL;
 		browse_scene(scene, &shadow_ray, &shadow_near);	
-		//compute_illumination(*ray, *shadow_ray, &near, shadow_near);
+		to_rgb_ratio(scene->olights[n].rgb, &shadow_near.rgb_ratio);
+		compute_illumination(*ray, *shadow_ray, &near, shadow_near);
 	}
 	apply_color(near.rgb, mlx_cfg, dx, dy);
 }
