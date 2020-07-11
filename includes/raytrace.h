@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:08:02 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/11 01:36:04 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/11 21:27:59 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@
 
 # define TYPE_NB	5
 
-# define KS			0.2
-# define KD			0.2
+# define KS			0.4
+# define KD			0.3
 # define KA			1.
-# define SHINE		3.
+# define SHINE		16.
 
 enum			e_var_sphere {t_ca, t_hc, d, t0, t1};
 enum			e_var_cylinder {dc, len_rxa, s, tc, t1c, t2c};
@@ -50,7 +50,7 @@ typedef struct		s_ray
 typedef struct		s_near
 {
 	double			t;
-	int				light_actions;
+	double			ratio_sum;
 	double			current_light_ratio;
 	t_vect			rgb_ratio;
 	t_vect			hit;

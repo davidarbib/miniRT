@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 12:45:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/11 01:39:56 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/11 19:45:19 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,13 @@ static void	merge_light(t_scene *scene, t_ray *ray, t_near *near)
 	t_near	snear;
 	int		n;
 
-	snear.light_actions = 1;
+	snear.ratio_sum = 0;
 	n = -1;
 	while (++n < scene->olights_n)
 	{
 		sray.origin = near->hit;
 		sub_vect(&scene->olights[n].current_pos, &near->hit, &sray.direction);
+		normalize(&sray.direction, &sray.direction);
 		snear.obj = NULL;
 		browse_scene(scene, &sray, &snear);	
 		if (snear.obj)
@@ -51,13 +52,16 @@ static void	merge_light(t_scene *scene, t_ray *ray, t_near *near)
 	}
 	scale((KA * scene->ambient_ratio), &scene->ambient_rgb, &tmp); 
 	add_vect(&tmp, &near->rgb_ratio, &near->rgb_ratio);
-	scale(1. / snear.light_actions, &near->rgb_ratio, &near->rgb_ratio);
+	snear.ratio_sum += scene->ambient_ratio;
+	scale(1. / snear.ratio_sum, &near->rgb_ratio, &near->rgb_ratio);
 }
 
 static void send_ray(t_scene *scene, t_mlx *mlx_cfg, int dx, int dy, t_ray *ray)
 {
 	t_near	near;
 	
+	if (dx == WIDTH/2 && dy == HEIGHT/2)
+		printf("cc\n");
 	init_send_ray(&near, scene);
 	browse_scene(scene, ray, &near);
 	if (near.obj)

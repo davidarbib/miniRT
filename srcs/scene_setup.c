@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/11 01:51:12 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/11 15:57:13 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "print.h"
 #include "spheric.h"
 #include "matrix.h"
+#include "raytrace.h"
 
 void	compute_triangles_edges(t_trig *triangles, int n)
 {
@@ -85,9 +86,11 @@ void	init_scene(t_scene *scene, t_rt *rt)
 	scene->cams = NULL;
 	scene->active_cam = NULL;
 	scene->ref_orient = (t_vect) {0., 0., -1.};
-	ft_memmove(scene->ambient_rgb, rt->ambient_rgb, 3);
+	scene->background_rgb[0] = 0.;
+	scene->background_rgb[1] = 0.;
+	scene->background_rgb[2] = 0.;
+	to_rgb_ratio(rt->ambient_rgb, &scene->ambient_rgb);
 	scene->ambient_ratio = rt->ambient_ratio;
-	ft_memmove(scene->background_rgb, rt->ambient_rgb, 3);
 	make_array(rt, scene);
 	set_squares_edges(scene->squares, scene->squares_n);
 	set_quadrics_radius(scene->cylinders, scene->cylinders_n,
