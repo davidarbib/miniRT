@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:08:02 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/10 18:01:55 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/11 01:36:04 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,28 @@
 
 # define KS			0.2
 # define KD			0.2
-# define KA			0.2
-# define SHINE		3
+# define KA			1.
+# define SHINE		3.
 
 enum			e_var_sphere {t_ca, t_hc, d, t0, t1};
 enum			e_var_cylinder {dc, len_rxa, s, tc, t1c, t2c};
 enum			e_type {plane, square, triangle, sphere, cylinder};
 enum			e_colorchan {r, g, b};
 
-typedef struct	s_ray
+typedef struct		s_ray
 {
 	t_vect			origin;
 	t_vect			direction;
 	t_vect			inv_direction;
 	int				sign[3];
 	enum e_type		current_type;
-}				t_ray;
+}					t_ray;
 
 typedef struct		s_near
 {
 	double			t;
+	int				light_actions;
+	double			current_light_ratio;
 	t_vect			rgb_ratio;
 	t_vect			hit;
 	t_vect			normal;
@@ -85,4 +87,7 @@ void	loop_intersect_squares(t_square *squares, int n, t_ray *ray,
 		t_near *near);
 void	loop_intersect_cylinders(t_cylinder *cylinders, int n, t_ray *ray,
 		t_near *near);
+void	compute_illumination(t_ray *ray, t_ray *shadow_ray, t_near *near,
+		t_near *shadow);
+void	light_on_obj(t_vect *light, unsigned char *obj_rgb);
 #endif

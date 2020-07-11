@@ -6,7 +6,7 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/06/30 14:21:02 by darbib           ###   ########.fr        #
+#    Updated: 2020/07/11 01:40:23 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,6 +91,7 @@ SRC = camera.c \
 	move.c \
 	hook.c \
 	raytrace.c \
+	raytrace2.c \
 	rayplane.c \
 	rayvolume.c \
 	keyboard_actions.c \
@@ -104,6 +105,8 @@ SRC = camera.c \
 	matrix_inversion.c \
 	loop_intersect.c \
 	observer.c \
+	illumination.c \
+	get_hit_data.c \
 	triangle.c
 
 ifeq ($(DRAFT), 1)

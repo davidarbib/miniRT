@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:50:39 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/29 13:27:57 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/11 01:30:49 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 
 void	destroy_cylinder(void *obj)
 {
-	t_cyld *cylinder;
+	t_cylinder *cylinder;
 	
-	cylinder = (t_cyld *)obj;
+	cylinder = (t_cylinder *)obj;
 	free(cylinder);
 	cylinder = NULL;
 }
 
-static void	check_cylinder(t_rt *cfg, t_cyld *cyl)
+static void	check_cylinder(t_rt *cfg, t_cylinder *cyl)
 {
 	if (!is_orientation_vect(&cyl->orient))
 		parse_error(E_ORIENT, cfg);
@@ -31,10 +31,10 @@ static void	check_cylinder(t_rt *cfg, t_cyld *cyl)
 
 void	parse_cylinder(t_rt *cfg, char *line)
 {
-	t_cyld	*cyl;
+	t_cylinder	*cyl;
 	
 	check_data(line, cfg);
-	if (!(cyl = (t_cyld *)malloc(sizeof(t_cyld))))
+	if (!(cyl = (t_cylinder *)malloc(sizeof(t_cylinder))))
 		sys_error(cfg);
 	cfg->current_obj_addr = (void *)cyl;
 	line = ft_pass_spaces(line);
@@ -57,9 +57,9 @@ void	parse_cylinder(t_rt *cfg, char *line)
 
 void	print_cyl(void *obj)
 {
-	t_cyld *cyl;
+	t_cylinder *cyl;
 
-	cyl = (t_cyld *)obj;
+	cyl = (t_cylinder *)obj;
 	printf("Pos : ");
 	print_vect(&cyl->pos);
 	printf("Orientation : ");

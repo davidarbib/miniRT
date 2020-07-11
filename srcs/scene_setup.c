@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/04 22:40:44 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/11 01:51:12 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ void	init_scene(t_scene *scene, t_rt *rt)
 	scene->cams = NULL;
 	scene->active_cam = NULL;
 	scene->ref_orient = (t_vect) {0., 0., -1.};
+	ft_memmove(scene->ambient_rgb, rt->ambient_rgb, 3);
+	scene->ambient_ratio = rt->ambient_ratio;
 	ft_memmove(scene->background_rgb, rt->ambient_rgb, 3);
 	make_array(rt, scene);
 	set_squares_edges(scene->squares, scene->squares_n);

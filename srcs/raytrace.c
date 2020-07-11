@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 12:45:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/10 19:25:29 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/11 01:39:56 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,57 +20,51 @@
 
 void	(*g_get_properties[TYPE_NB])(t_near *, t_ray);
 
-void	get_obj_rgb(void *obj, enum e_type type, unsigned char *rgb)
+static void	init_send_ray(t_near *near, t_scene *scene)
 {
-	if (type == triangle)
-		ft_memmove(rgb, ((t_trig *)obj)->rgb, 3);
-	else if (type == plane)
-		ft_memmove(rgb, ((t_plane *)obj)->rgb, 3);
-	else if (type == square)
-		ft_memmove(rgb, ((t_square *)obj)->rgb, 3);
-	else if (type == sphere)
-		ft_memmove(rgb, ((t_sphere *)obj)->rgb, 3);
-	else if (type == cylinder)
-		ft_memmove(rgb, ((t_cylinder *)obj)->rgb, 3);
+	near->t = INFINITY;
+	near->obj = NULL;
+	ft_memmove(near->rgb, scene->background_rgb, 3);
+	near->rgb_ratio = (t_vect) {0, 0, 0};
 }
 
-void browse_scene(t_scene *scene, t_ray *ray, t_near *near)
+static void	merge_light(t_scene *scene, t_ray *ray, t_near *near)
 {
-	ray->current_type = plane;
-	loop_intersect_planes(scene->planes, scene->planes_n, ray, near); 
-	ray->current_type = triangle;
-	loop_intersect_triangles(scene->triangles, scene->triangles_n, ray, near); 
-	ray->current_type = sphere;
-	loop_intersect_spheres(scene->spheres, scene->spheres_n, ray, near); 
-	ray->current_type = square;
-	loop_intersect_squares(scene->squares, scene->squares_n, ray, near); 
-	ray->current_type = cylinder;
-	loop_intersect_cylinders(scene->cylinders, scene->cylinders_n, ray, near); 
+	t_vect	tmp;
+	t_ray	sray;
+	t_near	snear;
+	int		n;
+
+	snear.light_actions = 1;
+	n = -1;
+	while (++n < scene->olights_n)
+	{
+		sray.origin = near->hit;
+		sub_vect(&scene->olights[n].current_pos, &near->hit, &sray.direction);
+		snear.obj = NULL;
+		browse_scene(scene, &sray, &snear);	
+		if (snear.obj)
+			continue;
+		snear.current_light_ratio = scene->olights[n].ratio;
+		to_rgb_ratio(scene->olights[n].rgb, &snear.rgb_ratio);
+		compute_illumination(ray, &sray, near, &snear);
+	}
+	scale((KA * scene->ambient_ratio), &scene->ambient_rgb, &tmp); 
+	add_vect(&tmp, &near->rgb_ratio, &near->rgb_ratio);
+	scale(1. / snear.light_actions, &near->rgb_ratio, &near->rgb_ratio);
 }
 
 static void send_ray(t_scene *scene, t_mlx *mlx_cfg, int dx, int dy, t_ray *ray)
 {
 	t_near	near;
-	t_ray	shadow_ray;
-	t_near	shadow_near;
-	int		n;
 	
-	near.t = INFINITY;
-	near.obj = NULL;
-	ft_memmove(near.rgb, scene->background_rgb, 3);
+	init_send_ray(&near, scene);
 	browse_scene(scene, ray, &near);
-	g_get_properties[near.type](&near, *ray);
-	n = scene->olights_n;
-	near.rgb_ratio = (t_vect) {0, 0, 0};
-	while (n--)
+	if (near.obj)
 	{
-		shadow_ray.origin = near.hit;
-		sub_vect(&scene->olights[n].current_pos, &near.hit,
-				&shadow_ray.direction);
-		shadow_near.obj = NULL;
-		browse_scene(scene, &shadow_ray, &shadow_near);	
-		to_rgb_ratio(scene->olights[n].rgb, &shadow_near.rgb_ratio);
-		compute_illumination(*ray, *shadow_ray, &near, shadow_near);
+		g_get_properties[near.type](&near, *ray);
+		merge_light(scene, ray, &near);
+		light_on_obj(&near.rgb_ratio, near.rgb);
 	}
 	apply_color(near.rgb, mlx_cfg, dx, dy);
 }
@@ -84,15 +78,6 @@ static void	define_ray(t_ray *ray, double half_screen, int dx, int dy)
 		* aspect_ratio;
 	ray->direction.y = (1 - 2 * (dy + 0.5) / HEIGHT) * half_screen;
 	ray->direction.z = -1.0;	
-	//-----------------
-	/*
-	if (dx == WIDTH/2 && dy == HEIGHT/2)
-	{
-		printf("ray_direction at (0, 0)\n");
-		print_vect(&ray->direction);
-	}
-	*/
-	//-----------------
 	ray->inv_direction.x = 1 / ray->direction.x;
 	ray->inv_direction.y = 1 / ray->direction.y;
 	ray->inv_direction.z = 1 / ray->direction.z;
