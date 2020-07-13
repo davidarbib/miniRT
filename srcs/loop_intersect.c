@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 16:12:37 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/09 15:21:31 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/13 15:48:29 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	loop_intersect_planes(t_plane *planes, int n, t_ray *ray, t_near *near)
 	while (--n >= 0)
 	{
 		plane = planes + n;
-		if ((t = intersect_plane(*plane, *ray)) < near->t)
+		if ((t = intersect_plane(*plane, *ray)) > 0 &&
+				(t + EPSILON) < near->t)
 		{
 			near->t = t;
 			near->obj = (void *)plane;

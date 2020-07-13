@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 16:35:51 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/04 22:26:44 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/13 12:58:25 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ void	set_cylinders(t_cylinder *cylinders, int n)
 		vect_cpy(&cylinder->pos, &cylinder->current_pos);
 		vect_cpy(&cylinder->orient, &cylinder->current_orient);
 	}
+}
+
+void	set_olights(t_olight *olights, int n)
+{
+	while (n--)
+		vect_cpy(&olights[n].pos, &olights[n].current_pos);
 }
 
 void	set_quadrics_radius(t_cylinder *cyls, int n, t_sphere *spheres, int k)

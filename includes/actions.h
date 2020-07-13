@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 22:33:19 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/24 17:29:15 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/13 18:14:54 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "scene.h"
 # include "graphic.h"
 
-# define STEP_SIZE 1
+# define STEP_SIZE 0.2
 # define ANGLE_SIZE 10
 # define MAX_KEYCODE 65536
 

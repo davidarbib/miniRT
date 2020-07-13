@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 22:23:52 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/04 21:59:01 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/13 12:43:13 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,5 @@ void	move_scene(t_scene *scene, t_vect *translation)
 	move_spheres(scene->spheres, scene->spheres_n, translation);
 	move_squares(scene->squares, scene->squares_n, translation);
 	move_cylinders(scene->cylinders, scene->cylinders_n, translation);
+	move_olights(scene->olights, scene->olights_n, translation);
 }

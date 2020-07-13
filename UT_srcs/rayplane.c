@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/23 14:47:38 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/29 16:30:46 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/13 15:46:52 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ double	intersect_plane(t_plane plane, t_ray ray)
 	return (0);
 }
 
+/*
 double	intersect_square(t_square square, t_ray ray)
 {
 	t_plane	plane;
@@ -65,7 +66,6 @@ double	intersect_square(t_square square, t_ray ray)
 		return (t);
 	return (0);
 }
-/*
 int		intersect_plane(t_vect plane_pos, t_vect plane_orient,
 		t_vect ray_origin, t_vect ray_direction)
 {
@@ -144,6 +144,19 @@ int		intersect_triangle(t_ray *ray, t_trig triangle)
 
 int main()
 {
+	t_plane plane;
+	t_ray	ray;
+	
+	ray.origin = (t_vect){0, 0, 0};
+	ray.direction = (t_vect){0, 0, -1};
+	plane.current_pos = (t_vect){0, 0, 0};
+	plane.current_orient = (t_vect){0, 0, -1};
+	printf("t = %lf\n", intersect_plane(plane, ray));
+	plane.current_pos = (t_vect){0, 0, -4};
+	printf("t = %lf\n", intersect_plane(plane, ray));
+	plane.current_pos = (t_vect){0, 0, 4};
+	printf("t = %lf\n", intersect_plane(plane, ray));
+/*
 	t_ray ray;
 	t_square square;
 	//double t = 0.;
@@ -172,14 +185,11 @@ int main()
 	ray.origin = (t_vect) {0, 1, 5};
 	printf("t = %lf\n", intersect_square(square, ray));
 
-/*
 	t_vect v1;
 	double t = 2;
 	get_ray_point(t, ray, &v1);
 	printf("v_out : \n");
 	print_vect(&v1);
-*/
-/*
 	t_ray ray;
 	t_trig triangle;
 

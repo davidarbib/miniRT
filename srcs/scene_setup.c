@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/11 15:57:13 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/13 12:55:47 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	place_objs(t_scene *scene)
 	set_spheres(scene->spheres, scene->spheres_n);
 	set_squares(scene->squares, scene->squares_n);
 	set_cylinders(scene->cylinders, scene->cylinders_n);
+	set_olights(scene->olights, scene->olights_n);
 	cam_orient = &scene->active_cam->current_orient;
 	normalize(cam_orient, cam_orient);
 	scale(-1, &scene->active_cam->current_pos, &translation);

@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdelchar.c                                    :+:      :+:    :+:   */
+/*   scene_move2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/22 15:39:41 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/13 12:37:34 by darbib           ###   ########.fr       */
+/*   Created: 2020/05/22 13:20:11 by darbib            #+#    #+#             */
+/*   Updated: 2020/07/13 12:59:38 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "scene.h"
+#include "print.h"
 
-char *ft_strdelchar(char *s, char c)
+void	move_olights(t_olight *olights, int n, t_vect *translation)
 {
-	char 	*s_out;
-	int		i;
-
-	if (!(s_out = ft_calloc(ft_strlen(s) + 1, sizeof(char))))
-		return (NULL);
-	i = 0;
-	while (*s)
-	{
-		if (*s != c)
-			s_out[i++] = *s;
-		s++;
-	}
-	return (s_out);
+	while (n--)
+		add_vect(&olights[n].current_pos, translation, &olights[n].current_pos);
 }

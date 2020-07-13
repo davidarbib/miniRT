@@ -6,11 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 14:48:42 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/11 01:41:35 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/13 18:26:20 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytrace.h"
+#include "assert.h"
+#include "print.h"
 
 void	get_hit_plane(t_near *near, t_ray ray)
 {
@@ -68,15 +70,39 @@ void	get_hit_cylinder(t_near *near, t_ray ray)
 	t_vect		hit_bc;
 	t_vect		proj_hit_on_a;
 	t_vect		a;
+	//t_vect		tmp;
 
 	cylinder = (t_cylinder *)near->obj;
 	get_hit_point(near->t, ray.direction, ray.origin, &near->hit);
+	//print_vect(&ray.origin);
+	//print_vect(&ray.direction);
+	//printf("t : %lf\n", near->t);
+	//printf("P : \n");
+	//print_vect(&near->hit);
 	sub_vect(&near->hit, &cylinder->current_pos, &hit_bc);
+	/*
+	cross(&hit_bc, &cylinder->current_orient, &tmp);
+	normalize(&tmp, &tmp);
+	cross(&tmp, &cylinder->current_orient, &near->normal);
+	*/
+	//printf("u : \n");
+	//print_vect(&hit_bc);
 	a = cylinder->current_orient;
-	scale(dot(&hit_bc, &a) / dot(&a, &a), &a, &proj_hit_on_a);	
-	sub_vect(&near->hit, &proj_hit_on_a, &near->normal);
-	if (dot(&ray.direction, &near->normal) > 0)
-		scale(-1, &near->normal, &near->normal);
+	//printf("a : \n");
+	//print_vect(&a);
+	scale(dot(&hit_bc, &a), &a, &proj_hit_on_a);	
+	//printf("projpona : \n");
+	//print_vect(&proj_hit_on_a);
+	sub_vect(&hit_bc, &proj_hit_on_a, &near->normal);
 	normalize(&near->normal, &near->normal);
+	if (dot(&ray.direction, &near->normal) > EPSILON)
+		scale(-1, &near->normal, &near->normal);
+	//printf("normal : \n");
+	//print_vect(&near->normal);
+	/*
+	assert(near->normal.x <= 0.000001 && near->normal.x >= -0.000001
+			&& near->normal.y <= 0.000001 && near->normal.y >= -0.000001
+			&& near->normal.z <= 1.000001 && near->normal.z >= .99999);
+	*/
 	get_obj_rgb(near->obj, near->type, near->rgb); 
 }

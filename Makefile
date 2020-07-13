@@ -6,7 +6,7 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/07/11 01:40:23 by darbib           ###   ########.fr        #
+#    Updated: 2020/07/13 12:59:28 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,6 +97,7 @@ SRC = camera.c \
 	keyboard_actions.c \
 	scene_setup.c \
 	scene_move.c \
+	scene_move2.c \
 	set_objs.c \
 	set_obj2.c \
 	update.c \

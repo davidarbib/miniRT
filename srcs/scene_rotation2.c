@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 18:08:31 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/04 22:03:54 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/13 12:44:45 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,5 @@ void		rotate_scene(t_scene *scene, double *matrix)
 	rotate_spheres(scene->spheres, scene->spheres_n, matrix);
 	rotate_squares(scene->squares, scene->squares_n, matrix);
 	rotate_cylinders(scene->cylinders, scene->cylinders_n, matrix);
+	rotate_olights(scene->olights, scene->olights_n, matrix);
 }
