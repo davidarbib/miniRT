@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 19:19:23 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/04 22:35:48 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/13 18:59:05 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ double intersect_cylinder(t_cylinder cylinder, t_ray ray)
 	var[len_rxa] = vect_norm(&r_x_a);
 	normalize(&r_x_a, &r_x_a);
 	var[dc] = ft_double_abs(dot(&bc_min_br, &r_x_a));
-	if (var[dc] > cylinder.diam / 2)
+	if (var[dc] > (cylinder.diam / 2) + EPSILON)
 		return (0);
 	cross(&bc_min_br, &cylinder.current_orient, &tmp_v);
 	var[tc] = dot(&tmp_v, &r_x_a) / var[len_rxa];

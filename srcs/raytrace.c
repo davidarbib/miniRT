@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 12:45:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/13 14:41:13 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/14 16:23:30 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ static void	merge_light(t_scene *scene, t_ray *ray, t_near *near)
 	n = -1;
 	while (++n < scene->olights_n)
 	{
-		sray.origin = near->hit;
+		sub_vect(&scene->olights[n].current_pos, &near->hit, &sray.direction);
+		scale(EPSILON, &sray.direction, &tmp);
+		add_vect(&near->hit, &tmp, &sray.origin);
 		sub_vect(&scene->olights[n].current_pos, &near->hit, &sray.direction);
 		normalize(&sray.direction, &sray.direction);
 		snear.obj = NULL;
