@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:08:02 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/11 21:27:59 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/15 17:31:24 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@
 # define SHINE		16.
 
 enum			e_var_sphere {t_ca, t_hc, d, t0, t1};
-enum			e_var_cylinder {dc, len_rxa, s, tc, t1c, t2c};
+enum			e_var_cylinder {dc, len_rxa, s, tc, t1c, t2c, t_return};
+enum			e_vect {bc_min_br, rxa};
 enum			e_type {plane, square, triangle, sphere, cylinder};
 enum			e_colorchan {r, g, b};
 
