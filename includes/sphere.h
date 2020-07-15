@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 15:55:19 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/04 22:25:39 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/15 23:07:52 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define SPHERE_H
 
 # include "vector.h"
-# include "minirt.h"
 
 /*
 ** --- sphere ---

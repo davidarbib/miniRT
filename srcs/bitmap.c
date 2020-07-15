@@ -6,14 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 18:18:06 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/15 19:56:30 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/15 23:53:42 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bitmap.h"
 #include "libft.h"
 #include "mlx.h"
-#include "graphic.h"
 
 static int		put_img(t_bmp *bmp, char *img, int fd)
 {
@@ -31,7 +30,8 @@ static int		put_img(t_bmp *bmp, char *img, int fd)
 		i = 0;
 		while (i < bmp->width)
 		{			
-			ft_memmove(p_buf, img + ((i + (j * bmp->width)) * 4), BYTES_N);
+			ft_memmove(p_buf, img + ((i * (bmp->bpp / 8) + (j * bmp->sl))), 
+					BYTES_N);
 			p_buf += BYTES_N;
 			i++;
 		}
@@ -72,14 +72,16 @@ static int		put_header(t_bmp *bmp, int fd)
 	return (1);
 }
 
-t_bmp			create_bitmap(t_scene *scene)
+t_bmp			create_bitmap(t_param *pm)
 {
 	t_bmp	bmp;
 
 	bmp.type[0] = 'B';
 	bmp.type[1] = 'M';
-	bmp.width = scene->resx;
-	bmp.height = scene->resy;
+	bmp.width = pm->scene->resx;
+	bmp.height = pm->scene->resy;
+	bmp.sl = pm->mlx_cfg->size_line;
+	bmp.bpp = pm->mlx_cfg->bits_per_pixel;
 	bmp.width = WIDTH;
 	bmp.height = HEIGHT;
 	bmp.planes = 1;

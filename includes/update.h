@@ -6,15 +6,14 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/17 18:41:08 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/08 14:14:57 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/15 23:03:40 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UPDATE_H
 # define UPDATE_H
 
-# include "scene.h"
-# include "graphic.h"
+# include "general.h"
 # include "raytrace.h"
 # include "mlx.h"
 

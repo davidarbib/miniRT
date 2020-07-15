@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:31:09 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/15 21:07:46 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/15 23:09:00 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "sphere.h"
 # include "omnilight.h"
 # include "camera.h"
+# include "parsing.h"
 
 typedef struct	s_scene
 {

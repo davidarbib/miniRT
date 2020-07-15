@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 22:33:19 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/15 19:27:43 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/15 22:50:49 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,11 @@
 #ifndef ACTIONS_H
 # define ACTIONS_H
 
-# include "scene.h"
-# include "graphic.h"
+# include "general.h"
 
 # define STEP_SIZE 0.2
 # define ANGLE_SIZE 10
 # define MAX_KEYCODE 65536
-
-typedef struct	s_param
-{
-	t_mlx		*mlx_cfg;
-	t_scene		*scene;
-}				t_param;
 
 int				loop_hook(void *param);
 int				key_pressed_hook(int keycode, void *param);

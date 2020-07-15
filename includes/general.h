@@ -6,21 +6,28 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 17:27:22 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/20 19:27:45 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/15 23:02:10 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GENERAL_H
 # define GENERAL_H
 
-# include "libft.h"
 # include "vector.h"
 # include "spheric.h"
 # include "parsing.h"
+# include "graphic.h"
+# include "scene.h"
 
 /*
 ** ---------------
 */
+
+typedef struct	s_param
+{
+	t_mlx		*mlx_cfg;
+	t_scene		*scene;
+}				t_param;
 
 # define TITLE		"RT scene"
 # define SAVEARG	"-save"

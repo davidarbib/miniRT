@@ -6,16 +6,14 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 18:44:26 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/13 12:47:10 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/15 23:05:55 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ROTATION_H
 # define ROTATION_H
 
-# include "scene.h"
-# include "vector.h"
-# include "spheric.h"
+# include "general.h"
 
 double	to_radian(double degree);
 double	to_degree(double radian);

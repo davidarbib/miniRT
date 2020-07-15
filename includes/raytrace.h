@@ -6,17 +6,15 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:08:02 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/15 17:31:24 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/15 23:04:49 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYTRACE_H
 # define RAYTRACE_H
 
-# include "scene.h"
-# include "graphic.h"
-# include "aabb.h"
 # include <math.h>
+# include <general.h>
 
 # define EPSILON	0.000001
 # define PVEC		0
