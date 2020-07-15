@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:35:17 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/30 20:52:47 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/15 19:53:27 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void		destroy_cfg(t_rt *cfg)
 
 void		destroy_scene(t_scene *scene)
 {
-	free(scene->aabbs);
 	free(scene->planes);
 	free(scene->squares);
 	free(scene->triangles);
@@ -72,5 +71,4 @@ void		destroy_scene(t_scene *scene)
 	free(scene->spheres);
 	free(scene->olights);
 	free(scene->cams);
-	free(scene->active_cam);
 }

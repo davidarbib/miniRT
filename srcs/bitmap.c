@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 18:18:06 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/30 17:29:29 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/15 19:56:30 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,20 +72,36 @@ static int		put_header(t_bmp *bmp, int fd)
 	return (1);
 }
 
-int				bitmap_output(t_bmp *bmp, char *img)
+t_bmp			create_bitmap(t_scene *scene)
+{
+	t_bmp	bmp;
+
+	bmp.type[0] = 'B';
+	bmp.type[1] = 'M';
+	bmp.width = scene->resx;
+	bmp.height = scene->resy;
+	bmp.width = WIDTH;
+	bmp.height = HEIGHT;
+	bmp.planes = 1;
+	bmp.bitcount = 24;
+	bmp.compression = 0;
+	bmp.headersize = HEADERSIZE;
+	bmp.infosize = INFOSIZE;
+	bmp.sizeimg = bmp.width * bmp.height * BYTES_N;
+	bmp.size = bmp.sizeimg + HEADERSIZE + INFOSIZE;
+	return (bmp);
+}
+
+int				bitmap_output(t_bmp bmp, char *img)
 {
 	int fd;
 	int	ret;
 
-	bmp->headersize = HEADERSIZE;
-	bmp->infosize = INFOSIZE;
-	bmp->sizeimg = bmp->width * bmp->height * BYTES_N;
-	bmp->size = bmp->sizeimg + HEADERSIZE + INFOSIZE;
 	if ((fd = open(BMPNAME, O_WRONLY | O_CREAT, S_IRWXU)) < 0)
 		return (0);
 	ret = 1;
-	ret &= put_header(bmp, fd);
-	ret &= put_img(bmp, img, fd);
+	ret &= put_header(&bmp, fd);
+	ret &= put_img(&bmp, img, fd);
 	close(fd);
 	return (ret);
 }

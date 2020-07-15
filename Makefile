@@ -6,7 +6,7 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/07/13 12:59:28 by darbib           ###   ########.fr        #
+#    Updated: 2020/07/15 19:05:44 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,7 @@ SRC = camera.c \
 	destroy.c \
 	endian.c \
 	error.c \
+	exit.c \
 	init.c \
 	graphic.c \
 	omnilight.c \

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 12:45:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/14 16:23:30 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/15 21:02:18 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ static void send_ray(t_scene *scene, t_mlx *mlx_cfg, int dx, int dy, t_ray *ray)
 {
 	t_near	near;
 	
-	if (dx == WIDTH/2 && dy == HEIGHT/2)
-		printf("cc\n");
 	init_send_ray(&near, scene);
 	browse_scene(scene, ray, &near);
 	if (near.obj)
@@ -105,6 +103,7 @@ void	raytrace(t_scene *scene, t_mlx *mlx_cfg)
 	g_get_properties[triangle] = get_hit_triangle;
 	g_get_properties[sphere] = get_hit_sphere;
 	g_get_properties[cylinder] = get_hit_cylinder;
+	printf("ptr active_cam : %p\n", scene->active_cam);
 	half_screen = tan(to_radian(scene->active_cam->fov * 0.5));
 	ray.origin = (t_vect) {0, 0, 0};
 	dx = -1;

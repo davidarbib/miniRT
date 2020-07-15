@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 18:51:25 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/31 15:33:12 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/15 19:57:36 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ typedef struct		s_bmp
 	int				infosize;
 }					t_bmp;
 
-int		bitmap_output(t_bmp *bmp, char *img);
+int		bitmap_output(t_bmp bmp, char *img);
 void	bmp_sys_error(t_scene *scene);
+t_bmp	create_bitmap(t_scene *scene);
 
 #endif

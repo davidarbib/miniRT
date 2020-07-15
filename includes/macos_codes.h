@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 13:56:20 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/02 22:40:22 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/15 19:21:50 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define KEYRELEASEMASK		2
 # define BUTTONPRESSMASK	4
 # define BUTTONRELEASEMASK	8
+# define DESTROYNOTIFYMASK	17
 /*------------------------------*/
 
 # define KEY_ESCAPE         53
