@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 21:47:19 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/15 22:50:57 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/16 00:12:51 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 #include "graphic.h"
 #include "scene.h"
 #include "raytrace.h"
-//#include "X11/X.h"
-#include "macos_codes.h"
+#include "eventscode.h"
 #include "actions.h"
 #include "print.h"
 #include "bitmap.h"

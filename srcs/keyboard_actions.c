@@ -6,13 +6,16 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 16:23:29 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/15 18:56:58 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/16 00:11:17 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "actions.h"
-//#include "keys_linux.h"
-#include "macos_codes.h"
+#if __linux__
+	#include "keys_linux.h"
+#elif __APPLE__
+	#include "macos_codes.h"
+#endif
 #include "general.h"
 #include "print.h"
 #include "mlx.h"
