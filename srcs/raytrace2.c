@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 21:59:50 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/11 16:40:59 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/17 00:00:01 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,31 @@
 
 void	light_on_obj(t_vect *light, unsigned char *obj_rgb)
 {
-	obj_rgb[r] = floor(obj_rgb[r] * light->x);
-	obj_rgb[g] = floor(obj_rgb[g] * light->y);
-	obj_rgb[b] = floor(obj_rgb[b] * light->z);
+	obj_rgb[r] = round(obj_rgb[r] * light->x);
+	obj_rgb[g] = round(obj_rgb[g] * light->y);
+	obj_rgb[b] = round(obj_rgb[b] * light->z);
+}
+
+void	colorize_pixels(t_vect pix_rgb, t_mlx *mlx_cfg, int *beginc, int *endc)
+{
+	unsigned char rgb[3];
+	int x;
+	int y;
+	
+	rgb[r] = round(pix_rgb.x * 255.);
+	rgb[g] = round(pix_rgb.y * 255.);
+	rgb[b] = round(pix_rgb.z * 255.);
+	x = beginc[dx];
+	while (x < endc[dx])
+	{
+		y = beginc[dy];
+		while (y < endc[dy])
+		{
+			apply_color(rgb, mlx_cfg, x, y);
+			y++;
+		}
+		x++;
+	}
 }
 
 void	get_obj_rgb(void *obj, enum e_type type, unsigned char *rgb)

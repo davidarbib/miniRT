@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/15 21:02:03 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/16 13:37:12 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ void	place_objs(t_scene *scene)
 	set_spheres(scene->spheres, scene->spheres_n);
 	set_squares(scene->squares, scene->squares_n);
 	set_cylinders(scene->cylinders, scene->cylinders_n);
-	//printf("cylinder.orient : \n");
-	//print_vect(&scene->cylinders->current_orient);
 	set_olights(scene->olights, scene->olights_n);
 	cam_orient = &scene->active_cam->current_orient;
 	normalize(cam_orient, cam_orient);

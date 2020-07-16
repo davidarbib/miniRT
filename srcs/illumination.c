@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 14:21:50 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/11 22:44:10 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/16 17:39:38 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "print.h"
 
 void	compute_illumination(t_ray *ray, t_ray *shadow_ray, t_near *near,
-		t_near *shadow)
+		t_shadow *shadow)
 {
 	t_vect	tmp;
 	t_vect	reflect;

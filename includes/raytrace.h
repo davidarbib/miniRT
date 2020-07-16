@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:08:02 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/15 23:04:49 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/16 23:46:16 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ enum			e_var_cylinder {dc, len_rxa, s, tc, t1c, t2c, t_return};
 enum			e_vect {bc_min_br, rxa};
 enum			e_type {plane, square, triangle, sphere, cylinder};
 enum			e_colorchan {r, g, b};
+enum			e_coord {dx, dy};
 
 typedef struct		s_ray
 {
@@ -59,6 +60,20 @@ typedef struct		s_near
 	unsigned char 	rgb[3];
 	
 }					t_near;
+
+typedef struct		s_shadow
+{
+	double			t;
+	double			t_light;
+	double			ratio_sum;
+	double			current_light_ratio;
+	t_vect			rgb_ratio;
+	t_vect			hit;
+	t_vect			normal;
+	void			*obj;
+	enum e_type		type;
+	unsigned char 	rgb[3];
+}					t_shadow;
 
 void	get_obj_rgb(void *obj, enum e_type type, unsigned char *rgb);
 void	to_rgb_ratio(unsigned char *rgb_in, t_vect *rgb_out);
@@ -87,6 +102,8 @@ void	loop_intersect_squares(t_square *squares, int n, t_ray *ray,
 void	loop_intersect_cylinders(t_cylinder *cylinders, int n, t_ray *ray,
 		t_near *near);
 void	compute_illumination(t_ray *ray, t_ray *shadow_ray, t_near *near,
-		t_near *shadow);
+		t_shadow *shadow);
 void	light_on_obj(t_vect *light, unsigned char *obj_rgb);
+int		light_cast(t_scene *scene, t_ray *ray, t_shadow *sh);
+void	colorize_pixels(t_vect pix_rgb, t_mlx *mlx_cfg, int *beginc, int *endc);
 #endif
