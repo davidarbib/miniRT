@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:08:02 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/16 23:46:16 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/19 17:40:08 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # define KD			0.3
 # define KA			1.
 # define SHINE		16.
+
+# define LOWFACTOR	4
 
 enum			e_var_sphere {t_ca, t_hc, d, t0, t1};
 enum			e_var_cylinder {dc, len_rxa, s, tc, t1c, t2c, t_return};
@@ -84,6 +86,10 @@ void	get_hit_square(t_near *near, t_ray ray);
 void	get_hit_sphere(t_near *near, t_ray ray);
 void	get_hit_cylinder(t_near *near, t_ray ray);
 void	raytrace(t_scene *scene, t_mlx *mlx_cfg);
+void	raytrace_lowres(t_scene *scene, t_mlx *mlx_cfg);
+void	define_ray(t_ray *ray, double half_screen, int *coord,
+		t_scene *scene);
+t_vect	send_ray(t_scene *scene, t_ray *ray);
 void	browse_scene(t_scene *scene, t_ray *ray, t_near *near);
 double	intersect_plane(t_plane plane, t_ray ray);
 double	intersect_triangle(t_trig triangle, t_ray ray);

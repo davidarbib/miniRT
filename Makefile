@@ -6,7 +6,7 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/07/16 17:31:56 by darbib           ###   ########.fr        #
+#    Updated: 2020/07/19 18:25:06 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,6 +90,7 @@ SRC = camera.c \
 	minitools.c \
 	turn.c \
 	move.c \
+	move2.c \
 	hook.c \
 	raytrace.c \
 	light_casting.c \

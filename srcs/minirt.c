@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 21:47:19 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/19 14:42:41 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/19 16:58:50 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,13 @@ int		main(int ac, char **av)
 			bmp_sys_error(&scene);
 		normal_exit(&param);
 	}
-	mlx_put_image_to_window(mlx_cfg.mlx_ptr, mlx_cfg.win_ptr,
-		mlx_cfg.img_ptr, 0, 0);
-	mlx_hook(mlx_cfg.win_ptr, KEYPRESS, KEYPRESSMASK, key_pressed_hook,
+//	printf("%p\n", mlx_cfg.mlx_ptr);
+//	printf("%p\n", mlx_cfg.img_ptr);
+	mlx_put_image_to_window(mlx_cfg.mlx_ptr, mlx_cfg.win_ptr, mlx_cfg.img_ptr, 
+			0, 0);
+	mlx_hook(mlx_cfg.win_ptr, KEYPRESS, KEYPRESSMASK, key_pressed_hook, &param);
+	mlx_hook(mlx_cfg.win_ptr, DESTROYNOTIFY, DESTROYNOTIFYMASK, normal_exit2,
 			&param);
-	mlx_hook(mlx_cfg.win_ptr, DESTROYNOTIFY, DESTROYNOTIFYMASK, 
-			normal_exit2, &param);
 	mlx_loop(mlx_cfg.mlx_ptr);
 }
 

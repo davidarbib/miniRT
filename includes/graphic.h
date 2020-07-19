@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 16:37:26 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/19 14:46:04 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/19 16:30:30 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ typedef struct		s_mlx
 	int				bits_per_pixel;
 	int				size_line;
 	int				endian;
+	int				sizex;
+	int				sizey;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	void			*img_ptr;
@@ -33,6 +35,6 @@ int				init_graphics(t_mlx *mlx_cfg);
 int				create_img(t_mlx *mlx_cfg);
 int				refresh_img(t_mlx *mlx_cfg);
 void			alter_pixel(t_mlx *cfg, int color, int x, int y);
-void			apply_color(unsigned char *rgb, t_mlx *mlx_cfg, int x, int y);
+void			apply_color(t_vect *rgb, t_mlx *mlx_cfg, int x, int y);
 
 #endif

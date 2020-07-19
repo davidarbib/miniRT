@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 12:45:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/19 15:01:01 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/19 18:55:19 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ static void	merge_light(t_scene *scene, t_ray *ray, t_near *near)
 	scale((KA * scene->ambient_ratio), &scene->ambient_rgb, &tmp); 
 	add_vect(&tmp, &near->rgb_ratio, &near->rgb_ratio);
 	sh.ratio_sum += scene->ambient_ratio;
-	scale(1. / sh.ratio_sum, &near->rgb_ratio, &near->rgb_ratio);
+	//scale(1. / sh.ratio_sum, &near->rgb_ratio, &near->rgb_ratio);
 }
 
-static t_vect send_ray(t_scene *scene, t_ray *ray)
+t_vect send_ray(t_scene *scene, t_ray *ray)
 {
 	t_near	near;
 	t_vect pix_rgb;
@@ -85,25 +85,26 @@ static t_vect send_ray(t_scene *scene, t_ray *ray)
 	//apply_color(near.rgb, mlx_cfg, dx, dy);
 }
 
-# define RESX 200
-# define RESY 200
-
-static void	define_ray(t_ray *ray, double half_screen, int *coord,
-		t_scene *scene)
+void	define_ray(t_ray *ray, double half_screen, int *coord, t_scene *scene)
 {
 	double	aspect_ratio;
+	int		x;
+	int		y;
 
-	aspect_ratio = WIDTH / (double)HEIGHT;
-	coord[dx] += (WIDTH / scene->resx) / 2;
-	coord[dy] += (HEIGHT / scene->resy) / 2;
-	ray->direction.x = (2 * coord[dx] / WIDTH - 1) * half_screen
-	* aspect_ratio;
-	ray->direction.y = (1 - 2 * coord[dy] / HEIGHT) * half_screen;
-	ray->direction.z = -1.0;	
-	//ray->direction.x = (2 * (coord[dx] + 0.5) / WIDTH - 1) * half_screen
-	//	* aspect_ratio;
-	//ray->direction.y = (1 - 2 * (coord[dy] + 0.5) / HEIGHT) * half_screen;
+	aspect_ratio = scene->resx / scene->resy;
+//	aspect_ratio = WIDTH / HEIGHT;
+	x = coord[dx];
+	y = coord[dy];
+	x += ((!scene->lowres) + (scene->lowres * LOWFACTOR)) * 0.5 ;
+	y += ((!scene->lowres) + (scene->lowres * LOWFACTOR)) * 0.5 ;
+	//ray->direction.x = (2 * coord[dx] / scene->resx - 1) * half_screen
+	//* aspect_ratio;
+	//ray->direction.y = (1 - 2 * coord[dy] / scene->resy) * half_screen;
 	//ray->direction.z = -1.0;	
+	ray->direction.x = (2 * x / WIDTH - 1) * half_screen
+	* aspect_ratio;
+	ray->direction.y = (1 - 2 * y / HEIGHT) * half_screen;
+	ray->direction.z = -1.0;	
 	ray->inv_direction.x = 1 / ray->direction.x;
 	ray->inv_direction.y = 1 / ray->direction.y;
 	ray->inv_direction.z = 1 / ray->direction.z;
@@ -116,26 +117,27 @@ static void	define_ray(t_ray *ray, double half_screen, int *coord,
 
 void	raytrace(t_scene *scene, t_mlx *mlx_cfg)
 {
-	int		begincord[2];
-	int		endcord[2];
+	int		coord[2];
 	t_ray	ray;
 	double	half_screen;
 	t_vect	pix_rgb;
 
+	printf("scene sizex : %d\n", scene->resx);
+	printf("scene sizey : %d\n", scene->resy);
 	half_screen = tan(to_radian(scene->active_cam->fov * 0.5));
-	begincord[dx] = 0;
-	while (begincord[dx] < scene->resx)
+	coord[dx] = 0;
+	while (coord[dx] < scene->resx)
+//	while (coord[dx] < WIDTH)
 	{
-		begincord[dy] = 0;
-		endcord[dx] = begincord[dx] + WIDTH / scene->resx;
-		while (begincord[dy] < scene->resy)
+		coord[dy] = 0;
+		while (coord[dy] < scene->resy)
+	//	while (coord[dy] < HEIGHT)
 		{
-			define_ray(&ray, half_screen, begincord, scene);
+			define_ray(&ray, half_screen, coord, scene);
 			pix_rgb = send_ray(scene, &ray);	
-			endcord[dy] = begincord[dy] + HEIGHT / scene->resy;
-			colorize_pixels(pix_rgb, mlx_cfg, begincord, endcord);
-			begincord[dy] = endcord[dy];
+			apply_color(&pix_rgb, mlx_cfg, coord[dx], coord[dy]); 
+			coord[dy]++;
 		}
-		begincord[dx] = endcord[dx];
+		coord[dx]++;
 	}
 }

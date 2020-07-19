@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:31:09 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/19 15:01:46 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/19 16:03:09 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct	s_scene
 	t_cam			*cams;
 	t_cam			*active_cam;
 	t_vect			ref_orient;
+	int				lowres;
 	int				planes_n;
 	int				squares_n;
 	int				triangles_n;

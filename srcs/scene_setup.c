@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/19 15:03:26 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/19 16:32:33 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,10 @@ static void	init_objs_fts(t_scene *scene)
 	scene->olights = NULL;
 	scene->cams = NULL;
 	scene->active_cam = NULL;
+	scene->ref_orient = (t_vect) {0., 0., -1.};
+	scene->background_rgb[0] = 0.;
+	scene->background_rgb[1] = 0.;
+	scene->background_rgb[2] = 0.;
 }
 
 void	init_scene(t_scene *scene, t_rt *rt, t_mlx *mlx_cfg)
@@ -95,15 +99,13 @@ void	init_scene(t_scene *scene, t_rt *rt, t_mlx *mlx_cfg)
 	int display_resy;
 	int display_resx;
 
-	
 	init_objs_fts(scene);
+	scene->lowres = 0;
 	mlx_get_screen_size(mlx_cfg, &display_resx, &display_resy);
 	scene->resx = ft_min(rt->resx, display_resx);
-	scene->resy = ft_min(rt->resy, display_resy);
-	scene->ref_orient = (t_vect) {0., 0., -1.};
-	scene->background_rgb[0] = 0.;
-	scene->background_rgb[1] = 0.;
-	scene->background_rgb[2] = 0.;
+	scene->resy = ft_min(rt->resy, display_resy);	
+	mlx_cfg->sizex = scene->resx;
+	mlx_cfg->sizey = scene->resy;
 	to_rgb_ratio(rt->ambient_rgb, &scene->ambient_rgb);
 	scene->ambient_ratio = rt->ambient_ratio;
 	make_array(rt, scene);

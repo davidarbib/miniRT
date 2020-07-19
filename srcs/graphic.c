@@ -6,20 +6,24 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 16:28:50 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/16 23:44:56 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/19 17:13:57 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "math.h"
 #include "graphic.h"
+#include "raytrace.h"
 #include "mlx.h"
 
 int			init_graphics(t_mlx *mlx_cfg)
 {
 	if (!(mlx_cfg->mlx_ptr = mlx_init()))
 		return (0);
-	if (!(mlx_cfg->win_ptr = mlx_new_window(mlx_cfg->mlx_ptr, WIDTH,
-		HEIGHT, TITLE)))
+	if (!(mlx_cfg->win_ptr = mlx_new_window(mlx_cfg->mlx_ptr, mlx_cfg->sizex,
+		mlx_cfg->sizey, TITLE)))
+//	if (!(mlx_cfg->win_ptr = mlx_new_window(mlx_cfg->mlx_ptr, WIDTH,
+//		HEIGHT, TITLE)))
 		return (0);
 	if (!(create_img(mlx_cfg))) 
 		return (0);
@@ -28,8 +32,10 @@ int			init_graphics(t_mlx *mlx_cfg)
 
 int			create_img(t_mlx *mlx_cfg)
 {
-	if (!(mlx_cfg->img_ptr = mlx_new_image(mlx_cfg->mlx_ptr, WIDTH,
-		HEIGHT)))
+	if (!(mlx_cfg->img_ptr = mlx_new_image(mlx_cfg->mlx_ptr, mlx_cfg->sizex, 
+		mlx_cfg->sizey)))
+//	if (!(mlx_cfg->img_ptr = mlx_new_image(mlx_cfg->mlx_ptr, WIDTH, 
+//		HEIGHT)))
 		return (0);
 	if (!(mlx_cfg->img_data = mlx_get_data_addr(mlx_cfg->img_ptr,
 		&mlx_cfg->bits_per_pixel, &mlx_cfg->size_line, &mlx_cfg->endian)))
@@ -45,14 +51,18 @@ int			refresh_img(t_mlx *mlx_cfg)
 	return (1);
 }
 
-void		apply_color(unsigned char *rgb, t_mlx *mlx_cfg, int x, int y)
+void		apply_color(t_vect *pix_rgb, t_mlx *mlx_cfg, int x, int y)
 {
 	int color;
+	unsigned char rgb[3];
 	
+	rgb[r] = round(pix_rgb->x * 255.);
+	rgb[g] = round(pix_rgb->y * 255.);
+	rgb[b] = round(pix_rgb->z * 255.);
 	color = 0;
-	color += (int)rgb[2];
-	color += (int)rgb[1] * 256;
-	color += (int)rgb[0] * 256 * 256;
+	color += (int)rgb[b];
+	color += (int)rgb[g] * 256;
+	color += (int)rgb[r] * 256 * 256;
 	alter_pixel(mlx_cfg, color, x, y);
 }
 

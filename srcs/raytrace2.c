@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 21:59:50 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/17 00:00:01 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/19 18:59:30 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,30 +20,55 @@
 
 void	light_on_obj(t_vect *light, unsigned char *obj_rgb)
 {
-	obj_rgb[r] = round(obj_rgb[r] * light->x);
-	obj_rgb[g] = round(obj_rgb[g] * light->y);
-	obj_rgb[b] = round(obj_rgb[b] * light->z);
+	
+	obj_rgb[r] = round(obj_rgb[r] * ft_min(light->x, 1.0));
+	obj_rgb[g] = round(obj_rgb[g] * ft_min(light->y, 1.0));
+	obj_rgb[b] = round(obj_rgb[b] * ft_min(light->z, 1.0));
 }
 
 void	colorize_pixels(t_vect pix_rgb, t_mlx *mlx_cfg, int *beginc, int *endc)
 {
-	unsigned char rgb[3];
 	int x;
 	int y;
 	
-	rgb[r] = round(pix_rgb.x * 255.);
-	rgb[g] = round(pix_rgb.y * 255.);
-	rgb[b] = round(pix_rgb.z * 255.);
 	x = beginc[dx];
 	while (x < endc[dx])
 	{
 		y = beginc[dy];
 		while (y < endc[dy])
 		{
-			apply_color(rgb, mlx_cfg, x, y);
+			apply_color(&pix_rgb, mlx_cfg, x, y);
 			y++;
 		}
 		x++;
+	}
+}
+
+void	raytrace_lowres(t_scene *scene, t_mlx *mlx_cfg)
+{
+	int		begincoord[2];
+	int		endcoord[2];
+	t_ray	ray;
+	double	half_screen;
+	t_vect	pix_rgb;
+
+	half_screen = tan(to_radian(scene->active_cam->fov * 0.5));
+	begincoord[dx] = 0;
+	endcoord[dx] = LOWFACTOR; 
+	while (begincoord[dx] < scene->resx)
+	{
+		begincoord[dy] = 0;
+		endcoord[dy] = LOWFACTOR;
+		while (begincoord[dy] < scene->resy)
+		{
+			define_ray(&ray, half_screen, begincoord, scene);
+			pix_rgb = send_ray(scene, &ray);	
+			colorize_pixels(pix_rgb, mlx_cfg, begincoord, endcoord);
+			begincoord[dy] += LOWFACTOR;
+			endcoord[dy] += LOWFACTOR;
+		}
+		begincoord[dx] += LOWFACTOR;
+		endcoord[dx] += LOWFACTOR;
 	}
 }
 
