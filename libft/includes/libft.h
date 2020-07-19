@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 10:15:53 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/22 16:06:52 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/17 19:27:35 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,7 @@ char	*ft_pass_spaces(char *s);
 int		ft_isblank(int c);
 int		ft_abs(int x);
 double	ft_double_abs(double x);
+int		ft_min(int a, int b);
+int		ft_max(int a, int b);
 
 #endif

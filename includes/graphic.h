@@ -6,16 +6,16 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 16:37:26 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/10 16:11:41 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/17 19:53:05 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GRAPHIC_H
 # define GRAPHIC_H
 
-# define WIDTH		800
+# define WIDTH		800.
 # define INV_WIDTH	0.00125
-# define HEIGHT		800
+# define HEIGHT		800.
 # define INV_HEIGHT	0.00167
 
 typedef struct		s_mlx

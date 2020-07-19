@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/16 13:37:12 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/17 19:56:15 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	place_objs(t_scene *scene)
 	}
 }
 
-void	init_scene(t_scene *scene, t_rt *rt)
+static void	init_objs_fts(t_scene *scene)
 {
 	assign_key_fts();
 	scene->planes = NULL;
@@ -87,6 +87,13 @@ void	init_scene(t_scene *scene, t_rt *rt)
 	scene->olights = NULL;
 	scene->cams = NULL;
 	scene->active_cam = NULL;
+}
+
+void	init_scene(t_scene *scene, t_rt *rt)
+{
+	init_objs_fts(scene);
+	scene->resx = ft_min(rt->resx, WIDTH);
+	scene->resy = ft_min(rt->resy, HEIGHT);
 	scene->ref_orient = (t_vect) {0., 0., -1.};
 	scene->background_rgb[0] = 0.;
 	scene->background_rgb[1] = 0.;

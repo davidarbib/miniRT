@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:31:09 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/16 16:32:55 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/17 19:31:15 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 
 typedef struct	s_scene
 {
-	t_vect			ref_orient;
 	t_vect			ambient_rgb;
 	t_plane			*planes;
 	t_square		*squares;
@@ -35,6 +34,7 @@ typedef struct	s_scene
 	t_olight		*olights;
 	t_cam			*cams;
 	t_cam			*active_cam;
+	t_vect			ref_orient;
 	int				planes_n;
 	int				squares_n;
 	int				triangles_n;

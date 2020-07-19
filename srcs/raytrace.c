@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 12:45:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/16 23:50:14 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/17 19:55:56 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,22 +88,21 @@ static t_vect send_ray(t_scene *scene, t_ray *ray)
 # define RESX 200
 # define RESY 200
 
-static void	define_ray(t_ray *ray, double half_screen, int dx, int dy)
+static void	define_ray(t_ray *ray, double half_screen, int *coord,
+		t_scene *scene)
 {
 	double	aspect_ratio;
-	double 	ex;
-	double 	ey;
 
 	aspect_ratio = WIDTH / (double)HEIGHT;
-	ex = (WIDTH / RESX) / 2;
-	ey = (HEIGHT / RESY) / 2;
-	ray->direction.x = (2 * (dx + ex) / WIDTH - 1) * half_screen
+	coord[dx] += (WIDTH / scene->resx) / 2;
+	coord[dy] += (HEIGHT / scene->resy) / 2;
+	ray->direction.x = (2 * coord[dx] / WIDTH - 1) * half_screen
 	* aspect_ratio;
-	ray->direction.y = (1 - 2 * (dy + ey) / HEIGHT) * half_screen;
+	ray->direction.y = (1 - 2 * coord[dy] / HEIGHT) * half_screen;
 	ray->direction.z = -1.0;	
-	//ray->direction.x = (2 * (dx + 0.5) / WIDTH - 1) * half_screen
+	//ray->direction.x = (2 * (coord[dx] + 0.5) / WIDTH - 1) * half_screen
 	//	* aspect_ratio;
-	//ray->direction.y = (1 - 2 * (dy + 0.5) / HEIGHT) * half_screen;
+	//ray->direction.y = (1 - 2 * (coord[dy] + 0.5) / HEIGHT) * half_screen;
 	//ray->direction.z = -1.0;	
 	ray->inv_direction.x = 1 / ray->direction.x;
 	ray->inv_direction.y = 1 / ray->direction.y;
@@ -128,12 +127,12 @@ void	raytrace(t_scene *scene, t_mlx *mlx_cfg)
 	while (begincord[dx] < WIDTH)
 	{
 		begincord[dy] = 0;
-		endcord[dx] = begincord[dx] + WIDTH / RESX;
+		endcord[dx] = begincord[dx] + WIDTH / scene->resx;
 		while (begincord[dy] < HEIGHT)
 		{
-			define_ray(&ray, half_screen, begincord[dx], begincord[dy]);
+			define_ray(&ray, half_screen, begincord, scene);
 			pix_rgb = send_ray(scene, &ray);	
-			endcord[dy] = begincord[dy] + HEIGHT / RESY;
+			endcord[dy] = begincord[dy] + HEIGHT / scene->resy;
 			colorize_pixels(pix_rgb, mlx_cfg, begincord, endcord);
 			begincord[dy] = endcord[dy];
 		}
