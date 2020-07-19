@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:31:09 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/17 19:31:15 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/19 15:01:46 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "omnilight.h"
 # include "camera.h"
 # include "parsing.h"
+# include "graphic.h"
 
 typedef struct	s_scene
 {
@@ -55,7 +56,7 @@ typedef struct	s_scene
 void	place_objs(t_scene *scene);
 void	destroy_scene(t_scene *scene);
 void	adapt_scene(t_scene *scene);
-void	init_scene(t_scene *scene, t_rt *rt);
+void	init_scene(t_scene *scene, t_rt *rt, t_mlx *mlx_cfg);
 int		make_array(t_rt *rt, t_scene *scene);
 void	move_scene(t_scene *scene, t_vect *translation);
 void	move_planes(t_plane *planes, int n, t_vect *translation);

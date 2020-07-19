@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 12:45:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/17 19:55:56 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/19 15:01:01 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,11 +124,11 @@ void	raytrace(t_scene *scene, t_mlx *mlx_cfg)
 
 	half_screen = tan(to_radian(scene->active_cam->fov * 0.5));
 	begincord[dx] = 0;
-	while (begincord[dx] < WIDTH)
+	while (begincord[dx] < scene->resx)
 	{
 		begincord[dy] = 0;
 		endcord[dx] = begincord[dx] + WIDTH / scene->resx;
-		while (begincord[dy] < HEIGHT)
+		while (begincord[dy] < scene->resy)
 		{
 			define_ray(&ray, half_screen, begincord, scene);
 			pix_rgb = send_ray(scene, &ray);	

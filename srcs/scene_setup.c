@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/17 19:56:15 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/19 15:03:26 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "matrix.h"
 #include "raytrace.h"
 #include "actions.h"
+#include "mlx.h"
 
 void	compute_triangles_edges(t_trig *triangles, int n)
 {
@@ -89,11 +90,16 @@ static void	init_objs_fts(t_scene *scene)
 	scene->active_cam = NULL;
 }
 
-void	init_scene(t_scene *scene, t_rt *rt)
+void	init_scene(t_scene *scene, t_rt *rt, t_mlx *mlx_cfg)
 {
+	int display_resy;
+	int display_resx;
+
+	
 	init_objs_fts(scene);
-	scene->resx = ft_min(rt->resx, WIDTH);
-	scene->resy = ft_min(rt->resy, HEIGHT);
+	mlx_get_screen_size(mlx_cfg, &display_resx, &display_resy);
+	scene->resx = ft_min(rt->resx, display_resx);
+	scene->resy = ft_min(rt->resy, display_resy);
 	scene->ref_orient = (t_vect) {0., 0., -1.};
 	scene->background_rgb[0] = 0.;
 	scene->background_rgb[1] = 0.;
