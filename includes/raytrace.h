@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:08:02 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/19 17:40:08 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/19 21:34:24 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 
 # define TYPE_NB	5
 
-# define KS			0.4
-# define KD			0.3
+# define KS			0.6
+# define KD			0.6
 # define KA			1.
 # define SHINE		16.
 
@@ -109,7 +109,7 @@ void	loop_intersect_cylinders(t_cylinder *cylinders, int n, t_ray *ray,
 		t_near *near);
 void	compute_illumination(t_ray *ray, t_ray *shadow_ray, t_near *near,
 		t_shadow *shadow);
-void	light_on_obj(t_vect *light, unsigned char *obj_rgb);
+t_vect	light_on_obj(t_vect *light, unsigned char *obj_rgb);
 int		light_cast(t_scene *scene, t_ray *ray, t_shadow *sh);
 void	colorize_pixels(t_vect pix_rgb, t_mlx *mlx_cfg, int *beginc, int *endc);
 #endif

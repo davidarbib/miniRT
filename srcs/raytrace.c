@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 12:45:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/19 18:55:19 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/19 19:20:58 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void	merge_light(t_scene *scene, t_ray *ray, t_near *near)
 t_vect send_ray(t_scene *scene, t_ray *ray)
 {
 	t_near	near;
-	t_vect pix_rgb;
+	t_vect	pix_rgb;
 	
 	init_send_ray(&near, scene);
 	browse_scene(scene, ray, &near);
@@ -78,11 +78,11 @@ t_vect send_ray(t_scene *scene, t_ray *ray)
 	{
 		g_get_properties[near.type](&near, *ray);
 		merge_light(scene, ray, &near);
-		light_on_obj(&near.rgb_ratio, near.rgb);
+		pix_rgb = light_on_obj(&near.rgb_ratio, near.rgb);
 	}
-	to_rgb_ratio(near.rgb, &pix_rgb);
+	else
+		to_rgb_ratio(near.rgb, &pix_rgb);
 	return (pix_rgb);
-	//apply_color(near.rgb, mlx_cfg, dx, dy);
 }
 
 void	define_ray(t_ray *ray, double half_screen, int *coord, t_scene *scene)

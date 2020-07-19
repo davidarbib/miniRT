@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 21:47:19 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/19 16:58:50 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/19 21:56:00 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int		main(int ac, char **av)
 	param.mlx_cfg = &mlx_cfg;
 	init_cfg(&rt_cfg);
 	parsing(ac, av, &rt_cfg);
+	data_visu(&rt_cfg);
 	init_scene(&scene, &rt_cfg, &mlx_cfg);
 	init_graphics(&mlx_cfg);
 	raytrace(&scene, &mlx_cfg);

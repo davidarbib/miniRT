@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 21:59:50 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/19 18:59:30 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/19 21:44:19 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@
 #include "rotation.h"
 #include <math.h>
 
-void	light_on_obj(t_vect *light, unsigned char *obj_rgb)
+t_vect	light_on_obj(t_vect *light, unsigned char *obj_rgb)
 {
-	
-	obj_rgb[r] = round(obj_rgb[r] * ft_min(light->x, 1.0));
-	obj_rgb[g] = round(obj_rgb[g] * ft_min(light->y, 1.0));
-	obj_rgb[b] = round(obj_rgb[b] * ft_min(light->z, 1.0));
+	t_vect	obj_color;
+
+	obj_color.x = obj_rgb[r] / 255. * fmin(light->x, 1.0);
+	obj_color.y = obj_rgb[g] / 255. * fmin(light->y, 1.0);
+	obj_color.z = obj_rgb[b] / 255. * fmin(light->z, 1.0);
+	return (obj_color);
 }
 
 void	colorize_pixels(t_vect pix_rgb, t_mlx *mlx_cfg, int *beginc, int *endc)

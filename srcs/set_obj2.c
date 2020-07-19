@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 16:35:51 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/13 12:58:25 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/19 22:02:50 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	set_olights(t_olight *olights, int n)
 void	set_quadrics_radius(t_cylinder *cyls, int n, t_sphere *spheres, int k)
 {
 	while (n--)
-		cyls[n].radius = cyls[n].diam / 2;
+		cyls[n].radius = cyls[n].diam / 2.;
 	while (k--)
-		spheres[k].radius = spheres[k].diam / 2;
+		spheres[k].radius = spheres[k].diam / 2.;
 } 
