@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 22:33:19 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/19 18:24:28 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/20 16:05:50 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void			turn_left(void *param);
 void			turn_right(void *param);
 void			turn_up(void *param);
 void			turn_down(void *param);
+void			roll(void *param);
+void			inv_roll(void *param);
 void			cam_switch(void *param);
 void			normal_exit(void *param);
 int				normal_exit2(void *param);

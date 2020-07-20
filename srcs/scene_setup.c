@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/19 16:32:33 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/20 16:03:17 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void	init_scene(t_scene *scene, t_rt *rt, t_mlx *mlx_cfg)
 	scene->active_cam = scene->cams;
 	assign_turn_matrices(scene->left_matrix, scene->right_matrix);
 	assign_turn_matrices2(scene->up_matrix, scene->down_matrix);
+	assign_roll_matrices(scene->roll_matrix, scene->invroll_matrix);
 	place_objs(scene);
 	compute_triangles_edges(scene->triangles, scene->triangles_n);
 }

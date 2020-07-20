@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:31:09 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/19 16:03:09 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/20 15:53:00 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct	s_scene
 	double			right_matrix[9];
 	double			up_matrix[9];
 	double			down_matrix[9];
+	double			roll_matrix[9];
+	double			invroll_matrix[9];
 }				t_scene;
 
 void	place_objs(t_scene *scene);

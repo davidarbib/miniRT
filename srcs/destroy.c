@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:35:17 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/15 19:53:27 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/20 15:36:16 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,28 @@ void		destroy_cfg(t_rt *cfg)
 		free(cfg->labels_tab);
 		cfg->labels_tab = NULL;
 	}
+	printf("cc1\n");
 	if (cfg->flags & IN_PARSING
 		&& cfg->current_obj_type > 1
 		&& cfg->current_obj_addr)
 		g_destroy_ft[cfg->current_obj_type](cfg->current_obj_addr);
+	printf("cc2\n");
 	if (cfg->flags & IN_PARSING)
+	{
+		printf("freeline\n");
 		free(cfg->line);
+	}
+	printf("cc3\n");
+	data_visu(cfg);
 	ft_lstclear(&cfg->cyls, destroy_cylinder);
 	ft_lstclear(&cfg->cams, destroy_camera);
+	printf("cc4\n");
 	ft_lstclear(&cfg->olights, destroy_olight);
 	ft_lstclear(&cfg->planes, destroy_plane);
 	ft_lstclear(&cfg->spheres, destroy_sphere);
 	ft_lstclear(&cfg->trigs, destroy_triangle);
 	ft_lstclear(&cfg->squares, destroy_square);
+	printf("cc5\n");
 }
 
 void		destroy_scene(t_scene *scene)
