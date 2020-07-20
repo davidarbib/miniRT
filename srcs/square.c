@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:36:28 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/29 14:06:03 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/20 22:36:48 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	compute_square_edges(t_square *square)
 	t_vect n;
 	t_vect p;
 	
-	n = square->orient;
-	p = square->pos;
+	n = square->current_orient;
+	p = square->current_pos;
 	if (is_zero(n.x) && is_zero(n.y))
 		square->edge1 = (t_vect) {p.x + 1, p.y + 1, p.z};
 	else if (is_zero(n.x) && is_zero(n.z))
