@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 16:35:51 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/19 22:02:50 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/22 18:31:01 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #include "vector.h"
 #include "print.h"
 
-void	set_squares_edges(t_square *squares, int n)
+void	set_current_edges(t_square *squares, int n)
 {
 	while (n--)
-		compute_square_edges(squares + n);
-} 
+		compute_current_edges(squares + n);
+}
 
 void	set_squares(t_square *squares, int n)
 {
@@ -28,10 +28,13 @@ void	set_squares(t_square *squares, int n)
 	{
 		square = squares + n;
 		normalize(&square->orient, &square->orient);
+		compute_square_edges(square);
 		vect_cpy(&square->pos, &square->current_pos);
 		vect_cpy(&square->orient, &square->current_orient);
-		vect_cpy(&square->edge1, &square->current_edge1);
-		vect_cpy(&square->edge2, &square->current_edge2);
+		compute_square_points(square);
+		vect_cpy(&square->pt1, &square->current_pt1);
+		vect_cpy(&square->pt2, &square->current_pt2);
+		vect_cpy(&square->pt3, &square->current_pt3);
 	}
 }
 

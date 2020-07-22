@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:31:09 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/20 15:53:00 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/22 18:32:36 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ void	set_cylinders(t_cylinder *cylinders, int n);
 void	set_olights(t_olight *olights, int n);
 void	compute_triangles_edges(t_trig *triangles, int n);
 void	set_squares_edges(t_square *squares, int n);
+void	set_current_edges(t_square *squares, int n);
 void	set_quadrics_radius(t_cylinder *cyls, int n, t_sphere *spheres, int k);
 #endif

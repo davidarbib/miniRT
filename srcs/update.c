@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/17 18:13:48 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/20 22:41:13 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/22 17:40:35 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int		update_display(t_scene *scene, t_mlx *cfg)
 {
 	refresh_img(cfg);
 	compute_triangles_edges(scene->triangles, scene->triangles_n);
-	set_squares_edges(scene->squares,scene->squares_n);
 	if (scene->lowres)
 		raytrace_lowres(scene, cfg);
 	else

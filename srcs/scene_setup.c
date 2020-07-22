@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/20 22:44:55 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/22 18:31:53 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	place_objs(t_scene *scene)
 			extract_scene_rotation(cam_orient, &scene->ref_orient, rot_matrix);
 		rotate_scene(scene, rot_matrix);
 	}
+	set_current_edges(scene->squares, scene->squares_n);
 }
 
 static void	init_objs_fts(t_scene *scene)
@@ -109,7 +110,6 @@ void	init_scene(t_scene *scene, t_rt *rt, t_mlx *mlx_cfg)
 	to_rgb_ratio(rt->ambient_rgb, &scene->ambient_rgb);
 	scene->ambient_ratio = rt->ambient_ratio;
 	make_array(rt, scene);
-	set_squares_edges(scene->squares, scene->squares_n);
 	set_quadrics_radius(scene->cylinders, scene->cylinders_n,
 						scene->spheres, scene->spheres_n);
 	set_cams(scene->cams, scene->cams_n);
@@ -119,5 +119,4 @@ void	init_scene(t_scene *scene, t_rt *rt, t_mlx *mlx_cfg)
 	assign_roll_matrices(scene->roll_matrix, scene->invroll_matrix);
 	place_objs(scene);
 	compute_triangles_edges(scene->triangles, scene->triangles_n);
-	set_squares_edges(scene->squares,scene->squares_n);
 }

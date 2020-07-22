@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/23 14:47:38 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/08 15:01:57 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/22 18:25:19 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ double	intersect_square(t_square square, t_ray ray)
 		return (0);
 	get_hit_point(t, ray.direction, ray.origin, &v);
 	sub_vect(&v, &square.current_pos, &v);
-	normalize(&square.edge1, &square.edge1);
-	normalize(&square.edge2, &square.edge2);
-	proj1 = dot(&v, &square.edge1);
-	proj2 = dot(&v, &square.edge2);
+	normalize(&square.current_edge1, &square.current_edge1);
+	normalize(&square.current_edge2, &square.current_edge2);
+	proj1 = dot(&v, &square.current_edge1);
+	proj2 = dot(&v, &square.current_edge2);
 	if ((proj1 < square.height && proj1 > 0) 
 		&& (proj2 < square.height && proj2 > 0))
 		return (t);
