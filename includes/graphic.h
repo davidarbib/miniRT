@@ -6,17 +6,20 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 16:37:26 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/19 16:30:30 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/24 12:57:13 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GRAPHIC_H
 # define GRAPHIC_H
 
+# include "parsing.h"
+
 # define WIDTH		800.
 # define INV_WIDTH	0.00125
 # define HEIGHT		800.
 # define INV_HEIGHT	0.00167
+
 
 typedef struct		s_mlx
 {
@@ -31,7 +34,7 @@ typedef struct		s_mlx
 	char			*img_data;
 }					t_mlx;
 
-int				init_graphics(t_mlx *mlx_cfg);
+int				init_graphics(t_mlx *mlx_cfg, t_rt *rt);
 int				create_img(t_mlx *mlx_cfg);
 int				refresh_img(t_mlx *mlx_cfg);
 void			alter_pixel(t_mlx *cfg, int color, int x, int y);

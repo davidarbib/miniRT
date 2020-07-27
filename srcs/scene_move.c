@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 13:20:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/20 22:37:30 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/24 10:30:53 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ void	move_squares(t_square *squares, int n, t_vect *translation)
 	{
 		square = squares + n;
 		add_vect(&square->current_pos, translation, &square->current_pos);
+		add_vect(&square->current_pt1, translation, &square->current_pt1);
+		add_vect(&square->current_pt2, translation, &square->current_pt2);
+		add_vect(&square->current_pt3, translation, &square->current_pt3);
 	}
 }
 

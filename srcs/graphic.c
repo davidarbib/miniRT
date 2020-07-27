@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 16:28:50 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/19 17:13:57 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/24 13:03:12 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,18 @@
 #include "graphic.h"
 #include "raytrace.h"
 #include "mlx.h"
+#include <stdio.h>
 
-int			init_graphics(t_mlx *mlx_cfg)
+int			init_graphics(t_mlx *mlx_cfg, t_rt *rt)
 {
+	int display_resy;
+	int display_resx;
+
 	if (!(mlx_cfg->mlx_ptr = mlx_init()))
 		return (0);
+	mlx_get_screen_size(mlx_cfg->mlx_ptr, &display_resx, &display_resy);
+	mlx_cfg->sizex = ft_min(rt->resx, display_resx);
+	mlx_cfg->sizey = ft_min(rt->resy, display_resy);	
 	if (!(mlx_cfg->win_ptr = mlx_new_window(mlx_cfg->mlx_ptr, mlx_cfg->sizex,
 		mlx_cfg->sizey, TITLE)))
 //	if (!(mlx_cfg->win_ptr = mlx_new_window(mlx_cfg->mlx_ptr, WIDTH,

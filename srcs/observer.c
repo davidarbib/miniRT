@@ -6,12 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 18:03:41 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/19 17:26:13 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/24 16:50:18 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "update.h"
 #include "actions.h"
+#include "print.h"
 
 void	cam_switch(void *param)
 {
@@ -24,6 +25,8 @@ void	cam_switch(void *param)
 	current_idx++;
 	current_idx %= scene->cams_n;
 	scene->active_cam = scene->cams + current_idx;
+	print_vect(&scene->active_cam->current_pos);
+	print_vect(&scene->active_cam->current_orient);
 	place_objs(scene);
 	if (!(update_display(scene, cfg)))
 		return ;
@@ -50,5 +53,5 @@ void	res_switch(void *param)
 		if (!(mlx_put_image_to_window(cfg->mlx_ptr, cfg->win_ptr,
 						cfg->img_ptr, 0, 0)))
 			return ;
-	}	
+	}
 }
