@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 18:44:26 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/20 16:18:25 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/27 20:54:01 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,5 @@ void	extract_scene_rotation(t_vect *cam_orient, t_vect *ref_orient,
 void	rotate_point(double *matrix, t_vect *v_in, t_vect *v_out);
 void	rot_from_anti_ref_orient(double *m);
 void	turn_cam(t_param *param, double *matrix);
+void	print_matrix(double *m);
 #endif

@@ -6,12 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/05 18:21:04 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/21 23:44:52 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/28 00:07:32 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rotation.h"
 #include "matrix.h"
+#include <stdio.h>
 
 void	to_spherical(t_vect *cartesian, t_spheric *spherical)
 {
@@ -49,6 +50,17 @@ static void	get_inv_f_matrix(double dot_ab, t_vect *a, t_vect *b, double *inv_f)
 	inv_f[6] = a->z;
 	inv_f[7] = baba.z;
 	inv_f[8] = cross_ba.z;
+/*
+	inv_f[0] = a->x;
+	inv_f[1] = a->y;
+	inv_f[2] = a->z;
+	inv_f[3] = baba.x;
+	inv_f[4] = baba.y;
+	inv_f[5] = baba.z;
+	inv_f[6] = cross_ba.x;
+	inv_f[7] = cross_ba.y;
+	inv_f[8] = cross_ba.z;
+*/
 }
 
 void	extract_scene_rotation(t_vect *cam_orient, t_vect *ref_orient,
@@ -72,8 +84,18 @@ void	extract_scene_rotation(t_vect *cam_orient, t_vect *ref_orient,
 	g_matrix[8] = 1;
 	get_inv_f_matrix(g_matrix[0], cam_orient, ref_orient, inv_f_matrix);
 	inverse(inv_f_matrix, f_matrix);
-	matrix_product(f_matrix, g_matrix, tmp_matrix);
-	matrix_product(tmp_matrix, inv_f_matrix, rot_matrix);
+	printf("---inv f---\n");
+	print_matrix(inv_f_matrix);
+	printf("---f---\n");
+	print_matrix(f_matrix);
+	printf("---g---\n");
+	print_matrix(g_matrix);
+	matrix_product(inv_f_matrix, g_matrix, tmp_matrix);
+	printf("---tmp---\n");
+	print_matrix(tmp_matrix);
+	//matrix_product(g_matrix, f_matrix, tmp_matrix);
+	matrix_product(tmp_matrix, f_matrix, rot_matrix);
+	//matrix_product(inv_f_matrix, tmp_matrix, rot_matrix);
 }
 
 void	rotate_point(double *matrix, t_vect *v_in, t_vect *v_out)

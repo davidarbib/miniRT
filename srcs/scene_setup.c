@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/24 13:08:37 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/28 00:08:43 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	place_objs(t_scene *scene)
 	t_vect	translation;
 	t_vect	*cam_orient;
 	double 	rot_matrix[9];
+	//double 	test_matrix[9];
 
 	set_planes(scene->planes, scene->planes_n);
 	set_triangles(scene->triangles, scene->triangles_n);
@@ -74,6 +75,19 @@ void	place_objs(t_scene *scene)
 		else 
 			extract_scene_rotation(cam_orient, &scene->ref_orient, rot_matrix);
 		rotate_scene(scene, rot_matrix);
+		/*
+		printf("---------------------------\n");
+		t_vect v1 = (t_vect) {4.5, 29., -2.};
+		t_vect v_out1;
+		t_vect v_out2;
+		rotate_point(test_matrix, &v1, &v_out1); 
+		rotate_point(rot_matrix, &v1, &v_out2); 
+		printf("v1 after exact rotation : \n");
+		print_vect(&v_out1);
+		printf("v1 after computed rotation : \n");
+		print_vect(&v_out2);
+		printf("---------------------------\n");
+		*/
 	}
 	set_current_edges(scene->squares, scene->squares_n);
 }

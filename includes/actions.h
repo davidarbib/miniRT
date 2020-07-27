@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 22:33:19 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/20 16:05:50 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/27 20:44:32 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 # include "general.h"
 
-# define STEP_SIZE 0.2
-# define ANGLE_SIZE 10
+# define STEP_SIZE 0.5
+# define ANGLE_SIZE 45
 # define MAX_KEYCODE 65536
 
 int				loop_hook(void *param);
