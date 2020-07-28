@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/28 00:08:43 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/28 14:19:38 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,9 @@ void	place_objs(t_scene *scene)
 		else 
 			extract_scene_rotation(cam_orient, &scene->ref_orient, rot_matrix);
 		rotate_scene(scene, rot_matrix);
+		printf("------------------\n");
+		print_matrix(rot_matrix);
+		printf("------------------\n");
 		/*
 		printf("---------------------------\n");
 		t_vect v1 = (t_vect) {4.5, 29., -2.};

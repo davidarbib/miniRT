@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 12:45:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/19 19:20:58 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/28 15:47:02 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,22 +88,22 @@ t_vect send_ray(t_scene *scene, t_ray *ray)
 void	define_ray(t_ray *ray, double half_screen, int *coord, t_scene *scene)
 {
 	double	aspect_ratio;
-	int		x;
-	int		y;
+	double 	x;
+	double 	y;
 
-	aspect_ratio = scene->resx / scene->resy;
+	aspect_ratio = (double)scene->resx / scene->resy;
 //	aspect_ratio = WIDTH / HEIGHT;
-	x = coord[dx];
-	y = coord[dy];
+	x = (double)coord[dx];
+	y = (double)coord[dy];
 	x += ((!scene->lowres) + (scene->lowres * LOWFACTOR)) * 0.5 ;
 	y += ((!scene->lowres) + (scene->lowres * LOWFACTOR)) * 0.5 ;
 	//ray->direction.x = (2 * coord[dx] / scene->resx - 1) * half_screen
 	//* aspect_ratio;
 	//ray->direction.y = (1 - 2 * coord[dy] / scene->resy) * half_screen;
 	//ray->direction.z = -1.0;	
-	ray->direction.x = (2 * x / WIDTH - 1) * half_screen
+	ray->direction.x = (2 * x / scene->resx - 1) * half_screen
 	* aspect_ratio;
-	ray->direction.y = (1 - 2 * y / HEIGHT) * half_screen;
+	ray->direction.y = (1 - 2 * y / scene->resy) * half_screen;
 	ray->direction.z = -1.0;	
 	ray->inv_direction.x = 1 / ray->direction.x;
 	ray->inv_direction.y = 1 / ray->direction.y;
