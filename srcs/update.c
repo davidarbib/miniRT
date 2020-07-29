@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/17 18:13:48 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/22 17:40:35 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/28 16:19:27 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,6 @@
 #include "print.h"
 #include "parsing.h"
 #include "scene.h"
-
-void	adapt_scene(t_scene *scene)
-{
-	t_vect	translation;
-
-	scale(-1, &scene->active_cam->pos, &translation);
-	//rotate_scene(t_scene *scene);
-	move_scene(scene, &translation);
-}
 
 int		update_display(t_scene *scene, t_mlx *cfg)
 {

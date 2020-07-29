@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 12:45:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/28 15:47:02 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/28 16:16:46 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ void	define_ray(t_ray *ray, double half_screen, int *coord, t_scene *scene)
 //	aspect_ratio = WIDTH / HEIGHT;
 	x = (double)coord[dx];
 	y = (double)coord[dy];
-	x += ((!scene->lowres) + (scene->lowres * LOWFACTOR)) * 0.5 ;
-	y += ((!scene->lowres) + (scene->lowres * LOWFACTOR)) * 0.5 ;
+	x += ((!scene->lowres) + (scene->lowres * LOWFACTOR)) * 0.5;
+	y += ((!scene->lowres) + (scene->lowres * LOWFACTOR)) * 0.5;
 	//ray->direction.x = (2 * coord[dx] / scene->resx - 1) * half_screen
 	//* aspect_ratio;
 	//ray->direction.y = (1 - 2 * coord[dy] / scene->resy) * half_screen;

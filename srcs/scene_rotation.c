@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/05 18:21:04 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/28 00:07:32 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/28 16:31:48 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,18 +84,8 @@ void	extract_scene_rotation(t_vect *cam_orient, t_vect *ref_orient,
 	g_matrix[8] = 1;
 	get_inv_f_matrix(g_matrix[0], cam_orient, ref_orient, inv_f_matrix);
 	inverse(inv_f_matrix, f_matrix);
-	printf("---inv f---\n");
-	print_matrix(inv_f_matrix);
-	printf("---f---\n");
-	print_matrix(f_matrix);
-	printf("---g---\n");
-	print_matrix(g_matrix);
 	matrix_product(inv_f_matrix, g_matrix, tmp_matrix);
-	printf("---tmp---\n");
-	print_matrix(tmp_matrix);
-	//matrix_product(g_matrix, f_matrix, tmp_matrix);
 	matrix_product(tmp_matrix, f_matrix, rot_matrix);
-	//matrix_product(inv_f_matrix, tmp_matrix, rot_matrix);
 }
 
 void	rotate_point(double *matrix, t_vect *v_in, t_vect *v_out)
