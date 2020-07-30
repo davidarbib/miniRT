@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/28 22:03:03 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/30 16:12:22 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,20 @@ void	place_objs(t_scene *scene)
 	t_vect	translation;
 	t_vect	*cam_orient;
 	double 	rot_matrix[9];
+	/*
 	double 	test_matrix[9] = {0.699553,		-0.102759,		-0.707154,
 								-0.102759,		0.964854,	-0.24186,
 								0.70706,		0.241829,	0.664519};
 	double 	test2_matrix[9] = {0.699603,		-0.102742,		-0.707107,
 								-0.102742,		0.964860,	-0.241844,
 								0.707107,		0.241845,	0.664463};
+	*/
+	/*
+	double x_m[9];
+	double y_m[9];
+	double z_m[9];
+	t_vect tmp_v;
+	*/
 	set_planes(scene->planes, scene->planes_n);
 	set_triangles(scene->triangles, scene->triangles_n);
 	set_spheres(scene->spheres, scene->spheres_n);
@@ -82,8 +90,20 @@ void	place_objs(t_scene *scene)
 		if (opposite_vect(cam_orient, &scene->ref_orient))
 			rot_from_anti_ref_orient(rot_matrix);
 		else 
-			extract_scene_rotation(cam_orient, &scene->ref_orient, rot_matrix);
+		/*
+		{
+			sub_vect(cam_orient, &scene->ref_orient, &tmp_v);
+			x_matrix(tmp_v.x * M_PI, x_m);
+			y_matrix(tmp_v.y * M_PI, y_m);
+			z_matrix(tmp_v.z * M_PI, z_m);
+			rotate_scene(scene, x_m);
+			rotate_scene(scene, y_m);
+			rotate_scene(scene, z_m);
+		}
+		*/
+		extract_scene_rotation(cam_orient, &scene->ref_orient, rot_matrix);
 		rotate_scene(scene, rot_matrix);
+		/*
 		printf("-------rot_matrix------------\n");
 		print_matrix(rot_matrix);
 		printf("-------------------\n");
@@ -114,6 +134,7 @@ void	place_objs(t_scene *scene)
 		print_vect(&v_1b);
 		print_vect(&v_2b);
 		print_vect(&v_3b);
+		*/
 	}
 	set_current_edges(scene->squares, scene->squares_n);
 }

@@ -6,7 +6,7 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/07/20 16:17:10 by darbib           ###   ########.fr        #
+#    Updated: 2020/07/30 14:36:08 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,6 +108,7 @@ SRC = camera.c \
 	update.c \
 	bitmap.c \
 	matrix.c \
+	matrix_gen.c \
 	matrix_inversion.c \
 	loop_intersect.c \
 	observer.c \
