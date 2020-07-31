@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 19:19:23 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/15 18:51:01 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/31 19:25:02 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ double intersect_sphere(t_sphere sphere, t_ray ray)
 	var[t_hc] = sqrt(r * r - var[d] * var[d]);
 	var[t0] = var[t_ca] - var[t_hc];
 	var[t1] = var[t_ca] + var[t_hc];
-	if (var[t0] < EPSILON)
+	if (var[t0] <= EPSILON)
 		return (var[t1]);
 	return (var[t0]);
 }

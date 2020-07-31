@@ -6,11 +6,14 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 16:34:41 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/16 21:06:03 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/31 19:56:08 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytrace.h"
+#include "print.h"
+
+extern t_olight *g_light_ptr;
 
 static int light_cast2(t_scene *scene, t_ray *ray, t_shadow *sh)
 {
@@ -52,7 +55,17 @@ int			light_cast(t_scene *scene, t_ray *ray, t_shadow *sh)
 	{
 		sh->t = intersect_sphere(scene->spheres[n], *ray);
 		if (sh->t > EPSILON && (sh->t + EPSILON) < sh->t_light)
+		{
 			return (1);
+		}
+		if (g_light_ptr->current_pos.x == 12.)
+		{
+		printf("---------------\n");
+		printf("light pos: \n");
+		print_vect(&g_light_ptr->current_pos);
+		printf("t_light : %lf\nt_sphere : %lf\n", sh->t_light, sh->t);
+		printf("---------------\n");
+		}
 	}
 	n = -1;
 	while (++n < scene->cylinders_n)

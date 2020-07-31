@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 12:45:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/31 15:55:54 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/31 19:47:12 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 #include <math.h>
 
 void	(*g_get_properties[TYPE_NB])(t_near *, t_ray);
+
+t_olight *g_light_ptr = NULL;
 
 static void	init_send_ray(t_near *near, t_scene *scene)
 {
@@ -44,6 +46,7 @@ static void	merge_light(t_scene *scene, t_ray *ray, t_near *near)
 	n = -1;
 	while (++n < scene->olights_n)
 	{
+		g_light_ptr = scene->olights + n;
 		sub_vect(&scene->olights[n].current_pos, &near->hit, &sray.direction);
 		scale(EPSILON, &sray.direction, &tmp);
 		add_vect(&near->hit, &tmp, &sray.origin);
