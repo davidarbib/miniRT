@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 16:33:07 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/20 15:05:55 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/31 17:14:16 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static void	check_camera(t_rt *cfg, t_cam *cam)
 {
 	if (!is_orientation_vect(&cam->orient))
 		parse_error(E_ORIENT, cfg);	
+	if (is_null_vect(cam->orient))
+		parse_error(E_NULLV, cfg);
 	if (cam->fov < 0 || cam->fov > 180)	
 		parse_error(E_FOVRANGE, cfg);	
 }

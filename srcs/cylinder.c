@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:50:39 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/11 01:30:49 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/31 18:09:20 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static void	check_cylinder(t_rt *cfg, t_cylinder *cyl)
 {
 	if (!is_orientation_vect(&cyl->orient))
 		parse_error(E_ORIENT, cfg);
+	if (is_null_vect(cyl->orient))
+		parse_error(E_NULLV, cfg);
 }
 
 void	parse_cylinder(t_rt *cfg, char *line)

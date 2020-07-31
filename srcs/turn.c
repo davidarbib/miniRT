@@ -6,35 +6,15 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 22:39:51 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/28 16:32:09 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/31 16:35:45 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "actions.h"
 #include "update.h"
-#include "print.h"
 #include "general.h"
 #include "rotation.h"
 #include "matrix.h"
-
-void			print_matrix(double *m)
-{
-	int i;
-	int j;
-	
-	j = 0;
-	while (j < DN)
-	{
-		i = 0;
-		while (i < DN)
-		{
-			printf("%lf ", m[i + DN * j]);
-			i++;
-		}
-		j++;
-		printf("\n");
-	}
-}
 
 void	turn_cam(t_param *param, double *matrix)
 {
@@ -43,11 +23,6 @@ void	turn_cam(t_param *param, double *matrix)
 	current_orient = &param->scene->active_cam->current_orient;
 	normalize(current_orient, current_orient);
 	rotate_point(matrix, current_orient, current_orient); 
-	printf("-----------in turn cam--------\n");
-	printf("ptr active cam : %p\n", param->scene->active_cam);
-	printf("active cam orient: \n");
-	print_vect(current_orient);
-	printf("-------------------\n");
 }
 
 void	turn_left(void *param)

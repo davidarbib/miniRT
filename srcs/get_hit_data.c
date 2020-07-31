@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 14:48:42 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/15 15:46:50 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/31 15:53:42 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,39 +70,15 @@ void	get_hit_cylinder(t_near *near, t_ray ray)
 	t_vect		hit_bc;
 	t_vect		proj_hit_on_a;
 	t_vect		a;
-	//t_vect		tmp;
 
 	cylinder = (t_cylinder *)near->obj;
 	get_hit_point(near->t, ray.direction, ray.origin, &near->hit);
-	//print_vect(&ray.origin);
-	//print_vect(&ray.direction);
-	//printf("t : %lf\n", near->t);
-	//printf("P : \n");
-	//print_vect(&near->hit);
 	sub_vect(&near->hit, &cylinder->current_pos, &hit_bc);
-	/*
-	cross(&hit_bc, &cylinder->current_orient, &tmp);
-	normalize(&tmp, &tmp);
-	cross(&tmp, &cylinder->current_orient, &near->normal);
-	*/
-	//printf("u : \n");
-	//print_vect(&hit_bc);
 	a = cylinder->current_orient;
-	//printf("a : \n");
-	//print_vect(&a);
 	scale(dot(&hit_bc, &a), &a, &proj_hit_on_a);	
-	//printf("projpona : \n");
-	//print_vect(&proj_hit_on_a);
 	sub_vect(&hit_bc, &proj_hit_on_a, &near->normal);
 	normalize(&near->normal, &near->normal);
 	if (dot(&ray.direction, &near->normal) > EPSILON)
 		scale(-1, &near->normal, &near->normal);
-	//printf("normal : \n");
-	//print_vect(&near->normal);
-	/*
-	assert(near->normal.x <= 0.000001 && near->normal.x >= -0.000001
-			&& near->normal.y <= 0.000001 && near->normal.y >= -0.000001
-			&& near->normal.z <= 1.000001 && near->normal.z >= .99999);
-	*/
 	get_obj_rgb(near->obj, near->type, near->rgb); 
 }

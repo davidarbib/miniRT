@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 12:45:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/28 16:16:46 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/31 15:55:54 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,9 @@ static void	merge_light(t_scene *scene, t_ray *ray, t_near *near)
 		scale(EPSILON, &sray.direction, &tmp);
 		add_vect(&near->hit, &tmp, &sray.origin);
 		sh.t_light = vect_norm(&sray.direction);
-	//	printf("---------------------\n");
-	//	print_vect(&sray.origin);
-	//	print_vect(&sray.direction);
-	//	printf("---------------------\n");
 		normalize(&sray.direction, &sray.direction);
 		if (light_cast(scene, &sray, &sh))
 			continue;
-		//printf("sh obj %p coord :\n", sh.obj);
-		//print_vect(&((t_plane *)sh.obj)->current_pos);
 		sh.current_light_ratio = scene->olights[n].ratio;
 		to_rgb_ratio(scene->olights[n].rgb, &sh.rgb_ratio);
 		compute_illumination(ray, &sray, near, &sh);
@@ -64,7 +58,6 @@ static void	merge_light(t_scene *scene, t_ray *ray, t_near *near)
 	scale((KA * scene->ambient_ratio), &scene->ambient_rgb, &tmp); 
 	add_vect(&tmp, &near->rgb_ratio, &near->rgb_ratio);
 	sh.ratio_sum += scene->ambient_ratio;
-	//scale(1. / sh.ratio_sum, &near->rgb_ratio, &near->rgb_ratio);
 }
 
 t_vect send_ray(t_scene *scene, t_ray *ray)
@@ -92,15 +85,10 @@ void	define_ray(t_ray *ray, double half_screen, int *coord, t_scene *scene)
 	double 	y;
 
 	aspect_ratio = (double)scene->resx / scene->resy;
-//	aspect_ratio = WIDTH / HEIGHT;
 	x = (double)coord[dx];
 	y = (double)coord[dy];
 	x += ((!scene->lowres) + (scene->lowres * LOWFACTOR)) * 0.5;
 	y += ((!scene->lowres) + (scene->lowres * LOWFACTOR)) * 0.5;
-	//ray->direction.x = (2 * coord[dx] / scene->resx - 1) * half_screen
-	//* aspect_ratio;
-	//ray->direction.y = (1 - 2 * coord[dy] / scene->resy) * half_screen;
-	//ray->direction.z = -1.0;	
 	ray->direction.x = (2 * x / scene->resx - 1) * half_screen
 	* aspect_ratio;
 	ray->direction.y = (1 - 2 * y / scene->resy) * half_screen;
@@ -122,16 +110,12 @@ void	raytrace(t_scene *scene, t_mlx *mlx_cfg)
 	double	half_screen;
 	t_vect	pix_rgb;
 
-	printf("scene sizex : %d\n", scene->resx);
-	printf("scene sizey : %d\n", scene->resy);
 	half_screen = tan(to_radian(scene->active_cam->fov * 0.5));
 	coord[dx] = 0;
 	while (coord[dx] < scene->resx)
-//	while (coord[dx] < WIDTH)
 	{
 		coord[dy] = 0;
 		while (coord[dy] < scene->resy)
-	//	while (coord[dy] < HEIGHT)
 		{
 			define_ray(&ray, half_screen, coord, scene);
 			pix_rgb = send_ray(scene, &ray);	

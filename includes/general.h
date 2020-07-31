@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 17:27:22 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/15 23:02:10 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/31 15:21:50 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct	s_param
 	t_scene		*scene;
 }				t_param;
 
-# define TITLE		"RT scene"
+# define TITLE		"Fantaisie mathematique"
 # define SAVEARG	"-save"
 # define FILEEXT	".rt"
 

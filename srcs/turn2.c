@@ -6,13 +6,12 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 15:51:40 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/20 16:04:43 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/31 16:20:05 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "actions.h"
 #include "update.h"
-#include "print.h"
 #include "general.h"
 #include "rotation.h"
 #include "matrix.h"

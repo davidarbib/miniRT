@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 19:03:08 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/19 19:04:33 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/31 15:55:11 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 static inline int overlap(double *t0, double *t1, double min_, double max_)
 {
-	//printf("t0 : %lf, t1 : %lf, min_ : %lf, max_ : %lf\n", *t0, *t1, min_, max_);
 	if ((*t0 > max_) || (min_ > *t1))
 		return (0);
 	if (min_ > *t0)

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:32:42 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/29 13:31:08 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/31 18:02:30 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ static void	check_plane(t_rt *cfg, t_plane *plane)
 {
 	if (!(is_orientation_vect(&plane->orient)))
 		parse_error(E_ORIENT, cfg);
+	print_vect(&plane->orient);
+	if (is_null_vect(plane->orient))
+		parse_error(E_NULLV, cfg);
 }
 
 void	parse_plane(t_rt *cfg, char *line)

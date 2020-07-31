@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:50:22 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/22 18:33:47 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/31 15:56:15 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,6 @@ void	rotate_squares(t_square *squares, int n, double *matrix)
 		rotate_point(matrix, &square->current_pt2, &square->current_pt2);
 		rotate_point(matrix, &square->current_pt3, &square->current_pt3);
 		compute_current_edges(square);
-		printf("--------------------\n");
-		print_vect(&square->current_pos);
-		print_vect(&square->current_edge1);
-		print_vect(&square->current_edge2);
-		printf("--------------------\n");
 	}
 }
 

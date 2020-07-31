@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/30 16:12:22 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/31 16:54:21 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,20 +56,8 @@ void	place_objs(t_scene *scene)
 	t_vect	translation;
 	t_vect	*cam_orient;
 	double 	rot_matrix[9];
-	/*
-	double 	test_matrix[9] = {0.699553,		-0.102759,		-0.707154,
-								-0.102759,		0.964854,	-0.24186,
-								0.70706,		0.241829,	0.664519};
-	double 	test2_matrix[9] = {0.699603,		-0.102742,		-0.707107,
-								-0.102742,		0.964860,	-0.241844,
-								0.707107,		0.241845,	0.664463};
-	*/
-	/*
-	double x_m[9];
-	double y_m[9];
-	double z_m[9];
-	t_vect tmp_v;
-	*/
+
+	set_cams(scene->cams, scene->cams_n);
 	set_planes(scene->planes, scene->planes_n);
 	set_triangles(scene->triangles, scene->triangles_n);
 	set_spheres(scene->spheres, scene->spheres_n);
@@ -80,61 +68,13 @@ void	place_objs(t_scene *scene)
 	normalize(cam_orient, cam_orient);
 	scale(-1, &scene->active_cam->current_pos, &translation);
 	move_scene(scene, &translation);
-	printf("--------in place objs-----------\n");
-	printf("ptr active cam : %p\n", scene->active_cam);
-	printf("active cam orient: \n");
-	print_vect(cam_orient);
-	printf("-------------------\n");
 	if (!(same_vect(cam_orient, &scene->ref_orient)))
 	{
 		if (opposite_vect(cam_orient, &scene->ref_orient))
 			rot_from_anti_ref_orient(rot_matrix);
 		else 
-		/*
-		{
-			sub_vect(cam_orient, &scene->ref_orient, &tmp_v);
-			x_matrix(tmp_v.x * M_PI, x_m);
-			y_matrix(tmp_v.y * M_PI, y_m);
-			z_matrix(tmp_v.z * M_PI, z_m);
-			rotate_scene(scene, x_m);
-			rotate_scene(scene, y_m);
-			rotate_scene(scene, z_m);
-		}
-		*/
 		extract_scene_rotation(cam_orient, &scene->ref_orient, rot_matrix);
 		rotate_scene(scene, rot_matrix);
-		/*
-		printf("-------rot_matrix------------\n");
-		print_matrix(rot_matrix);
-		printf("-------------------\n");
-		t_vect v1 = (t_vect) {-3., 0, -1};
-		t_vect v2 = (t_vect) {-1., 0, -3};
-		t_vect v3 = (t_vect) {-2., 2., -2};
-		t_vect v_1a;
-		t_vect v_1b;
-		t_vect v_2a;
-		t_vect v_2b;
-		t_vect v_3a;
-		t_vect v_3b;
-		rotate_point(test_matrix, &v1, &v_1a);
-		rotate_point(test2_matrix, &v1, &v_1b);
-		rotate_point(test_matrix, &v2, &v_2a);
-		rotate_point(test2_matrix, &v2, &v_2b);
-		rotate_point(test_matrix, &v3, &v_3a);
-		rotate_point(test2_matrix, &v3, &v_3b);
-		printf("----initial point---\n");
-		print_vect(&v1);
-		print_vect(&v2);
-		print_vect(&v3);
-		printf("----test_matrix effect---\n");
-		print_vect(&v_1a);
-		print_vect(&v_2a);
-		print_vect(&v_3a);
-		printf("----test2_matrix effect---\n");
-		print_vect(&v_1b);
-		print_vect(&v_2b);
-		print_vect(&v_3b);
-		*/
 	}
 	set_current_edges(scene->squares, scene->squares_n);
 }

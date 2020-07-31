@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 14:10:20 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/30 15:23:32 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/31 15:54:10 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 void	x_matrix(double theta, double *m)
 {
-	printf("theta x = %lf\n", to_degree(theta));
 	double costheta;
 	double sintheta;
 	
@@ -36,7 +35,6 @@ void	x_matrix(double theta, double *m)
 
 void	y_matrix(double theta, double *m)
 {
-	printf("theta y = %lf\n", to_degree(theta));
 	double costheta;
 	double sintheta;
 	
@@ -55,7 +53,6 @@ void	y_matrix(double theta, double *m)
 
 void	z_matrix(double theta, double *m)
 {
-	printf("theta z = %lf\n", to_degree(theta));
 	double costheta;
 	double sintheta;
 	

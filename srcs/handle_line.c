@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:54:56 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/20 15:20:46 by darbib           ###   ########.fr       */
+/*   Updated: 2020/07/31 18:08:08 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static void dispatch(t_rt *cfg, char *p_line)
 	cpy_next_word(&p_line, cfg->buf);
 	if ((idx = label_chr(cfg->labels_tab, cfg->buf)) < 0)
 		parse_error(E_BADOBJ, cfg);	
+	printf("cfg buf : --%s--\n", cfg->buf);
+	printf("idx : --%d--\n", idx);
 	g_parse_ft[idx](cfg, p_line);
 	cfg->current_obj_type = idx;
 }
