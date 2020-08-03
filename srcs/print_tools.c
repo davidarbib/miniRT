@@ -3,7 +3,7 @@
 
 void print_vect(t_vect *v)
 {
-	printf("%lf, %lf, %lf\n", v->x, v->y, v->z);
+	printf("%.16lf, %.16lf, %.16lf\n", v->x, v->y, v->z);
 }
 
 void print_vect_sph(t_spheric *v)

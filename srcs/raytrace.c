@@ -6,14 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 12:45:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/31 19:47:12 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/02 16:48:33 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "minirt.h"
 #include "raytrace.h"
-#include <assert.h>
 #include "print.h"
 #include "rotation.h"
 #include <math.h>

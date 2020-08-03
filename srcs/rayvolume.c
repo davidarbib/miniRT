@@ -6,11 +6,12 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 19:19:23 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/31 19:25:02 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/03 18:34:16 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytrace.h"
+#include "print.h"
 
 /*
 ** geometric solution
@@ -22,10 +23,23 @@ double intersect_sphere(t_sphere sphere, t_ray ray)
 	double	len_co;
 	double	r;
 
+if (ray.direction.x >= 0.7537962109817237 
+	&&	ray.direction.x <= 0.7537962109817239
+	&&	ray.direction.y >= 0.4070515806108898
+	&&	ray.direction.y <= 0.40705158061089
+	&&	ray.direction.z <= -0.5052957755693655
+	&&	ray.direction.z >= -0.5052957755693657
+	&&	ray.origin.x >= 2.0000100000000000
+	&&	ray.origin.x <= 2.0000100000000002
+	&&	ray.origin.y <= -1.9999949999999999
+	&&	ray.origin.y >= -1.9999950000000001
+	&&	ray.origin.z <= -2.85916230949771321
+	&&	ray.origin.z >= -2.85916230949771323)
+	printf("cc\n");
 	r = sphere.radius;
 	sub_vect(&sphere.current_pos, &ray.origin, &v_co);
 	var[t_ca] = dot(&v_co, &ray.direction);
-	if (var[t_ca] < 0)
+	if (var[t_ca] <= 0)
 		return (0);
 	len_co = vect_norm(&v_co);
 	var[d] = sqrt(len_co * len_co - var[t_ca] * var[t_ca]);	
@@ -34,8 +48,13 @@ double intersect_sphere(t_sphere sphere, t_ray ray)
 	var[t_hc] = sqrt(r * r - var[d] * var[d]);
 	var[t0] = var[t_ca] - var[t_hc];
 	var[t1] = var[t_ca] + var[t_hc];
-	if (var[t0] <= EPSILON)
-		return (var[t1]);
+	if (ft_abs(var[t0]) <= EPSILON)
+	{
+		if (ft_abs(var[t1]) > EPSILON)
+			return (var[t1]);
+		else
+			return (0);
+	}
 	return (var[t0]);
 }
 
