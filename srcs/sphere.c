@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:43:21 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/31 17:21:26 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 17:58:12 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	parse_sphere(t_rt *cfg, char *line)
 	line = ft_pass_spaces(line);
 	sphere->diam = ft_atof_mv(&line);	
 	line = ft_pass_spaces(line);
+	if (*line == SEP)
+		parse_error(E_MISSPPTY, cfg);
 	if (!(get_rgb(sphere->rgb, &line)))
 		parse_error(E_BADRGB, cfg); 
 	if (cfg->spheres)

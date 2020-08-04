@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 13:37:45 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/19 21:52:48 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 18:01:12 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void			parse_olight(t_rt *cfg, char *line)
 	line = ft_pass_spaces(line);
 	olight->ratio = ft_atof_mv(&line);	
 	line = ft_pass_spaces(line);
+	if (*line == SEP)
+		parse_error(E_MISSPPTY, cfg);
 	if (!(get_rgb(olight->rgb, &line)))
 		parse_error(E_BADRGB, cfg); 
 	check_olight(cfg, olight);

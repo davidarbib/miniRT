@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:50:39 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/31 18:09:20 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 17:55:01 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,12 @@ void	parse_cylinder(t_rt *cfg, char *line)
 	line = ft_pass_spaces(line);
 	get_vector(&line, cfg, &cyl->orient);
 	line = ft_pass_spaces(line);
-	cyl->diam = ft_atof_mv(&line);	
+	cyl->diam = ft_atof_mv(&line);
 	line = ft_pass_spaces(line);
 	cyl->height = ft_atof_mv(&line);	
 	line = ft_pass_spaces(line);
+	if (*line == SEP)
+		parse_error(E_MISSPPTY, cfg);
 	check_cylinder(cfg, cyl);
 	if (!(get_rgb(cyl->rgb, &line)))
 		parse_error(E_BADRGB, cfg); 

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 19:07:27 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/31 17:03:27 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 17:57:10 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define E_FOVRANGE	"camera FOV must be comprised in [0;180] range"
 # define E_ORIENT	"orientation values must be comprised in [-1;1] range" 
 # define E_NULLV	"orientation vect cant be null" 
+# define E_MISSPPTY	"at least one object property missing" 
 
 void	parse_error(char *msg, t_rt *cfg);
 void	sys_error(t_rt *cfg);

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:36:28 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/31 17:15:13 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 18:06:38 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	parse_square(t_rt *cfg, char *line)
 	line = ft_pass_spaces(line);
 	square->height = ft_atof_mv(&line);	
 	line = ft_pass_spaces(line);
+	if (*line == SEP)
+		parse_error(E_MISSPPTY, cfg);
 	if (!(get_rgb(square->rgb, &line)))
 		parse_error(E_BADRGB, cfg); 
 	if (!is_orientation_vect(&square->orient))
@@ -56,8 +58,6 @@ void	compute_square_points(t_square *square)
 	add_vect(&square->pos, &square->edge1, &square->pt1); 
 	add_vect(&square->pt1, &square->edge2, &square->pt2); 
 	add_vect(&square->pos, &square->edge2, &square->pt3); 
-	//sub_vect(&square->pt1, &square->pos, &square->edge1); 
-	//sub_vect(&square->pt3, &square->pos, &square->edge2); 
 }
 
 void	compute_current_edges(t_square *square)
