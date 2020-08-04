@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/27 16:45:28 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/30 14:17:48 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 18:44:39 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 static double	get_object_value(double *m1, double *m2, int i, int j)
 {
-	int z;
-	double sum;
-	
+	int		z;
+	double	sum;
+
 	sum = 0;
 	z = 0;
 	while (z < DN)
@@ -26,14 +26,14 @@ static double	get_object_value(double *m1, double *m2, int i, int j)
 		sum += m1[z + DN * j] * m2[i + DN * z];
 		z++;
 	}
-	return (sum);	
+	return (sum);
 }
 
 void			matrix_product(double *m1, double *m2, double *m_out)
 {
 	int i;
 	int j;
-	
+
 	j = 0;
 	while (j < DN)
 	{

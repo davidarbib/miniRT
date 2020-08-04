@@ -6,7 +6,7 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/07/30 14:36:08 by darbib           ###   ########.fr        #
+#    Updated: 2020/08/04 22:45:04 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,28 +72,27 @@ SRC = camera.c \
 	omnilight.c \
 	parse_utils.c \
 	parse_utils2.c \
+	parse_utils3.c \
 	vector.c \
 	vect_product.c \
 	vect_projection.c \
-	quaternion.c \
 	parsing.c \
 	handle_line.c \
 	scene_rotation.c \
 	scene_rotation2.c \
 	scene_rotation3.c \
 	scene_rotation4.c \
-	aabb.c \
 	plane.c \
 	rt_buffer.c \
 	sphere.c \
 	square.c \
+	square2.c \
 	print_tools.c \
 	minitools.c \
 	turn.c \
 	turn2.c \
 	move.c \
 	move2.c \
-	hook.c \
 	raytrace.c \
 	light_casting.c \
 	raytrace2.c \

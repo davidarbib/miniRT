@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/21 11:38:03 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/01 21:54:38 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 19:23:10 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 double	dot(t_vect *vect1, t_vect *vect2)
 {
 	double total;
-	
+
 	total = vect1->x * vect2->x;
 	total += vect1->y * vect2->y;
 	total += vect1->z * vect2->z;

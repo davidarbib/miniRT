@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 13:49:53 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/10 21:48:54 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 19:23:49 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	vect_cpy(t_vect *v_in, t_vect *v_out)
 	v_out->z = v_in->z;
 }
 
-int		same_vect(t_vect *v1, t_vect *v2) 
+int		same_vect(t_vect *v1, t_vect *v2)
 {
 	t_vect tmp_v1;
 	t_vect tmp_v2;
@@ -46,10 +46,10 @@ int		same_vect(t_vect *v1, t_vect *v2)
 	return (0);
 }
 
-int		opposite_vect(t_vect *v1, t_vect *v2) 
+int		opposite_vect(t_vect *v1, t_vect *v2)
 {
 	t_vect v1_opposite;
-	
+
 	scale(-1., v1, &v1_opposite);
 	if (same_vect(&v1_opposite, v2))
 		return (1);
@@ -57,7 +57,7 @@ int		opposite_vect(t_vect *v1, t_vect *v2)
 }
 
 int		is_null_vect(t_vect v)
-{	
+{
 	if (is_zero(v.x) && is_zero(v.y) && is_zero(v.z))
 		return (1);
 	return (0);

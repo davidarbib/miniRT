@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/31 16:54:21 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 20:36:07 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include "actions.h"
 #include "mlx.h"
 
-void	compute_triangles_edges(t_trig *triangles, int n)
+void		compute_triangles_edges(t_trig *triangles, int n)
 {
 	while (--n >= 0)
 	{
@@ -31,31 +31,31 @@ void	compute_triangles_edges(t_trig *triangles, int n)
 	}
 }
 
-int		make_array(t_rt *rt, t_scene *scene)
+int			make_array(t_rt *rt, t_scene *scene)
 {
-	if ((scene->planes = ft_lsttotab(rt->planes, sizeof(t_plane), 
+	if ((scene->planes = ft_lsttotab(rt->planes, sizeof(t_plane),
 			&scene->planes_n))
-		&& (scene->spheres = ft_lsttotab(rt->spheres, sizeof(t_sphere), 
+		&& (scene->spheres = ft_lsttotab(rt->spheres, sizeof(t_sphere),
 			&scene->spheres_n))
-		&& (scene->triangles = ft_lsttotab(rt->trigs, sizeof(t_trig), 
+		&& (scene->triangles = ft_lsttotab(rt->trigs, sizeof(t_trig),
 			&scene->triangles_n))
-		&& (scene->squares = ft_lsttotab(rt->squares, sizeof(t_square), 
+		&& (scene->squares = ft_lsttotab(rt->squares, sizeof(t_square),
 			&scene->squares_n))
-		&& (scene->cylinders = ft_lsttotab(rt->cyls, sizeof(t_cylinder), 
+		&& (scene->cylinders = ft_lsttotab(rt->cyls, sizeof(t_cylinder),
 			&scene->cylinders_n))
-		&& (scene->cams = ft_lsttotab(rt->cams, sizeof(t_cam), 
+		&& (scene->cams = ft_lsttotab(rt->cams, sizeof(t_cam),
 			&scene->cams_n))
-		&& (scene->olights = ft_lsttotab(rt->olights, sizeof(t_olight), 
+		&& (scene->olights = ft_lsttotab(rt->olights, sizeof(t_olight),
 			&scene->olights_n)))
 		return (1);
 	return (0);
 }
 
-void	place_objs(t_scene *scene)
+void		place_objs(t_scene *scene)
 {
 	t_vect	translation;
 	t_vect	*cam_orient;
-	double 	rot_matrix[9];
+	double	rot_matrix[9];
 
 	set_cams(scene->cams, scene->cams_n);
 	set_planes(scene->planes, scene->planes_n);
@@ -72,8 +72,8 @@ void	place_objs(t_scene *scene)
 	{
 		if (opposite_vect(cam_orient, &scene->ref_orient))
 			rot_from_anti_ref_orient(rot_matrix);
-		else 
-		extract_scene_rotation(cam_orient, &scene->ref_orient, rot_matrix);
+		else
+			extract_scene_rotation(cam_orient, &scene->ref_orient, rot_matrix);
 		rotate_scene(scene, rot_matrix);
 	}
 	set_current_edges(scene->squares, scene->squares_n);
@@ -96,12 +96,12 @@ static void	init_objs_fts(t_scene *scene)
 	scene->background_rgb[2] = 0.;
 }
 
-void	init_scene(t_scene *scene, t_rt *rt, t_mlx *mlx_cfg)
+void		init_scene(t_scene *scene, t_rt *rt, t_mlx *mlx_cfg)
 {
 	init_objs_fts(scene);
 	scene->lowres = 0;
 	scene->resx = mlx_cfg->sizex;
-	scene->resy = mlx_cfg->sizey;	
+	scene->resy = mlx_cfg->sizey;
 	to_rgb_ratio(rt->ambient_rgb, &scene->ambient_rgb);
 	scene->ambient_ratio = rt->ambient_ratio;
 	make_array(rt, scene);

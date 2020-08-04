@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/21 11:38:03 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/13 23:24:50 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 19:23:26 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 double	vect_norm(t_vect *vect)
 {
 	double total;
-	
+
 	total = vect->x * vect->x;
 	total += vect->y * vect->y;
 	total += vect->z * vect->z;

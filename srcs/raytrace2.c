@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 21:59:50 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/19 21:44:19 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 19:15:21 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	colorize_pixels(t_vect pix_rgb, t_mlx *mlx_cfg, int *beginc, int *endc)
 {
 	int x;
 	int y;
-	
+
 	x = beginc[dx];
 	while (x < endc[dx])
 	{
@@ -56,7 +56,7 @@ void	raytrace_lowres(t_scene *scene, t_mlx *mlx_cfg)
 
 	half_screen = tan(to_radian(scene->active_cam->fov * 0.5));
 	begincoord[dx] = 0;
-	endcoord[dx] = LOWFACTOR; 
+	endcoord[dx] = LOWFACTOR;
 	while (begincoord[dx] < scene->resx)
 	{
 		begincoord[dy] = 0;
@@ -64,7 +64,7 @@ void	raytrace_lowres(t_scene *scene, t_mlx *mlx_cfg)
 		while (begincoord[dy] < scene->resy)
 		{
 			define_ray(&ray, half_screen, begincoord, scene);
-			pix_rgb = send_ray(scene, &ray);	
+			pix_rgb = send_ray(scene, &ray);
 			colorize_pixels(pix_rgb, mlx_cfg, begincoord, endcoord);
 			begincoord[dy] += LOWFACTOR;
 			endcoord[dy] += LOWFACTOR;
@@ -88,16 +88,16 @@ void	get_obj_rgb(void *obj, enum e_type type, unsigned char *rgb)
 		ft_memmove(rgb, ((t_cylinder *)obj)->rgb, 3);
 }
 
-void browse_scene(t_scene *scene, t_ray *ray, t_near *near)
+void	browse_scene(t_scene *scene, t_ray *ray, t_near *near)
 {
 	ray->current_type = plane;
-	loop_intersect_planes(scene->planes, scene->planes_n, ray, near); 
+	loop_intersect_planes(scene->planes, scene->planes_n, ray, near);
 	ray->current_type = triangle;
-	loop_intersect_triangles(scene->triangles, scene->triangles_n, ray, near); 
+	loop_intersect_triangles(scene->triangles, scene->triangles_n, ray, near);
 	ray->current_type = sphere;
-	loop_intersect_spheres(scene->spheres, scene->spheres_n, ray, near); 
+	loop_intersect_spheres(scene->spheres, scene->spheres_n, ray, near);
 	ray->current_type = square;
-	loop_intersect_squares(scene->squares, scene->squares_n, ray, near); 
+	loop_intersect_squares(scene->squares, scene->squares_n, ray, near);
 	ray->current_type = cylinder;
-	loop_intersect_cylinders(scene->cylinders, scene->cylinders_n, ray, near); 
+	loop_intersect_cylinders(scene->cylinders, scene->cylinders_n, ray, near);
 }

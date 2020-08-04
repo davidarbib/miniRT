@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 12:45:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/02 16:48:33 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 20:54:41 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@
 #include "rotation.h"
 #include <math.h>
 
-void	(*g_get_properties[TYPE_NB])(t_near *, t_ray);
-
-t_olight *g_light_ptr = NULL;
+void		(*g_get_properties[TYPE_NB])(t_near *, t_ray);
 
 static void	init_send_ray(t_near *near, t_scene *scene)
 {
@@ -45,7 +43,6 @@ static void	merge_light(t_scene *scene, t_ray *ray, t_near *near)
 	n = -1;
 	while (++n < scene->olights_n)
 	{
-		g_light_ptr = scene->olights + n;
 		sub_vect(&scene->olights[n].current_pos, &near->hit, &sray.direction);
 		scale(EPSILON, &sray.direction, &tmp);
 		add_vect(&near->hit, &tmp, &sray.origin);
@@ -57,16 +54,16 @@ static void	merge_light(t_scene *scene, t_ray *ray, t_near *near)
 		to_rgb_ratio(scene->olights[n].rgb, &sh.rgb_ratio);
 		compute_illumination(ray, &sray, near, &sh);
 	}
-	scale((KA * scene->ambient_ratio), &scene->ambient_rgb, &tmp); 
+	scale((KA * scene->ambient_ratio), &scene->ambient_rgb, &tmp);
 	add_vect(&tmp, &near->rgb_ratio, &near->rgb_ratio);
 	sh.ratio_sum += scene->ambient_ratio;
 }
 
-t_vect send_ray(t_scene *scene, t_ray *ray)
+t_vect		send_ray(t_scene *scene, t_ray *ray)
 {
 	t_near	near;
 	t_vect	pix_rgb;
-	
+
 	init_send_ray(&near, scene);
 	browse_scene(scene, ray, &near);
 	if (near.obj)
@@ -80,11 +77,12 @@ t_vect send_ray(t_scene *scene, t_ray *ray)
 	return (pix_rgb);
 }
 
-void	define_ray(t_ray *ray, double half_screen, int *coord, t_scene *scene)
+void		define_ray(t_ray *ray, double half_screen, int *coord,
+			t_scene *scene)
 {
 	double	aspect_ratio;
-	double 	x;
-	double 	y;
+	double	x;
+	double	y;
 
 	aspect_ratio = (double)scene->resx / scene->resy;
 	x = (double)coord[dx];
@@ -94,7 +92,7 @@ void	define_ray(t_ray *ray, double half_screen, int *coord, t_scene *scene)
 	ray->direction.x = (2 * x / scene->resx - 1) * half_screen
 	* aspect_ratio;
 	ray->direction.y = (1 - 2 * y / scene->resy) * half_screen;
-	ray->direction.z = -1.0;	
+	ray->direction.z = -1.0;
 	ray->inv_direction.x = 1 / ray->direction.x;
 	ray->inv_direction.y = 1 / ray->direction.y;
 	ray->inv_direction.z = 1 / ray->direction.z;
@@ -105,7 +103,7 @@ void	define_ray(t_ray *ray, double half_screen, int *coord, t_scene *scene)
 	ray->origin = (t_vect) {0, 0, 0};
 }
 
-void	raytrace(t_scene *scene, t_mlx *mlx_cfg)
+void		raytrace(t_scene *scene, t_mlx *mlx_cfg)
 {
 	int		coord[2];
 	t_ray	ray;
@@ -120,8 +118,8 @@ void	raytrace(t_scene *scene, t_mlx *mlx_cfg)
 		while (coord[dy] < scene->resy)
 		{
 			define_ray(&ray, half_screen, coord, scene);
-			pix_rgb = send_ray(scene, &ray);	
-			apply_color(&pix_rgb, mlx_cfg, coord[dx], coord[dy]); 
+			pix_rgb = send_ray(scene, &ray);
+			apply_color(&pix_rgb, mlx_cfg, coord[dx], coord[dy]);
 			coord[dy]++;
 		}
 		coord[dx]++;

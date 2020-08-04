@@ -6,11 +6,11 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/19 18:22:36 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/19 18:24:38 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 18:55:18 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "actions.h" 
+#include "actions.h"
 #include "update.h"
 #include "general.h"
 #include "print.h"
@@ -25,7 +25,7 @@ void	move_up(void *param)
 	translation.y = STEP_SIZE;
 	translation.z = 0;
 	pm = (t_param *)param;
-	pm->scene->active_cam->current_pos.y -= STEP_SIZE; 
+	pm->scene->active_cam->current_pos.y -= STEP_SIZE;
 	move_scene(pm->scene, &translation);
 	if (!(update_display(pm->scene, pm->mlx_cfg)))
 		return ;
@@ -40,7 +40,7 @@ void	move_down(void *param)
 	translation.y = -STEP_SIZE;
 	translation.z = 0;
 	pm = (t_param *)param;
-	pm->scene->active_cam->current_pos.y += STEP_SIZE; 
+	pm->scene->active_cam->current_pos.y += STEP_SIZE;
 	move_scene(pm->scene, &translation);
 	if (!(update_display(pm->scene, pm->mlx_cfg)))
 		return ;

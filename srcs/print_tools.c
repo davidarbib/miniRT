@@ -9,7 +9,7 @@ void print_vect(t_vect *v)
 void print_vect_sph(t_spheric *v)
 {
 	printf("%lf, %lf, %lf\n", v->rho, to_degree(v->phi), to_degree(v->theta));
-}      
+}
 
 void print_angle(double phi, double theta)
 {

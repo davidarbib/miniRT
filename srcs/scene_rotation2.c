@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 18:08:31 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/27 20:08:14 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 20:33:05 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #include "print.h"
 #include "actions.h"
 
-void	assign_turn_matrices(double *left, double *right)
+void		assign_turn_matrices(double *left, double *right)
 {
-	double costheta; 
-	double sintheta; 
-	
+	double costheta;
+	double sintheta;
+
 	costheta = cos(to_radian(ANGLE_SIZE));
 	sintheta = sin(to_radian(ANGLE_SIZE));
 	right[0] = costheta;
@@ -41,10 +41,10 @@ void	assign_turn_matrices(double *left, double *right)
 	left[8] = costheta;
 }
 
-void	assign_turn_matrices2(double *up, double *down)
+void		assign_turn_matrices2(double *up, double *down)
 {
-	double cosphi; 
-	double sinphi; 
+	double cosphi;
+	double sinphi;
 
 	cosphi = cos(to_radian(ANGLE_SIZE));
 	sinphi = sin(to_radian(ANGLE_SIZE));
@@ -68,7 +68,7 @@ void	assign_turn_matrices2(double *up, double *down)
 	up[8] = cosphi;
 }
 
-void	rotate_planes(t_plane *planes, int n, double *matrix)
+void		rotate_planes(t_plane *planes, int n, double *matrix)
 {
 	t_plane		*plane;
 
@@ -81,7 +81,7 @@ void	rotate_planes(t_plane *planes, int n, double *matrix)
 	}
 }
 
-void	rotate_triangles(t_trig *triangles, int n, double *matrix)
+void		rotate_triangles(t_trig *triangles, int n, double *matrix)
 {
 	t_trig		*triangle;
 

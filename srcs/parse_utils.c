@@ -6,15 +6,17 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:16:25 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/29 13:28:45 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/05 00:11:02 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "error.h"
 
-void	check_data(char *line, t_rt *cfg)
+void		check_data(char *line, t_rt *cfg)
 {
+	int i = 0;
+	(void)i;
 	while (*line)
 	{
 		if (!ft_isdigit(*line) && !ft_isblank(*line)
@@ -25,7 +27,7 @@ void	check_data(char *line, t_rt *cfg)
 	}
 }
 
-static int check_vector(const char *str)
+static int	check_vector(const char *str)
 {
 	int n_sep;
 
@@ -34,9 +36,13 @@ static int check_vector(const char *str)
 	{
 		if (*str == SEP)
 		{
-			if (!ft_isdigit(*(str - 1)) && !ft_isdigit(*(str + 1))
-				&& *(str + 1) != '-' && *(str + 1) != '+')
-					return (0);
+			if ((!ft_isdigit(*(str - 1)) && *(str - 1) != '.') 
+				|| (!ft_isdigit(*(str + 1)) && *(str + 1) != '-'
+					&& *(str + 1) != '+'))
+				return (0);
+			if ((*(str + 1) == '+' || *(str + 1) == '-')
+					&& !ft_isdigit(*(str + 2)))
+				return (0);
 			n_sep++;
 		}
 		if ((*str == '.')
@@ -50,7 +56,7 @@ static int check_vector(const char *str)
 	return (1);
 }
 
-void	get_vector(char **line, t_rt *cfg, t_vect *vect)
+void		get_vector(char **line, t_rt *cfg, t_vect *vect)
 {
 	if (!check_vector(*line))
 		parse_error(E_BADVECT, cfg);
@@ -79,18 +85,17 @@ static int	check_rgb(const char *str)
 	if (n_sep != 2)
 		return (0);
 	return (1);
-	
 }
 
-int		get_rgb(unsigned char *rgb, char **line)
+int			get_rgb(unsigned char *rgb, char **line)
 {
 	int tmp;
 	int i;
 
 	if (!(check_rgb(*line)))
 		return (0);
-	i = 0;
-	while (i < 3)
+	i = -1;
+	while (++i < 3)
 	{
 		tmp = ft_atoi_mv(line);
 		if (tmp < 0 || tmp > 255)
@@ -107,7 +112,6 @@ int		get_rgb(unsigned char *rgb, char **line)
 			if (**line && !(ft_isblank(**line)))
 				return (0);
 		}
-		i++;
 	}
 	return (1);
 }

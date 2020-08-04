@@ -6,15 +6,14 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 22:23:52 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/13 12:43:13 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 18:55:07 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "actions.h" 
+#include "actions.h"
 #include "update.h"
 #include "general.h"
 #include "print.h"
-#include <stdio.h>
 
 void	move_forward(void *param)
 {
@@ -25,7 +24,7 @@ void	move_forward(void *param)
 	translation.y = 0;
 	translation.z = STEP_SIZE;
 	pm = (t_param *)param;
-	pm->scene->active_cam->current_pos.z -= STEP_SIZE; 
+	pm->scene->active_cam->current_pos.z -= STEP_SIZE;
 	move_scene(pm->scene, &translation);
 	if (!(update_display(pm->scene, pm->mlx_cfg)))
 		return ;
@@ -40,7 +39,7 @@ void	move_backward(void *param)
 	translation.y = 0;
 	translation.z = -STEP_SIZE;
 	pm = (t_param *)param;
-	pm->scene->active_cam->current_pos.z += STEP_SIZE; 
+	pm->scene->active_cam->current_pos.z += STEP_SIZE;
 	move_scene(pm->scene, &translation);
 	if (!(update_display(pm->scene, pm->mlx_cfg)))
 		return ;
@@ -55,7 +54,7 @@ void	move_left(void *param)
 	translation.y = 0;
 	translation.z = 0;
 	pm = (t_param *)param;
-	pm->scene->active_cam->current_pos.x -= STEP_SIZE; 
+	pm->scene->active_cam->current_pos.x -= STEP_SIZE;
 	move_scene(pm->scene, &translation);
 	if (!(update_display(pm->scene, pm->mlx_cfg)))
 		return ;
@@ -70,7 +69,7 @@ void	move_right(void *param)
 	translation.y = 0;
 	translation.z = 0;
 	pm = (t_param *)param;
-	pm->scene->active_cam->current_pos.x += STEP_SIZE; 
+	pm->scene->active_cam->current_pos.x += STEP_SIZE;
 	move_scene(pm->scene, &translation);
 	if (!(update_display(pm->scene, pm->mlx_cfg)))
 		return ;

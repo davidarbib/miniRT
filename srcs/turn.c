@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 22:39:51 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/31 16:35:45 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 19:22:20 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	turn_cam(t_param *param, double *matrix)
 
 	current_orient = &param->scene->active_cam->current_orient;
 	normalize(current_orient, current_orient);
-	rotate_point(matrix, current_orient, current_orient); 
+	rotate_point(matrix, current_orient, current_orient);
 }
 
 void	turn_left(void *param)

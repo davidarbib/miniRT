@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 18:03:41 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/31 15:54:46 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 18:55:30 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	res_switch(void *param)
 	}
 	else
 	{
-		scene->lowres = 1;	
+		scene->lowres = 1;
 		refresh_img(cfg);
 		raytrace_lowres(scene, cfg);
 		if (!(mlx_put_image_to_window(cfg->mlx_ptr, cfg->win_ptr,

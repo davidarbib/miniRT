@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 19:19:23 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/04 17:29:33 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 20:30:42 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 /*
 ** geometric solution
 */
-double intersect_sphere(t_sphere sphere, t_ray ray)
+
+double	intersect_sphere(t_sphere sphere, t_ray ray)
 {
 	t_vect	v_co;
 	double	var[5];
@@ -29,21 +30,12 @@ double intersect_sphere(t_sphere sphere, t_ray ray)
 	if (var[t_ca] < 0)
 		return (0);
 	len_co = vect_norm(&v_co);
-	var[d] = sqrt(fabs(len_co * len_co - var[t_ca] * var[t_ca]));	
-	/*
-	if (acos(var[t_ca]) < EPSILON && ft_abs(len_co - var[t_ca]) < EPSILON)
-		var[d] = 0;
-	*/
+	var[d] = sqrt(fabs(len_co * len_co - var[t_ca] * var[t_ca]));
 	if (var[d] > r)
 		return (0);
 	var[t_hc] = sqrt(r * r - var[d] * var[d]);
 	var[t0] = var[t_ca] - var[t_hc];
 	var[t1] = var[t_ca] + var[t_hc];
-	/*
-	printf("len_co = %.20lf\n", len_co);
-	printf("d = %lf\nt_ca = %.20lf\nt_hc = %lf\n", var[d], var[t_ca], var[t_hc]);
-	printf("t0 = %lf\nt1 = %lf\n", var[t0], var[t1]);
-	*/
 	if (var[t0] < EPSILON)
 	{
 		if (var[t1] >= EPSILON)
@@ -60,8 +52,8 @@ void	compute_t_check_height(t_cylinder cylinder, t_ray ray, double *var,
 	t_vect	tmp_v[2];
 	t_vect	hit_bc[2];
 	double	pt_c[2];
-	
-	var[s] = ft_double_abs(sqrt((cylinder.radius) * (cylinder.radius) 
+
+	var[s] = ft_double_abs(sqrt((cylinder.radius) * (cylinder.radius)
 			- var[dc] * var[dc]) / dot(&ray.direction, &tmp));
 	var[t1c] = var[tc] - var[s];
 	var[t2c] = var[tc] + var[s];
@@ -81,10 +73,7 @@ void	compute_t_check_height(t_cylinder cylinder, t_ray ray, double *var,
 		var[t_return] = 0;
 }
 
-/*
-**
-*/
-double intersect_cylinder(t_cylinder cylinder, t_ray ray)
+double	intersect_cylinder(t_cylinder cylinder, t_ray ray)
 {
 	double	var[7];
 	t_vect	tmp[2];

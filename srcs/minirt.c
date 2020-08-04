@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 21:47:19 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/31 15:54:32 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 18:50:09 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		main(int ac, char **av)
 	t_rt	rt_cfg;
 	t_scene	scene;
 	t_param param;
-	
+
 	param.scene = &scene;
 	param.mlx_cfg = &mlx_cfg;
 	init_cfg(&rt_cfg);
@@ -41,7 +41,7 @@ int		main(int ac, char **av)
 			bmp_sys_error(&scene);
 		normal_exit(&param);
 	}
-	mlx_put_image_to_window(mlx_cfg.mlx_ptr, mlx_cfg.win_ptr, mlx_cfg.img_ptr, 
+	mlx_put_image_to_window(mlx_cfg.mlx_ptr, mlx_cfg.win_ptr, mlx_cfg.img_ptr,
 			0, 0);
 	mlx_hook(mlx_cfg.win_ptr, KEYPRESS, KEYPRESSMASK, key_pressed_hook, &param);
 	mlx_hook(mlx_cfg.win_ptr, DESTROYNOTIFY, DESTROYNOTIFYMASK, normal_exit2,

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:20:09 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/15 18:34:50 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 22:52:41 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void			parse_amb(t_rt *cfg, char *line)
 	line = ft_pass_spaces(line);
 	if (!(get_rgb(cfg->ambient_rgb, &line)))
 		parse_error(E_BADRGB, cfg);
+	trailing_char_detect(line, cfg);
 }
 
 void			parse_res(t_rt *cfg, char *line)
@@ -38,8 +39,9 @@ void			parse_res(t_rt *cfg, char *line)
 	cfg->resx = ft_atoi_mv(&line);
 	line = ft_pass_spaces(line);
 	cfg->resy = ft_atoi_mv(&line);
-	if (cfg->resx < 0 || cfg->resy < 0)
+	if (cfg->resx <= 0 || cfg->resy <= 0)
 		parse_error(E_BADRES, cfg);
+	trailing_char_detect(line, cfg);
 }
 
 int				is_ratio(float ratio)
@@ -58,12 +60,11 @@ static int		is_orientation_value(float value)
 
 int				is_orientation_vect(t_vect *vect)
 {
-	int answer;	
+	int	answer;
 
-	answer = 1; 
+	answer = 1;
 	answer *= is_orientation_value(vect->x);
 	answer *= is_orientation_value(vect->y);
 	answer *= is_orientation_value(vect->z);
 	return (answer);
 }
-

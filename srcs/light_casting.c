@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 16:34:41 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/04 17:30:41 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 18:52:35 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 extern t_olight *g_light_ptr;
 
-static int light_cast2(t_scene *scene, t_ray *ray, t_shadow *sh)
+static int		light_cast2(t_scene *scene, t_ray *ray, t_shadow *sh)
 {
 	int n;
 
@@ -43,7 +43,7 @@ static int light_cast2(t_scene *scene, t_ray *ray, t_shadow *sh)
 	return (0);
 }
 
-int			light_cast(t_scene *scene, t_ray *ray, t_shadow *sh)
+int				light_cast(t_scene *scene, t_ray *ray, t_shadow *sh)
 {
 	int n;
 
@@ -53,22 +53,9 @@ int			light_cast(t_scene *scene, t_ray *ray, t_shadow *sh)
 	n = -1;
 	while (++n < scene->spheres_n)
 	{
-		/*
-		printf("---------------\n");
-		print_vect(&ray->direction);
-		print_vect(&ray->origin);
-		*/
 		sh->t = intersect_sphere(scene->spheres[n], *ray);
 		if (sh->t > EPSILON && (sh->t + EPSILON) < sh->t_light)
-		{
 			return (1);
-		}
-		/*
-		printf("light pos: \n");
-		print_vect(&g_light_ptr->current_pos);
-		printf("t_light : %lf\nt_sphere : %lf\n", sh->t_light, sh->t);
-		printf("---------------\n");
-		*/
 	}
 	n = -1;
 	while (++n < scene->cylinders_n)

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 13:07:23 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/15 22:49:52 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 22:46:53 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	get_vector(char **line, t_rt *cfg, t_vect *vect);
 int		is_ratio(float ratio);
 int		is_orientation_vect(t_vect *vect);
 void	check_data(char *line, t_rt *cfg);
+void	trailing_char_detect(char *line, t_rt *cfg);
 void	parse_amb(t_rt *cfg, char *line);
 void	parse_res(t_rt *cfg, char *line);
 void	parse_camera(t_rt *cfg, char *line);

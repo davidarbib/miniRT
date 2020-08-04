@@ -6,14 +6,14 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 19:03:08 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/31 15:55:11 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 19:09:18 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytrace.h"
 #include "aabb.h"
 
-static inline int overlap(double *t0, double *t1, double min_, double max_)
+static inline int	overlap(double *t0, double *t1, double min_, double max_)
 {
 	if ((*t0 > max_) || (min_ > *t1))
 		return (0);
@@ -24,13 +24,13 @@ static inline int overlap(double *t0, double *t1, double min_, double max_)
 	return (1);
 }
 
-int		intersect_aabb(t_aabb *aabb, t_ray *ray)
+int					intersect_aabb(t_aabb *aabb, t_ray *ray)
 {
 	t_vect	tmin;
 	t_vect	tmax;
 	double	t0;
 	double	t1;
-	
+
 	tmin.x = (aabb->corner[ray->sign[0]].x - ray->origin.x)
 			* ray->inv_direction.x;
 	tmax.x = (aabb->corner[1 - ray->sign[0]].x - ray->origin.x)
@@ -49,5 +49,5 @@ int		intersect_aabb(t_aabb *aabb, t_ray *ray)
 			* ray->inv_direction.z;
 	if (!overlap(&t0, &t1, tmin.z, tmax.z))
 		return (0);
-	return (t1 > 0.);	
+	return (t1 > 0.);
 }

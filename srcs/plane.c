@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:32:42 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/31 18:02:30 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 22:53:20 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 #include "print.h"
 #include <assert.h>
 
-void	destroy_plane(void *obj)
+void		destroy_plane(void *obj)
 {
 	t_plane *plane;
-	
+
 	plane = (t_plane *)obj;
 	free(plane);
 	plane = NULL;
@@ -33,10 +33,10 @@ static void	check_plane(t_rt *cfg, t_plane *plane)
 		parse_error(E_NULLV, cfg);
 }
 
-void	parse_plane(t_rt *cfg, char *line)
+void		parse_plane(t_rt *cfg, char *line)
 {
 	t_plane	*plane;
-	
+
 	check_data(line, cfg);
 	if (!(plane = (t_plane *)malloc(sizeof(t_plane))))
 		sys_error(cfg);
@@ -47,7 +47,8 @@ void	parse_plane(t_rt *cfg, char *line)
 	get_vector(&line, cfg, &plane->orient);
 	line = ft_pass_spaces(line);
 	if (!(get_rgb(plane->rgb, &line)))
-		parse_error(E_BADRGB, cfg); 
+		parse_error(E_BADRGB, cfg);
+	trailing_char_detect(line, cfg);
 	check_plane(cfg, plane);
 	if (cfg->planes)
 		ft_lstadd_back(&(cfg->planes), ft_lstnew(plane));
@@ -55,16 +56,15 @@ void	parse_plane(t_rt *cfg, char *line)
 		cfg->planes = ft_lstnew(plane);
 }
 
-void	print_plane(void *obj)
+void		print_plane(void *obj)
 {
 	t_plane *plane;
-	
+
 	plane = (t_plane *)obj;
 	printf("Pos : ");
 	print_vect(&plane->pos);
 	printf("Orientation : ");
 	print_vect(&plane->orient);
-	printf("RGB : %d,%d,%d\n", plane->rgb[0], plane->rgb[1],
-	 		plane->rgb[2]);
+	printf("RGB : %d,%d,%d\n", plane->rgb[0], plane->rgb[1], plane->rgb[2]);
 	printf("\n");
 }

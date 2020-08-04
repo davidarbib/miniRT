@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 19:14:53 by darbib            #+#    #+#             */
-/*   Updated: 2020/06/19 13:40:06 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 18:54:17 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static double	det3d(double *m)
 	return (sum);
 }
 
-static void	fill_submatrix(double *m, double *sub, int ban_row, int ban_col) 
+static void		fill_submatrix(double *m, double *sub, int ban_row, int ban_col)
 {
 	int i;
 	int j;
@@ -54,12 +54,12 @@ static void	fill_submatrix(double *m, double *sub, int ban_row, int ban_col)
 	}
 }
 
-static void	cofactors(double *m_in, double *m_out, int adj)
+static void		cofactors(double *m_in, double *m_out, int adj)
 {
-	int row;
-	int col;
-	int elem;
-	double sub[4];
+	int		row;
+	int		col;
+	int		elem;
+	double	sub[4];
 
 	row = 0;
 	while (row < DN)
@@ -80,12 +80,12 @@ static void	cofactors(double *m_in, double *m_out, int adj)
 	}
 }
 
-void	inverse(double *m_in, double *m_out)
+void			inverse(double *m_in, double *m_out)
 {
-	double inv_det;
-	double adj[9];
-	int i;
-	
+	double	inv_det;
+	double	adj[9];
+	int		i;
+
 	inv_det = 1 / det3d(m_in);
 	cofactors(m_in, adj, 1);
 	i = 0;

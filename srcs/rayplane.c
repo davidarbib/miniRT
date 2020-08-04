@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/23 14:47:38 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/22 18:25:19 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 20:28:39 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ double	intersect_plane(t_plane plane, t_ray ray)
 {
 	double	denom;
 	double	t;
-	t_vect	tmp_v; 
+	t_vect	tmp_v;
 
-	denom = dot(&ray.direction, &plane.current_orient);	
+	denom = dot(&ray.direction, &plane.current_orient);
 	if (ft_double_abs(denom) > EPSILON)
 	{
 		sub_vect(&plane.current_pos, &ray.origin, &tmp_v);
@@ -37,9 +37,9 @@ double	intersect_square(t_square square, t_ray ray)
 	double	proj1;
 	double	proj2;
 	t_vect	v;
-	
+
 	plane.current_pos = square.current_pos;
-	plane.current_orient = square.current_orient;	
+	plane.current_orient = square.current_orient;
 	if (!(t = intersect_plane(plane, ray)))
 		return (0);
 	get_hit_point(t, ray.direction, ray.origin, &v);
@@ -48,7 +48,7 @@ double	intersect_square(t_square square, t_ray ray)
 	normalize(&square.current_edge2, &square.current_edge2);
 	proj1 = dot(&v, &square.current_edge1);
 	proj2 = dot(&v, &square.current_edge2);
-	if ((proj1 < square.height && proj1 > 0) 
+	if ((proj1 < square.height && proj1 > 0)
 		&& (proj2 < square.height && proj2 > 0))
 		return (t);
 	return (0);
@@ -58,14 +58,15 @@ double	intersect_square(t_square square, t_ray ray)
 ** see Moller-Trumbore algorithm
 ** u, v are barycentric coordinates
 */
+
 double	intersect_triangle(t_trig triangle, t_ray ray)
-{	
+{
 	double	det;
 	double	inv_det;
-	double 	barycoord[2];
+	double	barycoord[2];
 	double	t;
 	t_vect	tmp[3];
-	
+
 	cross(&ray.direction, &triangle.current_edge2, &tmp[PVEC]);
 	det = dot(&triangle.current_edge1, &tmp[PVEC]);
 	if (det > (EPSILON * -1) && det < EPSILON)

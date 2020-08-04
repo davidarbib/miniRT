@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/20 16:12:37 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/13 15:48:29 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 18:44:02 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	loop_intersect_planes(t_plane *planes, int n, t_ray *ray, t_near *near)
 {
 	double		t;
 	t_plane		*plane;
-	
+
 	while (--n >= 0)
 	{
 		plane = planes + n;
@@ -35,7 +35,7 @@ void	loop_intersect_triangles(t_trig *triangles, int n, t_ray *ray,
 {
 	double	t;
 	t_trig	*triangle;
-	
+
 	while (--n >= 0)
 	{
 		triangle = triangles + n;
@@ -54,7 +54,7 @@ void	loop_intersect_spheres(t_sphere *spheres, int n, t_ray *ray,
 {
 	double		t;
 	t_sphere	*sphere;
-	
+
 	while (--n >= 0)
 	{
 		sphere = spheres + n;
@@ -73,7 +73,7 @@ void	loop_intersect_squares(t_square *squares, int n, t_ray *ray,
 {
 	double		t;
 	t_square	*square;
-	
+
 	while (--n >= 0)
 	{
 		square = squares + n;
@@ -90,9 +90,9 @@ void	loop_intersect_squares(t_square *squares, int n, t_ray *ray,
 void	loop_intersect_cylinders(t_cylinder *cylinders, int n, t_ray *ray,
 		t_near *near)
 {
-	double	t;
+	double		t;
 	t_cylinder	*cylinder;
-	
+
 	while (--n >= 0)
 	{
 		cylinder = cylinders + n;

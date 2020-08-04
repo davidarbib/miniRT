@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 16:22:28 by darbib            #+#    #+#             */
-/*   Updated: 2020/02/14 16:22:41 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 18:27:36 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int				client_endian(void)
 unsigned int	adapt_endian(unsigned int color)
 {
 	unsigned int tmp;
-	
+
 	tmp = color;
 	((unsigned char *)&color)[0] = ((unsigned char *)&tmp)[3];
 	((unsigned char *)&color)[1] = ((unsigned char *)&tmp)[2];

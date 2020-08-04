@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 16:35:51 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/22 18:31:01 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 19:20:46 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,4 @@ void	set_quadrics_radius(t_cylinder *cyls, int n, t_sphere *spheres, int k)
 		cyls[n].radius = cyls[n].diam / 2.;
 	while (k--)
 		spheres[k].radius = spheres[k].diam / 2.;
-} 
+}

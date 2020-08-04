@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 16:13:40 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/20 17:07:59 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 19:15:34 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 void	assign_roll_matrices(double *roll, double *inv_roll)
 {
-	double cosphi; 
-	double sinphi; 
+	double cosphi;
+	double sinphi;
 
 	cosphi = cos(to_radian(ANGLE_SIZE));
 	sinphi = sin(to_radian(ANGLE_SIZE));

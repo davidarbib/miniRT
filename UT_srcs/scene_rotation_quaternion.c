@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/05 18:21:04 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/31 15:57:06 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 19:16:27 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void set_local_quaternion(double semi_angle, t_vect *axis,
 
 static void	xz_projection(t_vect *cam_orient, t_vect *proj_xz, double *quater_z)
 {
-	t_vect	axis_orient;    
+	t_vect	axis_orient;
 	t_vect  proj_z;
 	t_vect  proj_x;
 	double	angle;
@@ -37,15 +37,15 @@ static void	xz_projection(t_vect *cam_orient, t_vect *proj_xz, double *quater_z)
 	axis_orient.x = 1.;
 	axis_orient.y = 0.;
 	axis_orient.z = 0.;
-	ortho_projection(cam_orient, &axis_orient, &proj_x);	
+	ortho_projection(cam_orient, &axis_orient, &proj_x);
 	axis_orient.x = 0.;
 	axis_orient.y = 0.;
 	axis_orient.z = 1.;
-	ortho_projection(cam_orient, &axis_orient, &proj_z);  
+	ortho_projection(cam_orient, &axis_orient, &proj_z);
 	add_vect(&proj_x, &proj_z, proj_xz);
-	normalize(proj_xz, proj_xz); 
+	normalize(proj_xz, proj_xz);
 	angle = acos(dot(cam_orient, proj_xz));
-	set_local_quaternion(angle / 2., &axis_orient, quater_z); 
+	set_local_quaternion(angle / 2., &axis_orient, quater_z);
 }
 
 static void	ref_projection(t_vect *ref_orient, t_vect *proj_xz,
@@ -56,9 +56,9 @@ static void	ref_projection(t_vect *ref_orient, t_vect *proj_xz,
 	double angle;
 
 	ortho_projection(proj_xz, ref_orient, &proj_ref);
-	normalize(&proj_ref, &proj_ref); 
-	y_axis.x = 0.;	
-	y_axis.y = 1.;	
+	normalize(&proj_ref, &proj_ref);
+	y_axis.x = 0.;
+	y_axis.y = 1.;
 	y_axis.z = 0.;
 	angle = acos(dot(proj_xz, &proj_ref));
 	set_local_quaternion(angle / 2., &y_axis, quater_y);
@@ -69,16 +69,16 @@ void		to_spherical(t_vect *cartesian, t_vect *spherical)
 	double rho;
 
 	rho = vect_norm(cartesian);
-	spherical->x = rho; 
-	spherical->y = acos(cartesian->y / rho);  
+	spherical->x = rho;
+	spherical->y = acos(cartesian->y / rho);
 	spherical->z = atan(cartesian->x / cartesian->z;
 }
 
 void		to_cartesian(t_vect *spherical, t_vect *cartesian)
 {
-	cartesian->x = spherical->x * sin(spherical->y) * cos(spherical->z); 	
-	cartesian->y = spherical->x * sin(spherical->y) * sin(spherical->z); 	
-	cartesian->z = spherical->x * cos(spherical->y); 	
+	cartesian->x = spherical->x * sin(spherical->y) * cos(spherical->z);
+	cartesian->y = spherical->x * sin(spherical->y) * sin(spherical->z);
+	cartesian->z = spherical->x * cos(spherical->y);
 }
 
 void		set_global_quaternions(double *global_quater,
@@ -90,6 +90,6 @@ void		set_global_quaternions(double *global_quater,
 
 	xz_projection(cam_orient, &proj_xz, quater_z);
 	ref_projection(ref_orient, &proj_xz, quater_y);
-	mult_quater(quater_y, quater_z, global_quater);	
+	mult_quater(quater_y, quater_z, global_quater);
 	conjugate_quater(global_quater, global_quater_conjugate);
 }

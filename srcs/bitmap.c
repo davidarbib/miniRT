@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 18:18:06 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/15 23:53:42 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 18:33:52 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int		put_img(t_bmp *bmp, char *img, int fd)
 	int		i;
 	char	*buf;
 	char	*p_buf;
-	
+
 	if (!(buf = (char *)ft_calloc(bmp->sizeimg, sizeof(char))))
 		return (0);
 	p_buf = buf;
@@ -29,8 +29,8 @@ static int		put_img(t_bmp *bmp, char *img, int fd)
 	{
 		i = 0;
 		while (i < bmp->width)
-		{			
-			ft_memmove(p_buf, img + ((i * (bmp->bpp / 8) + (j * bmp->sl))), 
+		{
+			ft_memmove(p_buf, img + ((i * (bmp->bpp / 8) + (j * bmp->sl))),
 					BYTES_N);
 			p_buf += BYTES_N;
 			i++;
@@ -46,27 +46,27 @@ static int		put_img(t_bmp *bmp, char *img, int fd)
 static int		put_header(t_bmp *bmp, int fd)
 {
 	unsigned char	buf[HEADERSIZE];
-	int 			i;
-	
+	int				i;
+
 	ft_bzero(buf, HEADERSIZE);
 	i = 0;
 	ft_memmove(buf + i, (unsigned char *)&bmp->type, 2);
 	i += 2;
 	ft_memmove(buf + i, (unsigned char *)&bmp->size, 4);
 	i += 8;
-	ft_memmove(buf + i, (unsigned char *)&bmp->headersize, 4); 
+	ft_memmove(buf + i, (unsigned char *)&bmp->headersize, 4);
 	i += 4;
-	ft_memmove(buf + i, (unsigned char *)&bmp->infosize, 4); 
+	ft_memmove(buf + i, (unsigned char *)&bmp->infosize, 4);
 	i += 4;
-	ft_memmove(buf + i, (unsigned char *)&bmp->width, 4); 
+	ft_memmove(buf + i, (unsigned char *)&bmp->width, 4);
 	i += 4;
-	ft_memmove(buf + i, (unsigned char *)&bmp->height, 4); 
+	ft_memmove(buf + i, (unsigned char *)&bmp->height, 4);
 	i += 4;
-	ft_memmove(buf + i, (unsigned char *)&bmp->planes, 2); 
+	ft_memmove(buf + i, (unsigned char *)&bmp->planes, 2);
 	i += 2;
-	ft_memmove(buf + i, (unsigned char *)&bmp->bitcount, 2); 
-	ft_memmove(buf + i + 2, (unsigned char *)&bmp->compression, 4); 
-	ft_memmove(buf + i + 6, (unsigned char *)&bmp->sizeimg, 4); 
+	ft_memmove(buf + i, (unsigned char *)&bmp->bitcount, 2);
+	ft_memmove(buf + i + 2, (unsigned char *)&bmp->compression, 4);
+	ft_memmove(buf + i + 6, (unsigned char *)&bmp->sizeimg, 4);
 	if ((write(fd, buf, HEADERSIZE) != HEADERSIZE))
 		return (0);
 	return (1);

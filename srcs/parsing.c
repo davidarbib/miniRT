@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 23:25:41 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/20 15:19:58 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 19:27:58 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@
 
 void	(*g_parse_ft[NB_OBJS])(t_rt *cfg, char *p_line);
 
-static void assign_fts(void)
+static void	assign_fts(void)
 {
-	g_parse_ft[0] = parse_res;  
-	g_parse_ft[1] = parse_amb;  
-	g_parse_ft[2] = parse_camera;  
-	g_parse_ft[3] = parse_olight;  
-	g_parse_ft[4] = parse_plane;  
-	g_parse_ft[5] = parse_sphere;  
-	g_parse_ft[6] = parse_square;  
-	g_parse_ft[7] = parse_cylinder;  
-	g_parse_ft[8] = parse_triangle;  
+	g_parse_ft[0] = parse_res;
+	g_parse_ft[1] = parse_amb;
+	g_parse_ft[2] = parse_camera;
+	g_parse_ft[3] = parse_olight;
+	g_parse_ft[4] = parse_plane;
+	g_parse_ft[5] = parse_sphere;
+	g_parse_ft[6] = parse_square;
+	g_parse_ft[7] = parse_cylinder;
+	g_parse_ft[8] = parse_triangle;
 }
 
 static int	arg_control(int ac, char **av, t_rt *cfg)
@@ -76,7 +76,6 @@ void		parsing(int ac, char **av, t_rt *cfg)
 	cfg->line = NULL;
 	while ((gnl = get_next_line(fd, &cfg->line)) > 0)
 		handle_line(cfg);
-	//free(cfg->line);
 	cfg->flags -= IN_PARSING;
 	if (gnl < 0)
 		parse_error(E_INVFILE, cfg);
