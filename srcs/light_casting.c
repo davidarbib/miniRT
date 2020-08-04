@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 16:34:41 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/03 18:30:27 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 17:30:41 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,18 +59,15 @@ int			light_cast(t_scene *scene, t_ray *ray, t_shadow *sh)
 		print_vect(&ray->origin);
 		*/
 		sh->t = intersect_sphere(scene->spheres[n], *ray);
-		if (ft_abs(sh->t) > EPSILON && (ft_abs(sh->t) + EPSILON) < ft_abs(sh->t_light))
+		if (sh->t > EPSILON && (sh->t + EPSILON) < sh->t_light)
 		{
 			return (1);
 		}
 		/*
-		if (g_light_ptr->current_pos.x == 12.)
-		{
 		printf("light pos: \n");
 		print_vect(&g_light_ptr->current_pos);
 		printf("t_light : %lf\nt_sphere : %lf\n", sh->t_light, sh->t);
 		printf("---------------\n");
-		}
 		*/
 	}
 	n = -1;

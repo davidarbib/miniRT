@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 19:19:23 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/03 18:34:16 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/04 17:29:33 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,34 +23,30 @@ double intersect_sphere(t_sphere sphere, t_ray ray)
 	double	len_co;
 	double	r;
 
-if (ray.direction.x >= 0.7537962109817237 
-	&&	ray.direction.x <= 0.7537962109817239
-	&&	ray.direction.y >= 0.4070515806108898
-	&&	ray.direction.y <= 0.40705158061089
-	&&	ray.direction.z <= -0.5052957755693655
-	&&	ray.direction.z >= -0.5052957755693657
-	&&	ray.origin.x >= 2.0000100000000000
-	&&	ray.origin.x <= 2.0000100000000002
-	&&	ray.origin.y <= -1.9999949999999999
-	&&	ray.origin.y >= -1.9999950000000001
-	&&	ray.origin.z <= -2.85916230949771321
-	&&	ray.origin.z >= -2.85916230949771323)
-	printf("cc\n");
 	r = sphere.radius;
 	sub_vect(&sphere.current_pos, &ray.origin, &v_co);
 	var[t_ca] = dot(&v_co, &ray.direction);
-	if (var[t_ca] <= 0)
+	if (var[t_ca] < 0)
 		return (0);
 	len_co = vect_norm(&v_co);
-	var[d] = sqrt(len_co * len_co - var[t_ca] * var[t_ca]);	
+	var[d] = sqrt(fabs(len_co * len_co - var[t_ca] * var[t_ca]));	
+	/*
+	if (acos(var[t_ca]) < EPSILON && ft_abs(len_co - var[t_ca]) < EPSILON)
+		var[d] = 0;
+	*/
 	if (var[d] > r)
 		return (0);
 	var[t_hc] = sqrt(r * r - var[d] * var[d]);
 	var[t0] = var[t_ca] - var[t_hc];
 	var[t1] = var[t_ca] + var[t_hc];
-	if (ft_abs(var[t0]) <= EPSILON)
+	/*
+	printf("len_co = %.20lf\n", len_co);
+	printf("d = %lf\nt_ca = %.20lf\nt_hc = %lf\n", var[d], var[t_ca], var[t_hc]);
+	printf("t0 = %lf\nt1 = %lf\n", var[t0], var[t1]);
+	*/
+	if (var[t0] < EPSILON)
 	{
-		if (ft_abs(var[t1]) > EPSILON)
+		if (var[t1] >= EPSILON)
 			return (var[t1]);
 		else
 			return (0);
