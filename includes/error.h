@@ -6,12 +6,12 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 19:07:27 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/04 23:13:31 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/05 15:15:45 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_ERRORS_H
-# define RT_ERRORS_H
+#ifndef ERROR_H
+# define ERROR_H
 
 # include "general.h"
 
@@ -42,7 +42,7 @@
 # define E_HEIGHT	"height must be strictly positive"
 # define E_DIAM		"diameter must be strictly positive"
 
-void	parse_error(char *msg, t_rt *cfg);
-void	sys_error(t_rt *cfg);
+void				parse_error(char *msg, t_rt *cfg);
+void				sys_error(t_rt *cfg);
 
 #endif

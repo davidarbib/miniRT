@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:26:46 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/10 22:36:26 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/05 15:02:01 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define OMNILIGHT_H
 
 # include "vector.h"
+
 /*
 ** --- omnilight ---
 ** pos : position vector
@@ -28,7 +29,7 @@ typedef struct		s_olight
 	unsigned char	rgb[3];
 }					t_olight;
 
-void	destroy_olight(void *obj);
-void	print_olight(void *obj);
+void				destroy_olight(void *obj);
+void				print_olight(void *obj);
 
 #endif

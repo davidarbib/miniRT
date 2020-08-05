@@ -6,10 +6,9 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 22:33:19 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/28 15:21:28 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/05 14:56:46 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef ACTIONS_H
 # define ACTIONS_H
@@ -23,10 +22,10 @@
 int				loop_hook(void *param);
 int				key_pressed_hook(int keycode, void *param);
 void			assign_key_fts(void);
-void			move_forward(void *param);  
-void			move_backward(void *param);  
-void			move_left(void *param);  
-void			move_right(void *param);  
+void			move_forward(void *param);
+void			move_backward(void *param);
+void			move_left(void *param);
+void			move_right(void *param);
 void			move_up(void *param);
 void			move_down(void *param);
 void			turn_left(void *param);

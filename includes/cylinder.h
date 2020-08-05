@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 15:59:58 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/04 22:07:17 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/05 14:55:14 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct		s_cylinder
 	unsigned char	rgb[3];
 }					t_cylinder;
 
-void	destroy_cylinder(void *obj);
-void	print_cyl(void *obj);
+void				destroy_cylinder(void *obj);
+void				print_cyl(void *obj);
 
 #endif

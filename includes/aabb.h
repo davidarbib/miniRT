@@ -6,22 +6,21 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 19:56:13 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/20 13:45:40 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/05 15:33:57 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef AABB_H
 # define AABB_H
 
-#include "vector.h"
+# include "vector.h"
 
-typedef struct	s_aabb
+typedef struct		s_aabb
 {
 	t_vect			corner[2];
 	unsigned char	rgb[3];
-}				t_aabb;
+}					t_aabb;
 
-void	move_aabb(t_aabb *aabb, t_vect *translation);
+void				move_aabb(t_aabb *aabb, t_vect *translation);
 
 #endif
-

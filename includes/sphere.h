@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 15:55:19 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/15 23:07:52 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/05 15:06:38 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct		s_sphere
 	unsigned char	rgb[3];
 }					t_sphere;
 
-void	destroy_sphere(void *obj);
-void	print_sphere(void *obj);
+void				destroy_sphere(void *obj);
+void				print_sphere(void *obj);
 
 #endif

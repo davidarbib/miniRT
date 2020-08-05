@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:08:02 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/31 15:15:13 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/05 15:14:17 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@
 
 # define LOWFACTOR	4
 
-enum			e_var_sphere {t_ca, t_hc, d, t0, t1};
-enum			e_var_cylinder {dc, len_rxa, s, tc, t1c, t2c, t_return};
-enum			e_vect {bc_min_br, rxa};
-enum			e_type {plane, square, triangle, sphere, cylinder};
-enum			e_colorchan {r, g, b};
-enum			e_coord {dx, dy};
+enum				e_var_sphere {t_ca, t_hc, d, t0, t1};
+enum				e_var_cylinder {dc, len_rxa, s, tc, t1c, t2c, t_return};
+enum				e_vect {bc_min_br, rxa};
+enum				e_type {plane, square, triangle, sphere, cylinder};
+enum				e_colorchan {r, g, b};
+enum				e_coord {dx, dy};
 
 typedef struct		s_ray
 {
@@ -59,8 +59,8 @@ typedef struct		s_near
 	t_vect			normal;
 	void			*obj;
 	enum e_type		type;
-	unsigned char 	rgb[3];
-	
+	unsigned char	rgb[3];
+
 }					t_near;
 
 typedef struct		s_shadow
@@ -74,42 +74,45 @@ typedef struct		s_shadow
 	t_vect			normal;
 	void			*obj;
 	enum e_type		type;
-	unsigned char 	rgb[3];
+	unsigned char	rgb[3];
 }					t_shadow;
 
-void	get_obj_rgb(void *obj, enum e_type type, unsigned char *rgb);
-void	to_rgb_ratio(unsigned char *rgb_in, t_vect *rgb_out);
-void	get_hit_point(double t, t_vect direction, t_vect origin, t_vect *v_out);
-void	get_hit_plane(t_near *near, t_ray ray);
-void	get_hit_triangle(t_near *near, t_ray ray);
-void	get_hit_square(t_near *near, t_ray ray);
-void	get_hit_sphere(t_near *near, t_ray ray);
-void	get_hit_cylinder(t_near *near, t_ray ray);
-void	raytrace(t_scene *scene, t_mlx *mlx_cfg);
-void	raytrace_lowres(t_scene *scene, t_mlx *mlx_cfg);
-void	define_ray(t_ray *ray, double half_screen, int *coord,
-		t_scene *scene);
-t_vect	send_ray(t_scene *scene, t_ray *ray);
-void	browse_scene(t_scene *scene, t_ray *ray, t_near *near);
-double	intersect_plane(t_plane plane, t_ray ray);
-double	intersect_triangle(t_trig triangle, t_ray ray);
-double	intersect_sphere(t_sphere sphere, t_ray ray);
-double	intersect_square(t_square square, t_ray ray);
-double	intersect_cylinder(t_cylinder cylinder, t_ray ray);
-int		intersect_aabb(t_aabb *aabb, t_ray *ray);
-void	loop_intersect_planes(t_plane *planes, int n, t_ray *ray,
-		t_near *near);
-void	loop_intersect_triangles(t_trig *triangles, int n, t_ray *ray,
-		t_near *near);
-void	loop_intersect_spheres(t_sphere *spheres, int n, t_ray *ray,
-		t_near *near);
-void	loop_intersect_squares(t_square *squares, int n, t_ray *ray,
-		t_near *near);
-void	loop_intersect_cylinders(t_cylinder *cylinders, int n, t_ray *ray,
-		t_near *near);
-void	compute_illumination(t_ray *ray, t_ray *shadow_ray, t_near *near,
-		t_shadow *shadow);
-t_vect	light_on_obj(t_vect *light, unsigned char *obj_rgb);
-int		light_cast(t_scene *scene, t_ray *ray, t_shadow *sh);
-void	colorize_pixels(t_vect pix_rgb, t_mlx *mlx_cfg, int *beginc, int *endc);
+void				get_obj_rgb(void *obj, enum e_type type,
+					unsigned char *rgb);
+void				to_rgb_ratio(unsigned char *rgb_in, t_vect *rgb_out);
+void				get_hit_point(double t, t_vect direction, t_vect origin,
+					t_vect *v_out);
+void				get_hit_plane(t_near *near, t_ray ray);
+void				get_hit_triangle(t_near *near, t_ray ray);
+void				get_hit_square(t_near *near, t_ray ray);
+void				get_hit_sphere(t_near *near, t_ray ray);
+void				get_hit_cylinder(t_near *near, t_ray ray);
+void				raytrace(t_scene *scene, t_mlx *mlx_cfg);
+void				raytrace_lowres(t_scene *scene, t_mlx *mlx_cfg);
+void				define_ray(t_ray *ray, double half_screen, int *coord,
+					t_scene *scene);
+t_vect				send_ray(t_scene *scene, t_ray *ray);
+void				browse_scene(t_scene *scene, t_ray *ray, t_near *near);
+double				intersect_plane(t_plane plane, t_ray ray);
+double				intersect_triangle(t_trig triangle, t_ray ray);
+double				intersect_sphere(t_sphere sphere, t_ray ray);
+double				intersect_square(t_square square, t_ray ray);
+double				intersect_cylinder(t_cylinder cylinder, t_ray ray);
+int					intersect_aabb(t_aabb *aabb, t_ray *ray);
+void				loop_intersect_planes(t_plane *planes, int n, t_ray *ray,
+					t_near *near);
+void				loop_intersect_triangles(t_trig *triangles, int n,
+					t_ray *ray, t_near *near);
+void				loop_intersect_spheres(t_sphere *spheres, int n, t_ray *ray,
+					t_near *near);
+void				loop_intersect_squares(t_square *squares, int n, t_ray *ray,
+					t_near *near);
+void				loop_intersect_cylinders(t_cylinder *cylinders, int n,
+					t_ray *ray, t_near *near);
+void				compute_illumination(t_ray *ray, t_ray *shadow_ray,
+					t_near *near, t_shadow *shadow);
+t_vect				light_on_obj(t_vect *light, unsigned char *obj_rgb);
+int					light_cast(t_scene *scene, t_ray *ray, t_shadow *sh);
+void				colorize_pixels(t_vect pix_rgb, t_mlx *mlx_cfg, int *beginc,
+					int *endc);
 #endif

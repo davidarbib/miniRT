@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 15:57:55 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/20 15:05:22 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/05 14:54:31 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct		s_cam
 	int				fov;
 }					t_cam;
 
-void	destroy_camera(void *obj);
-void	print_cam(void *obj);
+void				destroy_camera(void *obj);
+void				print_cam(void *obj);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 23:25:41 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/04 19:27:58 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/05 14:11:43 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void		parsing(int ac, char **av, t_rt *cfg)
 	cfg->line = NULL;
 	while ((gnl = get_next_line(fd, &cfg->line)) > 0)
 		handle_line(cfg);
+	handle_line(cfg);
 	cfg->flags -= IN_PARSING;
 	if (gnl < 0)
 		parse_error(E_INVFILE, cfg);

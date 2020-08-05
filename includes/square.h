@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 16:12:03 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/22 17:37:50 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/05 15:07:11 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SQUARE_H
 
 # include "vector.h"
+
 /*
 ** --- square ---
 ** pos : position vector
@@ -41,10 +42,10 @@ typedef struct		s_square
 	unsigned char	rgb[3];
 }					t_square;
 
-void	destroy_square(void *obj);
-void	print_square(void *obj);
-void	compute_square_edges(t_square *square);
-void	compute_square_points(t_square *square);
-void	compute_current_edges(t_square *square);
+void				destroy_square(void *obj);
+void				print_square(void *obj);
+void				compute_square_edges(t_square *square);
+void				compute_square_points(t_square *square);
+void				compute_current_edges(t_square *square);
 
 #endif

@@ -6,15 +6,15 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/27 17:04:10 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/30 14:21:47 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/05 14:58:35 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MATRIX_H
 # define MATRIX_H
 
-#include "vector.h"
-#include <math.h>
+# include "vector.h"
+# include <math.h>
 
 # define DN 3
 

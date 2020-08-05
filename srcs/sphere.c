@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:43:21 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/04 22:54:52 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/05 14:46:37 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	parse_sphere(t_rt *cfg, char *line)
 	line = ft_pass_spaces(line);
 	if (*line == SEP)
 		parse_error(E_MISSPPTY, cfg);
+	if (sphere->diam <= 0)
+		parse_error(E_DIAM, cfg);
 	if (!(get_rgb(sphere->rgb, &line)))
 		parse_error(E_BADRGB, cfg);
 	trailing_char_detect(line, cfg);

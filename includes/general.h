@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 17:27:22 by darbib            #+#    #+#             */
-/*   Updated: 2020/07/31 15:21:50 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/05 14:57:40 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct	s_param
 
 # define OBJS		"R,A,c,l,pl,sp,sq,cy,tr"
 # define SEP		','
-# define NB_OBJS	9	
+# define NB_OBJS	9
 
 /*
 ** -------------------------------------

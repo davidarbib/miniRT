@@ -6,12 +6,12 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 21:52:15 by darbib            #+#    #+#             */
-/*   Updated: 2020/05/08 21:52:26 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/05 15:09:27 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef KEYS_LINUX_H
-# define KEYS_LINUX_H 
+# define KEYS_LINUX_H
 
 # define KEY_ESCAPE			65307
 # define KEY_F1 			65470
@@ -124,4 +124,5 @@
 # define KEY_PAD_ENTER		65421
 # define KEY_PAD_DOT		65439
 # define KEY_PAD_DELETE		65439
+
 #endif
