@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:08:02 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/05 15:14:17 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/06 22:10:51 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ void				get_hit_triangle(t_near *near, t_ray ray);
 void				get_hit_square(t_near *near, t_ray ray);
 void				get_hit_sphere(t_near *near, t_ray ray);
 void				get_hit_cylinder(t_near *near, t_ray ray);
-void				raytrace(t_scene *scene, t_mlx *mlx_cfg);
-void				raytrace_lowres(t_scene *scene, t_mlx *mlx_cfg);
+void				raytrace(t_scene *scene, t_img *img);
+void				raytrace_lowres(t_scene *scene, t_img *img);
 void				define_ray(t_ray *ray, double half_screen, int *coord,
 					t_scene *scene);
 t_vect				send_ray(t_scene *scene, t_ray *ray);
@@ -113,6 +113,6 @@ void				compute_illumination(t_ray *ray, t_ray *shadow_ray,
 					t_near *near, t_shadow *shadow);
 t_vect				light_on_obj(t_vect *light, unsigned char *obj_rgb);
 int					light_cast(t_scene *scene, t_ray *ray, t_shadow *sh);
-void				colorize_pixels(t_vect pix_rgb, t_mlx *mlx_cfg, int *beginc,
+void				colorize_pixels(t_vect pix_rgb, t_img *img, int *beginc,
 					int *endc);
 #endif

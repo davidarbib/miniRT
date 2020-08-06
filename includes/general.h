@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 17:27:22 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/05 14:57:40 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/06 22:08:14 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "vector.h"
 # include "spheric.h"
 # include "parsing.h"
-# include "graphic.h"
 # include "scene.h"
 
 /*
@@ -27,6 +26,7 @@ typedef struct	s_param
 {
 	t_mlx		*mlx_cfg;
 	t_scene		*scene;
+	t_img		*img;
 }				t_param;
 
 # define TITLE		"Fantaisie mathematique"
@@ -44,9 +44,6 @@ typedef struct	s_param
 /*
 ** -------------------------------------
 */
-
-int				client_endian(void);
-unsigned int	adapt_endian(unsigned int color);
 
 int				label_chr(char **tab, char *label);
 

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 18:51:25 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/05 14:54:51 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/06 19:55:45 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define HEADERSIZE 0x36
 # define INFOSIZE 	0x28
 # define BYTES_N	3
+# define COLORDEPTH	24
 
 typedef struct		s_bmp
 {

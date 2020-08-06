@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 13:50:26 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/04 20:45:57 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/06 19:53:10 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,13 @@ void	sys_error(t_rt *cfg)
 void	bmp_sys_error(t_scene *scene)
 {
 	perror(FONT_BOLDRED "Image output error " FONT_RESET);
+	destroy_scene(scene);
+	exit(EXIT_FAILURE);
+}
+
+void	img_sys_error(t_scene *scene)
+{
+	perror(FONT_BOLDRED "Buffer creation error" FONT_RESET);
 	destroy_scene(scene);
 	exit(EXIT_FAILURE);
 }

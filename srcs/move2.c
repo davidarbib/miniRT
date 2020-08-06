@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/19 18:22:36 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/04 18:55:18 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/06 21:23:49 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	move_up(void *param)
 	pm = (t_param *)param;
 	pm->scene->active_cam->current_pos.y -= STEP_SIZE;
 	move_scene(pm->scene, &translation);
-	if (!(update_display(pm->scene, pm->mlx_cfg)))
+	if (!(update_display(pm->scene, pm->mlx_cfg, pm->img)))
 		return ;
 }
 
@@ -42,6 +42,6 @@ void	move_down(void *param)
 	pm = (t_param *)param;
 	pm->scene->active_cam->current_pos.y += STEP_SIZE;
 	move_scene(pm->scene, &translation);
-	if (!(update_display(pm->scene, pm->mlx_cfg)))
+	if (!(update_display(pm->scene, pm->mlx_cfg, pm->img)))
 		return ;
 }

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 19:07:27 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/05 15:15:45 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/06 19:53:27 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@
 
 void				parse_error(char *msg, t_rt *cfg);
 void				sys_error(t_rt *cfg);
+void				img_sys_error(t_scene *scene);
 
 #endif
