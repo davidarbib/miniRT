@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 18:18:06 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/04 18:33:52 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/06 17:26:43 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@ t_bmp			create_bitmap(t_param *pm)
 	bmp.height = pm->scene->resy;
 	bmp.sl = pm->mlx_cfg->size_line;
 	bmp.bpp = pm->mlx_cfg->bits_per_pixel;
-	bmp.width = WIDTH;
-	bmp.height = HEIGHT;
 	bmp.planes = 1;
 	bmp.bitcount = 24;
 	bmp.compression = 0;
