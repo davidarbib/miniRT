@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 19:42:14 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/06 22:33:00 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/07 15:37:31 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "bitmap.h"
 #include "scene.h"
 #include "libft.h"
+#include "print.h"
 
 int				client_endian(void)
 {
@@ -50,6 +51,8 @@ static void		transfer_color(t_img *img, t_mlx *mlx, int *pixel, int endian)
 	unsigned char	color[4];
 	unsigned char	color_ret[4];
 
+	if (pixel[i] == mlx->sizex / 2 && pixel[j] == mlx->sizey / 2)
+		printf("cc\n");
 	ft_bzero(color, 4);
 	ft_bzero(color_ret, 4);
 	ft_memmove(color,
@@ -64,10 +67,11 @@ static void		transfer_color(t_img *img, t_mlx *mlx, int *pixel, int endian)
 			+ (pixel[j] * mlx->size_line)), 4);
 	}
 	else
+	{
 		ft_memmove(color,
 			(mlx->img_data + (pixel[i] * (mlx->bits_per_pixel / 8))
 			+ (pixel[j] * mlx->size_line)), 4);
-		
+	}
 }
 
 void			img_to_mlx(t_img *img, t_mlx *mlx)

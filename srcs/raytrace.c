@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 12:45:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/06 19:15:26 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/07 16:41:37 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ void		raytrace(t_scene *scene, t_img *img)
 		while (coord[dy] < scene->resy)
 		{
 			define_ray(&ray, half_screen, coord, scene);
+			print_vect(&ray.direction);
 			pix_rgb = send_ray(scene, &ray);
 			apply_color(&pix_rgb, img, coord[dx], coord[dy]);
 			coord[dy]++;

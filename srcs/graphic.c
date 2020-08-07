@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 16:28:50 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/06 22:02:00 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/07 16:53:31 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include "math.h"
 #include "raytrace.h"
 #include "mlx.h"
-#include <stdio.h>
-#include "bitmap.h"
 
 int			init_graphics(t_mlx *mlx_cfg, t_rt *rt)
 {
@@ -54,7 +52,7 @@ int			refresh_img(t_mlx *mlx_cfg)
 	return (1);
 }
 
-void		apply_color(t_vect *pix_rgb, t_img *img, int x, int y)
+void		apply_color(t_vect *pix_rgb, t_mlx *mlx_cfg, int x, int y)
 {
 	int				color;
 	unsigned char	rgb[3];
@@ -66,15 +64,22 @@ void		apply_color(t_vect *pix_rgb, t_img *img, int x, int y)
 	color += (int)rgb[b];
 	color += (int)rgb[g] * 256;
 	color += (int)rgb[r] * 256 * 256;
-	alter_pixel(img, color, x, y);
+	alter_pixel(mlx_cfg, color, x, y);
 }
 
-void		alter_pixel(t_img *img, int color, int x, int y)
+void		alter_pixel(t_mlx *cfg, int color, int x, int y)
 {
 	unsigned char	*p_img;
+	unsigned int	mlx_color;
 
-	p_img = img->buf + (img->bpp / 8) * x + img->sizeline * y;
-	p_img[0] = ((unsigned char *)&color)[0];
-	p_img[1] = ((unsigned char *)&color)[1];
-	p_img[2] = ((unsigned char *)&color)[2];
+	p_img = (unsigned char *)cfg->img_data
+			+ (cfg->bits_per_pixel / 8) * x
+			+ cfg->size_line * y;
+	mlx_color = mlx_get_color_value(cfg->mlx_ptr, color);
+	if (cfg->endian != client_endian())
+		mlx_color = adapt_endian(mlx_color);
+	p_img[0] = ((unsigned char *)&mlx_color)[0];
+	p_img[1] = ((unsigned char *)&mlx_color)[1];
+	p_img[2] = ((unsigned char *)&mlx_color)[2];
+	p_img[3] = ((unsigned char *)&mlx_color)[3];
 }

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 21:47:19 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/06 22:23:42 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/07 15:43:17 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int		main(int ac, char **av)
 	init_img(&img, &rt_cfg, &scene);
 	init_scene(&scene, &rt_cfg, &mlx_cfg);
 	raytrace(&scene, &img);
+	printf("img : %d,%d,%d\n", img.buf[0], img.buf[1], img.buf[2]);
 	if (rt_cfg.flags & SAVE_REQUESTED)
 	{
 		if (!(bitmap_output(create_bitmap(&param), mlx_cfg.img_data)))

@@ -6,7 +6,7 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/08/06 21:21:45 by darbib           ###   ########.fr        #
+#    Updated: 2020/08/07 16:54:29 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,6 +96,7 @@ SRC = camera.c \
 	raytrace.c \
 	light_casting.c \
 	raytrace2.c \
+	raytrace_savebmp.c \
 	rayplane.c \
 	rayvolume.c \
 	keyboard_actions.c \
