@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 19:42:14 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/07 15:37:31 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/07 18:45:35 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void			adapt_endian(unsigned char *color, unsigned char *color_ret)
 
 void			init_img(t_img *img, t_rt *cfg, t_scene *scene)
 {
-	img->sizex = cfg->resx;
-	img->sizey = cfg->resy;
+	img->sizex = scene->resx;
+	img->sizey = scene->resy;
 	img->bpp = COLORDEPTH;
 	img->sizeline = BYTES_N * img->sizex;
 	img->size = img->sizeline * img->sizey;
