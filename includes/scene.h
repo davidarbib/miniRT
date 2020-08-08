@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:31:09 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/08 16:10:27 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/08 17:37:59 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,11 @@ void					apply_color(t_vect *pix_rgb, t_mlx *mlx_cfg, int x,
 						int y);
 void					init_img(t_img *img, t_rt *cfg, t_scene *scene);
 int						client_endian(void);
-void					adapt_endian(unsigned char *color,
-						unsigned char *color_ret);
+int						adapt_endian(int color);
 void					place_objs(t_scene *scene);
 void					destroy_scene(t_scene *scene);
 void					adapt_scene(t_scene *scene);
-void					init_scene(t_scene *scene, t_rt *rt, t_mlx *mlx_cfg);
+void					init_scene(t_scene *scene, t_rt *rt);
 int						make_array(t_rt *rt, t_scene *scene);
 void					move_scene(t_scene *scene, t_vect *translation);
 void					move_planes(t_plane *planes, int n,

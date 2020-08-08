@@ -6,22 +6,23 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 18:18:06 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/08 16:09:41 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/08 18:31:06 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bitmap.h"
 #include "libft.h"
 #include "mlx.h"
+#include "stdio.h"
 
-int		put_img(t_bmp *bmp, char *img, int fd)
+int		put_img(t_bmp *bmp, unsigned char *img, int fd)
 {
-	int		j;
-	int		i;
-	char	*buf;
-	char	*p_buf;
+	int				j;
+	int				i;
+	unsigned char	*buf;
+	unsigned char	*p_buf;
 
-	if (!(buf = (char *)ft_calloc(bmp->sizeimg, sizeof(char))))
+	if (!(buf = (unsigned char *)ft_calloc(bmp->sizeimg, sizeof(char))))
 		return (0);
 	p_buf = buf;
 	j = bmp->height - 1;
@@ -92,19 +93,17 @@ t_bmp			create_bitmap(t_param *pm)
 	return (bmp);
 }
 
-int				bitmap_output(t_bmp bmp, char *img, int mode)
+int				bitmap_output(t_bmp bmp, t_img *img, int mode)
 {
 	int fd;
 	int	ret;
 
+	(void)mode;
 	if ((fd = open(BMPNAME, O_WRONLY | O_CREAT, S_IRWXU)) < 0)
 		return (0);
 	ret = 1;
 	ret &= put_header(&bmp, fd);
-	if (mode == offline)
-		ret &= (write(fd, img->buf, bmp->sizeimg) != (ssize_t)bmp->sizeimg);
-	else
-		ret &= put_img(&bmp, img, fd);
+	ret &= put_img(&bmp, img->buf, fd);
 	close(fd);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/17 18:41:08 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/06 22:09:26 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/08 16:23:20 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@
 # include "raytrace.h"
 # include "mlx.h"
 
-int		update_display(t_scene *scene, t_mlx *cfg, t_img *img);
+int		update_display(t_scene *scene, t_mlx *cfg);
 
 #endif

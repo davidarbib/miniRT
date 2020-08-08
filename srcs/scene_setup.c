@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/08 14:52:30 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/08 17:36:53 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,11 @@ static void	init_objs_fts(t_scene *scene)
 	scene->background_rgb[2] = 0.;
 }
 
-void		init_scene(t_scene *scene, t_rt *rt, t_mlx *mlx_cfg)
+void		init_scene(t_scene *scene, t_rt *rt)
 {
 	init_objs_fts(scene);
-	scene->lowres = 0;
-	scene->resx = mlx_cfg->sizex;
-	scene->resy = mlx_cfg->sizey;
 	to_rgb_ratio(rt->ambient_rgb, &scene->ambient_rgb);
+	scene->lowres = 0;
 	scene->ambient_ratio = rt->ambient_ratio;
 	make_array(rt, scene);
 	set_quadrics_radius(scene->cylinders, scene->cylinders_n,

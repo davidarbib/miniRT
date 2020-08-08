@@ -6,11 +6,12 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/07 16:42:35 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/07 16:48:18 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/08 18:31:14 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytrace.h"
+#include "print.h"
 
 static void		alter_pixel_savebmp(t_img *img, int color, int x, int y)
 {
@@ -45,14 +46,15 @@ void			raytrace_savebmp(t_scene *scene, t_img *img)
 	t_vect	pix_rgb;
 
 	half_screen = tan(to_radian(scene->active_cam->fov * 0.5));
+	scene->resx = img->sizex;
+	scene->resy = img->sizey;
 	coord[dx] = 0;
-	while (coord[dx] < img->resx)
+	while (coord[dx] < img->sizex)
 	{
 		coord[dy] = 0;
-		while (coord[dy] < img->resy)
+		while (coord[dy] < img->sizey)
 		{
 			define_ray(&ray, half_screen, coord, scene);
-			print_vect(&ray.direction);
 			pix_rgb = send_ray(scene, &ray);
 			apply_color_savebmp(&pix_rgb, img, coord[dx], coord[dy]);
 			coord[dy]++;

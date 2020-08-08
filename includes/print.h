@@ -9,8 +9,5 @@
 void 	print_vect(t_vect *v);
 void 	print_vect_sph(t_spheric *v);
 void 	print_angle(double phi, double theta);
-double	to_radian(double degree);
-double	to_degree(double radian);
-
 
 #endif

@@ -6,11 +6,11 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/08/07 16:54:29 by darbib           ###   ########.fr        #
+#    Updated: 2020/08/08 17:16:21 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = miniRT 
+NAME = miniRT
 CC = gcc
 #CFLAGS = -Wall -Wextra -Werror -framework OpenGL -framework AppKit
 CFLAGS = -Wall -Wextra -Werror
@@ -21,7 +21,7 @@ ifeq ($(DEBUG), 1)
 endif
 
 ifeq ($(SANITIZE), 1)
-	CFLAGS += -fsanitize=address 
+	CFLAGS += -fsanitize=address
 endif
 
 # ------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ LIBFT_DIR = ./libft/
 LIBFT = libft.a
 LIB_LIBFT += $(addprefix $(LIBFT_DIR), $(LIBFT))
 
-LDFLAGS = $(addprefix -L, $(LIBFT_DIR)) 
+LDFLAGS = $(addprefix -L, $(LIBFT_DIR))
 
 INC = $(addprefix -I, includes)
 OBJ = $(SRC:%.c=$(OBJ_DIR)%.o)
@@ -49,7 +49,7 @@ ifeq ($(UNAME_S),Linux)
 	MLX_DIR = ./minilibx_linux/
 	MLX = libmlx.a
 	LIB_MLX = $(addprefix $(MLX_DIR), $(MLX))
-	LDFLAGS += $(addprefix -L, $(MLX_DIR)) 
+	LDFLAGS += $(addprefix -L, $(MLX_DIR))
 	LDFLAGS += -lm -lmlx -lX11 -lXext -lft
 else
 	MLX_DIR = ./minilibx_macos/
@@ -114,6 +114,7 @@ SRC = camera.c \
 	observer.c \
 	illumination.c \
 	get_hit_data.c \
+	endian.c \
 	triangle.c
 
 ifeq ($(DRAFT), 1)
@@ -138,12 +139,12 @@ $(NAME): $(OBJ) $(HEADERS) $(LIBS)
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c
 	@echo "cc"
 	@mkdir -p objs
-	$(CC) $(INC) $(CFLAGS) -c $< -o $@ 
+	$(CC) $(INC) $(CFLAGS) -c $< -o $@
 
-$(MLX_DIR)$(MLX) : 
+$(MLX_DIR)$(MLX) :
 	make -C $(MLX_DIR)
 
-$(LIBFT_DIR)$(LIBFT) : 
+$(LIBFT_DIR)$(LIBFT) :
 	make -C $(LIBFT_DIR)
 
 clean :

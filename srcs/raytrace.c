@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 12:45:11 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/07 17:18:00 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/08 17:36:40 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,14 +111,15 @@ void		raytrace(t_scene *scene, t_mlx *cfg)
 	t_vect	pix_rgb;
 
 	half_screen = tan(to_radian(scene->active_cam->fov * 0.5));
+	scene->resx = cfg->sizex;
+	scene->resy = cfg->sizey;
 	coord[dx] = 0;
-	while (coord[dx] < cfg->resx)
+	while (coord[dx] < cfg->sizex)
 	{
 		coord[dy] = 0;
-		while (coord[dy] < cfg->resy)
+		while (coord[dy] < cfg->sizey)
 		{
 			define_ray(&ray, half_screen, coord, scene);
-			print_vect(&ray.direction);
 			pix_rgb = send_ray(scene, &ray);
 			apply_color(&pix_rgb, cfg, coord[dx], coord[dy]);
 			coord[dy]++;

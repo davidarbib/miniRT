@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 22:33:19 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/05 14:56:46 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/08 17:14:46 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ void			inv_roll(void *param);
 void			cam_switch(void *param);
 void			normal_exit(void *param);
 int				normal_exit2(void *param);
+void			bmp_exit(void *param);
 void			res_switch(void *param);
 #endif

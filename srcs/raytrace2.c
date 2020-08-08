@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 21:59:50 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/06 22:09:47 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/08 17:01:25 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_vect		light_on_obj(t_vect *light, unsigned char *obj_rgb)
 	return (obj_color);
 }
 
-void	colorize_pixels(t_vect pix_rgb, t_img *img, int *beginc, int *endc)
+void	colorize_pixels(t_vect pix_rgb, t_mlx *cfg, int *beginc, int *endc)
 {
 	int x;
 	int y;
@@ -39,14 +39,14 @@ void	colorize_pixels(t_vect pix_rgb, t_img *img, int *beginc, int *endc)
 		y = beginc[dy];
 		while (y < endc[dy])
 		{
-			apply_color(&pix_rgb, img, x, y);
+			apply_color(&pix_rgb, cfg, x, y);
 			y++;
 		}
 		x++;
 	}
 }
 
-void		raytrace_lowres(t_scene *scene, t_img *img)
+void		raytrace_lowres(t_scene *scene, t_mlx *cfg)
 {
 	int		begincoord[2];
 	int		endcoord[2];
@@ -65,7 +65,7 @@ void		raytrace_lowres(t_scene *scene, t_img *img)
 		{
 			define_ray(&ray, half_screen, begincoord, scene);
 			pix_rgb = send_ray(scene, &ray);
-			colorize_pixels(pix_rgb, img, begincoord, endcoord);
+			colorize_pixels(pix_rgb, cfg, begincoord, endcoord);
 			begincoord[dy] += LOWFACTOR;
 			endcoord[dy] += LOWFACTOR;
 		}

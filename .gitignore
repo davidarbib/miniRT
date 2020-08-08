@@ -1,0 +1,13 @@
+**/*.out.*
+**/*.o
+**/*.swp
+**/*.swo
+**/*.bmp
+./tester/*
+**/*.dylib
+**/*.a
+**/.DS_Store
+**/*.swn
+**/tags
+**/*.plist
+**/*.test.*

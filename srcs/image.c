@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 19:42:14 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/08 16:13:47 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/08 17:46:23 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 
 void			init_img(t_img *img, t_rt *cfg, t_scene *scene)
 {
-	img->sizex = scene->resx;
-	img->sizey = scene->resy;
+	img->sizex = cfg->resx;
+	img->sizey = cfg->resy;
 	img->bpp = COLORDEPTH;
 	img->sizeline = BYTES_N * img->sizex;
 	img->size = img->sizeline * img->sizey;

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 21:47:19 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/08 16:05:45 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/08 18:31:42 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ int		main(int ac, char **av)
 	init_cfg(&rt_cfg);
 	parsing(ac, av, &rt_cfg);
 	data_visu(&rt_cfg);
-	init_scene(&scene, &rt_cfg, &mlx_cfg);
-	printf("img : %d,%d,%d\n", img.buf[0], img.buf[1], img.buf[2]);
+	init_scene(&scene, &rt_cfg);
 	if (rt_cfg.flags & SAVE_REQUESTED)
-		bmp_output(&param);
+		bmp_output(&param, &rt_cfg);
 	init_graphics(&mlx_cfg, &rt_cfg);
 	raytrace(&scene, &mlx_cfg);
+	printf("%d, %d\n", mlx_cfg.sizex, mlx_cfg.sizey);
 	mlx_put_image_to_window(mlx_cfg.mlx_ptr, mlx_cfg.win_ptr, mlx_cfg.img_ptr,
 			0, 0);
 	mlx_hook(mlx_cfg.win_ptr, KEYPRESS, KEYPRESSMASK, key_pressed_hook, &param);
