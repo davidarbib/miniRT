@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 16:16:25 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/05 00:11:02 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/08 18:50:39 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 void		check_data(char *line, t_rt *cfg)
 {
-	int i = 0;
-	(void)i;
 	while (*line)
 	{
 		if (!ft_isdigit(*line) && !ft_isblank(*line)
@@ -36,7 +34,7 @@ static int	check_vector(const char *str)
 	{
 		if (*str == SEP)
 		{
-			if ((!ft_isdigit(*(str - 1)) && *(str - 1) != '.') 
+			if ((!ft_isdigit(*(str - 1)) && *(str - 1) != '.')
 				|| (!ft_isdigit(*(str + 1)) && *(str + 1) != '-'
 					&& *(str + 1) != '+'))
 				return (0);

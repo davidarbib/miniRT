@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 18:18:06 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/08 18:31:06 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/08 18:52:15 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "mlx.h"
 #include "stdio.h"
 
-int		put_img(t_bmp *bmp, unsigned char *img, int fd)
+int				put_img(t_bmp *bmp, unsigned char *img, int fd)
 {
 	int				j;
 	int				i;

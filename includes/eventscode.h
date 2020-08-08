@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 23:59:44 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/05 16:59:46 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/08 18:53:25 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 # define MOTIONNOTIFY			6
 # define DESTROYNOTIFY			17
 
-#  define KEYPRESSMASK			1
-#  define KEYRELEASEMASK		2
-#  define BUTTONPRESSMASK		4
-#  define BUTTONRELEASEMASK		8
-#  define STRUCTURENOTIFYMASK	131072
+# define KEYPRESSMASK			1
+# define KEYRELEASEMASK			2
+# define BUTTONPRESSMASK		4
+# define BUTTONRELEASEMASK		8
+# define STRUCTURENOTIFYMASK	131072
 
 #endif

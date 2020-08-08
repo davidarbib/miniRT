@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:31:09 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/08 17:37:59 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/08 18:54:02 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include "camera.h"
 # include "parsing.h"
 
-enum e_pixel			{i, j};
-enum e_bmpmode			{offline, online};
+enum	e_pixel			{i, j};
+enum	e_bmpmode		{offline, online};
 
 typedef struct			s_mlx
 {

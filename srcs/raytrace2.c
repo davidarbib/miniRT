@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 21:59:50 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/08 17:01:25 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/08 18:51:04 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_vect		light_on_obj(t_vect *light, unsigned char *obj_rgb)
 	return (obj_color);
 }
 
-void	colorize_pixels(t_vect pix_rgb, t_mlx *cfg, int *beginc, int *endc)
+void		colorize_pixels(t_vect pix_rgb, t_mlx *cfg, int *beginc, int *endc)
 {
 	int x;
 	int y;
