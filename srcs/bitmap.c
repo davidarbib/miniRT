@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 18:18:06 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/06 17:26:43 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/08 16:09:41 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "mlx.h"
 
-static int		put_img(t_bmp *bmp, char *img, int fd)
+int		put_img(t_bmp *bmp, char *img, int fd)
 {
 	int		j;
 	int		i;
@@ -78,12 +78,12 @@ t_bmp			create_bitmap(t_param *pm)
 
 	bmp.type[0] = 'B';
 	bmp.type[1] = 'M';
-	bmp.width = pm->scene->resx;
-	bmp.height = pm->scene->resy;
-	bmp.sl = pm->mlx_cfg->size_line;
-	bmp.bpp = pm->mlx_cfg->bits_per_pixel;
+	bmp.width = pm->img->sizex;
+	bmp.height = pm->img->sizey;
+	bmp.sl = pm->img->sizeline;
+	bmp.bpp = pm->img->bpp;
 	bmp.planes = 1;
-	bmp.bitcount = 24;
+	bmp.bitcount = COLORDEPTH;
 	bmp.compression = 0;
 	bmp.headersize = HEADERSIZE;
 	bmp.infosize = INFOSIZE;
@@ -92,7 +92,7 @@ t_bmp			create_bitmap(t_param *pm)
 	return (bmp);
 }
 
-int				bitmap_output(t_bmp bmp, char *img)
+int				bitmap_output(t_bmp bmp, char *img, int mode)
 {
 	int fd;
 	int	ret;
@@ -101,7 +101,10 @@ int				bitmap_output(t_bmp bmp, char *img)
 		return (0);
 	ret = 1;
 	ret &= put_header(&bmp, fd);
-	ret &= put_img(&bmp, img, fd);
+	if (mode == offline)
+		ret &= (write(fd, img->buf, bmp->sizeimg) != (ssize_t)bmp->sizeimg);
+	else
+		ret &= put_img(&bmp, img, fd);
 	close(fd);
 	return (ret);
 }

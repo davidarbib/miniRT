@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 18:51:25 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/06 19:55:45 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/08 15:53:25 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,7 @@ typedef struct		s_bmp
 int					bitmap_output(t_bmp bmp, char *img);
 void				bmp_sys_error(t_scene *scene);
 t_bmp				create_bitmap(t_param *pm);
+int					put_img(t_bmp *bmp, char *img, int fd);
+int					bitmap_output(t_bmp bmp, char *img, int mode);
 
 #endif

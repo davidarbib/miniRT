@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:31:09 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/06 22:01:47 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/08 16:10:27 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "parsing.h"
 
 enum e_pixel			{i, j};
+enum e_bmpmode			{offline, online};
 
 typedef struct			s_mlx
 {
@@ -80,33 +81,35 @@ typedef struct			s_img
 	unsigned char		*buf;
 }						t_img;
 
-
 void					img_to_mlx(t_img *img, t_mlx *mlx);
 int						init_graphics(t_mlx *mlx_cfg, t_rt *rt);
 int						create_img(t_mlx *mlx_cfg);
 int						refresh_img(t_mlx *mlx_cfg);
-void					alter_pixel(t_img *img, int color, int x, int y);
-void					apply_color(t_vect *pix_rgb, t_img *img, int x, int y);
+void					alter_pixel(t_mlx *cfg, int color, int x, int y);
+void					apply_color(t_vect *pix_rgb, t_mlx *mlx_cfg, int x,
+						int y);
 void					init_img(t_img *img, t_rt *cfg, t_scene *scene);
 int						client_endian(void);
 void					adapt_endian(unsigned char *color,
 						unsigned char *color_ret);
-
-
 void					place_objs(t_scene *scene);
 void					destroy_scene(t_scene *scene);
 void					adapt_scene(t_scene *scene);
 void					init_scene(t_scene *scene, t_rt *rt, t_mlx *mlx_cfg);
 int						make_array(t_rt *rt, t_scene *scene);
 void					move_scene(t_scene *scene, t_vect *translation);
-void					move_planes(t_plane *planes, int n, t_vect *translation);
+void					move_planes(t_plane *planes, int n,
+						t_vect *translation);
 void					move_triangles(t_trig *triangles, int n,
 						t_vect *translation);
-void					move_spheres(t_sphere *spheres, int n, t_vect *translation);
-void					move_squares(t_square *squares, int n, t_vect *translation);
+void					move_spheres(t_sphere *spheres, int n,
+						t_vect *translation);
+void					move_squares(t_square *squares, int n,
+						t_vect *translation);
 void					move_cylinders(t_cylinder *cylinders, int n,
 						t_vect *translation);
-void					move_olights(t_olight *olights, int n, t_vect *translation);
+void					move_olights(t_olight *olights, int n,
+						t_vect *translation);
 int						set_cams(t_cam *cams, int n);
 int						set_planes(t_plane *plane, int n);
 int						set_triangles(t_trig *triangles, int n);
