@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 18:46:56 by darbib            #+#    #+#             */
-/*   Updated: 2020/04/12 18:11:53 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/09 18:30:52 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		read_and_join(char **line, int fd)
 	while ((rd_result = read(fd, buf, 1)) > 0)
 	{
 		if (*buf == '\n')
-			break;	
+			break ;
 		if (tmp == *buf)
 			same_char++;
 		if (same_char > 1000)
