@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 21:59:50 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/08 18:51:04 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/09 14:02:02 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "minirt.h"
 #include "raytrace.h"
 #include <assert.h>
-#include "print.h"
 #include "rotation.h"
 #include <math.h>
 

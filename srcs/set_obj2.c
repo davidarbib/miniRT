@@ -6,13 +6,12 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 16:35:51 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/04 19:20:46 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/09 14:02:52 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 #include "vector.h"
-#include "print.h"
 
 void	set_current_edges(t_square *squares, int n)
 {

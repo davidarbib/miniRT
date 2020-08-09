@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:31:09 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/08 18:54:02 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/09 16:36:27 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct			s_scene
 	double				invroll_matrix[9];
 }						t_scene;
 
-typedef struct			s_img
+typedef struct			s_imgrt
 {
 	int					sizex;
 	int					sizey;
@@ -79,16 +79,15 @@ typedef struct			s_img
 	int					sizeline;
 	int					bpp;
 	unsigned char		*buf;
-}						t_img;
+}						t_imgrt;
 
-void					img_to_mlx(t_img *img, t_mlx *mlx);
 int						init_graphics(t_mlx *mlx_cfg, t_rt *rt);
 int						create_img(t_mlx *mlx_cfg);
 int						refresh_img(t_mlx *mlx_cfg);
 void					alter_pixel(t_mlx *cfg, int color, int x, int y);
 void					apply_color(t_vect *pix_rgb, t_mlx *mlx_cfg, int x,
 						int y);
-void					init_img(t_img *img, t_rt *cfg, t_scene *scene);
+void					init_img(t_imgrt *img, t_rt *cfg, t_scene *scene);
 int						client_endian(void);
 int						adapt_endian(int color);
 void					place_objs(t_scene *scene);

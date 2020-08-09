@@ -6,12 +6,11 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:50:39 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/04 23:13:14 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/09 14:00:21 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "print.h"
 #include "error.h"
 
 void		destroy_cylinder(void *obj)
@@ -62,19 +61,4 @@ void		parse_cylinder(t_rt *cfg, char *line)
 		ft_lstadd_back(&(cfg->cyls), ft_lstnew(cyl));
 	else
 		cfg->cyls = ft_lstnew(cyl);
-}
-
-void		print_cyl(void *obj)
-{
-	t_cylinder *cyl;
-
-	cyl = (t_cylinder *)obj;
-	printf("Pos : ");
-	print_vect(&cyl->pos);
-	printf("Orientation : ");
-	print_vect(&cyl->orient);
-	printf("diameter : %f\n", cyl->diam);
-	printf("Height : %f\n", cyl->height);
-	printf("RGB : %d,%d,%d\n", cyl->rgb[0], cyl->rgb[1], cyl->rgb[2]);
-	printf("\n");
 }

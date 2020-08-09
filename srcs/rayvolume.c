@@ -6,12 +6,11 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 19:19:23 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/04 20:30:42 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/09 14:02:12 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytrace.h"
-#include "print.h"
 
 /*
 ** geometric solution

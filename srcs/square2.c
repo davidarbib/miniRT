@@ -6,14 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 22:40:45 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/04 22:44:29 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/09 14:03:10 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "square.h"
 #include "error.h"
-#include "print.h"
 
 void	compute_square_points(t_square *square)
 {

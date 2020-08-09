@@ -6,13 +6,12 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 13:37:45 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/04 22:54:37 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/09 14:01:41 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "error.h"
 #include "minirt.h"
-#include "print.h"
 
 void			destroy_olight(void *obj)
 {
@@ -52,16 +51,4 @@ void			parse_olight(t_rt *cfg, char *line)
 		ft_lstadd_back(&(cfg->olights), ft_lstnew(olight));
 	else
 		cfg->olights = ft_lstnew(olight);
-}
-
-void			print_olight(void *obj)
-{
-	t_olight *olight;
-
-	olight = (t_olight *)obj;
-	printf("Pos : ");
-	print_vect(&olight->pos);
-	printf("Ratio : %f\n", olight->ratio);
-	printf("RGB : %d,%d,%d\n", olight->rgb[0], olight->rgb[1], olight->rgb[2]);
-	printf("\n");
 }

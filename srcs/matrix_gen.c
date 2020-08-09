@@ -6,13 +6,12 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 14:10:20 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/04 18:45:44 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/09 14:01:18 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix.h"
 #include <math.h>
-#include "print.h"
 
 void	x_matrix(double theta, double *m)
 {

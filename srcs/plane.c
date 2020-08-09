@@ -6,13 +6,12 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:32:42 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/04 22:53:20 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/09 14:04:15 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "error.h"
-#include "print.h"
 #include <assert.h>
 
 void		destroy_plane(void *obj)
@@ -28,7 +27,6 @@ static void	check_plane(t_rt *cfg, t_plane *plane)
 {
 	if (!(is_orientation_vect(&plane->orient)))
 		parse_error(E_ORIENT, cfg);
-	print_vect(&plane->orient);
 	if (is_null_vect(plane->orient))
 		parse_error(E_NULLV, cfg);
 }
@@ -54,17 +52,4 @@ void		parse_plane(t_rt *cfg, char *line)
 		ft_lstadd_back(&(cfg->planes), ft_lstnew(plane));
 	else
 		cfg->planes = ft_lstnew(plane);
-}
-
-void		print_plane(void *obj)
-{
-	t_plane *plane;
-
-	plane = (t_plane *)obj;
-	printf("Pos : ");
-	print_vect(&plane->pos);
-	printf("Orientation : ");
-	print_vect(&plane->orient);
-	printf("RGB : %d,%d,%d\n", plane->rgb[0], plane->rgb[1], plane->rgb[2]);
-	printf("\n");
 }

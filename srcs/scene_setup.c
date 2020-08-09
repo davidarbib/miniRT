@@ -6,14 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/18 21:54:47 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/08 17:36:53 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/09 14:36:45 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 #include "rotation.h"
 #include "parsing.h"
-#include "print.h"
 #include "spheric.h"
 #include "matrix.h"
 #include "raytrace.h"
@@ -103,6 +102,7 @@ void		init_scene(t_scene *scene, t_rt *rt)
 	scene->lowres = 0;
 	scene->ambient_ratio = rt->ambient_ratio;
 	make_array(rt, scene);
+	destroy_cfg(rt);
 	set_quadrics_radius(scene->cylinders, scene->cylinders_n,
 						scene->spheres, scene->spheres_n);
 	set_cams(scene->cams, scene->cams_n);

@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 16:23:29 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/04 18:43:14 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/09 14:01:08 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "macos_codes.h"
 #endif
 #include "general.h"
-#include "print.h"
 #include "mlx.h"
 #include "update.h"
 #include <stdio.h>

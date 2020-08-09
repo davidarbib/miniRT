@@ -6,13 +6,12 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 16:33:07 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/08 17:25:09 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/09 14:00:04 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "error.h"
-#include "print.h"
 
 void		destroy_camera(void *obj)
 {
@@ -54,17 +53,4 @@ void		parse_camera(t_rt *cfg, char *line)
 		ft_lstadd_back(&(cfg->cams), ft_lstnew(cam));
 	else
 		cfg->cams = ft_lstnew(cam);
-}
-
-void		print_cam(void *obj)
-{
-	t_cam	*cam;
-
-	cam = (t_cam *)obj;
-	printf("Pos : ");
-	print_vect(&cam->pos);
-	printf("Orientation : ");
-	print_vect(&cam->orient);
-	printf("Fov : %d\n", cam->fov);
-	printf("\n");
 }

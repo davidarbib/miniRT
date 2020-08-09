@@ -6,13 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/21 18:08:31 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/04 20:33:05 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/09 14:03:53 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rotation.h"
-#include "print.h"
 #include "actions.h"
+#include <math.h>
 
 void		assign_turn_matrices(double *left, double *right)
 {

@@ -6,14 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 22:23:52 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/08 16:53:38 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/09 14:01:22 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "actions.h"
 #include "update.h"
 #include "general.h"
-#include "print.h"
 
 void	move_forward(void *param)
 {

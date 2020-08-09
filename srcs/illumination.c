@@ -6,12 +6,11 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 14:21:50 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/04 18:39:27 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/09 14:00:57 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytrace.h"
-#include "print.h"
 
 void	compute_illumination(t_ray *ray, t_ray *shadow_ray, t_near *near,
 		t_shadow *shadow)

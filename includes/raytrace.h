@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 14:08:02 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/08 17:14:15 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/09 16:40:26 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void				get_hit_sphere(t_near *near, t_ray ray);
 void				get_hit_cylinder(t_near *near, t_ray ray);
 void				raytrace(t_scene *scene, t_mlx *cfg);
 void				raytrace_lowres(t_scene *scene, t_mlx *cfg);
-void				raytrace_savebmp(t_scene *scene, t_img *img);
+void				raytrace_savebmp(t_scene *scene, t_imgrt *img);
 void				define_ray(t_ray *ray, double half_screen, int *coord,
 					t_scene *scene);
 t_vect				send_ray(t_scene *scene, t_ray *ray);

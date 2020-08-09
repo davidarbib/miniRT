@@ -6,14 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:36:28 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/04 23:09:49 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/09 14:03:05 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "square.h"
 #include "error.h"
-#include "print.h"
 
 void	destroy_square(void *obj)
 {
@@ -59,18 +58,4 @@ void	parse_square(t_rt *cfg, char *line)
 		ft_lstadd_back(&(cfg->squares), ft_lstnew(square));
 	else
 		cfg->squares = ft_lstnew(square);
-}
-
-void	print_square(void *obj)
-{
-	t_square *square;
-
-	square = (t_square *)obj;
-	printf("Pos : ");
-	print_vect(&square->pos);
-	printf("Orientation : ");
-	print_vect(&square->orient);
-	printf("Height : %f\n", square->height);
-	printf("RGB : %d,%d,%d\n", square->rgb[0], square->rgb[1], square->rgb[2]);
-	printf("\n");
 }

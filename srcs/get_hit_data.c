@@ -6,13 +6,12 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 14:48:42 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/04 18:38:29 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/09 14:00:50 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytrace.h"
 #include "assert.h"
-#include "print.h"
 
 void	get_hit_plane(t_near *near, t_ray ray)
 {

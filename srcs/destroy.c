@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:35:17 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/04 18:27:06 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/09 14:08:31 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void		destroy_cfg(t_rt *cfg)
 		free(cfg->current_obj_addr);
 	if (cfg->flags & IN_PARSING)
 		free(cfg->line);
-	data_visu(cfg);
 	ft_lstclear(&cfg->cyls, destroy_cylinder);
 	ft_lstclear(&cfg->cams, destroy_camera);
 	ft_lstclear(&cfg->olights, destroy_olight);

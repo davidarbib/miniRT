@@ -6,12 +6,11 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/23 14:47:38 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/04 20:28:39 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/09 14:01:51 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytrace.h"
-#include "print.h"
 
 double	intersect_plane(t_plane plane, t_ray ray)
 {

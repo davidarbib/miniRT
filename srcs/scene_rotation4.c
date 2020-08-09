@@ -6,13 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 16:13:40 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/04 19:15:34 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/09 14:04:06 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rotation.h"
-#include "print.h"
 #include "actions.h"
+#include <math.h>
 
 void	assign_roll_matrices(double *roll, double *inv_roll)
 {

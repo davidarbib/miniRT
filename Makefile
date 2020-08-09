@@ -6,7 +6,7 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/08/08 17:16:21 by darbib           ###   ########.fr        #
+#    Updated: 2020/08/09 17:56:40 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,14 +27,10 @@ endif
 # ------------------------------------------------------------------------------
 
 LIB_DIR = /usr/lib/
-INC_DIR = ./includes/
 OBJ_DIR = ./objs/
 SRC_DIR = ./srcs/
 
 # ------------------------------------------------------------------------------
-
-HEADERS = $(addprefix $(INC_DIR), libft.h)
-HEADERS += $(addprefix $(INC_DIR), minirt.h)
 
 LIBFT_DIR = ./libft/
 LIBFT = libft.a
@@ -42,7 +38,6 @@ LIB_LIBFT += $(addprefix $(LIBFT_DIR), $(LIBFT))
 
 LDFLAGS = $(addprefix -L, $(LIBFT_DIR))
 
-INC = $(addprefix -I, includes)
 OBJ = $(SRC:%.c=$(OBJ_DIR)%.o)
 
 ifeq ($(UNAME_S),Linux)
@@ -58,11 +53,16 @@ else
 	LDFLAGS += -lft -dylib $(LIB_MLX)
 endif
 
+INC_DIRS = ./libft/includes \
+		  ./includes \
+		  $(MLX_DIR)
+
+INC = $(addprefix -I, $(INC_DIRS))
+
 LIBS = $(LIB_MLX) $(LIB_LIBFT)
 
 SRC = camera.c \
 	cylinder.c \
-	data_visu.c \
 	destroy.c \
 	error.c \
 	exit.c \
@@ -87,7 +87,6 @@ SRC = camera.c \
 	sphere.c \
 	square.c \
 	square2.c \
-	print_tools.c \
 	minitools.c \
 	turn.c \
 	turn2.c \
@@ -133,7 +132,7 @@ vpath %.c $(SRC_DIR)
 
 all : $(NAME)
 
-$(NAME): $(OBJ) $(HEADERS) $(LIBS)
+$(NAME): $(OBJ) $(LIBS)
 	$(CC) $(CFLAGS) $(OBJ) -o $@ $(LDFLAGS)
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c

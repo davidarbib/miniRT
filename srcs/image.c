@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/06 19:42:14 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/08 17:46:23 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/09 16:40:54 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 #include "bitmap.h"
 #include "scene.h"
 #include "libft.h"
-#include "print.h"
 
-void			init_img(t_img *img, t_rt *cfg, t_scene *scene)
+void			init_img(t_imgrt *img, t_rt *cfg, t_scene *scene)
 {
 	img->sizex = cfg->resx;
 	img->sizey = cfg->resy;

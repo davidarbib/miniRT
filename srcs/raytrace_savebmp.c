@@ -6,14 +6,13 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/07 16:42:35 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/08 18:31:14 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/09 16:41:34 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytrace.h"
-#include "print.h"
 
-static void		alter_pixel_savebmp(t_img *img, int color, int x, int y)
+static void		alter_pixel_savebmp(t_imgrt *img, int color, int x, int y)
 {
 	unsigned char	*p_img;
 
@@ -23,7 +22,7 @@ static void		alter_pixel_savebmp(t_img *img, int color, int x, int y)
 	p_img[2] = ((unsigned char *)&color)[2];
 }
 
-static void		apply_color_savebmp(t_vect *pix_rgb, t_img *img, int x, int y)
+static void		apply_color_savebmp(t_vect *pix_rgb, t_imgrt *img, int x, int y)
 {
 	int				color;
 	unsigned char	rgb[3];
@@ -38,7 +37,7 @@ static void		apply_color_savebmp(t_vect *pix_rgb, t_img *img, int x, int y)
 	alter_pixel_savebmp(img, color, x, y);
 }
 
-void			raytrace_savebmp(t_scene *scene, t_img *img)
+void			raytrace_savebmp(t_scene *scene, t_imgrt *img)
 {
 	int		coord[2];
 	t_ray	ray;
