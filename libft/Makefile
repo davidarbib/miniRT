@@ -6,9 +6,18 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/07/17 19:37:36 by darbib           ###   ########.fr        #
+#    Updated: 2020/08/24 21:05:54 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+BLUE = 		'\033[0;34m'
+GREEN = 	'\033[0;32m'
+LIGHTBLUE = '\033[1;34m'
+RED = 		'\033[0;31m'
+YELLOW = 	'\033[1;33m'
+ORANGE = 	'\033[0;33m'
+MAGENTA = 	'\033[0;35m'
+RESET = 	'\033[0m'
 
 NAME = libft.a
 CC = gcc
@@ -129,16 +138,22 @@ vpath %.c src/$(PRINTF_DIR)
 all : $(NAME)
 
 $(NAME): $(OBJ) 
-	ar rc $(NAME) $^
-	ranlib $(NAME)
+	@ar rc $(NAME) $^
+	@ranlib $(NAME)
+	@echo $(GREEN) $@ "builded !" $(RESET)
 
 %.o : %.c $(HEADERS)
-	$(CC) -I $(INC_DIR) -c $(CFLAGS) $< 
+	@echo $(BLUE) "compiling" $< $(RESET)
+	@$(CC) -I $(INC_DIR) -c $(CFLAGS) $< 
 
 clean :
-	rm -f $(OBJ)
+	@echo $(MAGENTA) "Cleaning objs..." $(RESET)
+	@rm -f $(OBJ)
+	@echo $(MAGENTA) "...done" $(RESET)
 
 fclean : clean
-	rm -f $(NAME)
+	@echo $(MAGENTA) "Total cleaning..." $(RESET)
+	@rm -f $(NAME)
+	@echo $(MAGENTA) "...done" $(RESET)
 
 re : fclean all

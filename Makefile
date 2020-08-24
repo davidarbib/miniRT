@@ -6,9 +6,18 @@
 #    By: darbib <darbib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/06 14:53:36 by darbib            #+#    #+#              #
-#    Updated: 2020/08/09 17:56:40 by darbib           ###   ########.fr        #
+#    Updated: 2020/08/24 21:09:04 by darbib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+BLUE = 		'\033[0;34m'
+GREEN = 	'\033[0;32m'
+LIGHTBLUE = '\033[1;34m'
+RED = 		'\033[0;31m'
+YELLOW = 	'\033[1;33m'
+ORANGE = 	'\033[0;33m'
+MAGENTA = 	'\033[0;35m'
+RESET = 	'\033[0m'
 
 NAME = miniRT
 CC = gcc
@@ -132,28 +141,37 @@ vpath %.c $(SRC_DIR)
 
 all : $(NAME)
 
+bonus : $(NAME)
+
 $(NAME): $(OBJ) $(LIBS)
-	$(CC) $(CFLAGS) $(OBJ) -o $@ $(LDFLAGS)
+	@$(CC) $(CFLAGS) $(OBJ) -o $@ $(LDFLAGS)
+	@echo $(GREEN) $@ builded ! $(RESET)
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c
-	@echo "cc"
 	@mkdir -p objs
-	$(CC) $(INC) $(CFLAGS) -c $< -o $@
+	@echo $(BLUE) "compiling" $< $(RESET)
+	@$(CC) $(INC) $(CFLAGS) -c $< -o $@
 
 $(MLX_DIR)$(MLX) :
-	make -C $(MLX_DIR)
+	@echo "Compile mlx..."
+	@make -C $(MLX_DIR)
 
 $(LIBFT_DIR)$(LIBFT) :
-	make -C $(LIBFT_DIR)
+	@echo "Compile libft.."
+	@make -C $(LIBFT_DIR)
 
 clean :
-	rm -rf $(OBJ_DIR)
-	rm -f $(LIBS)
-	make clean -C $(MLX_DIR)
-	make clean -C $(LIBFT_DIR)
+	@echo $(MAGENTA) "Cleaning objs..." $(RESET)
+	@rm -rf $(OBJ_DIR)
+	@rm -f $(LIBS)
+	@make clean -C $(MLX_DIR)
+	@make clean -C $(LIBFT_DIR)
+	@echo $(MAGENTA) "...done" $(RESET)
 
 fclean : clean
-	rm -f $(NAME)
-	make fclean -C $(LIBFT_DIR)
+	@echo $(MAGENTA) "Total cleaning..." $(RESET)
+	@rm -f $(NAME)
+	@make fclean -C $(LIBFT_DIR)
+	@echo $(MAGENTA) "...done" $(RESET)
 
 re : fclean all

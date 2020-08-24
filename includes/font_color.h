@@ -6,7 +6,7 @@
 /*   By: darbib <darbib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/15 19:38:24 by darbib            #+#    #+#             */
-/*   Updated: 2020/08/05 14:57:26 by darbib           ###   ########.fr       */
+/*   Updated: 2020/08/22 01:22:29 by darbib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define FONT_GREEN   	"\x1b[32m"
 # define FONT_YELLOW  	"\x1b[33m"
 # define FONT_BLUE    	"\x1b[34m"
+# define FONT_BOLDBLUE  "\x1b[1;34m"
 # define FONT_MAGENTA 	"\x1b[35m"
 # define FONT_CYAN    	"\x1b[36m"
 # define FONT_RESET   	"\x1b[0m"
