@@ -52,42 +52,42 @@ The output image resolution is no longer limited by your display size in this mo
 ### About .rt format
 
 We have to run miniRT with a valid .rt file. Here is an example of valid *(and ugly)* .rt file.  
-![This is a alt text.](/rtfile.png "A .rt file.")
+![This is a alt text.](/rtfile.png "A .rt file.")  
 The school project subject defines how the input file must be formatted.
 
 Each line defines one property or scene object, lines begin with uppercase letter  
 mean a unique property and lowercase lines define a scene object:  
-- R stands for image resolution. Here we have a resolution of 1920x1080
-- A defines ambient light. It has a light ratio and a rgb code
-- c places a camera, it is defined by :
+- **R** stands for image resolution. Here we have a resolution of 1920x1080
+- **A** defines ambient light. It has a light ratio and a rgb code
+- **c** places a camera, it is defined by :
 	- his position vector
 	- his orientation vector (sight-direction)
 	- his field of view (FOV) in degrees
-- l is an omnilight, its properties comprise :
+- **l** is an omnilight, its properties comprise :
 	- a position vector
 	- a light-ratio
 	- a rgb code
-- pl is a plane defined by :
+- **pl** is a plane defined by :
 	- his position vector
 	- his orientation (one of their normals orientation)
 	- his rgb color
-- sp is a sphere, it is defined by :
+- **sp** is a sphere, it is defined by :
 	- a position vector
 	- a diameter
 	- an rgb color
-- sq is a square with :
+- **sq** is a square with :
 	- a position vector (one of his vertices)
 	- an orientation vector
 	- his side size
 	- an rgb color
 Actually, the subject underdefines the square, so i choose an arbitrary 2nd orientation vector,
 and i planned to modify the file format to fix this flaw.
-- cy places a cylinder with :
+- **cy** places a cylinder with :
 	- his position vector (i.e. his base center)
 	- his axis orientation vector
 	- his diameter
 	- his height
-- tr defines a triangle with his three vertices and his color.
+- **tr** defines a triangle with his three vertices and his color.
 
 If you want to create a scene, you have to pay attention at :
 - vector format : f,f,f ; with f, an arbitrary float 
