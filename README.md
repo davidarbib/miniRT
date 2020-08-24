@@ -9,8 +9,9 @@ on a 3D scene.
 ## Installation
 
 We need :
-* On Linux : Xlib (v11) and his extension (already installed on Ubuntu distros)
-* On Mac OS : Nothing
+* On Linux : clang/gcc, Xlib (v11) and his extension (already installed on Ubuntu distros)
+* On Mac OS : clang/gcc  
+(you can change CC value in Makefile to set clang)  
 
 Clone this repo :  
 ```bash
