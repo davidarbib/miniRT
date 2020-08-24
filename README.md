@@ -25,7 +25,7 @@ make
 
 ## Usage
 
-# GUI mode
+### GUI mode
 
 The program takes a .rt file. More information about this format below...  
 ```bash
@@ -40,7 +40,7 @@ Hit this an other time to deactivate.
 - **Tab** switch camera if you define more than one.  
 - Finally, **Esc** to quit.  
 
-# BMP mode
+### BMP mode
 
 You can just save the generated image of scene (RT.bmp) with :  
 ```bash
@@ -49,7 +49,7 @@ You can just save the generated image of scene (RT.bmp) with :
 **Caution** : this erases precedent RT.bmp  
 The output image resolution is no longer limited by your display size in this mode !
 
-# About .rt format
+### About .rt format
 
 We have to run miniRT with a valid .rt file. Here is an example of valid *(and ugly)* .rt file.  
 ![This is a alt text.](/rtfile.png "A .rt file.")
@@ -97,53 +97,6 @@ If you want to create a scene, you have to pay attention at :
 - each property must be separated by spaces/tabs
 
 You can write empty lines and object order is meaningless, just don't forget
-ambient and resolution. (If you dont like ambient light effect you can deactivate putting a 0 in ratio)
+ambient and resolution. (If you dont like ambient light effect you can deactivate putting a 0 in ratio).
 
-# This is a Heading h1
-## This is a Heading h2 
-###### This is a Heading h6
-
-## Emphasis
-
-*This text will be italic*  
-_This will also be italic_
-
-**This text will be bold**  
-__This will also be bold__
-
-_You **can** combine them_
-
-## Lists
-
-### Unordered
-
-* Item 1
-* Item 2
-  * Item 2a
-  * Item 2b
-
-### Ordered
-
-1. Item 1
-1. Item 2
-1. Item 3
-   1. Item 3a
-   1. Item 3b
-
-## Images
-
-![This is a alt text.](/RT.bmp "This is a sample image.")
-
-## Links
-
-You may be using [Markdown Live Preview](https://markdownlivepreview.com/).
-
-## Blockquotes
-
-> Markdown is a lightweight markup language with plain-text-formatting syntax, created in 2004 by John Gruber with Aaron Swartz.
->
->> Markdown is often used to format readme files, for writing messages in online discussion forums, and to create rich text using a plain text editor.
-
-## Inline code
-
-This web site is using `markedjs/marked`.
+Enjoy !  
